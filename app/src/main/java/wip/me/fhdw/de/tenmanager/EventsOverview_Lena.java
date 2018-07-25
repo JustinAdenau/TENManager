@@ -22,39 +22,55 @@ import java.util.List;
 
 public class EventsOverview_Lena extends Activity {
 
+    private EventAdapter eventAdapter;
+    private ListView eventListView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.setContentView(R.layout.activity_main);
 
+        //set ListView
+        eventListView = findViewById(android.R.id.list);
 
+        //set Database
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
+                .allowMainThreadQueries()
+                .build();
 
-        List<String> EventList = new ArrayList<>();
-        EventList.add("Geburtstagsfeier 20.07.2018, 20:00 Uhr im Garten");
-        EventList.add("Weihnachten 24.12.2018, ganztägig Zuhause");
-        EventList.add("Silvesterparty 31.12.2018, 19:00 Uhr bei Franziska");
+        //Beispieldaten in DB bringen
+        Event geburtstag = new Event("Geburtstagsfeier", "20.07.2018", "20:00", "Jana feiert ihren Geburtstag bei ihr im Garten");
+        Event weihnachten = new Event("Weihnachten", "24.12.2018", "ganztägig", "");
 
-        ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.list_item_eventsoverview, R.id.listviewitem_textview_title, EventList);
-        final ListView listView = findViewById(android.R.id.list);
-        listView.setAdapter(adapter);
+        db.eventDao().insertAll(geburtstag, weihnachten);
 
-       /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //get all Events from Database
+        List<Event> events = db.eventDao().getAllEvents();
+
+        /*Event geburtstag = new Event("Geburtstagsfeier", "20.07.2018", "20:00", "Jana feiert ihren Geburtstag bei ihr im Garten");
+        Event weihnachten = new Event("Weihnachten", "24.12.2018", "ganztägig", "");
+
+        final List<Event> eventList = new ArrayList<>();
+        eventList.add(geburtstag);
+        eventList.add(weihnachten);*/
+
+        //set Adapter for ListView
+        eventAdapter = new EventAdapter(getApplicationContext(), events);
+        eventListView.setAdapter(eventAdapter);
+
+        //set onClickListener for ListView
+        eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(EventsOverview_Lena.this, Even);
+                /*Intent intent = new Intent(EventsOverview_Lena.this, );
                 intent.setClassName(getPackageName(), getPackageName()+".EventsDetailview_Sebastian"); //TODO: Einfügen der Activity Detailansicht Events
-                intent.putExtra("selected", listView.getItemAtPosition(i).toString());
-                startActivity(intent);
+                intent.putExtra("selected", eventListView.getItemAtPosition(i).toString());
+                startActivity(intent);*/
             }
-        });*/
+        });
 
-       AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-               .allowMainThreadQueries()
-               .build();
 
-       List<Event> events = db.eventDao().getAllEvents();
     }
-
 
 }

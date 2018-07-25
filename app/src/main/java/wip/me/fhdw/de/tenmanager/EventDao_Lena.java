@@ -19,6 +19,8 @@ public interface EventDao_Lena {
     @Insert
     void insertAll(Event... events);
 
+
+
     @Delete
     void deleteEvents(Event... events);
 

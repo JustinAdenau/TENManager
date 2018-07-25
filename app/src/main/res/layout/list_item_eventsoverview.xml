@@ -10,13 +10,13 @@
     >
 
     <LinearLayout
+        android:id="@+id/linearLayout_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:orientation="vertical"
-        android:id="@+id/linearLayout_title"
         android:gravity="center_horizontal"
-        android:padding="10dp"
+        android:padding="@dimen/listview_padding"
         >
         
         <TextView
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="18sp"
+            android:textSize="@dimen/textsize_title"
             android:text="Titel"
             android:textStyle="bold"
             android:gravity="center_horizontal"
@@ -33,44 +33,36 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout_dateTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:orientation="horizontal"
-        android:id="@+id/linearLayout_dateTime"
         android:layout_below="@id/linearLayout_title"
         android:padding="10dp"
         >
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@android:drawable/ic_menu_today"
-            />
         <TextView
             android:id="@+id/listviewitem_textview_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearance"
-            android:textSize="16sp"
+            android:textSize="@dimen/textsize_text"
             android:text="Datum"
             android:layout_weight="1"
+            android:drawableLeft="@android:drawable/ic_menu_today"
             />
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@android:drawable/ic_menu_recent_history"
-             />
+
         <TextView
             android:id="@+id/listviewitem_textview_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearance"
-            android:textSize="16sp"
+            android:textSize="@dimen/textsize_text"
             android:text="Uhrzeit"
             android:layout_weight="1"
-
+            android:drawableLeft="@android:drawable/ic_menu_recent_history"
             />
 
     </LinearLayout>
