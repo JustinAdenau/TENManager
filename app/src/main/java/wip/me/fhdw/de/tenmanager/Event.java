@@ -8,6 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class Event {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name="id")
     private int mId;
     @ColumnInfo(name = "event_title")
     private String mEventTitle;

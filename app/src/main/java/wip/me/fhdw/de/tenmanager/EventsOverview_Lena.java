@@ -20,21 +20,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class EventsOverview_Lena extends ListActivity {
+public class EventsOverview_Lena extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.eventsoverview_lena);
+        this.setContentView(R.layout.activity_main);
+
+
 
         List<String> EventList = new ArrayList<>();
         EventList.add("Geburtstagsfeier 20.07.2018, 20:00 Uhr im Garten");
         EventList.add("Weihnachten 24.12.2018, ganztägig Zuhause");
         EventList.add("Silvesterparty 31.12.2018, 19:00 Uhr bei Franziska");
 
-        ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.list_item_eventsoverview, EventList);
-        final ListView listView = findViewById(R.id.list);
+        ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.list_item_eventsoverview, R.id.listviewitem_textview_title, EventList);
+        final ListView listView = findViewById(android.R.id.list);
         listView.setAdapter(adapter);
 
        /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,10 +49,12 @@ public class EventsOverview_Lena extends ListActivity {
             }
         });*/
 
-       AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
+       AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
+               .allowMainThreadQueries()
                .build();
 
        List<Event> events = db.eventDao().getAllEvents();
     }
+
 
 }
