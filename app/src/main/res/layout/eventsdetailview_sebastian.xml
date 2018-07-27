@@ -18,31 +18,23 @@
         android:inputType="textMultiLine" />
 
 
-    <!--Anpassung vom text @string/pick_eventDate-->
    <Button
         android:id="@+id/eventDate"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/eventTitle"
         android:drawableStart="@android:drawable/ic_menu_today"
-        android:background="@color/colorBlue"
-        android:text="Datum"
-        android:onClick="showDatePickerDialog" />
-        <!--android:onClick="showEventDatePickerDialog"-->
+        android:text="Datum"/>
 
 
-
-    <!--Anpassung vom text @string/pick_eventTime-->
     <Button
         android:id="@+id/eventTime"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/eventTitle"
         android:layout_toEndOf="@id/eventDate"
         android:drawableStart="@android:drawable/ic_menu_recent_history"
-        android:background="@color/colorBlue"
-        android:text="Uhrzeit"
-        android:onClick="showEventTimePickerDialog" />
+        android:text="Uhrzeit"/>
 
     <EditText
         android:id="@+id/eventSpan"
