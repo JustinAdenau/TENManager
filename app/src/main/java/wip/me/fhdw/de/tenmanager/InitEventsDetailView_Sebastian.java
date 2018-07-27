@@ -9,6 +9,7 @@ public class InitEventsDetailView_Sebastian extends Activity{
     private static final String TAG = "InitEventsDetailView_Sebastian";
 
     private DatepickerEventsDetailView_Sebastian datepicker;
+    private TimepickerEventsDetailView_Sebastian timepicker;
     private GuiEventsDetailView_Sebastian mGui;
     private ApplicationLogicEventsDetailView_Sebastian mApplicationLogic;
 
@@ -17,7 +18,14 @@ public class InitEventsDetailView_Sebastian extends Activity{
         super.onCreate(savedInstanceState);
         initGui();
         initDatepicker();
+        initTimepicker();
 
+    }
+
+
+
+    private void initGui(){
+        mGui = new GuiEventsDetailView_Sebastian(this);
     }
 
     private void initDatepicker(){
@@ -26,8 +34,10 @@ public class InitEventsDetailView_Sebastian extends Activity{
         datepicker.setDateToButton();
     }
 
-    private void initGui(){
-        mGui = new GuiEventsDetailView_Sebastian(this);
+    private void initTimepicker(){
+        timepicker = new TimepickerEventsDetailView_Sebastian(mGui);
+        timepicker.bulidTimepicker();
+       // timepicker.setTimeToButton();
     }
 
 

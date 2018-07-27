@@ -15,7 +15,10 @@ public class DatepickerEventsDetailView_Sebastian {
 
     private static final String TAG = "Datepicker_Sebastian";
 
+
     private GuiEventsDetailView_Sebastian mGui;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+
     //in Gui überführt
     //private Button mDisplayDate;
 
@@ -23,8 +26,6 @@ public class DatepickerEventsDetailView_Sebastian {
         mGui = gui;
     }
 
-
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     //in Gui überführt
     /*public DatepickerEventsDetailView_Sebastian(InitEventsDetailView_Sebastian activity) {

@@ -1,6 +1,5 @@
 package wip.me.fhdw.de.tenmanager;
 
-import android.app.Activity;
 import android.widget.Button;
 
 public class GuiEventsDetailView_Sebastian {
@@ -12,9 +11,14 @@ public class GuiEventsDetailView_Sebastian {
         activity.setContentView(R.layout.eventsdetailview_sebastian);
 
         mButtonDate = activity.findViewById(R.id.eventDate);
+        mButtonTime = activity.findViewById(R.id.eventTime);
     }
 
     public Button getButtonDate() {
         return mButtonDate;
+    }
+
+    public Button getButtonTime() {
+        return mButtonTime;
     }
 }
