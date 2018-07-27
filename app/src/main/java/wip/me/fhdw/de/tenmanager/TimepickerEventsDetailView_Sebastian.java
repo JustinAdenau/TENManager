@@ -1,5 +1,6 @@
 package wip.me.fhdw.de.tenmanager;
 
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -40,7 +41,7 @@ public class TimepickerEventsDetailView_Sebastian {
 
 
                        //Variante 2
-                       view.getContext(), new TimePickerDialog.OnTimeSetListener() {
+                       view.getContext(), AlertDialog.THEME_HOLO_DARK, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         String time = hour + ":" + minute;
@@ -59,7 +60,7 @@ public class TimepickerEventsDetailView_Sebastian {
         });
     }
 
-//todo
+//todo onTimeSet aus bulidTimepicker auslagern
     public void setTimeToButton() {
 
     }
