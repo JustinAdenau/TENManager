@@ -13,12 +13,19 @@ public class InitEventsDetailView_Sebastian extends Activity{
     private GuiEventsDetailView_Sebastian mGui;
     private ApplicationLogicEventsDetailView_Sebastian mApplicationLogic;
 
+    //todo ApplicationLogic inizialisieren
+    //todo init Datepicker und Timepicker und Spanpicker in ApplicationLogic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initGui();
+        initApplicationLogic();
+        initCurrentTime();
+        initCurrentDate();
         initDatepicker();
         initTimepicker();
+
+
 
     }
 
@@ -34,12 +41,31 @@ public class InitEventsDetailView_Sebastian extends Activity{
         datepicker.setDateToButton();
     }
 
-    private void initTimepicker(){
-        timepicker = new TimepickerEventsDetailView_Sebastian(mGui);
-        timepicker.bulidTimepicker();
-       // timepicker.setTimeToButton();
+    private void initApplicationLogic(){
+        mApplicationLogic = new ApplicationLogicEventsDetailView_Sebastian(
+               //todo mDate,
+                mGui
+        );
+    }
+
+    //todo
+    private void initCurrentTime(){
+
+    }
+
+    //todo
+    private void initCurrentDate(){
+
     }
 
 
+    private void initTimepicker(){
+        timepicker = new TimepickerEventsDetailView_Sebastian(mGui);
+        timepicker.bulidTimepicker();
+        //todo Falls Methode in timepicker geschrieben wird!
+       // timepicker.setTimeToButton();
+    }
+
+//todo init Spanpicker
 
 }

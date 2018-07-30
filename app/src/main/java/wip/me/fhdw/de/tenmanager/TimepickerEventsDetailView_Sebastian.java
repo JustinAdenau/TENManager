@@ -33,19 +33,10 @@ public class TimepickerEventsDetailView_Sebastian {
 
                 TimePickerDialog dialog = new TimePickerDialog(
 
-                        //Variante 1
-                  /*      view.getContext(),
-                        android.R.style.TextAppearance_Theme,
-                        hour, minute
-                );*/
-
-
-                       //Variante 2
                        view.getContext(), AlertDialog.THEME_HOLO_DARK, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        String time = hour + ":" + minute;
-                        mGui.getButtonTime().setText(time);
+                        mGui.getButtonTime().setText(String.format("%02d:%02d", hour, minute));
                     }
                 }
                         , hour, minute, true);

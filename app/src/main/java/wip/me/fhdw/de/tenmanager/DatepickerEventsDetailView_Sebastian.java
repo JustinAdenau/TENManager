@@ -19,20 +19,13 @@ public class DatepickerEventsDetailView_Sebastian {
     private GuiEventsDetailView_Sebastian mGui;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
-    //in Gui überführt
-    //private Button mDisplayDate;
 
     public DatepickerEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
         mGui = gui;
     }
 
 
-    //in Gui überführt
-    /*public DatepickerEventsDetailView_Sebastian(InitEventsDetailView_Sebastian activity) {
-        activity.setContentView(R.layout.eventsdetailview_sebastian);
 
-        mDisplayDate = (Button) activity.findViewById(R.id.eventDate);
-    }*/
 
     public void buildDatepicker() {
         mGui.getButtonDate().setOnClickListener(new View.OnClickListener() {
@@ -63,8 +56,7 @@ public class DatepickerEventsDetailView_Sebastian {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
 
-                String date = day + "/" + month + "/" + year;
-                mGui.getButtonDate().setText(date);
+                mGui.getButtonDate().setText(String.format("%02d/%02d/%04d", day, month, year));
 
             }
         };

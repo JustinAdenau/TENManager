@@ -7,6 +7,7 @@
     android:background="@drawable/listview_item_style"
     android:layout_margin="10dp">
 
+<!--floating label-->
 
    <EditText
         android:id="@+id/eventTitle"
@@ -17,44 +18,60 @@
         android:gravity="left|top"
         android:inputType="textMultiLine" />
 
-
-   <Button
-        android:id="@+id/eventDate"
-        android:layout_width="140dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventTitle"
-        android:drawableStart="@android:drawable/ic_menu_today"
-        android:text="Datum"/>
+        android:id="@+id/eventDateTimeSpan"
+        android:layout_below="@id/eventTitle">
+
+        <Button
+            android:id="@+id/eventDate"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:drawableStart="@android:drawable/ic_menu_today"
+            android:background="@color/colorBlue"
+            android:text="Datum"/>
 
 
-    <Button
-        android:id="@+id/eventTime"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/eventTitle"
-        android:layout_toEndOf="@id/eventDate"
-        android:drawableStart="@android:drawable/ic_menu_recent_history"
-        android:text="Uhrzeit"/>
+        <Button
+            android:id="@+id/eventTime"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_margin="5dp"
+            android:layout_toEndOf="@id/eventDate"
+            android:gravity="center"
+            android:drawableStart="@android:drawable/ic_menu_recent_history"
+            android:background="@color/colorBlue"
+            android:text="Uhrzeit"/>
 
-    <EditText
-        android:id="@+id/eventSpan"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/eventTitle"
-        android:layout_above="@id/eventLocation"
-        android:layout_toEndOf="@id/eventTime"
-        android:drawableLeft="@android:drawable/ic_menu_rotate"
-        android:inputType="number"
-        android:background="@android:color/transparent"
-        android:text="3" />
+        <Button
+            android:id="@+id/eventSpan"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:layout_toEndOf="@id/eventTime"
+            android:drawableLeft="@android:drawable/ic_menu_rotate"
+            android:gravity="center"
+            android:background="@color/colorBlue"
+            android:hint="Dauer"/>
+    </LinearLayout>
+
+
+
 
     <EditText
         android:id="@+id/eventLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventDate"
+        android:layout_below="@id/eventDateTimeSpan"
         android:text="Monas Haus"
-        android:hint="Ort" />
+        android:hint="Ort"
+        />
 
 
 
@@ -68,3 +85,35 @@
         android:inputType="textMultiLine" />
 
 </RelativeLayout>
+
+
+<!--
+<Button
+android:id="@+id/eventDate"
+android:layout_width="140dp"
+android:layout_height="wrap_content"
+android:layout_below="@id/eventTitle"
+android:drawableStart="@android:drawable/ic_menu_today"
+android:text="Datum"/>
+
+
+<Button
+android:id="@+id/eventTime"
+android:layout_width="120dp"
+android:layout_height="wrap_content"
+android:layout_below="@id/eventTitle"
+android:layout_toEndOf="@id/eventDate"
+android:drawableStart="@android:drawable/ic_menu_recent_history"
+android:text="Uhrzeit"/>
+
+<EditText
+android:id="@+id/eventSpan"
+android:layout_width="80dp"
+android:layout_height="wrap_content"
+android:layout_below="@id/eventTitle"
+android:layout_above="@id/eventLocation"
+android:layout_toEndOf="@id/eventTime"
+android:drawableLeft="@android:drawable/ic_menu_rotate"
+android:inputType="number"
+android:background="@android:color/transparent"
+android:text="3" /> -->
