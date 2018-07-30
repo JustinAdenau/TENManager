@@ -8,16 +8,23 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class EventAdapter extends BaseAdapter {
+public class EventAdapter_Lena extends BaseAdapter {
 
     private Context mContext;
     private List<Event> mEventList;
 
-    public EventAdapter(Context context, List<Event> eventList)
+    public EventAdapter_Lena(Context context, List<Event> eventList)
     {
         this.mContext=context;
         this.mEventList=eventList;
     }
+
+    public EventAdapter_Lena(Context context)
+    {
+        this.mContext=context;
+    }
+
+    public void setEventList(List<Event> eventList){mEventList=eventList;}
 
     @Override
     public int getCount() {

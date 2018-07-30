@@ -18,51 +18,59 @@ public class Event {
     private String mEventTime;
     @ColumnInfo(name = "event_description")
     private String mEventDescription;
+    @ColumnInfo(name = "event_location")
+    private String mEventLocation;
 
-    public Event(String eventTitle, String eventDate, String eventTime, String eventDescription){
+
+    public Event(String eventTitle, String eventDate, String eventTime, String eventDescription, String eventLocation){
         mEventTitle=eventTitle;
         mEventDate=eventDate;
         mEventTime=eventTime;
         mEventDescription=eventDescription;
+        mEventLocation=eventLocation;
     }
 
     public int getId() {
         return mId;
     }
 
-    public void setId(int Id) {
-        this.mId = Id;
+    public void setId(int id) {
+        this.mId = id;
     }
 
     public String getEventTitle() {
         return mEventTitle;
     }
 
-    public void setEventTitle(String EventTitle) {
-        this.mEventTitle = EventTitle;
+    public void setEventTitle(String eventTitle) {
+        this.mEventTitle = eventTitle;
     }
 
     public String getEventDate() {
         return mEventDate;
     }
 
-    public void setEventDate(String EventDate) {
-        this.mEventDate = EventDate;
+    public void setEventDate(String eventDate) {
+        this.mEventDate = eventDate;
     }
 
     public String getEventTime() {
         return mEventTime;
     }
 
-    public void setEventTime(String EventTime) {
-        this.mEventTime = EventTime;
+    public void setEventTime(String eventTime) {
+        this.mEventTime = eventTime;
     }
 
     public String getEventDescription() {
         return mEventDescription;
     }
 
-    public void setEventDescription(String EventDescription) {
-        this.mEventDescription = EventDescription;
+    public void setEventDescription(String eventDescription) {
+        this.mEventDescription = eventDescription;
     }
+
+    public String getEventLocation(){ return mEventLocation; }
+
+    public void setEventLocation(String eventLocation){this.mEventLocation = eventLocation;}
 }

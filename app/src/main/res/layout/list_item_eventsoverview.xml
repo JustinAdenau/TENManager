@@ -44,25 +44,27 @@
 
         <TextView
             android:id="@+id/listviewitem_textview_date"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearance"
             android:textSize="@dimen/textsize_text"
-            android:text="Datum"
+            android:hint="Datum"
             android:layout_weight="1"
-            android:drawableLeft="@android:drawable/ic_menu_today"
+            android:gravity="start"
+            android:drawableStart="@android:drawable/ic_menu_today"
             />
 
 
         <TextView
             android:id="@+id/listviewitem_textview_time"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearance"
             android:textSize="@dimen/textsize_text"
-            android:text="Uhrzeit"
+            android:hint="Uhrzeit"
             android:layout_weight="1"
-            android:drawableLeft="@android:drawable/ic_menu_recent_history"
+            android:gravity="start"
+            android:drawableStart="@android:drawable/ic_menu_recent_history"
             />
 
     </LinearLayout>

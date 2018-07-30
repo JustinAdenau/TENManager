@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface EventDao_Lena {
 
-    @Query("SELECT * from event")
+    @Query("SELECT * from event order by event_date")
     List<Event> getAllEvents();
 
     @Query("SELECT * from event where event_title like :title")
@@ -19,7 +19,8 @@ public interface EventDao_Lena {
     @Insert
     void insertAll(Event... events);
 
-
+    @Query("DELETE from event")
+    void deleteAll();
 
     @Delete
     void deleteEvents(Event... events);
