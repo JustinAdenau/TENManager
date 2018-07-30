@@ -22,7 +22,7 @@ public class TimepickerEventsDetailView_Sebastian {
         mGui = gui;
     }
 
-//todo
+
     public void bulidTimepicker(){
         mGui.getButtonTime().setOnClickListener(new View.OnClickListener(){
             @Override
@@ -44,16 +44,8 @@ public class TimepickerEventsDetailView_Sebastian {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
-
-
-
             }
         });
-    }
-
-//todo onTimeSet aus bulidTimepicker auslagern
-    public void setTimeToButton() {
-
     }
 
 }

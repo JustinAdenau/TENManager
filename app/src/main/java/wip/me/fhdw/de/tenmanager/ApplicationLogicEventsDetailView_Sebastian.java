@@ -2,13 +2,13 @@ package wip.me.fhdw.de.tenmanager;
 
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.Calendar;
 
 public class ApplicationLogicEventsDetailView_Sebastian  {
 
@@ -16,12 +16,18 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     private GuiEventsDetailView_Sebastian mGui;
     private View mView;
+    private DatepickerEventsDetailView_Sebastian datepicker;
+    private TimepickerEventsDetailView_Sebastian timepicker;
 
 
     public ApplicationLogicEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui) {
         mGui = gui;
         initGui();
-        initListener();
+        initCurrentDate();
+        initCurrentTime();
+        initDatepicker();
+        initTimepicker();
+        initSpanpicker();
     }
 
     private void initGui() {
@@ -29,13 +35,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
-   private void initListener(){
-        SpanpickerEventsDetailView_Sebastian clicklistener;
 
-        clicklistener = new SpanpickerEventsDetailView_Sebastian(this);
-        mGui.getButtonSpan().setOnClickListener(clicklistener);
-        //todo Date und Time erweitern oder initPicker()
-    }
 
 
 
@@ -43,7 +43,9 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     }
 
+    /////////////////////////////////////////////
     // AppLogic
+    ////////////////////////////////////////////7
 
 
     //todo Eingabefenster öffnet sich erst beim 2. Klick
@@ -85,4 +87,46 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
+    private void initCurrentDate(){
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        month = month+1;
+
+        mGui.getButtonDate().setText(String.format("%02d/%02d/%04d", day, month, year));
+    }
+
+
+    private void initCurrentTime(){
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute =cal.get(Calendar.MINUTE);
+
+        hour = hour+1;
+
+        mGui.getButtonTime().setText(hour + ":00");
+    }
+
+
+    private void initDatepicker(){
+        datepicker = new DatepickerEventsDetailView_Sebastian(mGui);
+        datepicker.buildDatepicker();
+        datepicker.setDateToButton();
+    }
+
+
+    private void initTimepicker(){
+        timepicker = new TimepickerEventsDetailView_Sebastian(mGui);
+        timepicker.bulidTimepicker();
+    }
+
+
+    private void initSpanpicker(){
+        SpanpickerEventsDetailView_Sebastian clicklistener;
+
+        clicklistener = new SpanpickerEventsDetailView_Sebastian(this);
+        mGui.getButtonSpan().setOnClickListener(clicklistener);
+    }
 }

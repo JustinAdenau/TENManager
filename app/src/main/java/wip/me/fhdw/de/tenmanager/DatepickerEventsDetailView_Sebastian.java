@@ -25,8 +25,6 @@ public class DatepickerEventsDetailView_Sebastian {
     }
 
 
-
-
     public void buildDatepicker() {
         mGui.getButtonDate().setOnClickListener(new View.OnClickListener() {
             @Override
