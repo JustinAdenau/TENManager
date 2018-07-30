@@ -1,10 +1,13 @@
 package wip.me.fhdw.de.tenmanager;
 
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class GuiEventsOverview_Lena {
 
-    ListView mlistView;
+    private ListView mlistView;
 
     public GuiEventsOverview_Lena(InitEventsOverview_Lena activity)
     {

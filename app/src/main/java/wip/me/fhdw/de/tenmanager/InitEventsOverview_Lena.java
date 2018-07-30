@@ -7,8 +7,11 @@ import android.arch.persistence.room.migration.Migration;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
-public class InitEventsOverview_Lena extends Activity {
+public class InitEventsOverview_Lena extends AppCompatActivity {
 
     private GuiEventsOverview_Lena mGui;
     private ApplicationLogicEventsOverview_Lena mApplicationLogic;
@@ -35,19 +38,23 @@ public class InitEventsOverview_Lena extends Activity {
             //.addMigrations(MIGRATION_1_2)
             .allowMainThreadQueries()
             .build();
-            }
+    }
 
-
-   /* static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    //if database table is changed (new version) migration is needed
+    /*static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE 'event' ADD 'event_location' TEXT");
         }
     };*/
 
-    public void initGui(){mGui = new GuiEventsOverview_Lena(this);}
+    public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}
     public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(mData, mGui, mDb, mEventAdapter);}
     public void initListAdapter(){mEventAdapter = new EventAdapter_Lena(getApplicationContext());}
+    public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
+        toolbarTextview.setText("Events");  }
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {
