@@ -147,7 +147,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
     private void initCurrentDate(){
-        if(mGui.getButtonDate().getText() != null || !mGui.getButtonDate().getText().equals("")) return;
+        if(mGui.getButtonDate().getText() != null /*|| !mGui.getButtonDate().getText().equals("")*/) return;
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -160,7 +160,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
     private void initCurrentTime(){
-        if(mGui.getButtonTime().getText() != null || !mGui.getButtonTime().getText().equals("")) return;
+        if(mGui.getButtonTime().getText() != null /*|| !mGui.getButtonTime().getText().equals("")*/) return;
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute;
@@ -246,7 +246,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
-    public void onButtonSaveClicked()
+    public void onFabSaveClicked()
     {
         mTitle = mGui.getEditTextTitle().getText().toString();
         mDate = mGui.getButtonDate().getText().toString();
@@ -256,9 +256,6 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mSpan = mGui.getButtonSpan().getText().toString();
 
         mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation, mSpan);
-
-
-
     }
 
 

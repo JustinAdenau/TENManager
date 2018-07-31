@@ -1,5 +1,6 @@
 package wip.me.fhdw.de.tenmanager;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ public class GuiEventsOverview_Lena {
     private TextView mTextViewDate;
     private TextView mTextViewTime;
 
+    private FloatingActionButton mFabCreateNew;
+
 
     public GuiEventsOverview_Lena(InitEventsOverview_Lena activity)
     {
@@ -33,10 +36,14 @@ public class GuiEventsOverview_Lena {
         mTextViewTitle = view.findViewById(R.id.listviewitem_textview_title);
         mTextViewDate = view.findViewById(R.id.listviewitem_textview_date);
         mTextViewTime = view.findViewById(R.id.listviewitem_textview_time);
+
+        mFabCreateNew = activity.findViewById(R.id.fab);
     }
 
     //getter to access Views
     public ListView getListView(){return mlistView;}
+    public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
+
     public TextView getTextViewTitle(){return mTextViewTitle;}
     public TextView getTextViewDate(){return mTextViewDate;}
     public TextView getTextViewTime(){return mTextViewTime;}

@@ -6,13 +6,14 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/listview_item_style"
-    android:layout_margin="20dp"
+    android:layout_margin="@dimen/listview_margin"
+    android:padding="@dimen/listview_padding"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-<!--todo focus color ändern;-->
-<!--todo margin erhöhen-> titel ist nicht mehr im Fenster-->
+<!--todo focus color ändern -> done-->
+<!--todo margin erhöhen-> titel ist nicht mehr im Fenster -> done-->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventTitle"
@@ -45,8 +46,8 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:drawableStart="@android:drawable/ic_menu_today"
-            android:background="@color/colorBlue"
-            android:text="Datum"/>
+            android:background="@color/colorApricotDark"
+            android:hint="Datum"/>
 
 
         <Button
@@ -58,8 +59,8 @@
             android:layout_toEndOf="@id/eventDate"
             android:gravity="center"
             android:drawableStart="@android:drawable/ic_menu_recent_history"
-            android:background="@color/colorBlue"
-            android:text="Uhrzeit"/>
+            android:background="@color/colorApricotDark"
+            android:hint="Uhrzeit"/>
 
         <Button
             android:id="@+id/eventSpan"
@@ -70,8 +71,8 @@
             android:layout_toEndOf="@id/eventTime"
             android:drawableLeft="@android:drawable/ic_menu_rotate"
             android:gravity="center"
-            android:background="@color/colorBlue"
-            android:text="Dauer"/>
+            android:background="@color/colorApricotDark"
+            android:hint="Dauer"/>
     </LinearLayout>
 
 
