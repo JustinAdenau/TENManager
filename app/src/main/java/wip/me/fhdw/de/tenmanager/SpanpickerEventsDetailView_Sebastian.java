@@ -11,6 +11,7 @@ public class SpanpickerEventsDetailView_Sebastian implements View.OnClickListene
 
     public SpanpickerEventsDetailView_Sebastian(ApplicationLogicEventsDetailView_Sebastian applicationlogic) {
         mApplicationLogic = applicationlogic;
+        mApplicationLogic.OnSpanButtonClicked();
     }
 
 //todo wird das benötigt? ggf umbauen z.b. if
@@ -22,6 +23,10 @@ public class SpanpickerEventsDetailView_Sebastian implements View.OnClickListene
                 mApplicationLogic.OnSpanButtonClicked();
                 break;
         }
+
+      /* if(view.getId() == R.id.eventSpan){
+            mApplicationLogic.OnSpanButtonClicked();
+        }*/
 
     }
 }

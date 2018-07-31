@@ -54,36 +54,37 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mGui.getButtonSpan().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: working");
-                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(view.getContext());
-                mView = layoutInflaterAndroid.inflate(R.layout.eventdetailviewuserinputbox_sebastian, null);
-                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(view.getContext());
-                alertDialogBuilderUserInput.setView(mView);
+                    Log.d(TAG, "onClick: working");
+                    LayoutInflater layoutInflaterAndroid = LayoutInflater.from(view.getContext());
+                    mView = layoutInflaterAndroid.inflate(R.layout.eventdetailviewuserinputbox_sebastian, null);
+                    AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(view.getContext());
+                    alertDialogBuilderUserInput.setView(mView);
 
-                final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
-                alertDialogBuilderUserInput
-                        .setCancelable(false)
-                        .setPositiveButton("Übernehmen", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogBox, int id) {
+                    final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+                    alertDialogBuilderUserInput
+                            .setCancelable(false)
+                            .setPositiveButton("Übernehmen", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialogBox, int id) {
 
 
-                                 String span = ((EditText) mView.findViewById(R.id.userInputDialog)).getText().toString();
+                                    String span = ((EditText) mView.findViewById(R.id.userInputDialog)).getText().toString();
 
-                            //todo H klein formatieren
-                             mGui.getButtonSpan().setText(span + " h");
-                            }
-                        })
+                                    //todo H klein formatieren
+                                    mGui.getButtonSpan().setText(span + " h");
+                                }
+                            })
 
-                        .setNegativeButton("Abbrechen",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialogBox, int id) {
-                                        dialogBox.cancel();
-                                    }
-                                });
+                            .setNegativeButton("Abbrechen",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialogBox, int id) {
+                                            dialogBox.cancel();
+                                        }
+                                    });
 
-                AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                alertDialogAndroid.show();
-            }
+                    AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+                    alertDialogAndroid.show();
+                    }
+
         });
     }
 
