@@ -1,5 +1,6 @@
 package wip.me.fhdw.de.tenmanager;
 
+import android.util.Log;
 import android.view.View;
 
 public class SpanpickerEventsDetailView_Sebastian implements View.OnClickListener {
@@ -12,8 +13,9 @@ public class SpanpickerEventsDetailView_Sebastian implements View.OnClickListene
         mApplicationLogic = applicationlogic;
     }
 
-//todo wird das benötigt? ggf umbauen
+//todo wird das benötigt? ggf umbauen z.b. if
     public void onClick(View view) {
+        Log.d(TAG, "onClick: ersterklick");
 
         switch (view.getId()) {
             case R.id.eventSpan:

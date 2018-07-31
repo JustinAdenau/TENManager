@@ -30,6 +30,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         initSpanpicker();
     }
 
+
     private void initGui() {
         dataToGui();
     }
@@ -37,7 +38,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
-
+//todo
 
     public void dataToGui(){
 
@@ -102,11 +103,12 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private void initCurrentTime(){
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
-        int minute =cal.get(Calendar.MINUTE);
+        int minute;
 
         hour = hour+1;
+        minute = 00;
 
-        mGui.getButtonTime().setText(hour + ":00");
+        mGui.getButtonTime().setText(String.format("%02d:%02d", hour, minute));
     }
 
 
