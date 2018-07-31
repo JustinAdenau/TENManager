@@ -41,6 +41,8 @@ public class EventAdapter_Lena extends BaseAdapter {
         return position;
     }
 
+    public List<Event> getEventList(){return mEventList;}
+
     @Override
     public View getView(int position, View v, ViewGroup viewGroup) {
         View view = View.inflate(mContext, R.layout.list_item_eventsoverview, null);

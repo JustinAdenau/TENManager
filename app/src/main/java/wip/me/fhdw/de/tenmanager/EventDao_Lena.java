@@ -13,8 +13,21 @@ public interface EventDao_Lena {
     @Query("SELECT * from event order by event_date")
     List<Event> getAllEvents();
 
-    @Query("SELECT * from event where event_title like :title")
-    Event getEventByTitle(String title);
+    @Query("SELECT * from event where id like :id")
+    Event getEventById(String id);
+
+    @Query("SELECT * from event where event_title like :title and event_date like :date and event_time like :time")
+    Event getEventByTitleDateTime(String title, String date, String time);
+
+    @Query("SELECT event_description from event where event_title like :title and event_date like :date and event_time like :time")
+    String getEventDescriptionByTitleDateTime(String title, String date, String time);
+
+    @Query("SELECT event_location from event where event_title like :title and event_date like :date and event_time like :time")
+    String getEventLocationByTitleDateTime(String title, String date, String time);
+
+    @Query("SELECT event_span from event where event_title like :title and event_date like :date and event_time like :time")
+    String getEventSpanByTitleDateTime(String title, String date, String time);
+
 
     @Insert
     void insertAll(Event... events);

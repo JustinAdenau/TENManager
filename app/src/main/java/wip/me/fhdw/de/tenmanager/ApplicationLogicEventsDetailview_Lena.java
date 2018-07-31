@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class ApplicationLogicEventsDetailview_Lena {
@@ -21,11 +22,11 @@ public class ApplicationLogicEventsDetailview_Lena {
     private String mSpan;
 
     private EditText editTextTitle;
-    private EditText editTextDate;
-    private EditText editTextTime;
+    private Button buttonDate;
+    private Button buttonTime;
     private EditText editTextDescription;
     private EditText editTextLocation;
-    private EditText editTextSpan;
+    private Button buttonSpan;
 
 
     public ApplicationLogicEventsDetailview_Lena(Data data, GuiEventsDetailview_Lena gui, AppDatabase db)
@@ -114,7 +115,7 @@ public class ApplicationLogicEventsDetailview_Lena {
 
     public void onButtonSaveClicked()
     {
-        mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation);
+        mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation, "0");
     }
 
     public void onTextViewTitleChanged(String title){mTitle = title;}

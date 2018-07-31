@@ -18,7 +18,7 @@ public class InitEventsDetailview_Lena extends AppCompatActivity {
     private AppDatabase mDb;
 
 
-   /* @Override
+    /*@Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initDb();
@@ -40,12 +40,12 @@ public class InitEventsDetailview_Lena extends AppCompatActivity {
     }
 
     //if database table is changed (new version) migration is needed
-    *//*static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE 'event' ADD 'event_location' TEXT");
         }
-    };*//*
+    };
 
     public void initGui(){mGui = new GuiEventsDetailview_Lena(this); initToolbar();}
     public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsDetailview_Lena(mData, mGui, mDb);}
@@ -71,6 +71,5 @@ public class InitEventsDetailview_Lena extends AppCompatActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         mApplicationLogic.onBackPressed();
-    }
-*/
+    }*/
 }

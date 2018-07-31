@@ -10,6 +10,13 @@ public class Data {
     private Activity mActivity;
     AppDatabase mDb;
 
+    private String mEventTitle;
+    private String mEventDate;
+    private String mEventTime;
+    private String mEventDescription;
+    private String mEventLocation;
+    private String mEventSpan;
+
 
     public Data(Bundle savedInstanceState, Activity activity) {
         mActivity = activity;
@@ -32,8 +39,13 @@ public class Data {
     }
 
     public void restoreDataFromBundle(Bundle b) {
-        //mTopColorValue = b.getInt(Constants.KEYTOPCOLORVALUE);
 
+        mEventTitle = b.getString(Constants.KEYEVENTTITLE);
+        mEventDate = b.getString(Constants.KEYEVENTDATE);
+        mEventTime = b.getString(Constants.KEYEVENTTIME);
+        mEventDescription = b.getString(Constants.KEYEVENTDESCRIPTION);
+        mEventLocation = b.getString(Constants.KEYEVENTLOCATION);
+        mEventSpan = b.getString(Constants.KEYEVENTSPAN);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent) {
@@ -51,19 +63,38 @@ public class Data {
     }
 
     public void saveDataInBundle(Bundle b) {
-        //b.putInt(Constants.KEYTOPCOLORVALUE, mTopColorValue);
-
+        b.putString(Constants.KEYEVENTTITLE, mEventTitle);
+        b.putString(Constants.KEYEVENTDATE, mEventDate);
+        b.putString(Constants.KEYEVENTTIME, mEventTime);
+        b.putString(Constants.KEYEVENTDESCRIPTION, mEventDescription);
+        b.putString(Constants.KEYEVENTLOCATION, mEventLocation);
+        b.putString(Constants.KEYEVENTSPAN, mEventSpan);
     }
 
-    public void createAndSaveNewEvent(String title, String date, String time, String description, String location)
+    public void createAndSaveNewEvent(String title, String date, String time, String description, String location, String span)
     {
-        Event event = new Event(title, date, time, description, location);
+        Event event = new Event(title, date, time, description, location, span);
         mDb.eventDao().insertAll(event);
     }
+
+
+    //setter
+    public void setEventTitle(String title){mEventTitle = title;}
+    public void setEventDate(String date){mEventDate = date;}
+    public void setEventTime(String time){mEventTime = time;}
+    public void setEventDescription(String description){mEventDescription = description;}
+    public void setEventLocation(String location){mEventLocation = location;}
+    public void setEventSpan(String span){mEventSpan = span;}
 
     //getter
     public Activity getActivity () {
         return mActivity;
     }
+    public String getEventTitle(){return mEventTitle;}
+    public String getEventDate(){return mEventDate;}
+    public String getEventTime(){return mEventTime;}
+    public String getEventDescription(){return mEventDescription;}
+    public String getEventLocation(){return mEventLocation;}
+    public String getEventSpan(){return mEventSpan;}
 
 }

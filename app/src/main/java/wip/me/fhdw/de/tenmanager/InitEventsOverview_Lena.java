@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 public class InitEventsOverview_Lena extends AppCompatActivity {
@@ -35,16 +36,16 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_1_2)
+            //.addMigrations(MIGRATION_2_3)
             .allowMainThreadQueries()
             .build();
     }
 
     //if database table is changed (new version) migration is needed
-    /*static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    /*static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL("ALTER TABLE 'event' ADD 'event_location' TEXT");
+            database.execSQL("ALTER TABLE 'event' ADD 'event_span' TEXT");
         }
     };*/
 

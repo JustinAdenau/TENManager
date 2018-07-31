@@ -19,7 +19,8 @@ public class ApplicationLogicEventsOverview_Lena {
     private EventAdapter_Lena mEventAdapter;
 
 
-    public ApplicationLogicEventsOverview_Lena(Data data, GuiEventsOverview_Lena gui, AppDatabase db, EventAdapter_Lena eventAdapter) {
+    public ApplicationLogicEventsOverview_Lena(Data data, GuiEventsOverview_Lena gui, AppDatabase db, EventAdapter_Lena eventAdapter)
+    {
         mData = data;
         mGui = gui;
         mDb = db;
@@ -30,7 +31,8 @@ public class ApplicationLogicEventsOverview_Lena {
 
     public void initGui(){dataToGui();}
 
-    public void initListener(){
+    public void initListener()
+    {
 
         ListViewItemClickListener_Lena listViewItemClickListener = new ListViewItemClickListener_Lena(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
@@ -38,14 +40,15 @@ public class ApplicationLogicEventsOverview_Lena {
 
 
 
-    public void dataToGui() {
+    public void dataToGui()
+    {
 
         mDb.eventDao().deleteAll();
-        Event geburtstag = new Event("Geburtstagsfeier", "20.07.2018", "20:00", "Jana feiert ihren Geburtstag bei ihr im Garten", "Garten");
-        Event weihnachten = new Event("Weihnachten", "24.12.2018", "ganztägig", "", "Zuhause");
-        Event gartenparty = new Event("Gartenparty", "02.08.2018", "15:00", "bei Lisa im Garten", "Garten");
-        Event grillen = new Event("Grillen", "26.07.2018", "18:00", "", "bei Kathi");
-        Event schwimmen = new Event("Schwimmen gehen", "27.07.2018", "14:00", "", "Freibad Kettwig");
+        Event geburtstag = new Event("Geburtstagsfeier", "20.07.2018", "20:00", "Jana feiert ihren Geburtstag bei ihr im Garten", "Garten", "4");
+        Event weihnachten = new Event("Weihnachten", "24.12.2018", "ganztägig", "", "Zuhause", "24");
+        Event gartenparty = new Event("Gartenparty", "02.08.2018", "15:00", "bei Lisa im Garten", "Garten", "2");
+        Event grillen = new Event("Grillen", "26.07.2018", "18:00", "", "bei Kathi", "1");
+        Event schwimmen = new Event("Schwimmen gehen", "27.07.2018", "14:00", "", "Freibad Kettwig", "3");
 
         mDb.eventDao().insertAll(geburtstag, weihnachten, gartenparty, grillen, schwimmen);
         mEventList = mDb.eventDao().getAllEvents();
@@ -55,8 +58,19 @@ public class ApplicationLogicEventsOverview_Lena {
     }
 
 
-    public void onListItemClicked()
+    public void onListItemClicked(int position)
     {
+
+        //mGui.getTextViewTitle().setText("TestTitel");
+        /*String title = mEventList.get(position).getEventTitle();
+        String date = mEventList.get(position).getEventDate();
+        String time = mGui.getTextViewTime().getText().toString();*/
+        mData.setEventTitle(mEventList.get(position).getEventTitle());
+        mData.setEventDate(mEventList.get(position).getEventDate());
+        mData.setEventTime(mEventList.get(position).getEventTime());
+        mData.setEventDescription(mEventList.get(position).getEventDescription());
+        mData.setEventLocation(mEventList.get(position).getEventLocation());
+        mData.setEventSpan(mEventList.get(position).getEventSpan());
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS);
     }
 
@@ -67,7 +81,8 @@ public class ApplicationLogicEventsOverview_Lena {
         finishActivityResultCancelled();
     }
 
-    public void onActivityReturned(int requestCode, int resultCode, Intent intent) {
+    public void onActivityReturned(int requestCode, int resultCode, Intent intent)
+    {
         Log.d("LOGTAG", "onActivityReturned ...");
         Log.d("LOGTAG", "  resultCode: " + resultCode);
         int value;

@@ -7,6 +7,7 @@
     android:background="@drawable/listview_item_style"
     android:layout_margin="10dp"
     android:orientation="vertical"
+    android:id="@+id/idRelativeLayoutListItem"
     >
 
     <LinearLayout
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/textsize_title"
-            android:text="Titel"
+            android:hint="Titel"
             android:textStyle="bold"
             android:gravity="center_horizontal"
             />
