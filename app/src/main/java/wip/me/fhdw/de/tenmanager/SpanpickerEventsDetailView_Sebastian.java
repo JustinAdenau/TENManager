@@ -1,32 +1,62 @@
 package wip.me.fhdw.de.tenmanager;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
-public class SpanpickerEventsDetailView_Sebastian implements View.OnClickListener {
+public class SpanpickerEventsDetailView_Sebastian  {
 
     private static final String TAG = "Spanspicker_Sebastian";
 
    private ApplicationLogicEventsDetailView_Sebastian mApplicationLogic;
+   private GuiEventsDetailView_Sebastian mGui;
+   private View mView;
 
-    public SpanpickerEventsDetailView_Sebastian(ApplicationLogicEventsDetailView_Sebastian applicationlogic) {
-        mApplicationLogic = applicationlogic;
-        mApplicationLogic.OnSpanButtonClicked();
+   public SpanpickerEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui) {
+       mGui = gui;
+   }
+
+
+//todo Button ID anpassen
+    public void BuildSpanpicker() {
+            mGui.getButtonSpan().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d(TAG, "onClick: working");
+                    LayoutInflater layoutInflaterAndroid = LayoutInflater.from(view.getContext());
+                    mView = layoutInflaterAndroid.inflate(R.layout.eventdetailviewuserinputbox_sebastian, null);
+                    AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(view.getContext());
+                    alertDialogBuilderUserInput.setView(mView);
+
+                    final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+                    alertDialogBuilderUserInput
+                            .setCancelable(false)
+                            .setPositiveButton("Übernehmen", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialogBox, int id) {
+
+
+                                    String span = ((EditText) mView.findViewById(R.id.userInputDialog)).getText().toString();
+
+                                    //todo H klein formatieren
+                                    mGui.getButtonSpan().setText(span + " h");
+                                }
+                            })
+
+                            .setNegativeButton("Abbrechen",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialogBox, int id) {
+                                            dialogBox.cancel();
+                                        }
+                                    });
+
+                    AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+                    alertDialogAndroid.show();
+                }
+            });
     }
 
-//todo wird das benötigt? ggf umbauen z.b. if
-    public void onClick(View view) {
-        Log.d(TAG, "onClick: ersterklick");
-
-        switch (view.getId()) {
-            case R.id.eventSpan:
-                mApplicationLogic.OnSpanButtonClicked();
-                break;
-        }
-
-      /* if(view.getId() == R.id.eventSpan){
-            mApplicationLogic.OnSpanButtonClicked();
-        }*/
-
-    }
 }
+
