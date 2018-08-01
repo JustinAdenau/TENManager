@@ -10,13 +10,13 @@ import java.util.List;
 @Dao
 public interface NoteDao_Julius {
 
-    @Query("SELECT * FROM note ORDER BY id")
+    @Query("SELECT * FROM note_julius ORDER BY note_id")
     List<Note_Julius> getAllNotes();
 
     @Insert
     void insertAll(Note_Julius... note);
 
-    @Query("DELETE from note")
+    @Query("DELETE from note_julius")
     void deleteAllNotes();
 
     @Delete

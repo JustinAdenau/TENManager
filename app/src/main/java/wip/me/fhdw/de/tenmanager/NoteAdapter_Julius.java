@@ -13,12 +13,17 @@ public class NoteAdapter_Julius extends BaseAdapter{
     private Context mContext;
     private List<Note_Julius> mNoteList;
 
-    public NoteAdapter_Julius(Context context, List<Note_Julius> noteList){
+    public NoteAdapter_Julius(Context context, List<Note_Julius> noteList)
+    {
         mContext = context;
         mNoteList = noteList;
 
     }
 
+    public NoteAdapter_Julius(Context context)
+    {
+        this.mContext=context;
+    }
 
     public void setNoteList(List<Note_Julius> noteList){mNoteList=noteList;}
 
@@ -38,15 +43,16 @@ public class NoteAdapter_Julius extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View v, ViewGroup viewGroup) {
+    public View getView(int position, View v, ViewGroup viewGroup)
+    {
         View view = View.inflate(mContext, R.layout.list_item_notesoverview, null);
         TextView textViewNoteTitle = view.findViewById(R.id.listviewitem_textview_title);
         TextView textViewNoteContent = view.findViewById(R.id.listviewitem_textview_content);
 
-        textViewNoteTitle.setText(mNoteList.get(position).getNoteTitle());
+        textViewNoteTitle.setText(mNoteList.get(position).getTitle());
         textViewNoteContent.setText(mNoteList.get(position).getFirstTwoContentRows());
 
-        view.setTag(mNoteList.get(position).getNoteId());
+        view.setTag(mNoteList.get(position).getId());
         return view;
     }
 }

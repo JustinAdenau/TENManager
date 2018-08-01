@@ -10,17 +10,15 @@ import java.util.List;
 public class Note_Julius {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "ID")
+    @ColumnInfo(name = "note_id")
     private int mId;
-
-    @ColumnInfo(name = "Title")
+    @ColumnInfo(name = "note_title")
     private String mTitle;
+    @ColumnInfo(name = "note_content")
+    private String mContent;
 
-    @ColumnInfo(name = "Content")
-    private List<String> mContent;
 
-
-    public Note_Julius(String title, List<String> content){
+    public Note_Julius(String title, String content){
         mTitle = title;
         mContent = content;
 
@@ -30,29 +28,42 @@ public class Note_Julius {
 
     // Get / Set Methods
 
-    public int getNoteId(){
+    public int getId(){
         return mId;
     }
-
-    public void setNoteTitle(String title){
-        mTitle = title;
-    }
-
-    public String getNoteTitle(){
+    public String getTitle(){
         return mTitle;
     }
-
-
-    public void setNoteContent(List<String> content){
-        mContent = content;
-    }
-
-    public List<String> getNoteContent(){
+    public String getContent(){
         return mContent;
     }
 
+
+    public void setTitle(String title){
+        mTitle = title;
+    }
+    public void setContent(String content){
+        mContent = content;
+    }
+    public void setId(int id){mId = id;}
+
+
+
+
+    // ToDo
     public String getFirstTwoContentRows(){
-        return "- " + mContent.get(0) + "\n " + "- " + mContent.get(1);
+        int z = 0;
+        String zweiZeilen = "";
+        for(int i = 0; i < mContent.length(); i++){
+            if(mContent.charAt(i) == '-'){
+                z++;
+            }
+            if (z == 3){
+                zweiZeilen = mContent.substring(0,i);
+            }
+
+        }
+        return zweiZeilen;
     }
 
 

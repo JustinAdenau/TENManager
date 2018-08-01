@@ -1,6 +1,7 @@
 package wip.me.fhdw.de.tenmanager;
 
 import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +13,7 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
 
     private GuiNoteOverview_Julius mGui;
     private ApplicationLogicNoteOverview_Julius mApplicationLogic;
-    private NoteData mNoteData;
+    private NoteData_Julius mNoteData;
     private AppDatabase mDb;
     private NoteAdapter_Julius mNoteAdapter;
 
@@ -28,7 +29,7 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
 
     public void initData(Bundle savedInstanceState)
     {
-        mData = new Data(savedInstanceState, this);
+        mNoteData = new NoteData_Julius(savedInstanceState, this);
     }
 
     public void initDb()
@@ -42,7 +43,7 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
     public void initGui(){
         mGui = new GuiNoteOverview_Julius(this);
     }
-    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicNoteOverview_Julius(mData, mGui); }
+    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicNoteOverview_Julius(mNoteData, mGui, mDb, mNoteAdapter); }
     public void initListAdapter(){mNoteAdapter = new NoteAdapter_Julius(getApplicationContext());}
     public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

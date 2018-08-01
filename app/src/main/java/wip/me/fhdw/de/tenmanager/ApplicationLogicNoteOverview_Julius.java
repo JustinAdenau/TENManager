@@ -2,27 +2,20 @@ package wip.me.fhdw.de.tenmanager;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.provider.SyncStateContract;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class ApplicationLogicNoteOverview_Julius {
 
-    private Data mData;
+    private NoteData_Julius mNoteData;
     private GuiNoteOverview_Julius mGui;
     private AppDatabase mDb;
     private List<Note_Julius> mNoteList;
     private NoteAdapter_Julius mNoteAdapter;
 
-    public ApplicationLogicNoteOverview_Julius(Data data, GuiNoteOverview_Julius gui, AppDatabase db, NoteAdapter_Julius noteAdapter){
-        mData = data;
+    public ApplicationLogicNoteOverview_Julius(NoteData_Julius data, GuiNoteOverview_Julius gui, AppDatabase db, NoteAdapter_Julius noteAdapter){
+        mNoteData = data;
         mGui = gui;
         mDb = db;
         mNoteAdapter = noteAdapter;
@@ -36,7 +29,7 @@ public class ApplicationLogicNoteOverview_Julius {
     }
 
     public void initListener(){
-        ListViewItemClickListener_Lena listViewItemClickListener = new ListViewItemClickListener_Lena(this);
+        ListViewItemClickListener_Julius listViewItemClickListener = new ListViewItemClickListener_Julius(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
         FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
         if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
@@ -45,16 +38,10 @@ public class ApplicationLogicNoteOverview_Julius {
 
     public void dataToGui(){
         mDb.eventDao().deleteAll();
-        List<String> einkaufslist = new ArrayList<String>();
-        einkaufslist.add("- Eier");
-        einkaufslist.add("- Milsch");
-        einkaufslist.add("- Klopapier");
+        String einkaufslist = "- Eier \n - Milsch \n - Klopapier";
         Note_Julius einkaufsliste = new Note_Julius("Einkaufsliste", einkaufslist);
 
-        List<String> serien = new ArrayList<String>();
-        serien.add("- Game of Thrones");
-        serien.add("- Lucifer");
-        serien.add("- How I Met Your Mother");
+        String serien = "- GoT \n - Lucifer \n - HIMYM";
         Note_Julius serienSchauen = new Note_Julius("Noch zu schauende Serien!", serien);
 
         mDb.noteDao().insertAll(einkaufsliste, serienSchauen);
@@ -67,7 +54,7 @@ public class ApplicationLogicNoteOverview_Julius {
 
     public void onListItemClicked(int position)
     {
-        mData.setEventTitle(mNoteList.get(position).getNoteTitle());
+        mNoteData.setNoteTitle(mNoteList.get(position).getTitle());
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
     }
 
@@ -89,7 +76,7 @@ public class ApplicationLogicNoteOverview_Julius {
         if ( resultCode == Activity.RESULT_OK ) {
             switch (requestCode) {
                 case Constants.REQUESTCODEONE:
-                    mData.readIntentParametersOrSetDefaultValues(intent);
+                    mNoteData.readIntentParametersOrSetDefaultValues(intent);
                     dataToGui();
                     break;
             }
@@ -99,27 +86,27 @@ public class ApplicationLogicNoteOverview_Julius {
     public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
     {
         Intent intent = new Intent();
-        intent.setClass(mData.getActivity(), activityClass);
+        intent.setClass(mNoteData.getActivity(), activityClass);
 
-        if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());}
+        if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mNoteData.getDataBundle());}
 
-        mData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
+        mNoteData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
     }
 
     private void finishActivityResultOK() {
         Intent intent = new Intent();
-        intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
-        mData.getActivity().setResult(Activity.RESULT_OK, intent);
+        intent.putExtra(Constants.KEYDATABUNDLE, mNoteData.getDataBundle());
+        mNoteData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishAktivityResultOK");
-        mData.getActivity().finish();
+        mNoteData.getActivity().finish();
     }
 
     private void finishActivityResultCanceled() {
         Intent intent = new Intent();
-        intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
-        mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
+        intent.putExtra(Constants.KEYDATABUNDLE, mNoteData.getDataBundle());
+        mNoteData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishAktivityResultCanceled");
-        mData.getActivity().finish();
+        mNoteData.getActivity().finish();
 
     }
 }
