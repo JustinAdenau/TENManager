@@ -13,8 +13,8 @@ public class GuiEventsDetailView_Sebastian {
     private Button mButtonTime;
     private Button mButtonSpan;
 
-    ViewStub stub;
-    View inflated;
+    private ViewStub stub;
+    private View inflated;
 
     private EditText mEditTextTitle;
     private EditText mEditTextDescription;

@@ -1,5 +1,6 @@
 package wip.me.fhdw.de.tenmanager;
 
+import android.util.Log;
 import android.view.View;
 
 public class FloatingActionButtonClickListener_Lena implements View.OnClickListener {
@@ -9,21 +10,27 @@ public class FloatingActionButtonClickListener_Lena implements View.OnClickListe
 
     public FloatingActionButtonClickListener_Lena(ApplicationLogicEventsOverview_Lena applicationLogic)
     {
+        Log.d("LOGTAG", "FAB wurde erzeugt!!");
         mApplicationlogicEventsOverview = applicationLogic;
     }
 
     @Override
-    public void onClick(View view) {
-        switch(view.getId())
-        {
-            case R.layout.eventsoverview_lena:
-                mApplicationlogicEventsOverview.onFabCreateNewClicked();
-                break;
+    public void onClick(View view)
+    {
 
-            case R.layout.eventsdetailview_sebastian:
+        Log.d("LOGTAG", "FAB wurde angeklickt!!");
+        Log.d("LOGTAG", "viewId:" +view.getId());
+
+        //switch(view.getId())
+        //{
+            //case R.layout.eventsoverview_lena:
+                mApplicationlogicEventsOverview.onFabCreateNewClicked();
+            //    break;
+
+            /*case R.layout.eventsdetailview_sebastian:
                 mApplicationlogicEventsDetailview.onFabSaveClicked();
-                break;
-        }
+                break;*/
+        //}
 
     }
 }
