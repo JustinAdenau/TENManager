@@ -39,6 +39,8 @@ public class ApplicationLogicEventsOverview_Lena {
 
     public void dataToGui()
     {
+        //mDb.eventDao().deleteAll();
+
         mEventList = mDb.eventDao().getAllEvents();
 
         mEventAdapter.setEventList(mEventList);

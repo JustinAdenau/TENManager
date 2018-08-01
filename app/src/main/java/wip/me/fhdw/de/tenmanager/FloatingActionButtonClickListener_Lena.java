@@ -23,13 +23,10 @@ public class FloatingActionButtonClickListener_Lena implements View.OnClickListe
     @Override
     public void onClick(View view)
     {
-
         Log.d("LOGTAG", "FAB wurde angeklickt!!");
         Log.d("LOGTAG", "viewId:" +String.valueOf(view.getId()));
 
         if(mApplicationlogicEventsDetailview == null) mApplicationlogicEventsOverview.onFabCreateNewClicked();
         else mApplicationlogicEventsDetailview.onFabSaveClicked();
-
-
     }
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class EventData_Lena {
 
@@ -81,6 +82,20 @@ public class EventData_Lena {
         mDb.eventDao().insertAll(event);
     }
 
+    public void updateEvent(String titleOld, String dateStartOld, String timeStartOld)
+    {
+        Log.d("LOGTAG", "updateEvent called with: "+titleOld +dateStartOld+timeStartOld+mEventTitle+mEventDateStart);
+        /*mDb.eventDao().updateEvent(titleOld, dateStartOld, timeStartOld, mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd,
+                mEventTimeEnd, mEventDescription, mEventLocation);*/
+        Event eventOld = mDb.eventDao().getEventByTitleDateTime(titleOld, dateStartOld, timeStartOld);
+        if(eventOld != null)
+        {
+            Log.d("LOGTAG", "eventOld ist nicht null!!!!!!!!!!!!!!");
+            mDb.eventDao().deleteEvents(eventOld);
+            createAndSaveNewEvent();
+        }
+    }
+
 
     //setter
     public void setEventTitle(String title){mEventTitle = title;}
@@ -96,6 +111,8 @@ public class EventData_Lena {
     public Activity getActivity () {
         return mActivity;
     }
+    public AppDatabase getDb() {return mDb;}
+
     public String getEventTitle(){return mEventTitle;}
     public String getEventDateStart(){return mEventDateStart;}
     public String getEventTimeStart(){return mEventTimeStart;}
