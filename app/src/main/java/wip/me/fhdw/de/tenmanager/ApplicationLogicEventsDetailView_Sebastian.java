@@ -13,24 +13,36 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private static final String TAG = "AppLogic_Sebastian";
 
     private GuiEventsDetailView_Sebastian mGui;
-    private EventData_Lena mData;
+    private Data mData;
     private View mView;
-    private DatepickerEventsDetailView_Sebastian datepicker;
-    private TimepickerEventsDetailView_Sebastian timepicker;
-    private SpanpickerEventsDetailView_Sebastian spanpicker;
+    private DatepickerStartEventsDetailView_Sebastian datepickerStart;
+    private DatepickerEndEventsDetailView_Sebastian datepickerEnd;
+    private TimepickerStartEventsDetailView_Sebastian timepickerStart;
+    private TimepickerEndEventsDetailView_Sebastian timepickerEnd;
+
+
+    //todo mDateStart mDateEnd mTimeStart mTimeEnd
+    private String mTitle;
+    private String mDate;
+    private String mTime;
+    private String mDescription;
+    private String mLocation;
 
 
 
-    public ApplicationLogicEventsDetailView_Sebastian(EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
+
+
+
+    public ApplicationLogicEventsDetailView_Sebastian(Data data, GuiEventsDetailView_Sebastian gui) {
         mGui = gui;
         mData = data;
         initGui();
-        initListener();
         initCurrentDate();
         initCurrentTime();
-        initDatepicker();
-        initTimepicker();
-        initSpanpicker();
+        initDatepickerStart();
+        initDatepickerEnd();
+        initTimepickerStart();
+        initTimepickerEnd();
     }
 
 
@@ -38,24 +50,20 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         dataToGui();
     }
 
-    public void initListener()
-    {
-        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
-        mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
-    }
 
 
+
+//todo
 
     public void dataToGui()
     {
         mGui.getEditTextTitle().setText(mData.getEventTitle());
         mGui.getButtonDateStart().setText(mData.getEventDateStart());
-        mGui.getButtonTimeStart().setText(mData.getEventTimeStart());
         mGui.getButtonDateEnd().setText(mData.getEventDateEnd());
+        mGui.getButtonTimeStart().setText(mData.getEventTimeStart());
         mGui.getButtonTimeEnd().setText(mData.getEventTimeEnd());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
-        mGui.getButtonSpan().setText(mData.getEventSpan());
     }
 
 
@@ -67,8 +75,10 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
+
+    //todo in if auch  ButtonDateEnd Befüllung anfragen
     private void initCurrentDate(){
-        if(mGui.getButtonDate().getText() != null /*|| !mGui.getButtonDate().getText().toString().isEmpty()*/) return;
+        if(mGui.getButtonDateStart().getText() != null /*|| !mGui.getButtonDate().getText().equals("")*/) return;
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -76,12 +86,13 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
         month = month+1;
 
-        mGui.getButtonDate().setText(String.format("%02d/%02d/%04d", day, month, year));
+        mGui.getButtonDateStart().setText(String.format("%02d/%02d/%04d", day, month, year));
+        mGui.getButtonDateEnd().setText(String.format("%02d/%02d/%04d", day, month, year));
     }
 
-
+    //todo in if auch  ButtonTimeEnd Befüllung anfragen
     private void initCurrentTime(){
-        if(mGui.getButtonTime().getText() != null /*|| !mGui.getButtonTime().getText().equals("")*/) return;
+        if(mGui.getButtonTimeStart().getText() != null /*|| !mGui.getButtonTime().getText().equals("")*/) return;
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute;
@@ -89,56 +100,65 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         hour = hour+1;
         minute = 00;
 
-        mGui.getButtonTime().setText(String.format("%02d:%02d", hour, minute));
+        mGui.getButtonTimeStart().setText(String.format("%02d:%02d", hour, minute));
+        mGui.getButtonTimeEnd().setText(String.format("%02d:%02d", hour+1, minute));
     }
 
 
-    private void initDatepicker(){
-        datepicker = new DatepickerEventsDetailView_Sebastian(mGui);
-        datepicker.buildDatepicker();
-        datepicker.setDateToButton();
+    private void initDatepickerStart(){
+        datepickerStart = new DatepickerStartEventsDetailView_Sebastian(mGui);
+        datepickerStart.buildDateStartpicker();
+        datepickerStart.setDateStartToButton();
+    }
+
+    private void initDatepickerEnd(){
+        datepickerEnd = new DatepickerEndEventsDetailView_Sebastian(mGui);
+        datepickerEnd.buildDateEndpicker();
+        datepickerEnd.setDateEndToButton();
     }
 
 
-    private void initTimepicker(){
-        timepicker = new TimepickerEventsDetailView_Sebastian(mGui);
-        timepicker.bulidTimepicker();
+    private void initTimepickerStart(){
+        timepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
+        timepickerStart.bulidTimeStartpicker();
+    }
+
+    private void initTimepickerEnd(){
+        timepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
+        timepickerEnd.bulidTimeEndpicker();
     }
 
 
-    private void initSpanpicker(){
-        spanpicker = new SpanpickerEventsDetailView_Sebastian(mGui);
-        spanpicker.BuildSpanpicker();
-    }
 
 
+    /*public void onTextViewTitleChanged(String title){mTitle = title;}
 
-    public void onFabSaveClicked()
-    {
-        /*mTitle = mGui.getEditTextTitle().getText().toString();
-        mDate = mGui.getButtonDate().getText().toString();
-        mTime = mGui.getButtonTime().getText().toString();
+    public void onTextViewDateChanged(String date){mDate = date;}
+
+    public void onTextViewTimeChanged(String time){mTime = time;}
+
+    public void onTextViewDescriptionChanged(String description){mDescription = description;}
+
+    public void onTextViewLocationChanged(String location){mLocation = location;}
+
+    public void onTextViewSpanChanged(String span){mSpan = span;}*/
+
+
+    //todo Anpassungen an Start und End Time/Date
+    public void onFabSaveClicked() {
+        mTitle = mGui.getEditTextTitle().getText().toString();
+        mDate = mGui.getButtonDateStart().getText().toString();
+        mTime = mGui.getButtonTimeStart().getText().toString();
         mDescription = mGui.getEditTextDescription().getText().toString();
         mLocation = mGui.getEditTextLocation().getText().toString();
-        mSpan = mGui.getButtonSpan().getText().toString();*/
 
-        mData.setEventTitle(mGui.getEditTextTitle().getText().toString());
-        mData.setEventDateStart(mGui.getButtonDateStart().getText().toString());
-        mData.setEventTimeStart(mGui.getButtonTimeStart().getText().toString());
-        mData.setEventDateEnd(mGui.getButtonDateEnd().getText().toString());
-        mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
-        mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
-        mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
-        mData.setEventSpan(mGui.getButtonSpan().getText().toString());
 
-        mData.createAndSaveNewEvent();
-
-        finishActivityResultOk();
+        //mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation, mSpan);
+       mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation);
     }
 
 
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         Log.d("LOGTAG", "onBackPress called");
         finishActivityResultCancelled();
     }
@@ -160,22 +180,14 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         }
     }
 
-    private void finishActivityResultOk()
-    {
-        Intent intent = new Intent();
-        intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
-        mData.getActivity().setResult(Activity.RESULT_OK, intent);
-        Log.d("LOGTAG", "finishActivityResultOk");
-        mData.getActivity().finish();
-    }
 
-
-    private void finishActivityResultCancelled()
-    {
+    private void finishActivityResultCancelled() {
         Intent intent = new Intent();
         intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
     }
+
+    //todo save data bei landscape
 }
