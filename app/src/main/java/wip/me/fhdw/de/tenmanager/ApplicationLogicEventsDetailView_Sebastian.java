@@ -32,11 +32,11 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
+
     public ApplicationLogicEventsDetailView_Sebastian(Data data, GuiEventsDetailView_Sebastian gui) {
         mGui = gui;
         mData = data;
         initGui();
-        //initListener();
         initCurrentDate();
         initCurrentTime();
         initDatepickerStart();
@@ -50,75 +50,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         dataToGui();
     }
 
-    /*public void initListener(){
 
-        mGui.getEditTextTitle().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewTitleChanged(mGui.getEditTextTitle().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        //TODO: überprüfen, ob der Listener beim Button greift
-        mGui.getButtonTextDate().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewDateChanged(mGui.getButtonTextDate().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        mGui.getEditTextTime().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewTimeChanged(mGui.getEditTextTime().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        mGui.getEditTextDescription().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewDescriptionChanged(mGui.getEditTextDescription().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-
-        mGui.getEditTextLocation().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewLocationChanged(mGui.getEditTextLocation().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        mGui.getEditTextSpan().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewSpanChanged(mGui.getEditTextSpan().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-    }*/
 
 
 //todo
