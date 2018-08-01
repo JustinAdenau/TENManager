@@ -11,20 +11,20 @@ import java.util.Calendar;
 
 
 
-public class TimepickerEventsDetailView_Sebastian {
+public class TimepickerStartEventsDetailView_Sebastian {
 
     private static final String TAG = "Timepicker_Sebastian";
 
     private GuiEventsDetailView_Sebastian mGui;
     private TimePickerDialog.OnTimeSetListener mTimeSetListener;
 
-    public TimepickerEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
+    public TimepickerStartEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
         mGui = gui;
     }
 
 
-    public void bulidTimepicker(){
-        mGui.getButtonTime().setOnClickListener(new View.OnClickListener(){
+    public void bulidTimeStartpicker(){
+        mGui.getButtonTimeStart().setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Calendar cal = Calendar.getInstance();
@@ -36,7 +36,7 @@ public class TimepickerEventsDetailView_Sebastian {
                        view.getContext(), AlertDialog.THEME_HOLO_DARK, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        mGui.getButtonTime().setText(String.format("%02d:%02d", hour, minute));
+                        mGui.getButtonTimeStart().setText(String.format("%02d:%02d", hour, minute));
                     }
                 }
                         , hour, minute, true);

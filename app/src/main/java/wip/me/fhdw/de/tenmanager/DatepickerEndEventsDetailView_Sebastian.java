@@ -4,15 +4,11 @@ import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
 
-
-public class DatepickerEventsDetailView_Sebastian {
-
-
+public class DatepickerEndEventsDetailView_Sebastian {
     private static final String TAG = "Datepicker_Sebastian";
 
 
@@ -20,13 +16,13 @@ public class DatepickerEventsDetailView_Sebastian {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
 
-    public DatepickerEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
+    public DatepickerEndEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
         mGui = gui;
     }
 
 
-    public void buildDatepicker() {
-        mGui.getButtonDate().setOnClickListener(new View.OnClickListener() {
+    public void buildDateEndpicker() {
+        mGui.getButtonDateEnd().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
@@ -48,17 +44,15 @@ public class DatepickerEventsDetailView_Sebastian {
 
     }
 
-    public void setDateToButton() {
+    public void setDateEndToButton() {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
 
-                mGui.getButtonDate().setText(String.format("%02d/%02d/%04d", day, month, year));
+                mGui.getButtonDateEnd().setText(String.format("%02d/%02d/%04d", day, month, year));
 
             }
         };
     }
-
-
 }

@@ -13,18 +13,21 @@ public class GuiEventsDetailView_Sebastian {
     private Button mButtonTime;
     private Button mButtonSpan;
 
+    private ViewStub stub;
+    private View inflated;
+
     private EditText mEditTextTitle;
     private EditText mEditTextDescription;
     private EditText mEditTextLocation;
 
-    private FloatingActionButton mFabSave;
+    private FloatingActionButton mFabCreateNew;
 
 
     public GuiEventsDetailView_Sebastian(InitEventsDetailView_Sebastian activity){
         activity.setContentView(R.layout.activity_main);
-        ViewStub stub = (ViewStub) activity.findViewById(R.id.viewStub);
+        stub = (ViewStub) activity.findViewById(R.id.viewStub);
         stub.setLayoutResource(R.layout.eventsdetailview_sebastian);
-        View inflated = stub.inflate();
+        inflated = stub.inflate();
 
         mEditTextTitle = activity.findViewById(R.id.eventTitleEditText);
         mEditTextDescription = activity.findViewById(R.id.eventDescriptionEditText);
@@ -33,8 +36,7 @@ public class GuiEventsDetailView_Sebastian {
         mButtonTime = activity.findViewById(R.id.eventTime);
         mButtonSpan = activity.findViewById(R.id.eventSpan);
 
-        mFabSave = activity.findViewById(R.id.fab);
-        mFabSave.setImageResource(android.R.drawable.ic_menu_save);
+        mFabCreateNew = activity.findViewById(R.id.fab);
         //TODO: change icon to save icon
     }
 
@@ -56,8 +58,6 @@ public class GuiEventsDetailView_Sebastian {
     public Button getButtonSpan() {
         return mButtonSpan;
     }
-
-    public FloatingActionButton getFabSave(){return mFabSave;}
 
     //todo bis jetzt nicht benötigt
     /*public void setButtonSpan(Button mButtonSpan) {
