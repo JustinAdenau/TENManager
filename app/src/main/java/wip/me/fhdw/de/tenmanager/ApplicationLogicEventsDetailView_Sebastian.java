@@ -126,6 +126,12 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     public void onFabSaveClicked()
     {
+        boolean eventExists = false;
+        String titleOld = mData.getEventTitle();
+        String dateStartOld = mData.getEventDateStart();
+        String timeStartOld = mData.getEventTimeStart();
+        if(mData.getDb().eventDao().eventExists(titleOld, dateStartOld , timeStartOld)!=0) eventExists = true;
+
         mData.setEventTitle(mGui.getEditTextTitle().getText().toString());
         mData.setEventDateStart(mGui.getButtonDateStart().getText().toString());
         mData.setEventTimeStart(mGui.getButtonTimeStart().getText().toString());
@@ -134,7 +140,12 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
         mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
 
-        mData.createAndSaveNewEvent();
+        if(eventExists)
+        {
+            Log.d("LOGTAG", "event exists!!!");
+            mData.updateEvent(titleOld, dateStartOld, timeStartOld);
+        }
+        else mData.createAndSaveNewEvent();
 
         finishActivityResultOk();
     }
