@@ -7,17 +7,36 @@
     android:padding="16dp">
 
 
+    <!--todo Überschrift formatieren-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dauer"/>
+
     <!--todo validierung korrekte Werte-->
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/userInputDialog"
+            android:id="@+id/EventUserInputDialogHour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Dauer"
-            android:inputType="numberDecimal" />
+            android:hint="Stunden"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/EventUserInputDialogMinute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Minuten"
+            android:inputType="number" />
 
     </android.support.design.widget.TextInputLayout>
 

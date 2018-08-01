@@ -72,7 +72,8 @@
             android:drawableLeft="@android:drawable/ic_menu_rotate"
             android:gravity="center"
             android:background="@color/colorApricotDark"
-            android:hint="Dauer"/>
+            android:hint="Dauer"
+            android:textAllCaps="false"/>
     </LinearLayout>
 
 

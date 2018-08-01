@@ -207,8 +207,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
-    public void onFabSaveClicked()
-    {
+    public void onFabSaveClicked() {
         mTitle = mGui.getEditTextTitle().getText().toString();
         mDate = mGui.getButtonDate().getText().toString();
         mTime = mGui.getButtonTime().getText().toString();
@@ -220,8 +219,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         Log.d("LOGTAG", "onBackPress called");
         finishActivityResultCancelled();
     }
@@ -244,12 +242,13 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
-    private void finishActivityResultCancelled()
-    {
+    private void finishActivityResultCancelled() {
         Intent intent = new Intent();
         intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
     }
+
+    //todo save data bei landscape
 }

@@ -31,17 +31,19 @@ public class SpanpickerEventsDetailView_Sebastian  {
                     AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(view.getContext());
                     alertDialogBuilderUserInput.setView(mView);
 
-                    final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+                    final EditText EventUserInputDialogHourEditText = (EditText) mView.findViewById(R.id.EventUserInputDialogHour);
+                    final EditText EventUserInputDialogMinuteEditText = (EditText) mView.findViewById(R.id.EventUserInputDialogMinute);
                     alertDialogBuilderUserInput
                             .setCancelable(false)
                             .setPositiveButton("Übernehmen", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialogBox, int id) {
 
 
-                                    String span = ((EditText) mView.findViewById(R.id.userInputDialog)).getText().toString();
+                                    String spanHour = ((EditText) mView.findViewById(R.id.EventUserInputDialogHour)).getText().toString();
+                                    String spanMinute = ((EditText) mView.findViewById(R.id.EventUserInputDialogMinute)).getText().toString();
 
-                                    //todo H klein formatieren
-                                    mGui.getButtonSpan().setText(span + " h");
+                                    //todo Formatierung als 5,80 h oder 5:50 h
+                                    mGui.getButtonSpan().setText(spanHour + ":" + spanMinute + " h");
                                 }
                             })
 
