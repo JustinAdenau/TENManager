@@ -12,9 +12,9 @@ public class Event {
     private int mId;
     @ColumnInfo(name = "event_title")
     private String mEventTitle;
-    @ColumnInfo(name = "event_date")
+    @ColumnInfo(name = "event_date_start")
     private String mEventDateStart;
-    @ColumnInfo(name = "event_time")
+    @ColumnInfo(name = "event_time_start")
     private String mEventTimeStart;
     @ColumnInfo(name = "event_date_end")
     private String mEventDateEnd;
@@ -24,10 +24,9 @@ public class Event {
     private String mEventDescription;
     @ColumnInfo(name = "event_location")
     private String mEventLocation;
-    @ColumnInfo(name = "event_span")
-    private String mEventSpan;
 
-    public Event(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation, String eventSpan){
+
+    public Event(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation){
         mEventTitle=eventTitle;
         mEventDateStart=eventDateStart;
         mEventTimeStart=eventTimeStart;
@@ -35,7 +34,6 @@ public class Event {
         mEventTimeEnd = eventTimeEnd;
         mEventDescription=eventDescription;
         mEventLocation=eventLocation;
-        mEventSpan=eventSpan;
     }
 
     public int getId() {
@@ -96,7 +94,4 @@ public class Event {
 
     public void setEventLocation(String eventLocation){this.mEventLocation = eventLocation;}
 
-    public String getEventSpan(){return mEventSpan;}
-
-    public void setEventSpan(String span){mEventSpan = span;}
 }

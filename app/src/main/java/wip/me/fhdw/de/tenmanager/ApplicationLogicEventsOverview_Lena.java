@@ -55,7 +55,6 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.setEventTimeEnd(mEventList.get(position).getEventTimeEnd());
         mData.setEventDescription(mEventList.get(position).getEventDescription());
         mData.setEventLocation(mEventList.get(position).getEventLocation());
-        mData.setEventSpan(mEventList.get(position).getEventSpan());
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
     }
 

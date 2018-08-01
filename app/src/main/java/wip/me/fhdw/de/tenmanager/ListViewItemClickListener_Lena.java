@@ -25,9 +25,9 @@ public class ListViewItemClickListener_Lena implements ListView.OnItemClickListe
         List<String> data = new ArrayList<>();
         TextView textView = view.findViewById(R.id.listviewitem_textview_title);
         data.add(textView.getText().toString());
-        textView = view.findViewById(R.id.listviewitem_textview_date);
+        textView = view.findViewById(R.id.listviewitem_textview_dateStart);
         data.add(textView.getText().toString());
-        textView = view.findViewById(R.id.listviewitem_textview_time);
+        textView = view.findViewById(R.id.listviewitem_textview_timeStart);
         data.add(textView.getText().toString());
 
         mApplicationLogic.onListItemClicked(position);

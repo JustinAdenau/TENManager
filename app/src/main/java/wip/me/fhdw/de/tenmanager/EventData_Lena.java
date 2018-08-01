@@ -17,7 +17,7 @@ public class EventData_Lena {
     private String mEventTimeEnd;
     private String mEventDescription;
     private String mEventLocation;
-    private String mEventSpan;
+
 
 
     public EventData_Lena(Bundle savedInstanceState, Activity activity) {
@@ -49,7 +49,6 @@ public class EventData_Lena {
         mEventTimeEnd = b.getString(Constants.KEYEVENTTIMEEND);
         mEventDescription = b.getString(Constants.KEYEVENTDESCRIPTION);
         mEventLocation = b.getString(Constants.KEYEVENTLOCATION);
-        mEventSpan = b.getString(Constants.KEYEVENTSPAN);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent) {
@@ -74,12 +73,11 @@ public class EventData_Lena {
         b.putString(Constants.KEYEVENTTIMEEND, mEventTimeEnd);
         b.putString(Constants.KEYEVENTDESCRIPTION, mEventDescription);
         b.putString(Constants.KEYEVENTLOCATION, mEventLocation);
-        b.putString(Constants.KEYEVENTSPAN, mEventSpan);
     }
 
     public void createAndSaveNewEvent()
     {
-        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation, mEventSpan);
+        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation);
         mDb.eventDao().insertAll(event);
     }
 
@@ -92,7 +90,7 @@ public class EventData_Lena {
     public void setEventTimeEnd(String time){mEventTimeEnd = time;}
     public void setEventDescription(String description){mEventDescription = description;}
     public void setEventLocation(String location){mEventLocation = location;}
-    public void setEventSpan(String span){mEventSpan = span;}
+
 
     //getter
     public Activity getActivity () {
@@ -105,6 +103,6 @@ public class EventData_Lena {
     public String getEventTimeEnd(){return mEventTimeEnd;}
     public String getEventDescription(){return mEventDescription;}
     public String getEventLocation(){return mEventLocation;}
-    public String getEventSpan(){return mEventSpan;}
+
 
 }

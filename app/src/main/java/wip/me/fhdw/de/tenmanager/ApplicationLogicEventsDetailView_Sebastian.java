@@ -13,7 +13,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private static final String TAG = "AppLogic_Sebastian";
 
     private GuiEventsDetailView_Sebastian mGui;
-    private Data mData;
+    private EventData_Lena mData;
     private View mView;
     private DatepickerStartEventsDetailView_Sebastian datepickerStart;
     private DatepickerEndEventsDetailView_Sebastian datepickerEnd;
@@ -21,22 +21,12 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private TimepickerEndEventsDetailView_Sebastian timepickerEnd;
 
 
-    //todo mDateStart mDateEnd mTimeStart mTimeEnd
-    private String mTitle;
-    private String mDate;
-    private String mTime;
-    private String mDescription;
-    private String mLocation;
 
-
-
-
-
-
-    public ApplicationLogicEventsDetailView_Sebastian(Data data, GuiEventsDetailView_Sebastian gui) {
+    public ApplicationLogicEventsDetailView_Sebastian(EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
         mGui = gui;
         mData = data;
         initGui();
+        initListener();
         initCurrentDate();
         initCurrentTime();
         initDatepickerStart();
@@ -50,7 +40,11 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         dataToGui();
     }
 
-
+    public void initListener()
+    {
+        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
+    }
 
 
 //todo
@@ -130,31 +124,19 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
+    public void onFabSaveClicked()
+    {
+        mData.setEventTitle(mGui.getEditTextTitle().getText().toString());
+        mData.setEventDateStart(mGui.getButtonDateStart().getText().toString());
+        mData.setEventTimeStart(mGui.getButtonTimeStart().getText().toString());
+        mData.setEventDateEnd(mGui.getButtonDateEnd().getText().toString());
+        mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
+        mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
+        mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
 
-    /*public void onTextViewTitleChanged(String title){mTitle = title;}
+        mData.createAndSaveNewEvent();
 
-    public void onTextViewDateChanged(String date){mDate = date;}
-
-    public void onTextViewTimeChanged(String time){mTime = time;}
-
-    public void onTextViewDescriptionChanged(String description){mDescription = description;}
-
-    public void onTextViewLocationChanged(String location){mLocation = location;}
-
-    public void onTextViewSpanChanged(String span){mSpan = span;}*/
-
-
-    //todo Anpassungen an Start und End Time/Date
-    public void onFabSaveClicked() {
-        mTitle = mGui.getEditTextTitle().getText().toString();
-        mDate = mGui.getButtonDateStart().getText().toString();
-        mTime = mGui.getButtonTimeStart().getText().toString();
-        mDescription = mGui.getEditTextDescription().getText().toString();
-        mLocation = mGui.getEditTextLocation().getText().toString();
-
-
-        //mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation, mSpan);
-       mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation);
+        finishActivityResultOk();
     }
 
 
@@ -179,6 +161,17 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
             }
         }
     }
+
+
+    private void finishActivityResultOk()
+    {
+        Intent intent = new Intent();
+        intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
+        mData.getActivity().setResult(Activity.RESULT_OK, intent);
+        Log.d("LOGTAG", "finishActivityResultOk");
+        mData.getActivity().finish();
+    }
+
 
 
     private void finishActivityResultCancelled() {

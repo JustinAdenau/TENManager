@@ -34,19 +34,22 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            .addMigrations(MIGRATION_3_4)
+            //.addMigrations(MIGRATION_3_4)
             .allowMainThreadQueries()
             .build();
     }
 
     //if database table is changed (new version) migration is needed
-    static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+    /*static final Migration MIGRATION_3_4 = new Migration(3, 4) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL("ALTER TABLE 'event' ADD 'event_date_end' TEXT");
-            database.execSQL("ALTER TABLE 'event' ADD 'event_time_end' TEXT");
+            database.execSQL("ALTER TABLE 'event' RENAME TO 'event_old'");
+            database.execSQL("CREATE TABLE 'event' (id INTEGER PRIMARY KEY NOT NULL, event_title TEXT, event_date_start TEXT, " +
+                    "event_time_start TEXT, event_date_end TEXT, event_time_end TEXT," +
+                    "event_description TEXT, event_location TEXT)");
+            database.execSQL("DROP TABLE 'event_old'");
         }
-    };
+    };*/
 
     public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}
     public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(mData, mGui, mDb, mEventAdapter);}
