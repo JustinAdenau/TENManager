@@ -20,7 +20,7 @@ public class GuiEventsDetailView_Sebastian {
     private EditText mEditTextDescription;
     private EditText mEditTextLocation;
 
-    private FloatingActionButton mFabCreateNew;
+    private FloatingActionButton mFabSave;
 
 
     public GuiEventsDetailView_Sebastian(InitEventsDetailView_Sebastian activity){
@@ -36,7 +36,9 @@ public class GuiEventsDetailView_Sebastian {
         mButtonTime = activity.findViewById(R.id.eventTime);
         mButtonSpan = activity.findViewById(R.id.eventSpan);
 
-        mFabCreateNew = activity.findViewById(R.id.fab);
+        mFabSave = activity.findViewById(R.id.fab);
+        //mFabSave.setId(R.id.fabSave);
+        mFabSave.setImageResource(android.R.drawable.ic_menu_save);
         //TODO: change icon to save icon
     }
 
@@ -59,8 +61,11 @@ public class GuiEventsDetailView_Sebastian {
         return mButtonSpan;
     }
 
-    public void setButtonSpan(Button mButtonSpan) {
+    public FloatingActionButton getFabSave(){return mFabSave;}
+
+    //todo bis jetzt nicht benötigt
+    /*public void setButtonSpan(Button mButtonSpan) {
         this.mButtonSpan = mButtonSpan;
-    }
+    }*/
 
 }

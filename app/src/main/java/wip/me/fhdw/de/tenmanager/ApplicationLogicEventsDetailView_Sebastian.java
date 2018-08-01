@@ -2,16 +2,9 @@ package wip.me.fhdw.de.tenmanager;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import java.util.Calendar;
 
@@ -20,26 +13,20 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private static final String TAG = "AppLogic_Sebastian";
 
     private GuiEventsDetailView_Sebastian mGui;
-    private Data mData;
+    private EventData_Lena mData;
     private View mView;
     private DatepickerEventsDetailView_Sebastian datepicker;
     private TimepickerEventsDetailView_Sebastian timepicker;
-
-    private String mTitle;
-    private String mDate;
-    private String mTime;
-    private String mDescription;
-    private String mLocation;
-    private String mSpan;
+    private SpanpickerEventsDetailView_Sebastian spanpicker;
 
 
 
 
-    public ApplicationLogicEventsDetailView_Sebastian(Data data, GuiEventsDetailView_Sebastian gui) {
+    public ApplicationLogicEventsDetailView_Sebastian(EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
         mGui = gui;
         mData = data;
         initGui();
-        //initListener();
+        initListener();
         initCurrentDate();
         initCurrentTime();
         initDatepicker();
@@ -52,78 +39,13 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         dataToGui();
     }
 
-    /*public void initListener(){
-
-        mGui.getEditTextTitle().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewTitleChanged(mGui.getEditTextTitle().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        //TODO: überprüfen, ob der Listener beim Button greift
-        mGui.getButtonTextDate().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewDateChanged(mGui.getButtonTextDate().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        mGui.getEditTextTime().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewTimeChanged(mGui.getEditTextTime().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        mGui.getEditTextDescription().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewDescriptionChanged(mGui.getEditTextDescription().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-
-        mGui.getEditTextLocation().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewLocationChanged(mGui.getEditTextLocation().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        mGui.getEditTextSpan().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                onTextViewSpanChanged(mGui.getEditTextSpan().getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-    }*/
+    public void initListener()
+    {
+        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
+    }
 
 
-//todo
 
     public void dataToGui()
     {
@@ -141,8 +63,6 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     /////////////////////////////////////////////
     // AppLogic
     ////////////////////////////////////////////7
-
-
 
 
 
@@ -185,77 +105,33 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
-    private void initSpanpicker()
-    {
-        SpanpickerEventsDetailView_Sebastian clicklistener;
-
-        clicklistener = new SpanpickerEventsDetailView_Sebastian(this);
-        mGui.getButtonSpan().setOnClickListener(clicklistener);
+    private void initSpanpicker(){
+        spanpicker = new SpanpickerEventsDetailView_Sebastian(mGui);
+        spanpicker.BuildSpanpicker();
     }
 
-
-    /*public void onTextViewTitleChanged(String title){mTitle = title;}
-
-    public void onTextViewDateChanged(String date){mDate = date;}
-
-    public void onTextViewTimeChanged(String time){mTime = time;}
-
-    public void onTextViewDescriptionChanged(String description){mDescription = description;}
-
-    public void onTextViewLocationChanged(String location){mLocation = location;}
-
-    public void onTextViewSpanChanged(String span){mSpan = span;}*/
-
-
-    //todo Eingabefenster öffnet sich erst beim 2. Klick
-    public void OnSpanButtonClicked(){
-        mGui.getButtonSpan().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: working");
-                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(view.getContext());
-                mView = layoutInflaterAndroid.inflate(R.layout.eventdetailviewuserinputbox_sebastian, null);
-                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(view.getContext());
-                alertDialogBuilderUserInput.setView(mView);
-
-                final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
-                alertDialogBuilderUserInput
-                        .setCancelable(false)
-                        .setPositiveButton("Übernehmen", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogBox, int id) {
-
-
-                                String span = ((EditText) mView.findViewById(R.id.userInputDialog)).getText().toString();
-
-                                //todo H klein formatieren
-                                mGui.getButtonSpan().setText(span + " h");
-                            }
-                        })
-
-                        .setNegativeButton("Abbrechen",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialogBox, int id) {
-                                        dialogBox.cancel();
-                                    }
-                                });
-
-                AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                alertDialogAndroid.show();
-            }
-        });
-    }
 
 
     public void onFabSaveClicked()
     {
-        mTitle = mGui.getEditTextTitle().getText().toString();
+        /*mTitle = mGui.getEditTextTitle().getText().toString();
         mDate = mGui.getButtonDate().getText().toString();
         mTime = mGui.getButtonTime().getText().toString();
         mDescription = mGui.getEditTextDescription().getText().toString();
         mLocation = mGui.getEditTextLocation().getText().toString();
-        mSpan = mGui.getButtonSpan().getText().toString();
+        mSpan = mGui.getButtonSpan().getText().toString();*/
 
-        mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation, mSpan);
+        mData.setEventTitle(mGui.getEditTextTitle().getText().toString());
+        mData.setEventDate(mGui.getButtonDate().getText().toString());
+        mData.setEventTime(mGui.getButtonTime().getText().toString());
+        mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
+        mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
+        mData.setEventSpan(mGui.getButtonSpan().getText().toString());
+
+        Log.d("LOGTAG", "Titel:"+mData.getEventTitle()+"  Date:"+mData.getEventDate());
+        mData.createAndSaveNewEvent();
+
+        finishActivityResultOk();
     }
 
 
@@ -280,6 +156,15 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
                     break;
             }
         }
+    }
+
+    private void finishActivityResultOk()
+    {
+        Intent intent = new Intent();
+        intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
+        mData.getActivity().setResult(Activity.RESULT_OK, intent);
+        Log.d("LOGTAG", "finishActivityResultOk");
+        mData.getActivity().finish();
     }
 
 
