@@ -2,16 +2,9 @@ package wip.me.fhdw.de.tenmanager;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import java.util.Calendar;
 
@@ -22,16 +15,19 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private GuiEventsDetailView_Sebastian mGui;
     private Data mData;
     private View mView;
-    private DatepickerEventsDetailView_Sebastian datepicker;
-    private TimepickerEventsDetailView_Sebastian timepicker;
-    private SpanpickerEventsDetailView_Sebastian spanpicker;
+    private DatepickerStartEventsDetailView_Sebastian datepickerStart;
+    private DatepickerEndEventsDetailView_Sebastian datepickerEnd;
+    private TimepickerStartEventsDetailView_Sebastian timepickerStart;
+    private TimepickerEndEventsDetailView_Sebastian timepickerEnd;
 
+
+    //todo mDateStart mDateEnd mTimeStart mTimeEnd
     private String mTitle;
     private String mDate;
     private String mTime;
     private String mDescription;
     private String mLocation;
-    private String mSpan;
+
 
 
 
@@ -43,9 +39,10 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         //initListener();
         initCurrentDate();
         initCurrentTime();
-        initDatepicker();
-        initTimepicker();
-        //initSpanpicker();
+        initDatepickerStart();
+        initDatepickerEnd();
+        initTimepickerStart();
+        initTimepickerEnd();
     }
 
 
@@ -129,11 +126,12 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     public void dataToGui()
     {
         mGui.getEditTextTitle().setText(mData.getEventTitle());
-        mGui.getButtonDate().setText(mData.getEventDate());
-        mGui.getButtonTime().setText(mData.getEventTime());
+        mGui.getButtonDateStart().setText(mData.getEventDateStart());
+        mGui.getButtonDateEnd().setText(mData.getEventDateEnd());
+        mGui.getButtonTimeStart().setText(mData.getEventTimeStart());
+        mGui.getButtonTimeEnd().setText(mData.getEventTimeEnd());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
-      //  mGui.getButtonSpan().setText(mData.getEventSpan());
     }
 
 
@@ -146,9 +144,9 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
-
+    //todo in if auch  ButtonDateEnd Befüllung anfragen
     private void initCurrentDate(){
-        if(mGui.getButtonDate().getText() != null /*|| !mGui.getButtonDate().getText().equals("")*/) return;
+        if(mGui.getButtonDateStart().getText() != null /*|| !mGui.getButtonDate().getText().equals("")*/) return;
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -156,12 +154,13 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
         month = month+1;
 
-        mGui.getButtonDate().setText(String.format("%02d/%02d/%04d", day, month, year));
+        mGui.getButtonDateStart().setText(String.format("%02d/%02d/%04d", day, month, year));
+        mGui.getButtonDateEnd().setText(String.format("%02d/%02d/%04d", day, month, year));
     }
 
-
+    //todo in if auch  ButtonTimeEnd Befüllung anfragen
     private void initCurrentTime(){
-        if(mGui.getButtonTime().getText() != null /*|| !mGui.getButtonTime().getText().equals("")*/) return;
+        if(mGui.getButtonTimeStart().getText() != null /*|| !mGui.getButtonTime().getText().equals("")*/) return;
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute;
@@ -169,27 +168,34 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         hour = hour+1;
         minute = 00;
 
-        mGui.getButtonTime().setText(String.format("%02d:%02d", hour, minute));
+        mGui.getButtonTimeStart().setText(String.format("%02d:%02d", hour, minute));
+        mGui.getButtonTimeEnd().setText(String.format("%02d:%02d", hour+1, minute));
     }
 
 
-    private void initDatepicker(){
-        datepicker = new DatepickerEventsDetailView_Sebastian(mGui);
-        datepicker.buildDatepicker();
-        datepicker.setDateToButton();
+    private void initDatepickerStart(){
+        datepickerStart = new DatepickerStartEventsDetailView_Sebastian(mGui);
+        datepickerStart.buildDateStartpicker();
+        datepickerStart.setDateStartToButton();
+    }
+
+    private void initDatepickerEnd(){
+        datepickerEnd = new DatepickerEndEventsDetailView_Sebastian(mGui);
+        datepickerEnd.buildDateEndpicker();
+        datepickerEnd.setDateEndToButton();
     }
 
 
-    private void initTimepicker(){
-        timepicker = new TimepickerEventsDetailView_Sebastian(mGui);
-        timepicker.bulidTimepicker();
+    private void initTimepickerStart(){
+        timepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
+        timepickerStart.bulidTimeStartpicker();
     }
 
+    private void initTimepickerEnd(){
+        timepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
+        timepickerEnd.bulidTimeEndpicker();
+    }
 
-   /* private void initSpanpicker(){
-        spanpicker = new SpanpickerEventsDetailView_Sebastian(mGui);
-        spanpicker.BuildSpanpicker();
-    }*/
 
 
 
@@ -206,16 +212,17 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     public void onTextViewSpanChanged(String span){mSpan = span;}*/
 
 
-
+    //todo Anpassungen an Start und End Time/Date
     public void onFabSaveClicked() {
         mTitle = mGui.getEditTextTitle().getText().toString();
-        mDate = mGui.getButtonDate().getText().toString();
-        mTime = mGui.getButtonTime().getText().toString();
+        mDate = mGui.getButtonDateStart().getText().toString();
+        mTime = mGui.getButtonTimeStart().getText().toString();
         mDescription = mGui.getEditTextDescription().getText().toString();
         mLocation = mGui.getEditTextLocation().getText().toString();
-        //mSpan = mGui.getButtonSpan().getText().toString();
 
-        mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation, mSpan);
+
+        //mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation, mSpan);
+       mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation);
     }
 
 

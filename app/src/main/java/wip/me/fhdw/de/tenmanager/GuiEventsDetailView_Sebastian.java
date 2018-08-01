@@ -9,9 +9,11 @@ import android.widget.EditText;
 
 public class GuiEventsDetailView_Sebastian {
 
-    private Button mButtonDate;
-    private Button mButtonTime;
-    private Button mButtonSpan;
+    private Button mButtonDateStart;
+    private Button mButtonDateEnd;
+    private Button mButtonTimeStart;
+    private Button mButtonTimeEnd;
+
 
     private ViewStub stub;
     private View inflated;
@@ -32,9 +34,10 @@ public class GuiEventsDetailView_Sebastian {
         mEditTextTitle = activity.findViewById(R.id.eventTitleEditText);
         mEditTextDescription = activity.findViewById(R.id.eventDescriptionEditText);
         mEditTextLocation = activity.findViewById(R.id.eventLocationEditText);
-        mButtonDate = activity.findViewById(R.id.eventDateStart);
-        mButtonTime = activity.findViewById(R.id.eventTimeStart);
-        //mButtonSpan = activity.findViewById(R.id.eventSpan);
+        mButtonDateStart = activity.findViewById(R.id.eventDateStart);
+        mButtonDateEnd  = activity.findViewById(R.id.eventDateEnd);
+        mButtonTimeStart = activity.findViewById(R.id.eventTimeStart);
+        mButtonTimeEnd = activity.findViewById(R.id.eventTimeEnd);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
         //TODO: change icon to save icon
@@ -47,21 +50,21 @@ public class GuiEventsDetailView_Sebastian {
 
     public EditText getEditTextLocation(){return mEditTextLocation; }
 
-    public Button getButtonDate() {
-        return mButtonDate;
+    public Button getButtonDateStart() {
+        return mButtonDateStart;
     }
 
-    public Button getButtonTime() {
-        return mButtonTime;
+    public Button getButtonDateEnd() {
+        return mButtonDateEnd;
     }
 
-   // public Button getButtonSpan() {
-   //     return mButtonSpan;
-   // }
+    public Button getButtonTimeStart() {
+        return mButtonTimeStart;
+    }
 
-    //todo bis jetzt nicht benötigt
-    /*public void setButtonSpan(Button mButtonSpan) {
-        this.mButtonSpan = mButtonSpan;
-    }*/
+    public Button getButtonTimeEnd() {
+        return mButtonTimeEnd;
+    }
+
 
 }
