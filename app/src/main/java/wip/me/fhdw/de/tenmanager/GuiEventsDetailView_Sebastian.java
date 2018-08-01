@@ -32,9 +32,9 @@ public class GuiEventsDetailView_Sebastian {
         mEditTextTitle = activity.findViewById(R.id.eventTitleEditText);
         mEditTextDescription = activity.findViewById(R.id.eventDescriptionEditText);
         mEditTextLocation = activity.findViewById(R.id.eventLocationEditText);
-        mButtonDate = activity.findViewById(R.id.eventDate);
-        mButtonTime = activity.findViewById(R.id.eventTime);
-        mButtonSpan = activity.findViewById(R.id.eventSpan);
+        mButtonDate = activity.findViewById(R.id.eventDateStart);
+        mButtonTime = activity.findViewById(R.id.eventTimeStart);
+        //mButtonSpan = activity.findViewById(R.id.eventSpan);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
         //TODO: change icon to save icon
@@ -55,9 +55,9 @@ public class GuiEventsDetailView_Sebastian {
         return mButtonTime;
     }
 
-    public Button getButtonSpan() {
-        return mButtonSpan;
-    }
+   // public Button getButtonSpan() {
+   //     return mButtonSpan;
+   // }
 
     //todo bis jetzt nicht benötigt
     /*public void setButtonSpan(Button mButtonSpan) {

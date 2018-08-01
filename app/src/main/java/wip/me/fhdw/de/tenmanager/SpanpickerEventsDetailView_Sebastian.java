@@ -19,7 +19,7 @@ public class SpanpickerEventsDetailView_Sebastian  {
        mGui = gui;
    }
 
-
+/*
 //todo Button ID anpassen
     public void BuildSpanpicker() {
             mGui.getButtonSpan().setOnClickListener(new View.OnClickListener() {
@@ -59,6 +59,6 @@ public class SpanpickerEventsDetailView_Sebastian  {
                 }
             });
     }
-
+*/
 }
 

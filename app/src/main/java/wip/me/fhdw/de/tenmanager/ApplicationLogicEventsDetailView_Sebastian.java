@@ -45,7 +45,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         initCurrentTime();
         initDatepicker();
         initTimepicker();
-        initSpanpicker();
+        //initSpanpicker();
     }
 
 
@@ -133,7 +133,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mGui.getButtonTime().setText(mData.getEventTime());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
-        mGui.getButtonSpan().setText(mData.getEventSpan());
+      //  mGui.getButtonSpan().setText(mData.getEventSpan());
     }
 
 
@@ -186,10 +186,10 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
-    private void initSpanpicker(){
+   /* private void initSpanpicker(){
         spanpicker = new SpanpickerEventsDetailView_Sebastian(mGui);
         spanpicker.BuildSpanpicker();
-    }
+    }*/
 
 
 
@@ -213,7 +213,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mTime = mGui.getButtonTime().getText().toString();
         mDescription = mGui.getEditTextDescription().getText().toString();
         mLocation = mGui.getEditTextLocation().getText().toString();
-        mSpan = mGui.getButtonSpan().getText().toString();
+        //mSpan = mGui.getButtonSpan().getText().toString();
 
         mData.createAndSaveNewEvent(mTitle, mDate, mTime, mDescription, mLocation, mSpan);
     }
