@@ -11,13 +11,13 @@ import java.util.List;
 public interface NoteDao_Julius {
 
     @Query("SELECT * FROM note ORDER BY id")
-    List<Note_Julius> getAllNote();
+    List<Note_Julius> getAllNotes();
 
     @Insert
     void insertAll(Note_Julius... note);
 
     @Query("DELETE from note")
-    void deleteAllNote();
+    void deleteAllNotes();
 
     @Delete
     void deleteNote(Note_Julius... note);

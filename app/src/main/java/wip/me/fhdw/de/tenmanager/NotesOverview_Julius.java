@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -42,7 +40,7 @@ public class NotesOverview_Julius extends ListActivity {
         NotesList.add("Meine Lieblingsblumen: - Rosen - Lilien - Veilchen");
         NotesList.add("Serien die ich noch schauen will: Lucifer, Blindspot, NavyCIS, HIMYM");
 
-        ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.item_list_noteoverview, R.id.listviewitem_textview_title, NotesList);
+        ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.list_item_notesoverview, R.id.listviewitem_textview_title, NotesList);
         final ListView listView = findViewById(android.R.id.list);
         listView.setAdapter(adapter);
 

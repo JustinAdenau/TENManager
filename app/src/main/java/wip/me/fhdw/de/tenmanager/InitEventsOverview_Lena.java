@@ -16,12 +16,13 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
 
     private GuiEventsOverview_Lena mGui;
     private ApplicationLogicEventsOverview_Lena mApplicationLogic;
-    private Data mData;
+    private EventData mEventData;
     private AppDatabase mDb;
     private EventAdapter_Lena mEventAdapter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         initDb();
         initData(savedInstanceState);
@@ -35,10 +36,12 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         mData = new Data(savedInstanceState, this);
     }
 
-    public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_2_3)
-            .allowMainThreadQueries()
-            .build();
+    public void initDb()
+    {
+        mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
+        //.addMigrations(MIGRATION_2_3)
+        .allowMainThreadQueries()
+        .build();
     }
 
     //if database table is changed (new version) migration is needed
@@ -52,19 +55,23 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}
     public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(mData, mGui, mDb, mEventAdapter);}
     public void initListAdapter(){mEventAdapter = new EventAdapter_Lena(getApplicationContext());}
-    public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    public void initToolbar()
+    {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Events");  }
 
     @Override
-    protected void onSaveInstanceState (Bundle outState) {
+    protected void onSaveInstanceState (Bundle outState)
+    {
         //mData.saveDataInBundle(outState);
         super.onSaveInstanceState(outState);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         // super.onActivityResult(requestCode, resultCode, data);
         mApplicationLogic.onActivityReturned(requestCode, resultCode, data);
     }

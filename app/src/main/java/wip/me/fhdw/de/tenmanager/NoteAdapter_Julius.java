@@ -20,6 +20,8 @@ public class NoteAdapter_Julius extends BaseAdapter{
     }
 
 
+    public void setNoteList(List<Note_Julius> noteList){mNoteList=noteList;}
+
     @Override
     public int getCount() {
         return mNoteList.size();
@@ -37,7 +39,7 @@ public class NoteAdapter_Julius extends BaseAdapter{
 
     @Override
     public View getView(int position, View v, ViewGroup viewGroup) {
-        View view = View.inflate(mContext, R.layout.item_list_noteoverview, null);
+        View view = View.inflate(mContext, R.layout.list_item_notesoverview, null);
         TextView textViewNoteTitle = view.findViewById(R.id.listviewitem_textview_title);
         TextView textViewNoteContent = view.findViewById(R.id.listviewitem_textview_content);
 
