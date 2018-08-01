@@ -59,8 +59,9 @@ public class GuiEventsDetailView_Sebastian {
         return mButtonSpan;
     }
 
-    public void setButtonSpan(Button mButtonSpan) {
+    //todo bis jetzt nicht benötigt
+    /*public void setButtonSpan(Button mButtonSpan) {
         this.mButtonSpan = mButtonSpan;
-    }
+    }*/
 
 }

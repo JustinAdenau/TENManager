@@ -24,6 +24,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private View mView;
     private DatepickerEventsDetailView_Sebastian datepicker;
     private TimepickerEventsDetailView_Sebastian timepicker;
+    private SpanpickerEventsDetailView_Sebastian spanpicker;
 
     private String mTitle;
     private String mDate;
@@ -185,13 +186,11 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
-    private void initSpanpicker()
-    {
-        SpanpickerEventsDetailView_Sebastian clicklistener;
-
-        clicklistener = new SpanpickerEventsDetailView_Sebastian(this);
-        mGui.getButtonSpan().setOnClickListener(clicklistener);
+    private void initSpanpicker(){
+        spanpicker = new SpanpickerEventsDetailView_Sebastian(mGui);
+        spanpicker.BuildSpanpicker();
     }
+
 
 
     /*public void onTextViewTitleChanged(String title){mTitle = title;}
@@ -206,44 +205,6 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     public void onTextViewSpanChanged(String span){mSpan = span;}*/
 
-
-    //todo Eingabefenster öffnet sich erst beim 2. Klick
-    public void OnSpanButtonClicked(){
-        mGui.getButtonSpan().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: working");
-                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(view.getContext());
-                mView = layoutInflaterAndroid.inflate(R.layout.eventdetailviewuserinputbox_sebastian, null);
-                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(view.getContext());
-                alertDialogBuilderUserInput.setView(mView);
-
-                final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
-                alertDialogBuilderUserInput
-                        .setCancelable(false)
-                        .setPositiveButton("Übernehmen", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogBox, int id) {
-
-
-                                String span = ((EditText) mView.findViewById(R.id.userInputDialog)).getText().toString();
-
-                                //todo H klein formatieren
-                                mGui.getButtonSpan().setText(span + " h");
-                            }
-                        })
-
-                        .setNegativeButton("Abbrechen",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialogBox, int id) {
-                                        dialogBox.cancel();
-                                    }
-                                });
-
-                AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                alertDialogAndroid.show();
-            }
-        });
-    }
 
 
     public void onFabSaveClicked()
