@@ -3,17 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/listview_item_style"
-    android:layout_margin="@dimen/listview_margin"
-    android:padding="@dimen/listview_padding"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-<!--todo focus color ändern -> done-->
-<!--todo margin erhöhen-> titel ist nicht mehr im Fenster -> done-->
+
+
+<!--todo margin erhöhen-> titel ist nicht mehr im  & Weißer Bereich um die Anzeige Box -->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventTitle"
@@ -70,18 +68,6 @@
             android:background="@color/colorApricotDark"
             android:hint="Startzeit"/>
 
-        <!--<Button
-            android:id="@+id/eventSpan"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:layout_toEndOf="@id/eventTime"
-            android:drawableLeft="@android:drawable/ic_menu_rotate"
-            android:gravity="center"
-            android:background="@color/colorApricotDark"
-            android:hint="Dauer"
-            android:textAllCaps="false"/>-->
     </LinearLayout>
 
     <TextView
@@ -124,18 +110,6 @@
             android:background="@color/colorApricotDark"
             android:hint="Endzeit"/>
 
-        <!--<Button
-            android:id="@+id/eventSpan"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:layout_toEndOf="@id/eventTime"
-            android:drawableLeft="@android:drawable/ic_menu_rotate"
-            android:gravity="center"
-            android:background="@color/colorApricotDark"
-            android:hint="Dauer"
-            android:textAllCaps="false"/>-->
     </LinearLayout>
 
 
@@ -179,33 +153,3 @@
 </RelativeLayout>
 
 
-<!--
-<Button
-android:id="@+id/eventDate"
-android:layout_width="140dp"
-android:layout_height="wrap_content"
-android:layout_below="@id/eventTitle"
-android:drawableStart="@android:drawable/ic_menu_today"
-android:text="Datum"/>
-
-
-<Button
-android:id="@+id/eventTime"
-android:layout_width="120dp"
-android:layout_height="wrap_content"
-android:layout_below="@id/eventTitle"
-android:layout_toEndOf="@id/eventDate"
-android:drawableStart="@android:drawable/ic_menu_recent_history"
-android:text="Uhrzeit"/>
-
-<EditText
-android:id="@+id/eventSpan"
-android:layout_width="80dp"
-android:layout_height="wrap_content"
-android:layout_below="@id/eventTitle"
-android:layout_above="@id/eventLocation"
-android:layout_toEndOf="@id/eventTime"
-android:drawableLeft="@android:drawable/ic_menu_rotate"
-android:inputType="number"
-android:background="@android:color/transparent"
-android:text="3" /> -->

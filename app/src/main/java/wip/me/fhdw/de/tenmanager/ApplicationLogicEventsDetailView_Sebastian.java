@@ -72,7 +72,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     //todo in if auch  ButtonDateEnd Befüllung anfragen
     private void initCurrentDate(){
-        if(mGui.getButtonDateStart().getText() != null /*|| !mGui.getButtonDate().getText().equals("")*/) return;
+        if(mGui.getButtonDateStart().getText().toString().matches("\\d{2}.\\d{2}.\\d{4}")) return;
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -80,13 +80,13 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
         month = month+1;
 
-        mGui.getButtonDateStart().setText(String.format("%02d/%02d/%04d", day, month, year));
-        mGui.getButtonDateEnd().setText(String.format("%02d/%02d/%04d", day, month, year));
+        mGui.getButtonDateStart().setText(String.format("%02d.%02d.%04d", day, month, year));
+        mGui.getButtonDateEnd().setText(String.format("%02d.%02d.%04d", day, month, year));
     }
 
     //todo in if auch  ButtonTimeEnd Befüllung anfragen
     private void initCurrentTime(){
-        if(mGui.getButtonTimeStart().getText() != null /*|| !mGui.getButtonTime().getText().equals("")*/) return;
+        if(mGui.getButtonTimeStart().getText().toString().matches("\\d{2}:\\d{2}")) return;
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute;

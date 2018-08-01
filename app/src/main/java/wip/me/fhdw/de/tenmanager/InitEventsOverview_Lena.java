@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 public class InitEventsOverview_Lena extends AppCompatActivity {
@@ -49,6 +50,7 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
                     "event_description TEXT, event_location TEXT)");
             database.execSQL("DROP TABLE 'event_old'");
         }
+
     };*/
 
     public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}

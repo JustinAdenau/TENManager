@@ -54,7 +54,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
 
-                mGui.getButtonDateStart().setText(String.format("%02d/%02d/%04d", day, month, year));
+                mGui.getButtonDateStart().setText(String.format("%02d.%02d.%04d", day, month, year));
 
             }
         };
