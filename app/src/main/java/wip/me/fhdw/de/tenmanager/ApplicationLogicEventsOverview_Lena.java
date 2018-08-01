@@ -1,25 +1,21 @@
 package wip.me.fhdw.de.tenmanager;
 
 import android.app.Activity;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
-import android.provider.SyncStateContract;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import java.util.List;
 
 public class ApplicationLogicEventsOverview_Lena {
 
-    private Data mData;
+    private EventData_Lena mData;
     private GuiEventsOverview_Lena mGui;
     private AppDatabase mDb;
     private List<Event> mEventList;
     private EventAdapter_Lena mEventAdapter;
 
 
-    public ApplicationLogicEventsOverview_Lena(Data data, GuiEventsOverview_Lena gui, AppDatabase db, EventAdapter_Lena eventAdapter)
+    public ApplicationLogicEventsOverview_Lena(EventData_Lena data, GuiEventsOverview_Lena gui, AppDatabase db, EventAdapter_Lena eventAdapter)
     {
         mData = data;
         mGui = gui;
@@ -45,14 +41,14 @@ public class ApplicationLogicEventsOverview_Lena {
     public void dataToGui()
     {
 
-        mDb.eventDao().deleteAll();
+        /*mDb.eventDao().deleteAll();
         Event geburtstag = new Event("Geburtstagsfeier", "20.07.2018", "20:00", "Jana feiert ihren Geburtstag bei ihr im Garten", "Garten", "4");
         Event weihnachten = new Event("Weihnachten", "24.12.2018", "ganztägig", "", "Zuhause", "24");
         Event gartenparty = new Event("Gartenparty", "02.08.2018", "15:00", "bei Lisa im Garten", "Garten", "2");
         Event grillen = new Event("Grillen", "26.07.2018", "18:00", "", "bei Kathi", "1");
         Event schwimmen = new Event("Schwimmen gehen", "27.07.2018", "14:00", "", "Freibad Kettwig", "3");
 
-        mDb.eventDao().insertAll(geburtstag, weihnachten, gartenparty, grillen, schwimmen);
+        mDb.eventDao().insertAll(geburtstag, weihnachten, gartenparty, grillen, schwimmen);*/
         mEventList = mDb.eventDao().getAllEvents();
 
         mEventAdapter.setEventList(mEventList);

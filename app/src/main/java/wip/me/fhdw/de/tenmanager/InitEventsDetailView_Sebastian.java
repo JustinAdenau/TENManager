@@ -1,10 +1,7 @@
 package wip.me.fhdw.de.tenmanager;
 
-import android.app.Activity;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
@@ -17,7 +14,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
 
     private GuiEventsDetailView_Sebastian mGui;
     private ApplicationLogicEventsDetailView_Sebastian mApplicationLogic;
-    private Data mData;
+    private EventData_Lena mData;
     private AppDatabase mDb;
 
     private Intent mIntent;
@@ -42,7 +39,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
     }
     public void initData(Bundle savedInstanceState)
     {
-        mData = new Data(savedInstanceState, this);
+        mData = new EventData_Lena(savedInstanceState, this);
     }
 
 

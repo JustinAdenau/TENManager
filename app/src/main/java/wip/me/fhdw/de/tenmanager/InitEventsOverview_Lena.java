@@ -1,22 +1,18 @@
 package wip.me.fhdw.de.tenmanager;
 
-import android.app.Activity;
-import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
-import android.arch.persistence.room.migration.Migration;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.TextView;
 
 public class InitEventsOverview_Lena extends AppCompatActivity {
 
     private GuiEventsOverview_Lena mGui;
     private ApplicationLogicEventsOverview_Lena mApplicationLogic;
-    private Data mData;
+    private EventData_Lena mData;
     private AppDatabase mDb;
     private EventAdapter_Lena mEventAdapter;
 
@@ -32,7 +28,7 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
 
     public void initData(Bundle savedInstanceState)
     {
-        mData = new Data(savedInstanceState, this);
+        mData = new EventData_Lena(savedInstanceState, this);
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")

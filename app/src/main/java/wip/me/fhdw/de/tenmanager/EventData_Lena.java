@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class Data {
+public class EventData_Lena {
 
     private Activity mActivity;
     AppDatabase mDb;
@@ -18,7 +18,7 @@ public class Data {
     private String mEventSpan;
 
 
-    public Data(Bundle savedInstanceState, Activity activity) {
+    public EventData_Lena(Bundle savedInstanceState, Activity activity) {
         mActivity = activity;
 
         mDb = Room.databaseBuilder(activity.getApplicationContext(), AppDatabase.class, "events")
@@ -71,9 +71,9 @@ public class Data {
         b.putString(Constants.KEYEVENTSPAN, mEventSpan);
     }
 
-    public void createAndSaveNewEvent(String title, String date, String time, String description, String location, String span)
+    public void createAndSaveNewEvent()
     {
-        Event event = new Event(title, date, time, description, location, span);
+        Event event = new Event(mEventTitle, mEventDate, mEventTime, mEventDescription, mEventLocation, mEventSpan);
         mDb.eventDao().insertAll(event);
     }
 
