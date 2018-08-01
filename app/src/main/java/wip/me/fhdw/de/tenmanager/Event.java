@@ -12,9 +12,9 @@ public class Event {
     private int mId;
     @ColumnInfo(name = "event_title")
     private String mEventTitle;
-    @ColumnInfo(name = "event_date_start")
+    @ColumnInfo(name = "event_date")
     private String mEventDateStart;
-    @ColumnInfo(name = "event_time_start")
+    @ColumnInfo(name = "event_time")
     private String mEventTimeStart;
     @ColumnInfo(name = "event_date_end")
     private String mEventDateEnd;
@@ -90,9 +90,7 @@ public class Event {
         return mEventDescription;
     }
 
-    public void setEventDescription(String eventDescription) {
-        this.mEventDescription = eventDescription;
-    }
+    public void setEventDescription(String eventDescription) { this.mEventDescription = eventDescription;}
 
     public String getEventLocation(){ return mEventLocation; }
 
