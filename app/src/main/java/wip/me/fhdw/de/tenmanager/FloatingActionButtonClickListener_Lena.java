@@ -10,13 +10,11 @@ public class FloatingActionButtonClickListener_Lena implements View.OnClickListe
 
     public FloatingActionButtonClickListener_Lena(ApplicationLogicEventsOverview_Lena applicationLogic)
     {
-        Log.d("LOGTAG", "FAB wurde erzeugt!!");
         mApplicationlogicEventsOverview = applicationLogic;
     }
 
     public FloatingActionButtonClickListener_Lena(ApplicationLogicEventsDetailView_Sebastian applicationLogic)
     {
-        Log.d("LOGTAG", "FAB wurde erzeugt!!");
         mApplicationlogicEventsDetailview = applicationLogic;
     }
 
@@ -24,7 +22,6 @@ public class FloatingActionButtonClickListener_Lena implements View.OnClickListe
     public void onClick(View view)
     {
         Log.d("LOGTAG", "FAB wurde angeklickt!!");
-        Log.d("LOGTAG", "viewId:" +String.valueOf(view.getId()));
 
         if(mApplicationlogicEventsDetailview == null) mApplicationlogicEventsOverview.onFabCreateNewClicked();
         else mApplicationlogicEventsDetailview.onFabSaveClicked();
