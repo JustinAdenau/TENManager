@@ -33,9 +33,11 @@ public class ApplicationLogicEventsOverview_Lena {
 
     public void initListener()
     {
-
         ListViewItemClickListener_Lena listViewItemClickListener = new ListViewItemClickListener_Lena(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
+        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
+        mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
     }
 
 
@@ -60,18 +62,18 @@ public class ApplicationLogicEventsOverview_Lena {
 
     public void onListItemClicked(int position)
     {
-
-        //mGui.getTextViewTitle().setText("TestTitel");
-        /*String title = mEventList.get(position).getEventTitle();
-        String date = mEventList.get(position).getEventDate();
-        String time = mGui.getTextViewTime().getText().toString();*/
         mData.setEventTitle(mEventList.get(position).getEventTitle());
         mData.setEventDate(mEventList.get(position).getEventDate());
         mData.setEventTime(mEventList.get(position).getEventTime());
         mData.setEventDescription(mEventList.get(position).getEventDescription());
         mData.setEventLocation(mEventList.get(position).getEventLocation());
         mData.setEventSpan(mEventList.get(position).getEventSpan());
-        startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS);
+        startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
+    }
+
+    public void onFabCreateNewClicked()
+    {
+        startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
     }
 
 
@@ -99,11 +101,13 @@ public class ApplicationLogicEventsOverview_Lena {
 
 
     // activities
-    public void startActivity(Class<?> activityClass) //?: Elementtyp der Klasse ist offen
+    public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
     {
         Intent intent = new Intent();
         intent.setClass(mData.getActivity(), activityClass);
-        intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
+
+        if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());}
+
         mData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
     }
 

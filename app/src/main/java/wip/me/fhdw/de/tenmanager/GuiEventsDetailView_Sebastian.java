@@ -1,6 +1,7 @@
 package wip.me.fhdw.de.tenmanager;
 
 
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
@@ -12,12 +13,14 @@ public class GuiEventsDetailView_Sebastian {
     private Button mButtonTime;
     private Button mButtonSpan;
 
-    ViewStub stub;
-    View inflated;
+    private ViewStub stub;
+    private View inflated;
 
     private EditText mEditTextTitle;
     private EditText mEditTextDescription;
     private EditText mEditTextLocation;
+
+    private FloatingActionButton mFabCreateNew;
 
 
     public GuiEventsDetailView_Sebastian(InitEventsDetailView_Sebastian activity){
@@ -32,6 +35,9 @@ public class GuiEventsDetailView_Sebastian {
         mButtonDate = activity.findViewById(R.id.eventDate);
         mButtonTime = activity.findViewById(R.id.eventTime);
         mButtonSpan = activity.findViewById(R.id.eventSpan);
+
+        mFabCreateNew = activity.findViewById(R.id.fab);
+        //TODO: change icon to save icon
     }
 
 

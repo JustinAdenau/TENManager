@@ -5,8 +5,9 @@
     <color name="colorYellow">#FAD97A</color>
     <color name="colorBlue">#A5C7E3</color>
     <color name="colorGrey">#F2F2F2</color>
+    <color name="colorGreyDark">#5e5e5e</color>
     <color name="colorBlack">#000000</color>
     <color name="colorApricot">#f8bca5</color>
-    <color name="colorApricotDark">#cc9b89</color>
+    <color name="colorApricotDark">#e3b29f</color>
 
 </resources>
