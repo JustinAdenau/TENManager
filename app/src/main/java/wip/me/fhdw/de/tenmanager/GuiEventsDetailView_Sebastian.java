@@ -13,9 +13,6 @@ public class GuiEventsDetailView_Sebastian {
     private Button mButtonTime;
     private Button mButtonSpan;
 
-    private ViewStub stub;
-    private View inflated;
-
     private EditText mEditTextTitle;
     private EditText mEditTextDescription;
     private EditText mEditTextLocation;
@@ -25,9 +22,9 @@ public class GuiEventsDetailView_Sebastian {
 
     public GuiEventsDetailView_Sebastian(InitEventsDetailView_Sebastian activity){
         activity.setContentView(R.layout.activity_main);
-        stub = (ViewStub) activity.findViewById(R.id.viewStub);
+        ViewStub stub = (ViewStub) activity.findViewById(R.id.viewStub);
         stub.setLayoutResource(R.layout.eventsdetailview_sebastian);
-        inflated = stub.inflate();
+        View inflated = stub.inflate();
 
         mEditTextTitle = activity.findViewById(R.id.eventTitleEditText);
         mEditTextDescription = activity.findViewById(R.id.eventDescriptionEditText);
@@ -37,7 +34,6 @@ public class GuiEventsDetailView_Sebastian {
         mButtonSpan = activity.findViewById(R.id.eventSpan);
 
         mFabSave = activity.findViewById(R.id.fab);
-        //mFabSave.setId(R.id.fabSave);
         mFabSave.setImageResource(android.R.drawable.ic_menu_save);
         //TODO: change icon to save icon
     }

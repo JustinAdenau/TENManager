@@ -32,7 +32,6 @@ public class ApplicationLogicEventsOverview_Lena {
         ListViewItemClickListener_Lena listViewItemClickListener = new ListViewItemClickListener_Lena(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
         FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
-        if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
     }
 
@@ -40,15 +39,6 @@ public class ApplicationLogicEventsOverview_Lena {
 
     public void dataToGui()
     {
-
-        /*mDb.eventDao().deleteAll();
-        Event geburtstag = new Event("Geburtstagsfeier", "20.07.2018", "20:00", "Jana feiert ihren Geburtstag bei ihr im Garten", "Garten", "4");
-        Event weihnachten = new Event("Weihnachten", "24.12.2018", "ganztägig", "", "Zuhause", "24");
-        Event gartenparty = new Event("Gartenparty", "02.08.2018", "15:00", "bei Lisa im Garten", "Garten", "2");
-        Event grillen = new Event("Grillen", "26.07.2018", "18:00", "", "bei Kathi", "1");
-        Event schwimmen = new Event("Schwimmen gehen", "27.07.2018", "14:00", "", "Freibad Kettwig", "3");
-
-        mDb.eventDao().insertAll(geburtstag, weihnachten, gartenparty, grillen, schwimmen);*/
         mEventList = mDb.eventDao().getAllEvents();
 
         mEventAdapter.setEventList(mEventList);
@@ -59,8 +49,10 @@ public class ApplicationLogicEventsOverview_Lena {
     public void onListItemClicked(int position)
     {
         mData.setEventTitle(mEventList.get(position).getEventTitle());
-        mData.setEventDate(mEventList.get(position).getEventDate());
-        mData.setEventTime(mEventList.get(position).getEventTime());
+        mData.setEventDateStart(mEventList.get(position).getEventDateStart());
+        mData.setEventTimeStart(mEventList.get(position).getEventTimeStart());
+        mData.setEventDateEnd(mEventList.get(position).getEventDateEnd());
+        mData.setEventTimeEnd(mEventList.get(position).getEventTimeEnd());
         mData.setEventDescription(mEventList.get(position).getEventDescription());
         mData.setEventLocation(mEventList.get(position).getEventLocation());
         mData.setEventSpan(mEventList.get(position).getEventSpan());

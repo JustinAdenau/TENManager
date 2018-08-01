@@ -21,7 +21,6 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
-
     public ApplicationLogicEventsDetailView_Sebastian(EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
         mGui = gui;
         mData = data;
@@ -50,8 +49,10 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     public void dataToGui()
     {
         mGui.getEditTextTitle().setText(mData.getEventTitle());
-        mGui.getButtonDate().setText(mData.getEventDate());
-        mGui.getButtonTime().setText(mData.getEventTime());
+        mGui.getButtonDateStart().setText(mData.getEventDateStart());
+        mGui.getButtonTimeStart().setText(mData.getEventTimeStart());
+        mGui.getButtonDateEnd().setText(mData.getEventDateEnd());
+        mGui.getButtonTimeEnd().setText(mData.getEventTimeEnd());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
         mGui.getButtonSpan().setText(mData.getEventSpan());
@@ -67,7 +68,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
     private void initCurrentDate(){
-        if(mGui.getButtonDate().getText() != null /*|| !mGui.getButtonDate().getText().equals("")*/) return;
+        if(mGui.getButtonDate().getText() != null /*|| !mGui.getButtonDate().getText().toString().isEmpty()*/) return;
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -122,13 +123,14 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mSpan = mGui.getButtonSpan().getText().toString();*/
 
         mData.setEventTitle(mGui.getEditTextTitle().getText().toString());
-        mData.setEventDate(mGui.getButtonDate().getText().toString());
-        mData.setEventTime(mGui.getButtonTime().getText().toString());
+        mData.setEventDateStart(mGui.getButtonDateStart().getText().toString());
+        mData.setEventTimeStart(mGui.getButtonTimeStart().getText().toString());
+        mData.setEventDateEnd(mGui.getButtonDateEnd().getText().toString());
+        mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
         mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
         mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
         mData.setEventSpan(mGui.getButtonSpan().getText().toString());
 
-        Log.d("LOGTAG", "Titel:"+mData.getEventTitle()+"  Date:"+mData.getEventDate());
         mData.createAndSaveNewEvent();
 
         finishActivityResultOk();
