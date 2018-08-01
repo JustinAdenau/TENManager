@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearance"
             android:textSize="14sp"
-            android:text="- Pizza - Möhre"
+            android:text="- Pizza \n - Möhre"
             android:layout_weight="1"
             />
 
