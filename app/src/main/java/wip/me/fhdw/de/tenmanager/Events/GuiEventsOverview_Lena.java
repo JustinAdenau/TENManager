@@ -15,8 +15,11 @@ public class GuiEventsOverview_Lena {
     private ViewStub mStub;
     private View mInflated;
     private TextView mTextViewTitle;
-    private TextView mTextViewDate;
-    private TextView mTextViewTime;
+    private TextView mTextViewDateStart;
+    private TextView mTextViewTimeStart;
+    private TextView mTextViewDateEnd;
+    private TextView mTextViewTimeEnd;
+
 
     private FloatingActionButton mFabCreateNew;
 
@@ -34,8 +37,10 @@ public class GuiEventsOverview_Lena {
         View view = inflater.inflate(R.layout.list_item_eventsoverview, null);
 
         mTextViewTitle = view.findViewById(R.id.listviewitem_textview_title);
-        mTextViewDate = view.findViewById(R.id.listviewitem_textview_date);
-        mTextViewTime = view.findViewById(R.id.listviewitem_textview_time);
+        mTextViewDateStart = view.findViewById(R.id.listviewitem_textview_dateStart);
+        mTextViewTimeStart = view.findViewById(R.id.listviewitem_textview_timeStart);
+        mTextViewDateEnd = view.findViewById(R.id.listviewitem_textview_dateEnd);
+        mTextViewTimeEnd = view.findViewById(R.id.listviewitem_textview_timeEnd);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
     }
@@ -45,8 +50,10 @@ public class GuiEventsOverview_Lena {
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
 
     public TextView getTextViewTitle(){return mTextViewTitle;}
-    public TextView getTextViewDate(){return mTextViewDate;}
-    public TextView getTextViewTime(){return mTextViewTime;}
+    public TextView getTextViewDateStart(){return mTextViewDateStart;}
+    public TextView getTextViewTimeStart(){return mTextViewTimeStart;}
+    public TextView getTextViewDateEnd(){return mTextViewDateEnd;}
+    public TextView getTextViewTimeEnd(){return mTextViewTimeEnd;}
 
     //methods to change View attributes
 

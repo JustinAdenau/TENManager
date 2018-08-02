@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class EventData_Lena {
 
@@ -11,11 +12,13 @@ public class EventData_Lena {
     AppDatabase mDb;
 
     private String mEventTitle;
-    private String mEventDate;
-    private String mEventTime;
+    private String mEventDateStart;
+    private String mEventTimeStart;
+    private String mEventDateEnd;
+    private String mEventTimeEnd;
     private String mEventDescription;
     private String mEventLocation;
-    private String mEventSpan;
+
 
 
     public EventData_Lena(Bundle savedInstanceState, Activity activity) {
@@ -41,11 +44,12 @@ public class EventData_Lena {
     public void restoreDataFromBundle(Bundle b) {
 
         mEventTitle = b.getString(Constants.KEYEVENTTITLE);
-        mEventDate = b.getString(Constants.KEYEVENTDATE);
-        mEventTime = b.getString(Constants.KEYEVENTTIME);
+        mEventDateStart = b.getString(Constants.KEYEVENTDATESTART);
+        mEventTimeStart = b.getString(Constants.KEYEVENTTIMESTART);
+        mEventDateEnd = b.getString(Constants.KEYEVENTDATEEND);
+        mEventTimeEnd = b.getString(Constants.KEYEVENTTIMEEND);
         mEventDescription = b.getString(Constants.KEYEVENTDESCRIPTION);
         mEventLocation = b.getString(Constants.KEYEVENTLOCATION);
-        mEventSpan = b.getString(Constants.KEYEVENTSPAN);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent) {
@@ -64,37 +68,58 @@ public class EventData_Lena {
 
     public void saveDataInBundle(Bundle b) {
         b.putString(Constants.KEYEVENTTITLE, mEventTitle);
-        b.putString(Constants.KEYEVENTDATE, mEventDate);
-        b.putString(Constants.KEYEVENTTIME, mEventTime);
+        b.putString(Constants.KEYEVENTDATESTART, mEventDateStart);
+        b.putString(Constants.KEYEVENTTIMESTART, mEventTimeStart);
+        b.putString(Constants.KEYEVENTDATEEND, mEventDateEnd);
+        b.putString(Constants.KEYEVENTTIMEEND, mEventTimeEnd);
         b.putString(Constants.KEYEVENTDESCRIPTION, mEventDescription);
         b.putString(Constants.KEYEVENTLOCATION, mEventLocation);
-        b.putString(Constants.KEYEVENTSPAN, mEventSpan);
     }
 
     public void createAndSaveNewEvent()
     {
-        Event event = new Event(mEventTitle, mEventDate, mEventTime, mEventDescription, mEventLocation, mEventSpan);
+        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation);
         mDb.eventDao().insertAll(event);
+    }
+
+    public void updateEvent(String titleOld, String dateStartOld, String timeStartOld)
+    {
+        Log.d("LOGTAG", "updateEvent called with: "+titleOld +dateStartOld+timeStartOld+mEventTitle+mEventDateStart);
+        /*mDb.eventDao().updateEvent(titleOld, dateStartOld, timeStartOld, mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd,
+                mEventTimeEnd, mEventDescription, mEventLocation);*/
+        Event eventOld = mDb.eventDao().getEventByTitleDateTime(titleOld, dateStartOld, timeStartOld);
+        if(eventOld != null)
+        {
+            Log.d("LOGTAG", "eventOld ist nicht null!!!!!!!!!!!!!!");
+            mDb.eventDao().deleteEvents(eventOld);
+            createAndSaveNewEvent();
+        }
     }
 
 
     //setter
     public void setEventTitle(String title){mEventTitle = title;}
-    public void setEventDate(String date){mEventDate = date;}
-    public void setEventTime(String time){mEventTime = time;}
+    public void setEventDateStart(String date){mEventDateStart = date;}
+    public void setEventTimeStart(String time){mEventTimeStart = time;}
+    public void setEventDateEnd(String date){mEventDateEnd = date;}
+    public void setEventTimeEnd(String time){mEventTimeEnd = time;}
     public void setEventDescription(String description){mEventDescription = description;}
     public void setEventLocation(String location){mEventLocation = location;}
-    public void setEventSpan(String span){mEventSpan = span;}
+
 
     //getter
     public Activity getActivity () {
         return mActivity;
     }
+    public AppDatabase getDb() {return mDb;}
+
     public String getEventTitle(){return mEventTitle;}
-    public String getEventDate(){return mEventDate;}
-    public String getEventTime(){return mEventTime;}
+    public String getEventDateStart(){return mEventDateStart;}
+    public String getEventTimeStart(){return mEventTimeStart;}
+    public String getEventDateEnd(){return mEventDateEnd;}
+    public String getEventTimeEnd(){return mEventTimeEnd;}
     public String getEventDescription(){return mEventDescription;}
     public String getEventLocation(){return mEventLocation;}
-    public String getEventSpan(){return mEventSpan;}
+
 
 }

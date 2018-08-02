@@ -4,4 +4,5 @@
     <dimen name="listview_padding">10dp</dimen>
     <dimen name="textsize_title">25sp</dimen>
     <dimen name="textsize_text">20sp</dimen>
+    <dimen name="textsize_text_small">10sp</dimen>
 </resources>

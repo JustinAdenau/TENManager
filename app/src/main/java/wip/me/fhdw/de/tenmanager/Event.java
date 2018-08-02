@@ -12,24 +12,28 @@ public class Event {
     private int mId;
     @ColumnInfo(name = "event_title")
     private String mEventTitle;
-    @ColumnInfo(name = "event_date")
-    private String mEventDate;
-    @ColumnInfo(name = "event_time")
-    private String mEventTime;
+    @ColumnInfo(name = "event_date_start")
+    private String mEventDateStart;
+    @ColumnInfo(name = "event_time_start")
+    private String mEventTimeStart;
+    @ColumnInfo(name = "event_date_end")
+    private String mEventDateEnd;
+    @ColumnInfo(name = "event_time_end")
+    private String mEventTimeEnd;
     @ColumnInfo(name = "event_description")
     private String mEventDescription;
     @ColumnInfo(name = "event_location")
     private String mEventLocation;
-    @ColumnInfo(name = "event_span")
-    private String mEventSpan;
 
-    public Event(String eventTitle, String eventDate, String eventTime, String eventDescription, String eventLocation, String eventSpan){
+
+    public Event(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation){
         mEventTitle=eventTitle;
-        mEventDate=eventDate;
-        mEventTime=eventTime;
+        mEventDateStart=eventDateStart;
+        mEventTimeStart=eventTimeStart;
+        mEventDateEnd = eventDateEnd;
+        mEventTimeEnd = eventTimeEnd;
         mEventDescription=eventDescription;
         mEventLocation=eventLocation;
-        mEventSpan=eventSpan;
     }
 
     public int getId() {
@@ -48,35 +52,46 @@ public class Event {
         this.mEventTitle = eventTitle;
     }
 
-    public String getEventDate() {
-        return mEventDate;
+    public String getEventDateStart() {
+        return mEventDateStart;
     }
 
-    public void setEventDate(String eventDate) {
-        this.mEventDate = eventDate;
+    public void setEventDateStart(String eventDateStart) {
+        this.mEventDateStart = eventDateStart;
     }
 
-    public String getEventTime() {
-        return mEventTime;
+    public String getEventTimeStart() {
+        return mEventTimeStart;
     }
 
-    public void setEventTime(String eventTime) {
-        this.mEventTime = eventTime;
+    public void setEventTimeStart(String eventTimeStart) {
+        this.mEventTimeStart = eventTimeStart;
+    }
+
+    public String getEventDateEnd() {
+        return mEventDateEnd;
+    }
+
+    public void setEventDateEnd(String eventDateEnd) {
+        this.mEventDateEnd = eventDateEnd;
+    }
+
+    public String getEventTimeEnd() {
+        return mEventTimeEnd;
+    }
+
+    public void setEventTimeEnd(String eventTimeEnd) {
+        this.mEventTimeEnd = eventTimeEnd;
     }
 
     public String getEventDescription() {
         return mEventDescription;
     }
 
-    public void setEventDescription(String eventDescription) {
-        this.mEventDescription = eventDescription;
-    }
+    public void setEventDescription(String eventDescription) { this.mEventDescription = eventDescription;}
 
     public String getEventLocation(){ return mEventLocation; }
 
     public void setEventLocation(String eventLocation){this.mEventLocation = eventLocation;}
 
-    public String getEventSpan(){return mEventSpan;}
-
-    public void setEventSpan(String span){mEventSpan = span;}
 }

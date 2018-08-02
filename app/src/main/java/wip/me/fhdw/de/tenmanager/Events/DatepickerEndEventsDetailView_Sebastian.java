@@ -4,42 +4,43 @@ import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
 
-
-public class DatepickerEventsDetailView_Sebastian {
-
-
+public class DatepickerEndEventsDetailView_Sebastian {
     private static final String TAG = "Datepicker_Sebastian";
+
+    private int mDayEnd;
+    private int mMonthEnd;
+    private int mYearEnd;
 
 
     private GuiEventsDetailView_Sebastian mGui;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
 
-    public DatepickerEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
+    public DatepickerEndEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
         mGui = gui;
     }
 
 
-    public void buildDatepicker() {
-        mGui.getButtonDate().setOnClickListener(new View.OnClickListener() {
+    public void buildDateEndpicker() {
+        mGui.getButtonDateEnd().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                mDayEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(0,2));
+                mMonthEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(3, 5))-1;
+                mYearEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(6,10));
 
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         view.getContext(),
                         android.R.style.Theme_Holo_Dialog_MinWidth,
                         mDateSetListener,
-                        year, month, day);
+                        mYearEnd, mMonthEnd,mDayEnd);
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -48,17 +49,15 @@ public class DatepickerEventsDetailView_Sebastian {
 
     }
 
-    public void setDateToButton() {
+    public void setDateEndToButton() {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
 
-                mGui.getButtonDate().setText(String.format("%02d/%02d/%04d", day, month, year));
+                mGui.getButtonDateEnd().setText(String.format("%02d.%02d.%04d", day, month, year));
 
             }
         };
     }
-
-
 }
