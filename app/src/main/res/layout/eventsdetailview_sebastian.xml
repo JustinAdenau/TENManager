@@ -9,14 +9,15 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-
+<!--todo dimen einfügen schriftart und größe-->
 
 <!--todo margin erhöhen-> titel ist nicht mehr im  & Weißer Bereich um die Anzeige Box -->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/eventTitleEditText"
@@ -118,7 +119,8 @@
         android:id="@+id/eventLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventDateTimeEnd">
+        android:layout_below="@id/eventDateTimeEnd"
+        app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/eventLocationEditText"
@@ -137,7 +139,8 @@
         android:id="@+id/eventDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventLocation">
+        android:layout_below="@id/eventLocation"
+        app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/eventDescriptionEditText"

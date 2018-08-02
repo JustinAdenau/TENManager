@@ -15,10 +15,11 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private GuiEventsDetailView_Sebastian mGui;
     private EventData_Lena mData;
     private View mView;
-    private DatepickerStartEventsDetailView_Sebastian datepickerStart;
-    private DatepickerEndEventsDetailView_Sebastian datepickerEnd;
-    private TimepickerStartEventsDetailView_Sebastian timepickerStart;
-    private TimepickerEndEventsDetailView_Sebastian timepickerEnd;
+    private DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
+    private DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
+    private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
+    private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
+    private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
 
 
 
@@ -33,6 +34,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         initDatepickerEnd();
         initTimepickerStart();
         initTimepickerEnd();
+        initUserInputValidation();
     }
 
 
@@ -100,32 +102,38 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
     private void initDatepickerStart(){
-        datepickerStart = new DatepickerStartEventsDetailView_Sebastian(mGui);
-        datepickerStart.buildDateStartpicker();
-        datepickerStart.setDateStartToButton();
+        mDatepickerStart = new DatepickerStartEventsDetailView_Sebastian(mGui);
+        mDatepickerStart.buildDateStartpicker();
+        mDatepickerStart.setDateStartToButton();
     }
 
     private void initDatepickerEnd(){
-        datepickerEnd = new DatepickerEndEventsDetailView_Sebastian(mGui);
-        datepickerEnd.buildDateEndpicker();
-        datepickerEnd.setDateEndToButton();
+        mDatepickerEnd = new DatepickerEndEventsDetailView_Sebastian(mGui);
+        mDatepickerEnd.buildDateEndpicker();
+        mDatepickerEnd.setDateEndToButton();
     }
 
 
     private void initTimepickerStart(){
-        timepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
-        timepickerStart.bulidTimeStartpicker();
+        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
+        mTimepickerStart.bulidTimeStartpicker();
     }
 
     private void initTimepickerEnd(){
-        timepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
-        timepickerEnd.bulidTimeEndpicker();
+        mTimepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
+        mTimepickerEnd.bulidTimeEndpicker();
+    }
+
+    //todo Methoden einfügen
+    private void initUserInputValidation(){
+        mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
 
 
     public void onFabSaveClicked()
     {
+        if(mUserInputValidation.confirmInput() == false) return;
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
         String dateStartOld = mData.getEventDateStart();
