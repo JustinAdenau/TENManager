@@ -136,7 +136,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     public void onFabSaveClicked()
     {
-        if(mUserInputValidation.confirmInput() == false) return;
+        if(mUserInputValidation.confirmInput() == true) return;
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
         String dateStartOld = mData.getEventDateStart();

@@ -34,7 +34,7 @@ public class ApplicationLogicNoteOverview_Julius {
     public void initListener(){
         ListViewItemClickListener_Julius listViewItemClickListener = new ListViewItemClickListener_Julius(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
-        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
         if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
     }

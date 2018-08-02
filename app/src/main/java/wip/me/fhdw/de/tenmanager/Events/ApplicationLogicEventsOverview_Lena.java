@@ -36,7 +36,7 @@ public class ApplicationLogicEventsOverview_Lena {
     {
         ListViewItemClickListener_Lena listViewItemClickListener = new ListViewItemClickListener_Lena(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
-        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
     }
 

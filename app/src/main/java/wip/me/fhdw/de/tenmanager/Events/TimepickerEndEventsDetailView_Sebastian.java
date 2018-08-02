@@ -37,7 +37,7 @@ public class TimepickerEndEventsDetailView_Sebastian {
                         view.getContext(), AlertDialog.THEME_HOLO_DARK, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        mGui.getButtonTimeEnd().setText(String.format("%02d:%02d", mHourEnd, mMinuteEnd));
+                        mGui.getButtonTimeEnd().setText(String.format("%02d:%02d", hour, minute));
                     }
                 }
                         , mHourEnd, mMinuteEnd, true);

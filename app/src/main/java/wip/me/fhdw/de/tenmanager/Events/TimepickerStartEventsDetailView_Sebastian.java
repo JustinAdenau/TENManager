@@ -42,7 +42,7 @@ public class TimepickerStartEventsDetailView_Sebastian {
                        view.getContext(), AlertDialog.THEME_HOLO_DARK, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        mGui.getButtonTimeStart().setText(String.format("%02d:%02d", mHourStart, mMinuteStart));
+                        mGui.getButtonTimeStart().setText(String.format("%02d:%02d", hour, minute));
                     }
                 }
                         , mHourStart, mMinuteStart, true);
