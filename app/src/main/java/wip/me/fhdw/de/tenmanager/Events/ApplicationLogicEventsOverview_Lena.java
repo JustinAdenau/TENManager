@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,13 +6,18 @@ import android.util.Log;
 
 import java.util.List;
 
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.Event;
+
+
 public class ApplicationLogicEventsOverview_Lena {
 
-    private EventData_Lena mData;
-    private GuiEventsOverview_Lena mGui;
+    private wip.me.fhdw.de.tenmanager.Events.EventData_Lena mData;
+    private wip.me.fhdw.de.tenmanager.Events.GuiEventsOverview_Lena mGui;
     private AppDatabase mDb;
     private List<Event> mEventList;
-    private EventAdapter_Lena mEventAdapter;
+    private wip.me.fhdw.de.tenmanager.Events.EventAdapter_Lena mEventAdapter;
 
 
     public ApplicationLogicEventsOverview_Lena(EventData_Lena data, GuiEventsOverview_Lena gui, AppDatabase db, EventAdapter_Lena eventAdapter)

@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 
 import android.app.Activity;
@@ -8,22 +8,25 @@ import android.view.View;
 
 import java.util.Calendar;
 
+import wip.me.fhdw.de.tenmanager.Constants;
+
+
 public class ApplicationLogicEventsDetailView_Sebastian  {
 
     private static final String TAG = "AppLogic_Sebastian";
 
-    private GuiEventsDetailView_Sebastian mGui;
-    private EventData_Lena mData;
+    private wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian mGui;
+    private wip.me.fhdw.de.tenmanager.Events.EventData_Lena mData;
     private View mView;
-    private DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
-    private DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
-    private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
-    private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
-    private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
+    private wip.me.fhdw.de.tenmanager.Events.DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
+    private wip.me.fhdw.de.tenmanager.Events.DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
+    private wip.me.fhdw.de.tenmanager.Events.TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
+    private wip.me.fhdw.de.tenmanager.Events.TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
+    private wip.me.fhdw.de.tenmanager.Events.UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
 
 
 
-    public ApplicationLogicEventsDetailView_Sebastian(EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
+    public ApplicationLogicEventsDetailView_Sebastian(wip.me.fhdw.de.tenmanager.Events.EventData_Lena data, wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian gui) {
         mGui = gui;
         mData = data;
         initGui();
@@ -102,31 +105,31 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
     private void initDatepickerStart(){
-        mDatepickerStart = new DatepickerStartEventsDetailView_Sebastian(mGui);
+        mDatepickerStart = new wip.me.fhdw.de.tenmanager.Events.DatepickerStartEventsDetailView_Sebastian(mGui);
         mDatepickerStart.buildDateStartpicker();
         mDatepickerStart.setDateStartToButton();
     }
 
     private void initDatepickerEnd(){
-        mDatepickerEnd = new DatepickerEndEventsDetailView_Sebastian(mGui);
+        mDatepickerEnd = new wip.me.fhdw.de.tenmanager.Events.DatepickerEndEventsDetailView_Sebastian(mGui);
         mDatepickerEnd.buildDateEndpicker();
         mDatepickerEnd.setDateEndToButton();
     }
 
 
     private void initTimepickerStart(){
-        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
+        mTimepickerStart = new wip.me.fhdw.de.tenmanager.Events.TimepickerStartEventsDetailView_Sebastian(mGui);
         mTimepickerStart.bulidTimeStartpicker();
     }
 
     private void initTimepickerEnd(){
-        mTimepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
+        mTimepickerEnd = new wip.me.fhdw.de.tenmanager.Events.TimepickerEndEventsDetailView_Sebastian(mGui);
         mTimepickerEnd.buildTimeEndpicker();
     }
 
     //todo Methoden einfügen
     private void initUserInputValidation(){
-        mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
+        mUserInputValidation = new wip.me.fhdw.de.tenmanager.Events.UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
 
