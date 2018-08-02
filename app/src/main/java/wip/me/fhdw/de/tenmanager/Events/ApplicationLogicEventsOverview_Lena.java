@@ -1,14 +1,19 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewParent;
+import android.widget.TextView;
 
 import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Event;
+import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicEventsOverview_Lena {
 
@@ -17,10 +22,12 @@ public class ApplicationLogicEventsOverview_Lena {
     private AppDatabase mDb;
     private List<Event> mEventList;
     private EventAdapter_Lena mEventAdapter;
+    private Activity mActivity;
 
 
-    public ApplicationLogicEventsOverview_Lena(EventData_Lena data, GuiEventsOverview_Lena gui, AppDatabase db, EventAdapter_Lena eventAdapter)
+    public ApplicationLogicEventsOverview_Lena(Activity activity, EventData_Lena data, GuiEventsOverview_Lena gui, AppDatabase db, EventAdapter_Lena eventAdapter)
     {
+        mActivity = activity;
         mData = data;
         mGui = gui;
         mDb = db;
@@ -37,6 +44,8 @@ public class ApplicationLogicEventsOverview_Lena {
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
         EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
+        ButtonDeleteEventClickListener_Lena buttonDeleteEventClickListener = new ButtonDeleteEventClickListener_Lena(this);
+        mGui.getButtonDeleteEvent().setOnClickListener(buttonDeleteEventClickListener);
     }
 
 
@@ -46,7 +55,7 @@ public class ApplicationLogicEventsOverview_Lena {
         //mDb.eventDao().deleteAll();
 
         mEventList = mDb.eventDao().getAllEvents();
-
+        mEventAdapter.setApplicationLogic(this);
         mEventAdapter.setEventList(mEventList);
         mGui.getListView().setAdapter(mEventAdapter);
     }
@@ -67,6 +76,20 @@ public class ApplicationLogicEventsOverview_Lena {
     public void onFabCreateNewClicked()
     {
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
+    }
+
+    public void onButtonDeleteEventClicked(View view)
+    {
+        View v = (View)view.getParent().getParent();
+        TextView title = v.findViewById(R.id.listviewitem_textview_title);
+        TextView dateStart = v.findViewById(R.id.listviewitem_textview_dateStart);
+        TextView timeStart = v.findViewById(R.id.listviewitem_textview_timeStart);
+        if(title == null)Log.d("LOGTAG", "Title TextView ist null!!!!!!!!!!!!!");
+        Event eventToBeDeleted = mDb.eventDao().getEventByTitleDateTime(title.getText().toString(), dateStart.getText().toString(), timeStart.getText().toString());
+        Log.d("LOGTAG", "eventToBeDeleted: "+title.getText().toString()+ ", "+dateStart.getText().toString()+", "+timeStart.getText().toString());
+        mDb.eventDao().deleteEvents(eventToBeDeleted);
+
+        mActivity.recreate();
     }
 
 

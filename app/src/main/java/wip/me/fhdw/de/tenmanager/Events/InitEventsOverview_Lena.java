@@ -29,6 +29,7 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         initGui();
         initListAdapter();
         initApplicationLogic();
+
     }
 
     public void initData(Bundle savedInstanceState)
@@ -52,7 +53,7 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     };*/
 
     public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}
-    public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(mData, mGui, mDb, mEventAdapter);}
+    public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(this, mData, mGui, mDb, mEventAdapter);}
     public void initListAdapter(){mEventAdapter = new EventAdapter_Lena(getApplicationContext());}
 
     public void initToolbar()
