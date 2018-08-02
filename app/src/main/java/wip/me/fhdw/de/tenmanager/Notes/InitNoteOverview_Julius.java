@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.arch.persistence.room.Room;
@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.R;
 
 public class InitNoteOverview_Julius extends AppCompatActivity {
 

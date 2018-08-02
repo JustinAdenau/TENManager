@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.arch.persistence.room.Room;
@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
 
 public class NoteData_Julius {
 

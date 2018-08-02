@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

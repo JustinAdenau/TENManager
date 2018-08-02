@@ -47,7 +47,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     public void initListener()
     {
-        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
     }
 
