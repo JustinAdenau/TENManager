@@ -121,7 +121,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     private void initTimepickerEnd(){
         mTimepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
-        mTimepickerEnd.bulidTimeEndpicker();
+        mTimepickerEnd.buildTimeEndpicker();
     }
 
     //todo Methoden einfügen

@@ -11,6 +11,10 @@ import java.util.Calendar;
 public class DatepickerEndEventsDetailView_Sebastian {
     private static final String TAG = "Datepicker_Sebastian";
 
+    private int mDayEnd;
+    private int mMonthEnd;
+    private int mYearEnd;
+
 
     private GuiEventsDetailView_Sebastian mGui;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -26,16 +30,17 @@ public class DatepickerEndEventsDetailView_Sebastian {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                mDayEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(0,2));
+                mMonthEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(3, 5))-1;
+                mYearEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(6,10));
 
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         view.getContext(),
                         android.R.style.Theme_Holo_Dialog_MinWidth,
                         mDateSetListener,
-                        year, month, day);
+                        mYearEnd, mMonthEnd,mDayEnd);
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
