@@ -35,6 +35,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
 
+
                 DatePickerDialog dialog = new DatePickerDialog(
                         view.getContext(),
                         android.R.style.Theme_Holo_Dialog_MinWidth,
