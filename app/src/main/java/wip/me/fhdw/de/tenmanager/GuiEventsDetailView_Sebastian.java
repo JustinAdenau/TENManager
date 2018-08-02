@@ -2,6 +2,7 @@ package wip.me.fhdw.de.tenmanager;
 
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
@@ -21,6 +22,11 @@ public class GuiEventsDetailView_Sebastian {
     private EditText mEditTextDescription;
     private EditText mEditTextLocation;
 
+    private TextInputLayout mTextInputLayoutTitle;
+    private TextInputLayout mTextInputLayoutLocation;
+    private TextInputLayout mTextInputLayoutDescription;
+
+
     private FloatingActionButton mFabSave;
 
 
@@ -37,6 +43,9 @@ public class GuiEventsDetailView_Sebastian {
         mButtonDateEnd  = activity.findViewById(R.id.eventDateEnd);
         mButtonTimeStart = activity.findViewById(R.id.eventTimeStart);
         mButtonTimeEnd = activity.findViewById(R.id.eventTimeEnd);
+        mTextInputLayoutTitle = activity.findViewById(R.id.eventTitle);
+        mTextInputLayoutLocation = activity.findViewById(R.id.eventLocation);
+        mTextInputLayoutDescription = activity.findViewById(R.id.eventDescription);
 
         mFabSave = activity.findViewById(R.id.fab);
         //mFabSave.setId(R.id.fabSave);
@@ -66,6 +75,20 @@ public class GuiEventsDetailView_Sebastian {
         return mButtonTimeEnd;
     }
 
-    public FloatingActionButton getFabSave(){return mFabSave;}
+    public TextInputLayout getTextInputLayoutTitle() {
+        return mTextInputLayoutTitle;
+    }
+
+    public TextInputLayout getTextInputLayoutLocation() {
+        return mTextInputLayoutLocation;
+    }
+
+    public TextInputLayout getTextInputLayoutDescription() {
+        return mTextInputLayoutDescription;
+    }
+
+    public FloatingActionButton getFabSave() {
+        return mFabSave;
+    }
 
 }

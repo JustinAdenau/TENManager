@@ -15,10 +15,11 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     private GuiEventsDetailView_Sebastian mGui;
     private EventData_Lena mData;
     private View mView;
-    private DatepickerStartEventsDetailView_Sebastian datepickerStart;
-    private DatepickerEndEventsDetailView_Sebastian datepickerEnd;
-    private TimepickerStartEventsDetailView_Sebastian timepickerStart;
-    private TimepickerEndEventsDetailView_Sebastian timepickerEnd;
+    private DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
+    private DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
+    private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
+    private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
+    private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
 
 
 
@@ -33,6 +34,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         initDatepickerEnd();
         initTimepickerStart();
         initTimepickerEnd();
+        initUserInputValidation();
     }
 
 
@@ -72,7 +74,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     //todo in if auch  ButtonDateEnd Befüllung anfragen
     private void initCurrentDate(){
-        if(mGui.getButtonDateStart().getText() != null /*|| !mGui.getButtonDate().getText().equals("")*/) return;
+        if(mGui.getButtonDateStart().getText().toString().matches("\\d{2}.\\d{2}.\\d{4}")) return;
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -80,13 +82,13 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
         month = month+1;
 
-        mGui.getButtonDateStart().setText(String.format("%02d/%02d/%04d", day, month, year));
-        mGui.getButtonDateEnd().setText(String.format("%02d/%02d/%04d", day, month, year));
+        mGui.getButtonDateStart().setText(String.format("%02d.%02d.%04d", day, month, year));
+        mGui.getButtonDateEnd().setText(String.format("%02d.%02d.%04d", day, month, year));
     }
 
     //todo in if auch  ButtonTimeEnd Befüllung anfragen
     private void initCurrentTime(){
-        if(mGui.getButtonTimeStart().getText() != null /*|| !mGui.getButtonTime().getText().equals("")*/) return;
+        if(mGui.getButtonTimeStart().getText().toString().matches("\\d{2}:\\d{2}")) return;
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute;
@@ -100,32 +102,38 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
     private void initDatepickerStart(){
-        datepickerStart = new DatepickerStartEventsDetailView_Sebastian(mGui);
-        datepickerStart.buildDateStartpicker();
-        datepickerStart.setDateStartToButton();
+        mDatepickerStart = new DatepickerStartEventsDetailView_Sebastian(mGui);
+        mDatepickerStart.buildDateStartpicker();
+        mDatepickerStart.setDateStartToButton();
     }
 
     private void initDatepickerEnd(){
-        datepickerEnd = new DatepickerEndEventsDetailView_Sebastian(mGui);
-        datepickerEnd.buildDateEndpicker();
-        datepickerEnd.setDateEndToButton();
+        mDatepickerEnd = new DatepickerEndEventsDetailView_Sebastian(mGui);
+        mDatepickerEnd.buildDateEndpicker();
+        mDatepickerEnd.setDateEndToButton();
     }
 
 
     private void initTimepickerStart(){
-        timepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
-        timepickerStart.bulidTimeStartpicker();
+        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
+        mTimepickerStart.bulidTimeStartpicker();
     }
 
     private void initTimepickerEnd(){
-        timepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
-        timepickerEnd.bulidTimeEndpicker();
+        mTimepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
+        mTimepickerEnd.bulidTimeEndpicker();
+    }
+
+    //todo Methoden einfügen
+    private void initUserInputValidation(){
+        mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
 
 
     public void onFabSaveClicked()
     {
+        if(mUserInputValidation.confirmInput() == false) return;
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
         String dateStartOld = mData.getEventDateStart();
