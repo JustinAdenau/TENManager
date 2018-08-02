@@ -37,15 +37,24 @@ public class ApplicationLogicNoteOverview_Julius {
     }
 
     public void dataToGui(){
-        mDb.eventDao().deleteAll();
-        String einkaufslist = "- Eier \n - Milsch \n - Klopapier";
+        mDb.noteDao().deleteAllNotes();
+        String einkaufslist = "- Eier \n- Milsch \n- Klopapier";
         Note_Julius einkaufsliste = new Note_Julius("Einkaufsliste", einkaufslist);
 
-        String serien = "- GoT \n - Lucifer \n - HIMYM";
+        String serien = "- GoT \n- Lucifer \n- HIMYM";
         Note_Julius serienSchauen = new Note_Julius("Noch zu schauende Serien!", serien);
-
         mDb.noteDao().insertAll(einkaufsliste, serienSchauen);
+
+
         mNoteList = mDb.noteDao().getAllNotes();
+
+        //ToDo Liste bearbeiten 2 Zeilen
+
+
+        for (int i = 0 ; i < mNoteList.size(); i++)
+        {
+            mNoteList.get(i).setContent(mNoteList.get(i).getFirstTwoContentRows());
+        }
 
         mNoteAdapter.setNoteList(mNoteList);
         mGui.getListView().setAdapter(mNoteAdapter);

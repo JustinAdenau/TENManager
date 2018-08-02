@@ -55,11 +55,14 @@ public class Note_Julius {
         int z = 0;
         String zweiZeilen = "";
         for(int i = 0; i < mContent.length(); i++){
-            if(mContent.charAt(i) == '-'){
+            if(mContent.charAt(i) == '-')
+            {
                 z++;
             }
-            if (z == 3){
+            if (z == 3)
+            {
                 zweiZeilen = mContent.substring(0,i);
+                break;
             }
 
         }

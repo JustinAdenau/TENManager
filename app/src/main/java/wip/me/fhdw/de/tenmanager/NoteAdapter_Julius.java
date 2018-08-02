@@ -50,7 +50,7 @@ public class NoteAdapter_Julius extends BaseAdapter{
         TextView textViewNoteContent = view.findViewById(R.id.listviewitem_textview_content);
 
         textViewNoteTitle.setText(mNoteList.get(position).getTitle());
-        textViewNoteContent.setText(mNoteList.get(position).getFirstTwoContentRows());
+        textViewNoteContent.setText(mNoteList.get(position).getContent());
 
         view.setTag(mNoteList.get(position).getId());
         return view;
