@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 import android.content.Context;
 import android.view.View;
@@ -7,6 +7,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.List;
+
+import wip.me.fhdw.de.tenmanager.Event;
+import wip.me.fhdw.de.tenmanager.R;
 
 public class EventAdapter_Lena extends BaseAdapter {
 

@@ -1,10 +1,14 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
 import java.util.List;
+
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
 
 public class ApplicationLogicNoteOverview_Julius {
 
@@ -31,7 +35,7 @@ public class ApplicationLogicNoteOverview_Julius {
     public void initListener(){
         ListViewItemClickListener_Julius listViewItemClickListener = new ListViewItemClickListener_Julius(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
-        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
         if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
     }
@@ -69,6 +73,7 @@ public class ApplicationLogicNoteOverview_Julius {
 
     public void onFabCreateNewClicked()
     {
+        //TODO change constant
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
     }
 

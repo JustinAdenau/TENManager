@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
@@ -7,9 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.View;
 import android.widget.TimePicker;
-
-import java.util.Calendar;
-
 
 
 public class TimepickerStartEventsDetailView_Sebastian {
@@ -42,7 +39,7 @@ public class TimepickerStartEventsDetailView_Sebastian {
                        view.getContext(), AlertDialog.THEME_HOLO_DARK, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        mGui.getButtonTimeStart().setText(String.format("%02d:%02d", mHourStart, mMinuteStart));
+                        mGui.getButtonTimeStart().setText(String.format("%02d:%02d", hour, minute));
                     }
                 }
                         , mHourStart, mMinuteStart, true);
