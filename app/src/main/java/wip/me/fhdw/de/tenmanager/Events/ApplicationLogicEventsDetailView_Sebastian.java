@@ -10,18 +10,19 @@ import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
 
+
 public class ApplicationLogicEventsDetailView_Sebastian  {
 
     private static final String TAG = "AppLogic_Sebastian";
 
-    private GuiEventsDetailView_Sebastian mGui;
-    private EventData_Lena mData;
+    private wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian mGui;
+    private wip.me.fhdw.de.tenmanager.Events.EventData_Lena mData;
     private View mView;
-    private DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
-    private DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
-    private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
-    private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
-    private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
+    private wip.me.fhdw.de.tenmanager.Events.DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
+    private wip.me.fhdw.de.tenmanager.Events.DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
+    private wip.me.fhdw.de.tenmanager.Events.TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
+    private wip.me.fhdw.de.tenmanager.Events.TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
+    private wip.me.fhdw.de.tenmanager.Events.UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
 
 
 

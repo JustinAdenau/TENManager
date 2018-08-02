@@ -8,6 +8,7 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
+
 public class DatepickerEndEventsDetailView_Sebastian {
     private static final String TAG = "Datepicker_Sebastian";
 
@@ -16,7 +17,7 @@ public class DatepickerEndEventsDetailView_Sebastian {
     private int mYearEnd;
 
 
-    private GuiEventsDetailView_Sebastian mGui;
+    private wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian mGui;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
 

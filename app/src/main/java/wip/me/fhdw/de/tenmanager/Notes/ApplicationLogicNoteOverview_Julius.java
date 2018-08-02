@@ -10,6 +10,9 @@ import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
 
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
+
 public class ApplicationLogicNoteOverview_Julius {
 
     private NoteData_Julius mNoteData;

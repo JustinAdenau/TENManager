@@ -13,14 +13,23 @@ import java.util.List;
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Event;
+
+
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.Event;
+import wip.me.fhdw.de.tenmanager.Events.EventAdapter_Lena;
+import wip.me.fhdw.de.tenmanager.Events.EventData_Lena;
+import wip.me.fhdw.de.tenmanager.Events.GuiEventsOverview_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicEventsOverview_Lena {
 
-    private EventData_Lena mData;
-    private GuiEventsOverview_Lena mGui;
+    private wip.me.fhdw.de.tenmanager.Events.EventData_Lena mData;
+    private wip.me.fhdw.de.tenmanager.Events.GuiEventsOverview_Lena mGui;
     private AppDatabase mDb;
     private List<Event> mEventList;
+    private wip.me.fhdw.de.tenmanager.Events.EventAdapter_Lena mEventAdapter;
     private EventAdapter_Lena mEventAdapter;
     private Activity mActivity;
 

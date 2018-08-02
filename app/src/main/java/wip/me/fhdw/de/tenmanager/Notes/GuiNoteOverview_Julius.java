@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.R;
 
+import wip.me.fhdw.de.tenmanager.R;
+
 public class GuiNoteOverview_Julius {
 
     private ListView mListView;
