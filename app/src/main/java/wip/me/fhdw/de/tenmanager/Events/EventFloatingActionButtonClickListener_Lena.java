@@ -7,6 +7,7 @@ public class FloatingActionButtonClickListener_Lena implements View.OnClickListe
 
     ApplicationLogicEventsOverview_Lena mApplicationlogicEventsOverview;
     ApplicationLogicEventsDetailView_Sebastian mApplicationlogicEventsDetailview;
+    ApplicationLogicNoteOverview_Julius mApplicationlogicNoteOverview_Julius;
 
     public FloatingActionButtonClickListener_Lena(ApplicationLogicEventsOverview_Lena applicationLogic)
     {
@@ -18,6 +19,11 @@ public class FloatingActionButtonClickListener_Lena implements View.OnClickListe
         mApplicationlogicEventsDetailview = applicationLogic;
     }
 
+    public FloatingActionButtonClickListener_Lena(ApplicationLogicNoteOverview_Julius applicationLogic)
+    {
+        Log.d("LOGTAG", "FAB wurde erzeugt!!");
+        mApplicationlogicNoteOverview_Julius = applicationLogic;
+    }
     @Override
     public void onClick(View view)
     {
