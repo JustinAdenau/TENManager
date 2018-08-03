@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:orientation="vertical"
-        android:id="@+id/linearLayout_title"
+        android:id="@+id/linearLayout_title_buttonDelete"
         android:gravity="center_horizontal"
         android:padding="@dimen/listview_padding"
         >
@@ -38,7 +38,7 @@
         android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         android:id="@+id/linearLayout_dateTime"
-        android:layout_below="@id/linearLayout_title"
+        android:layout_below="@id/linearLayout_title_buttonDelete"
         android:padding="@dimen/listview_padding"
         >
 

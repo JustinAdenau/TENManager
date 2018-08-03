@@ -24,6 +24,8 @@ public class Constants {
         public static final int REQUESTCODEONE = 1;
         public static final int REQUESTCODETWO = 2;
 
+        public static final String KEYWITHDATA = "K50";
+
         //Spezifikation der Klassenobjekte
         public static final Class<?> ACTIVITYEVENTSDETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.Events.InitEventsDetailView_Sebastian.class;
         public static final Class<?> ACTIVITYEVENTSOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.Events.InitEventsOverview_Lena.class;

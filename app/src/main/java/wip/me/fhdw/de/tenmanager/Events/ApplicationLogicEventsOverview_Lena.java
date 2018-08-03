@@ -78,6 +78,7 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.setEventTimeEnd(mEventList.get(position).getEventTimeEnd());
         mData.setEventDescription(mEventList.get(position).getEventDescription());
         mData.setEventLocation(mEventList.get(position).getEventLocation());
+        mData.setWithData(true);
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
     }
 
@@ -88,13 +89,11 @@ public class ApplicationLogicEventsOverview_Lena {
 
     public void onButtonDeleteEventClicked(View view)
     {
-        View v = (View)view.getParent().getParent();
+        View v = (View)view.getParent().getParent().getParent();
         TextView title = v.findViewById(R.id.listviewitem_textview_title);
         TextView dateStart = v.findViewById(R.id.listviewitem_textview_dateStart);
         TextView timeStart = v.findViewById(R.id.listviewitem_textview_timeStart);
-        if(title == null)Log.d("LOGTAG", "Title TextView ist null!!!!!!!!!!!!!");
         Event eventToBeDeleted = mDb.eventDao().getEventByTitleDateTime(title.getText().toString(), dateStart.getText().toString(), timeStart.getText().toString());
-        Log.d("LOGTAG", "eventToBeDeleted: "+title.getText().toString()+ ", "+dateStart.getText().toString()+", "+timeStart.getText().toString());
         mDb.eventDao().deleteEvents(eventToBeDeleted);
 
         mActivity.recreate();
@@ -131,7 +130,8 @@ public class ApplicationLogicEventsOverview_Lena {
         intent.setClass(mData.getActivity(), activityClass);
 
         if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());}
-
+        intent.putExtra(Constants.KEYWITHDATA, withData);
+        Log.d("LOGTAG", "withData: "+withData+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         mData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
     }
 
