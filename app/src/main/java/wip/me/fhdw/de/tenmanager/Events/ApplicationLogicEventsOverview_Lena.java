@@ -30,7 +30,6 @@ public class ApplicationLogicEventsOverview_Lena {
     private AppDatabase mDb;
     private List<Event> mEventList;
     private wip.me.fhdw.de.tenmanager.Events.EventAdapter_Lena mEventAdapter;
-    private EventAdapter_Lena mEventAdapter;
     private Activity mActivity;
 
 
