@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorGreen">#B2D09E</color>
+    <color name="colorGreenDark">#90a980</color>
     <color name="colorYellow">#FAD97A</color>
     <color name="colorBlue">#A5C7E3</color>
     <color name="colorGrey">#F2F2F2</color>
+    <color name="colorGreyDark">#5e5e5e</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorApricot">#f8bca5</color>
+    <color name="colorApricotDark">#e3b29f</color>
+    <color name="colorRed">#af4e56</color>
 
 </resources>
