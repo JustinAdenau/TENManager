@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiEventsOverview_Lena {
 

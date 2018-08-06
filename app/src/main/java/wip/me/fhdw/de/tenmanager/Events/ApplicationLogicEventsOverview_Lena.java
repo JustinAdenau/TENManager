@@ -1,10 +1,14 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
 import java.util.List;
+
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.Event;
 
 public class ApplicationLogicEventsOverview_Lena {
 
@@ -31,7 +35,7 @@ public class ApplicationLogicEventsOverview_Lena {
     {
         ListViewItemClickListener_Lena listViewItemClickListener = new ListViewItemClickListener_Lena(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
-        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
     }
 

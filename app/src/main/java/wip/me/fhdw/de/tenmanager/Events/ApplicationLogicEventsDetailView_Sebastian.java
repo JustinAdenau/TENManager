@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 
 import android.app.Activity;
@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.View;
 
 import java.util.Calendar;
+
+import wip.me.fhdw.de.tenmanager.Constants;
+
 
 public class ApplicationLogicEventsDetailView_Sebastian  {
 
@@ -44,7 +47,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     public void initListener()
     {
-        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
+        EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
     }
 

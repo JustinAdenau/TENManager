@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewStub;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.List;
+import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiNoteOverview_Julius {
 

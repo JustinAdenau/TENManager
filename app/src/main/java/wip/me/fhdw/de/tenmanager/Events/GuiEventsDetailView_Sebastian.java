@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
+
+
+import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiEventsDetailView_Sebastian {
 

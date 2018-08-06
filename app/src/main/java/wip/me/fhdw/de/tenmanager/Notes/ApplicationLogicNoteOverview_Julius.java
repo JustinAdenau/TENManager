@@ -1,10 +1,13 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
 import java.util.List;
+
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
 
 public class ApplicationLogicNoteOverview_Julius {
 
@@ -31,31 +34,30 @@ public class ApplicationLogicNoteOverview_Julius {
     public void initListener(){
         ListViewItemClickListener_Julius listViewItemClickListener = new ListViewItemClickListener_Julius(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
-        FloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new FloatingActionButtonClickListener_Lena(this);
-        if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
+        NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
     }
 
     public void dataToGui(){
         mDb.noteDao().deleteAllNotes();
-        String einkaufslist = "- Eier \n- Milsch \n- Klopapier";
-        Note_Julius einkaufsliste = new Note_Julius("Einkaufsliste", einkaufslist);
 
-        String serien = "- GoT \n- Lucifer \n- HIMYM";
-        Note_Julius serienSchauen = new Note_Julius("Noch zu schauende Serien!", serien);
-        mDb.noteDao().insertAll(einkaufsliste, serienSchauen);
+            // TODO Temporäre Dateneingabe solange es keine DB einträge gibt
+            String einkaufslist = "- Eier \n- Milsch \n- Klopapier";
+            Note_Julius einkaufsliste = new Note_Julius("Einkaufsliste", einkaufslist);
+
+            String serien = "- GoT \n- Lucifer \n- HIMYM";
+            Note_Julius serienSchauen = new Note_Julius("Noch zu schauende Serien!", serien);
+            mDb.noteDao().insertAll(einkaufsliste, serienSchauen);
+
+            mNoteList = mDb.noteDao().getAllNotes();
+
+            for (int i = 0 ; i < mNoteList.size(); i++)
+            {
+                mNoteList.get(i).setContent(mNoteList.get(i).getFirstTwoContentRows());
+            }
 
 
-        mNoteList = mDb.noteDao().getAllNotes();
-
-        //ToDo Liste bearbeiten 2 Zeilen
-
-
-        for (int i = 0 ; i < mNoteList.size(); i++)
-        {
-            mNoteList.get(i).setContent(mNoteList.get(i).getFirstTwoContentRows());
-        }
-
+        //mNoteList = mDb.noteDao().getAllNotes();
         mNoteAdapter.setNoteList(mNoteList);
         mGui.getListView().setAdapter(mNoteAdapter);
 
