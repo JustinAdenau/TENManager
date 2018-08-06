@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/listview_item_style"
+    android:orientation="vertical"
+    android:id="@+id/idRelativeLayoutListItem"
+    android:descendantFocusability="blocksDescendants"
+    >
+    <!--android:layout_margin="10dp"-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout_title_buttonDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/listview_padding"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10">
+
+            <TextView
+                android:id="@+id/listviewitem_textview_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/textsize_title"
+                android:hint="Titel"
+                android:textStyle="bold"
+                android:gravity="start"
+                />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutButtonDeleteEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout_dateTimeEnd"
+            android:orientation="horizontal"
+            android:padding="@dimen/listview_padding"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            >
+
+            <ImageButton
+                android:id="@+id/buttonDeleteEvent"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/colorRed"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="@drawable/round_button_style"
+                android:focusable="false"
+
+                />
+
+        </RelativeLayout>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_beginn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout_title_buttonDelete"
+        android:layout_marginBottom="@dimen/listview_margin"
+        android:layout_marginLeft="@dimen/listview_margin"
+        android:layout_marginTop="0dp">
+
+        <TextView
+            android:id="@+id/textView_beginn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beginn"
+            android:textSize="@dimen/textsize_text_small"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_dateTimeStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="@dimen/listview_margin"
+        android:orientation="horizontal"
+        android:layout_below="@id/linearLayout_beginn"
+        >
+
+        <TextView
+            android:id="@+id/listviewitem_textview_dateStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textSize="@dimen/textsize_text"
+            android:hint="Datum"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:drawableStart="@android:drawable/ic_menu_today"
+            />
+
+
+        <TextView
+            android:id="@+id/listviewitem_textview_timeStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textSize="@dimen/textsize_text"
+            android:hint="Uhrzeit"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:drawableStart="@android:drawable/ic_menu_recent_history"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout_dateTimeStart"
+        android:layout_margin="@dimen/listview_margin">
+
+        <TextView
+            android:id="@+id/textView_end"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Ende"
+            android:textSize="@dimen/textsize_text_small"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_dateTimeEnd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="@dimen/listview_margin"
+        android:layout_marginBottom="@dimen/listview_margin"
+        android:orientation="horizontal"
+        android:layout_below="@id/linearLayout_end"
+        android:padding="0dp"
+        >
+
+        <TextView
+            android:id="@+id/listviewitem_textview_dateEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textSize="@dimen/textsize_text"
+            android:hint="Datum"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:drawableStart="@android:drawable/ic_menu_today"
+            />
+
+
+        <TextView
+            android:id="@+id/listviewitem_textview_timeEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textSize="@dimen/textsize_text"
+            android:hint="Uhrzeit"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:drawableStart="@android:drawable/ic_menu_recent_history"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
+
+
