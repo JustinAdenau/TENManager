@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.R;
 
 
 public class ApplicationLogicEventsDetailView_Sebastian  {
@@ -208,6 +209,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishActivityResultOk");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 
@@ -218,6 +220,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
     //todo save data bei landscape

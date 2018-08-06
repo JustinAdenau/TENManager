@@ -80,11 +80,13 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.setEventLocation(mEventList.get(position).getEventLocation());
         mData.setWithData(true);
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onFabCreateNewClicked()
     {
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onButtonDeleteEventClicked(View view)
@@ -142,6 +144,7 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishActivityResultOk");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
     private void finishActivityResultCancelled()
@@ -151,5 +154,6 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }
