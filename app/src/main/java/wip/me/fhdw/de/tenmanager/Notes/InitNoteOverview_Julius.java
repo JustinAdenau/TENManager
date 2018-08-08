@@ -40,7 +40,8 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
     public void initDb()
     {
         mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-          //.addMigrations(MIGRATION_3_4)
+          /*.addMigrations(MIGRATION_3_4)
+                .addMigrations(MIGRATION_4_5)*/
           .allowMainThreadQueries()
           .build();
     }
@@ -54,10 +55,10 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
             database.execSQL("CREATE TABLE 'event'(id INTEGER primary key not null, event_title TEXT, event_date_start TEXT, event_time_start TEXT, event_date_end TEXT, event_time_end TEXT, event_description TEXT, event_location TEXT)");
             database.execSQL("DROP TABLE 'event_old'");
         }
-    };*/
+    };
 
     //if database table is changed (new version) migration is needed
-    /*static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+    static final Migration MIGRATION_4_5 = new Migration(4, 5) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("CREATE TABLE IF NOT EXISTS 'note_julius'('note_id' INTEGER PRIMARY KEY NOT NULL, 'note_title' TEXT, 'note_content' TEXT)");
@@ -67,6 +68,7 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
 
     public void initGui(){
         mGui = new GuiNoteOverview_Julius(this);
+        initToolbar();
     }
     public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicNoteOverview_Julius(mNoteData, mGui, mDb, mNoteAdapter); }
     public void initListAdapter(){mNoteAdapter = new NoteAdapter_Julius(getApplicationContext());}
