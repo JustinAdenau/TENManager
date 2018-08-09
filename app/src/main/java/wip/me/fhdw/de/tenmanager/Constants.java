@@ -20,6 +20,7 @@ public class Constants {
 
         public static final String KEYNOTETITLE = "K7";
         public static final String KEYNOTECONTENT = "K8";
+        public static final String KEYNOTEWITHDATA = "K11";
 
         public static final int REQUESTCODEONE = 1;
         public static final int REQUESTCODETWO = 2;

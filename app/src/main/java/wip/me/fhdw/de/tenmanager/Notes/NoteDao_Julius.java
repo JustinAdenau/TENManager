@@ -19,6 +19,9 @@ public interface NoteDao_Julius {
     @Query("DELETE from note_julius")
     void deleteAllNotes();
 
+    @Query("SELECT * FROM note_julius WHERE note_title LIKE :title AND note_content LIKE :content")
+    Note_Julius getNoteByTitleContent(String title, String content);
+
     @Delete
     void deleteNote(Note_Julius... note);
 }
