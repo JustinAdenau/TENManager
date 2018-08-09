@@ -3,8 +3,10 @@ package wip.me.fhdw.de.tenmanager.Events;
 import android.util.Log;
 import android.view.View;
 
+import wip.me.fhdw.de.tenmanager.Notes.ApplicationLogicNoteOverview_Julius;
 
 public class EventFloatingActionButtonClickListener_Lena implements View.OnClickListener {
+
 
     ApplicationLogicEventsOverview_Lena mApplicationlogicEventsOverview;
     ApplicationLogicEventsDetailView_Sebastian mApplicationlogicEventsDetailview;
@@ -20,12 +22,14 @@ public class EventFloatingActionButtonClickListener_Lena implements View.OnClick
         mApplicationlogicEventsDetailview = applicationLogic;
     }
 
+
     @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
+
         Log.d("LOGTAG", "FAB wurde angeklickt!!");
 
         if(mApplicationlogicEventsDetailview == null) mApplicationlogicEventsOverview.onFabCreateNewClicked();
         else mApplicationlogicEventsDetailview.onFabSaveClicked();
+
     }
 }

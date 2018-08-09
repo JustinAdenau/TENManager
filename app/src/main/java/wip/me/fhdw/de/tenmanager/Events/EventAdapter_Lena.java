@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -15,12 +16,8 @@ public class EventAdapter_Lena extends BaseAdapter {
 
     private Context mContext;
     private List<Event> mEventList;
+    private ApplicationLogicEventsOverview_Lena mApplicationLogic;
 
-    public EventAdapter_Lena(Context context, List<Event> eventList)
-    {
-        this.mContext=context;
-        this.mEventList=eventList;
-    }
 
     public EventAdapter_Lena(Context context)
     {
@@ -28,6 +25,8 @@ public class EventAdapter_Lena extends BaseAdapter {
     }
 
     public void setEventList(List<Event> eventList){mEventList=eventList;}
+
+    public void setApplicationLogic(ApplicationLogicEventsOverview_Lena applicationLogic){mApplicationLogic=applicationLogic;}
 
     @Override
     public int getCount() {
@@ -54,6 +53,9 @@ public class EventAdapter_Lena extends BaseAdapter {
         TextView textviewEventitemTimeStart = view.findViewById(R.id.listviewitem_textview_timeStart);
         TextView textviewEventitemDateEnd = view.findViewById(R.id.listviewitem_textview_dateEnd);
         TextView textviewEventitemTimeEnd = view.findViewById(R.id.listviewitem_textview_timeEnd);
+        ImageButton buttonDeleteEvent = view.findViewById(R.id.buttonDeleteEvent);
+
+        buttonDeleteEvent.setOnClickListener(new ButtonDeleteEventClickListener_Lena(mApplicationLogic));
 
         textviewEventitemTitle.setText(mEventList.get(position).getEventTitle());
         textviewEventitemDateStart.setText(mEventList.get(position).getEventDateStart());

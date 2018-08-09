@@ -12,7 +12,6 @@ import java.util.Calendar;
 
 
 
-
 public class DatepickerStartEventsDetailView_Sebastian {
 
 

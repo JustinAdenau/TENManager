@@ -5,32 +5,63 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/listview_item_style"
-
     android:orientation="vertical"
     android:id="@+id/idRelativeLayoutListItem"
+    android:descendantFocusability="blocksDescendants"
     >
     <!--android:layout_margin="10dp"-->
 
     <LinearLayout
-        android:id="@+id/linearLayout_title"
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout_title_buttonDelete"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center_horizontal"
         android:padding="@dimen/listview_padding"
         >
-        
-        <TextView
-            android:id="@+id/listviewitem_textview_title"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="@dimen/textsize_title"
-            android:hint="Titel"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            />
+            android:layout_weight="10">
+
+            <TextView
+                android:id="@+id/listviewitem_textview_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/textsize_title"
+                android:hint="Titel"
+                android:textStyle="bold"
+                android:gravity="start"
+                />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutButtonDeleteEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout_dateTimeEnd"
+            android:orientation="horizontal"
+            android:padding="@dimen/listview_padding"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            >
+
+            <ImageButton
+                android:id="@+id/buttonDeleteEvent"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/colorRed"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="@drawable/round_button_style"
+                android:focusable="false"
+
+                />
+
+        </RelativeLayout>
         
     </LinearLayout>
 
@@ -38,7 +69,7 @@
         android:id="@+id/linearLayout_beginn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayout_title"
+        android:layout_below="@id/linearLayout_title_buttonDelete"
         android:layout_marginBottom="@dimen/listview_margin"
         android:layout_marginLeft="@dimen/listview_margin"
         android:layout_marginTop="0dp">
@@ -58,10 +89,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="0dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="@dimen/listview_margin"
         android:orientation="horizontal"
         android:layout_below="@id/linearLayout_beginn"
-        android:padding="0dp"
         >
 
         <TextView
@@ -113,9 +143,9 @@
         android:id="@+id/linearLayout_dateTimeEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="0dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="@dimen/listview_margin"
+        android:layout_marginBottom="@dimen/listview_margin"
         android:orientation="horizontal"
         android:layout_below="@id/linearLayout_end"
         android:padding="0dp"
@@ -147,6 +177,10 @@
             />
 
     </LinearLayout>
+
+
+
+
 
 </RelativeLayout>
 

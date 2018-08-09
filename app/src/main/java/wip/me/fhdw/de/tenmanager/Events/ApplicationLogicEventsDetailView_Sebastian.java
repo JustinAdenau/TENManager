@@ -5,24 +5,26 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.R;
 
 
 public class ApplicationLogicEventsDetailView_Sebastian  {
 
     private static final String TAG = "AppLogic_Sebastian";
 
-    private GuiEventsDetailView_Sebastian mGui;
-    private EventData_Lena mData;
+    private wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian mGui;
+    private wip.me.fhdw.de.tenmanager.Events.EventData_Lena mData;
     private View mView;
-    private DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
-    private DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
-    private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
-    private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
-    private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
+    private wip.me.fhdw.de.tenmanager.Events.DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
+    private wip.me.fhdw.de.tenmanager.Events.DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
+    private wip.me.fhdw.de.tenmanager.Events.TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
+    private wip.me.fhdw.de.tenmanager.Events.TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
+    private wip.me.fhdw.de.tenmanager.Events.UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
 
 
 
@@ -136,28 +138,43 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
     public void onFabSaveClicked()
     {
-        if(mUserInputValidation.confirmInput() == false) return;
+        if(mUserInputValidation.confirmInput()) return;
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
         String dateStartOld = mData.getEventDateStart();
         String timeStartOld = mData.getEventTimeStart();
-        if(mData.getDb().eventDao().eventExists(titleOld, dateStartOld , timeStartOld)!=0) eventExists = true;
+        String title = mGui.getEditTextTitle().getText().toString();
+        String dateStart = mGui.getButtonDateStart().getText().toString();
+        String timeStart = mGui.getButtonTimeStart().getText().toString();
+        if(mData.getDb().eventDao().eventExists(title, dateStart , timeStart)!=0) eventExists = true;
+        if(!eventExists || mData.getWithData()) {
+            mData.setEventTitle(mGui.getEditTextTitle().getText().toString());
+            mData.setEventDateStart(mGui.getButtonDateStart().getText().toString());
+            mData.setEventTimeStart(mGui.getButtonTimeStart().getText().toString());
+            mData.setEventDateEnd(mGui.getButtonDateEnd().getText().toString());
+            mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
+            mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
+            mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
+        }
 
-        mData.setEventTitle(mGui.getEditTextTitle().getText().toString());
-        mData.setEventDateStart(mGui.getButtonDateStart().getText().toString());
-        mData.setEventTimeStart(mGui.getButtonTimeStart().getText().toString());
-        mData.setEventDateEnd(mGui.getButtonDateEnd().getText().toString());
-        mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
-        mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
-        mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
+        Log.d("LOGTAG", "withData: "+mData.getWithData());
 
-        if(eventExists)
+        if(mData.getWithData())
         {
-            Log.d("LOGTAG", "event exists!!!");
+            Log.d("LOGTAG", "updating event!!!");
             mData.updateEvent(titleOld, dateStartOld, timeStartOld);
         }
-        else mData.createAndSaveNewEvent();
+        else
+        {
+            if(eventExists)
+            {
+                Log.d("LOGTAG", "event exists!!!");
+                Toast.makeText(mData.getActivity().getApplicationContext(),"Es gibt bereits ein Event mit diesem Titel, diesem Startdatum und dieser Startzeit!", Toast.LENGTH_LONG ).show();
 
+                return;
+            }
+            mData.createAndSaveNewEvent();
+        }
         finishActivityResultOk();
     }
 
@@ -192,6 +209,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishActivityResultOk");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 
@@ -202,6 +220,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
     //todo save data bei landscape

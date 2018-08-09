@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.R;
 
 
@@ -27,7 +29,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIntent = this.getIntent();
-
+        Log.d("LOGTAG", "onCreate InitEventsDetailView_Sebastian. title: "+ mIntent.getBundleExtra(Constants.KEYEVENTTITLE));
         initData(savedInstanceState);
         initGui();
         initApplicationLogic(mIntent);
@@ -50,7 +52,9 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
         mApplicationLogic = new ApplicationLogicEventsDetailView_Sebastian(mData, mGui);
     }
 
-    public void initToolbar(){Toolbar toolbar = findViewById(R.id.toolbar);
+    public void initToolbar()
+    {
+        Toolbar toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Event");

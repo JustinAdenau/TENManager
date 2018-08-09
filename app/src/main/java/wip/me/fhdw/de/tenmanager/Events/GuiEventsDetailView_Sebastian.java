@@ -8,7 +8,6 @@ import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
 
-
 import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiEventsDetailView_Sebastian {

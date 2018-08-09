@@ -23,15 +23,6 @@ public class ListViewItemClickListener_Lena implements ListView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
     {
-        if(view.getId() == R.id.idRelativeLayoutListItem)Log.d("LOGTAG", "RealtiveLayout wird übergeben" );
-        List<String> data = new ArrayList<>();
-        TextView textView = view.findViewById(R.id.listviewitem_textview_title);
-        data.add(textView.getText().toString());
-        textView = view.findViewById(R.id.listviewitem_textview_dateStart);
-        data.add(textView.getText().toString());
-        textView = view.findViewById(R.id.listviewitem_textview_timeStart);
-        data.add(textView.getText().toString());
-
         mApplicationLogic.onListItemClicked(position);
     }
 }

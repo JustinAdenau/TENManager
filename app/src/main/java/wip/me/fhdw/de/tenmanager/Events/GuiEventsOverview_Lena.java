@@ -1,11 +1,10 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +20,8 @@ public class GuiEventsOverview_Lena {
     private TextView mTextViewTimeStart;
     private TextView mTextViewDateEnd;
     private TextView mTextViewTimeEnd;
+
+    private ImageButton mButtonDeleteEvent;
 
 
     private FloatingActionButton mFabCreateNew;
@@ -44,12 +45,15 @@ public class GuiEventsOverview_Lena {
         mTextViewDateEnd = view.findViewById(R.id.listviewitem_textview_dateEnd);
         mTextViewTimeEnd = view.findViewById(R.id.listviewitem_textview_timeEnd);
 
+        mButtonDeleteEvent = view.findViewById(R.id.buttonDeleteEvent);
+
         mFabCreateNew = activity.findViewById(R.id.fab);
     }
 
     //getter to access Views
     public ListView getListView(){return mlistView;}
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
+    public ImageButton getButtonDeleteEvent(){return mButtonDeleteEvent;}
 
     public TextView getTextViewTitle(){return mTextViewTitle;}
     public TextView getTextViewDateStart(){return mTextViewDateStart;}
@@ -58,6 +62,8 @@ public class GuiEventsOverview_Lena {
     public TextView getTextViewTimeEnd(){return mTextViewTimeEnd;}
 
     //methods to change View attributes
+
+
 
 
 }
