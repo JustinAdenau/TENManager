@@ -57,16 +57,16 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
 
     };*/
 
-    public void initGui(){mGui = new GuiEventsOverview_Lena(this); /*initToolbar()*/;}
+    public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}
     public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(this, mData, mGui, mDb, mEventAdapter);}
     public void initListAdapter(){mEventAdapter = new EventAdapter_Lena(getApplicationContext());}
 
     public void initToolbar()
     {
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
-        toolbarTextview.setText("Events");*/  }
+        toolbarTextview.setText("Events");  }
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {
