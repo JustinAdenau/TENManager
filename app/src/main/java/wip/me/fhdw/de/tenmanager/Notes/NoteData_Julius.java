@@ -15,6 +15,7 @@ public class NoteData_Julius {
 
     private String mNoteTitle;
     private String mNoteContent;
+    private boolean mWithData;
 
     public NoteData_Julius(Bundle savedInstanceState, Activity activity) {
         mActivity = activity;
@@ -40,6 +41,7 @@ public class NoteData_Julius {
     {
         mNoteTitle = b.getString(Constants.KEYNOTETITLE);
         mNoteContent = b.getString(Constants.KEYNOTECONTENT);
+        mWithData = b.getBoolean(Constants.KEYNOTEWITHDATA);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent)
@@ -61,6 +63,7 @@ public class NoteData_Julius {
     {
         b.putString(Constants.KEYNOTETITLE, mNoteTitle);
         b.putString(Constants.KEYNOTECONTENT, mNoteContent);
+        b.putBoolean(Constants.KEYNOTEWITHDATA, mWithData);
     }
 
     public void createAndSaveNewNote()
@@ -69,13 +72,24 @@ public class NoteData_Julius {
         mDb.noteDao().insertAll(note);
     }
 
+    public void updateNote(String title, String content)
+    {
+        Note_Julius noteOld = mDb.noteDao().getNoteByTitleContent(title, content);
+        if(noteOld != null) {
+            mDb.noteDao().deleteNote(noteOld);
+            createAndSaveNewNote();
+        }
+    }
+
     public Activity getActivity () {
         return mActivity;
     }
     public String getNoteTitle() {return mNoteTitle;}
     public String getNoteContent(){return mNoteContent;}
+    public boolean getWithData() {return mWithData;}
 
     public void setNoteTitle(String title){mNoteTitle = title;}
     public void setNoteContent(String content){mNoteContent = content;}
+    public void setmWithData (boolean withData) {mWithData = withData;}
 
 }

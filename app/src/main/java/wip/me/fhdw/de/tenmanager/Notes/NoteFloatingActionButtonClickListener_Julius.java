@@ -1,27 +1,26 @@
 package wip.me.fhdw.de.tenmanager.Notes;
 
+import android.util.Log;
 import android.view.View;
-
-import wip.me.fhdw.de.tenmanager.Events.ApplicationLogicEventsOverview_Lena;
 
 public class NoteFloatingActionButtonClickListener_Julius implements View.OnClickListener {
 
-    ApplicationLogicNoteOverview_Julius mApplicationlogicNoteOverview;
-    //ApplicationLogicNoteDetailview_Julius mApplicationlogicNoteDetailview;
+    ApplicationLogicNoteOverview_Julius mApplicationlogicNoteOverview_Julius;
+    ApplicationLogicNoteDetailView_Alina mApplicationLogicNoteDetailView_Alina;
 
     public NoteFloatingActionButtonClickListener_Julius(ApplicationLogicNoteOverview_Julius applicationLogic)
     {
-        mApplicationlogicNoteOverview = applicationLogic;
+        mApplicationlogicNoteOverview_Julius = applicationLogic;
     }
-
-    /*public NoteFloatingActionButtonClickListener_Julius(ApplicationLogicNoteDetailview_Julius applicationLogic)
+    public NoteFloatingActionButtonClickListener_Julius(ApplicationLogicNoteDetailView_Alina applicationLogic)
     {
-        mApplicationlogicNoteDetailview = applicationLogic;
-    }*/
+        mApplicationLogicNoteDetailView_Alina = applicationLogic;
+    }
 
     @Override
     public void onClick(View view) {
-        /*if(mApplicationlogicNoteDetailview == null) mApplicationlogicNoteOverview.onFabCreateNewClicked();
-        else mApplicationlogicNoteDetailview.onFabSaveClicked();*/
+
+        //TODO extend activity check (Alina or Julius) with applicationLogic
+        mApplicationlogicNoteOverview_Julius.onFabCreateNewClicked();
     }
 }
