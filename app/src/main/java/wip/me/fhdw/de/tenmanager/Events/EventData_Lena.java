@@ -23,6 +23,8 @@ public class EventData_Lena {
     private String mEventDescription;
     private String mEventLocation;
 
+    private boolean mWithData;
+
 
 
     public EventData_Lena(Bundle savedInstanceState, Activity activity) {
@@ -54,6 +56,8 @@ public class EventData_Lena {
         mEventTimeEnd = b.getString(Constants.KEYEVENTTIMEEND);
         mEventDescription = b.getString(Constants.KEYEVENTDESCRIPTION);
         mEventLocation = b.getString(Constants.KEYEVENTLOCATION);
+        mWithData = b.getBoolean(Constants.KEYWITHDATA);
+        Log.d("LOGTAG", "withData wird in Data entgegengenommen:"+mWithData);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent) {
@@ -78,6 +82,7 @@ public class EventData_Lena {
         b.putString(Constants.KEYEVENTTIMEEND, mEventTimeEnd);
         b.putString(Constants.KEYEVENTDESCRIPTION, mEventDescription);
         b.putString(Constants.KEYEVENTLOCATION, mEventLocation);
+        b.putBoolean(Constants.KEYWITHDATA, mWithData);
     }
 
     public void createAndSaveNewEvent()
@@ -106,6 +111,7 @@ public class EventData_Lena {
     public void setEventTimeEnd(String time){mEventTimeEnd = time;}
     public void setEventDescription(String description){mEventDescription = description;}
     public void setEventLocation(String location){mEventLocation = location;}
+    public void setWithData(boolean withData){mWithData = withData;}
 
 
     //getter
@@ -121,6 +127,7 @@ public class EventData_Lena {
     public String getEventTimeEnd(){return mEventTimeEnd;}
     public String getEventDescription(){return mEventDescription;}
     public String getEventLocation(){return mEventLocation;}
+    public boolean getWithData(){return mWithData;}
 
 
 }

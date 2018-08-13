@@ -20,14 +20,18 @@ public class Constants {
 
         public static final String KEYNOTETITLE = "K7";
         public static final String KEYNOTECONTENT = "K8";
+        public static final String KEYNOTEWITHDATA = "K11";
 
         public static final int REQUESTCODEONE = 1;
         public static final int REQUESTCODETWO = 2;
 
+        public static final String KEYWITHDATA = "K50";
+
         //Spezifikation der Klassenobjekte
-        public static final Class<?> ACTIVITYEVENTSDETAILVIEWCLASS = InitEventsDetailView_Sebastian.class;
-        public static final Class<?> ACTIVITYEVENTSOVERVIEWCLASS = InitEventsOverview_Lena.class;
-        public static final Class<?> ACTIVITYNOTEOVERVIEWCLASS = InitNoteOverview_Julius.class;
+        public static final Class<?> ACTIVITYEVENTSDETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.Events.InitEventsDetailView_Sebastian.class;
+        public static final Class<?> ACTIVITYEVENTSOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.Events.InitEventsOverview_Lena.class;
+        public static final Class<?> ACTIVITYNOTEOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.Notes.InitNoteOverview_Julius.class;
+        public static final Class<?> ACTIVITYNOTEDETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.Notes.InitNoteDetailView_Alina.class;
 
 
 

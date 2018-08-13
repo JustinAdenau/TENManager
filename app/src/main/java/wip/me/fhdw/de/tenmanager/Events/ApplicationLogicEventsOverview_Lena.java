@@ -13,6 +13,14 @@ import java.util.List;
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Event;
+
+
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.Event;
+import wip.me.fhdw.de.tenmanager.Events.EventAdapter_Lena;
+import wip.me.fhdw.de.tenmanager.Events.EventData_Lena;
+import wip.me.fhdw.de.tenmanager.Events.GuiEventsOverview_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicEventsOverview_Lena {
@@ -21,7 +29,7 @@ public class ApplicationLogicEventsOverview_Lena {
     private wip.me.fhdw.de.tenmanager.Events.GuiEventsOverview_Lena mGui;
     private AppDatabase mDb;
     private List<Event> mEventList;
-    private EventAdapter_Lena mEventAdapter;
+    private wip.me.fhdw.de.tenmanager.Events.EventAdapter_Lena mEventAdapter;
     private Activity mActivity;
 
 
@@ -70,23 +78,24 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.setEventTimeEnd(mEventList.get(position).getEventTimeEnd());
         mData.setEventDescription(mEventList.get(position).getEventDescription());
         mData.setEventLocation(mEventList.get(position).getEventLocation());
+        mData.setWithData(true);
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onFabCreateNewClicked()
     {
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onButtonDeleteEventClicked(View view)
     {
-        View v = (View)view.getParent().getParent();
+        View v = (View)view.getParent().getParent().getParent();
         TextView title = v.findViewById(R.id.listviewitem_textview_title);
         TextView dateStart = v.findViewById(R.id.listviewitem_textview_dateStart);
         TextView timeStart = v.findViewById(R.id.listviewitem_textview_timeStart);
-        if(title == null)Log.d("LOGTAG", "Title TextView ist null!!!!!!!!!!!!!");
         Event eventToBeDeleted = mDb.eventDao().getEventByTitleDateTime(title.getText().toString(), dateStart.getText().toString(), timeStart.getText().toString());
-        Log.d("LOGTAG", "eventToBeDeleted: "+title.getText().toString()+ ", "+dateStart.getText().toString()+", "+timeStart.getText().toString());
         mDb.eventDao().deleteEvents(eventToBeDeleted);
 
         mActivity.recreate();
@@ -123,7 +132,8 @@ public class ApplicationLogicEventsOverview_Lena {
         intent.setClass(mData.getActivity(), activityClass);
 
         if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());}
-
+        intent.putExtra(Constants.KEYWITHDATA, withData);
+        Log.d("LOGTAG", "withData: "+withData+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         mData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
     }
 
@@ -134,6 +144,7 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishActivityResultOk");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
     private void finishActivityResultCancelled()
@@ -143,5 +154,6 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }

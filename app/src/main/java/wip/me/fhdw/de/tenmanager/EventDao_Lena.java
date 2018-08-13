@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface EventDao_Lena {
 
-    @Query("SELECT * from event order by event_date_start")
+    @Query("SELECT * from event order by SUBSTR(event_date_start, 7, 4), SUBSTR(event_date_start, 4, 2), SUBSTR(event_date_start, 1, 2)")
     List<Event> getAllEvents();
 
     @Query("SELECT COUNT(*) from event where event_title like :title and event_date_start like :dateStart and event_time_start like :timeStart")
@@ -21,12 +21,6 @@ public interface EventDao_Lena {
 
     @Query("SELECT * from event where event_title like :title and event_date_start like :dateStart and event_time_start like :timeStart")
     Event getEventByTitleDateTime(String title, String dateStart, String timeStart);
-
-    @Query("SELECT event_description from event where event_title like :title and event_date_start like :date and event_time_start like :time")
-    String getEventDescriptionByTitleDateTime(String title, String date, String time);
-
-    @Query("SELECT event_location from event where event_title like :title and event_date_start like :date and event_time_start like :time")
-    String getEventLocationByTitleDateTime(String title, String date, String time);
 
 
 
