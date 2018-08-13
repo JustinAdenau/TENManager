@@ -19,7 +19,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
     private ApplicationLogicEventsDetailView_Sebastian mApplicationLogic;
     private EventData_Lena mData;
     private AppDatabase mDb;
-    
+
 
     private Intent mIntent;
 
