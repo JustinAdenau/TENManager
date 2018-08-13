@@ -22,6 +22,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".Events.InitEventsDetailView_Sebastian"/>
         <activity android:name=".Events.InitEventsOverview_Lena"></activity>
+        <activity android:name=".Notes.InitNoteDetailView_Alina"></activity>
         <!--<activity android:name=".GuiEventsOverview_Lena"/>-->
 
     </application>

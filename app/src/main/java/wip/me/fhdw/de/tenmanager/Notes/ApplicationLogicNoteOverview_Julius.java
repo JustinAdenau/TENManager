@@ -8,6 +8,7 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteOverview_Julius {
 
@@ -66,7 +67,8 @@ public class ApplicationLogicNoteOverview_Julius {
     public void onListItemClicked(int position)
     {
         mNoteData.setNoteTitle(mNoteList.get(position).getTitle());
-        startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
+        startActivity(Constants.ACTIVITYNOTEDETAILVIEWCLASS, true);
+        mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onFabCreateNewClicked()
