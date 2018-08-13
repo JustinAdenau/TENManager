@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
@@ -38,22 +37,22 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_4_5)
+            .addMigrations(MIGRATION_4_5)
             .allowMainThreadQueries()
             .build();
     }
 
     //if database table is changed (new version) migration is needed
-    /*static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+    static final Migration MIGRATION_4_5 = new Migration(4, 5) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL("CREATE TABLE IF NOT EXISTS 'note_julius'('note_id' INTEGER PRIMARY KEY NOT NULL, 'note_title' TEXT, 'note_content' TEXT)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS 'note_julius'('note_id' INTEGER PRIMARY KEY NOT NULL, 'note_title' TEXT, 'note_content' TEXT) ");
         }
 
-    };*/
+    };
 
     public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}
-    public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(mData, mGui, mDb, mEventAdapter);}
+    public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(this, mData, mGui, mDb, mEventAdapter);}
     public void initListAdapter(){mEventAdapter = new EventAdapter_Lena(getApplicationContext());}
 
     public void initToolbar()

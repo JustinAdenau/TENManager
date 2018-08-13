@@ -16,8 +16,7 @@ public class DatepickerEndEventsDetailView_Sebastian {
     private int mMonthEnd;
     private int mYearEnd;
 
-
-    private wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian mGui;
+    private GuiEventsDetailView_Sebastian mGui;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
 

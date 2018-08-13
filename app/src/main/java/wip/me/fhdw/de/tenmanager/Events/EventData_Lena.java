@@ -89,12 +89,9 @@ public class EventData_Lena {
     public void updateEvent(String titleOld, String dateStartOld, String timeStartOld)
     {
         Log.d("LOGTAG", "updateEvent called with: "+titleOld +dateStartOld+timeStartOld+mEventTitle+mEventDateStart);
-        /*mDb.eventDao().updateEvent(titleOld, dateStartOld, timeStartOld, mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd,
-                mEventTimeEnd, mEventDescription, mEventLocation);*/
         Event eventOld = mDb.eventDao().getEventByTitleDateTime(titleOld, dateStartOld, timeStartOld);
         if(eventOld != null)
         {
-            Log.d("LOGTAG", "eventOld ist nicht null!!!!!!!!!!!!!!");
             mDb.eventDao().deleteEvents(eventOld);
             createAndSaveNewEvent();
         }

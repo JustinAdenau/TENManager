@@ -93,4 +93,19 @@ public class GuiEventsDetailView_Sebastian {
         return mFabSave;
     }
 
+    public void setButtonTimeStart(String ButtonTimeStart) {
+        this.mButtonTimeStart.setText(ButtonTimeStart);
+    }
+
+    public void setButtonTimeEnd(String ButtonTimeEnd) {
+        this.mButtonTimeEnd.setText(ButtonTimeEnd);
+    }
+
+    public void setButtonDateStart(String ButtonDateStart) {
+        this.mButtonDateStart.setText(ButtonDateStart);
+    }
+
+    public void setButtonDateEnd(String ButtonDateEnd) {
+        this.mButtonDateEnd.setText(ButtonDateEnd);
+    }
 }

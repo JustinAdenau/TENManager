@@ -8,9 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TimePicker;
 
-import java.util.Calendar;
-
-
 
 public class TimepickerStartEventsDetailView_Sebastian {
 
@@ -49,8 +46,10 @@ public class TimepickerStartEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+
             }
         });
+
     }
 
 }

@@ -5,8 +5,8 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.util.ArrayList;
-import java.util.List;
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;

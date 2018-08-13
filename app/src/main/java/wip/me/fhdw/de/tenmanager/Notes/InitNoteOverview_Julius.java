@@ -1,6 +1,5 @@
 package wip.me.fhdw.de.tenmanager.Notes;
 
-import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;

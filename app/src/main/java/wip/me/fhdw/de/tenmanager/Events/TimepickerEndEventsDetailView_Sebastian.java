@@ -7,8 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.TimePicker;
 
-import java.util.Calendar;
-
 public class TimepickerEndEventsDetailView_Sebastian {
 
     private static final String TAG = "Timepicker_Sebastian";

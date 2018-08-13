@@ -8,6 +8,7 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
 
 public class ApplicationLogicNoteOverview_Julius {
 
@@ -72,6 +73,7 @@ public class ApplicationLogicNoteOverview_Julius {
 
     public void onFabCreateNewClicked()
     {
+        //TODO change constant
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
     }
 

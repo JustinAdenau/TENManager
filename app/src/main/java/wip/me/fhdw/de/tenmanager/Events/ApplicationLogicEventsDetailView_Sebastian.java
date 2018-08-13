@@ -10,19 +10,18 @@ import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
 
-
 public class ApplicationLogicEventsDetailView_Sebastian  {
 
     private static final String TAG = "AppLogic_Sebastian";
 
-    private wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian mGui;
-    private wip.me.fhdw.de.tenmanager.Events.EventData_Lena mData;
+    private GuiEventsDetailView_Sebastian mGui;
+    private EventData_Lena mData;
     private View mView;
-    private wip.me.fhdw.de.tenmanager.Events.DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
-    private wip.me.fhdw.de.tenmanager.Events.DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
-    private wip.me.fhdw.de.tenmanager.Events.TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
-    private wip.me.fhdw.de.tenmanager.Events.TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
-    private wip.me.fhdw.de.tenmanager.Events.UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
+    private DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
+    private DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
+    private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
+    private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
+    private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
 
 
 
@@ -68,13 +67,15 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
+
+
     /////////////////////////////////////////////
     // AppLogic
     ////////////////////////////////////////////7
 
 
 
-
+    //todo Validierung Enddatum muss nach Startdatum liegen
     //todo in if auch  ButtonDateEnd Befüllung anfragen
     private void initCurrentDate(){
         if(mGui.getButtonDateStart().getText().toString().matches("\\d{2}.\\d{2}.\\d{4}")) return;
@@ -110,6 +111,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
         mDatepickerStart.setDateStartToButton();
     }
 
+
     private void initDatepickerEnd(){
         mDatepickerEnd = new wip.me.fhdw.de.tenmanager.Events.DatepickerEndEventsDetailView_Sebastian(mGui);
         mDatepickerEnd.buildDateEndpicker();
@@ -133,7 +135,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
     }
 
 
-
+    //todo data für landscape
     public void onFabSaveClicked()
     {
         if(mUserInputValidation.confirmInput() == true) return;

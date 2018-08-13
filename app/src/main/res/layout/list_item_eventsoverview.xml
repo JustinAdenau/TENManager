@@ -5,9 +5,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/listview_item_style"
-
     android:orientation="vertical"
     android:id="@+id/idRelativeLayoutListItem"
+    android:descendantFocusability="blocksDescendants"
     >
     <!--android:layout_margin="10dp"-->
 
@@ -113,7 +113,6 @@
         android:id="@+id/linearLayout_dateTimeEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="10dp"
         android:orientation="horizontal"
@@ -147,6 +146,31 @@
             />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutButtonDeleteEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout_dateTimeEnd"
+        android:orientation="horizontal"
+        android:padding="@dimen/listview_padding"
+        android:layout_alignParentRight="true"
+        >
+
+        <ImageButton
+            android:id="@+id/buttonDeleteEvent"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:backgroundTint="@color/colorRed"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:background="@drawable/round_button_style"
+            android:focusable="false"
+
+            />
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
 

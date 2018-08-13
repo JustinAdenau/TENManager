@@ -7,7 +7,7 @@ import android.view.ViewStub;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.List;
+import wip.me.fhdw.de.tenmanager.R;
 
 import wip.me.fhdw.de.tenmanager.R;
 

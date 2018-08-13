@@ -2,7 +2,6 @@ package wip.me.fhdw.de.tenmanager;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
-import android.provider.ContactsContract;
 
 import wip.me.fhdw.de.tenmanager.Notes.NoteDao_Julius;
 import wip.me.fhdw.de.tenmanager.Notes.Note_Julius;
