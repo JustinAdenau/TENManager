@@ -31,23 +31,18 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         initApplicationLogic();
     }
 
-
     public void initData(Bundle savedInstanceState)
     {
         mData = new EventData_Lena(savedInstanceState, this);
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-
-
             //.addMigrations(MIGRATION_2_5)
             .allowMainThreadQueries()
             .build();
     }
 
     //if database table is changed (new version) migration is needed
-
-
     /*static final Migration MIGRATION_2_5 = new Migration(2, 5) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {

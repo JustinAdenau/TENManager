@@ -28,7 +28,7 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
 
-    public ApplicationLogicEventsDetailView_Sebastian(wip.me.fhdw.de.tenmanager.Events.EventData_Lena data, wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian gui) {
+    public ApplicationLogicEventsDetailView_Sebastian(EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
         mGui = gui;
         mData = data;
         initGui();
@@ -109,32 +109,32 @@ public class ApplicationLogicEventsDetailView_Sebastian  {
 
 
     private void initDatepickerStart(){
-        mDatepickerStart = new wip.me.fhdw.de.tenmanager.Events.DatepickerStartEventsDetailView_Sebastian(mGui);
+        mDatepickerStart = new DatepickerStartEventsDetailView_Sebastian(mGui);
         mDatepickerStart.buildDateStartpicker();
         mDatepickerStart.setDateStartToButton();
     }
 
 
     private void initDatepickerEnd(){
-        mDatepickerEnd = new wip.me.fhdw.de.tenmanager.Events.DatepickerEndEventsDetailView_Sebastian(mGui);
+        mDatepickerEnd = new DatepickerEndEventsDetailView_Sebastian(mGui);
         mDatepickerEnd.buildDateEndpicker();
         mDatepickerEnd.setDateEndToButton();
     }
 
 
     private void initTimepickerStart(){
-        mTimepickerStart = new wip.me.fhdw.de.tenmanager.Events.TimepickerStartEventsDetailView_Sebastian(mGui);
+        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
         mTimepickerStart.bulidTimeStartpicker();
     }
 
     private void initTimepickerEnd(){
-        mTimepickerEnd = new wip.me.fhdw.de.tenmanager.Events.TimepickerEndEventsDetailView_Sebastian(mGui);
+        mTimepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
         mTimepickerEnd.buildTimeEndpicker();
     }
 
     //todo Methoden einfügen
     private void initUserInputValidation(){
-        mUserInputValidation = new wip.me.fhdw.de.tenmanager.Events.UserInputValidationEventsDetailView_Sebastian(mGui);
+        mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
 

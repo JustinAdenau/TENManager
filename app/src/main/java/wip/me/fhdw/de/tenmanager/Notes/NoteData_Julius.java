@@ -8,9 +8,6 @@ import android.os.Bundle;
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 
-import wip.me.fhdw.de.tenmanager.AppDatabase;
-import wip.me.fhdw.de.tenmanager.Constants;
-
 public class NoteData_Julius {
 
     private Activity mActivity;
