@@ -3,9 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
-    android:layout_margin="10dp"
-    android:background="@drawable/listview_item_style_notes">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/listview_padding"
+    android:layout_margin="@dimen/listview_margin"
+    android:background="@drawable/listview_item_style_notes"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Titel"
                 android:gravity="left|top"
-                android:textSize="50dp"
+                android:textSize="@dimen/textsize_title"
                 android:textStyle="bold" />
 
         </android.support.design.widget.TextInputLayout>
@@ -41,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Text"
                 android:gravity="left|top"
-                android:textSize="30dp"
+                android:textSize="@dimen/textsize_text"
                 android:inputType="textMultiLine"/>
 
         </android.support.design.widget.TextInputLayout>

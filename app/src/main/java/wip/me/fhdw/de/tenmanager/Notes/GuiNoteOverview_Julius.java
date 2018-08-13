@@ -4,6 +4,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ public class GuiNoteOverview_Julius {
     private View mInflated;
     private TextView mTitle;
     private TextView mContent;
+
+    private ImageButton mButtonDeleteNote;
 
     private FloatingActionButton mFabCreateNew;
 
@@ -33,11 +36,14 @@ public class GuiNoteOverview_Julius {
         mTitle = view.findViewById(R.id.listviewitem_textview_title);
         mContent = view.findViewById(R.id.listviewitem_textview_content);
 
+        mButtonDeleteNote = view.findViewById(R.id.buttonDeleteNote);
+
         mFabCreateNew = activity.findViewById(R.id.fab);
     }
 
     public ListView getListView(){return mListView;}
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
+    public ImageButton getButtonDeleteNote(){return mButtonDeleteNote;}
 
     public TextView getTextViewTitle(){return mTitle;}
     public TextView getTextViewContent(){return mContent;}

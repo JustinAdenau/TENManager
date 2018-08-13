@@ -51,8 +51,9 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
         mApplicationLogic = new ApplicationLogicNoteDetailView_Alina(mData, mGui);
     }
 
-    public void initToolbar(){Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+    public void initToolbar(){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Note");
     }

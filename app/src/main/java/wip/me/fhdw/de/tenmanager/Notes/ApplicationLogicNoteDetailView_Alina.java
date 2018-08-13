@@ -11,6 +11,7 @@ import java.util.Calendar;
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
+import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteDetailView_Alina {
     private static final String TAG = "AppLogic_Alina";
@@ -65,16 +66,34 @@ public class ApplicationLogicNoteDetailView_Alina {
 
     public void onFabSaveClicked()
     {
+        boolean noteExists = false;
         if(mUserInputValidation.confirmInput()) return;
-        String title = mData.getNoteTitle();
+
+        String titleOld = mData.getNoteTitle();
+        String contentOld = mData.getNoteContent();
+
+        String title = mGui.getEditTextTitle().getText().toString();
         String content = mGui.getEditTextContent().getText().toString();
 
+        if(mData.getDb().noteDao().noteExists(title)!=0) noteExists = true;
+        if(!noteExists || mData.getWithData()) {
+            mData.setNoteTitle(title);
+            mData.setNoteContent(content);
+        }
+        Log.d("LOGTAG", "withData: "+mData.getWithData());
         if(mData.getWithData())
         {
-            mData.updateNote(title, content);
+            mData.updateNote(titleOld, contentOld);
         }
         else
         {
+
+            if(noteExists)
+            {
+                Toast.makeText(mData.getActivity().getApplicationContext(),"Es gibt bereits ein Note mit diesem Titel!", Toast.LENGTH_LONG ).show();
+
+                return;
+            }
             mData.createAndSaveNewNote();
         }
         finishActivityResultOk();
@@ -84,6 +103,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     public void onBackPressed() {
         Log.d("LOGTAG", "onBackPress called");
         finishActivityResultCancelled();
+
     }
 
 
@@ -111,6 +131,7 @@ public class ApplicationLogicNoteDetailView_Alina {
         mData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishActivityResultOk");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 
@@ -121,5 +142,6 @@ public class ApplicationLogicNoteDetailView_Alina {
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
+        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }

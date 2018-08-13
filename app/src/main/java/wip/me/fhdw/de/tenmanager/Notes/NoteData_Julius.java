@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
@@ -42,6 +43,7 @@ public class NoteData_Julius {
         mNoteTitle = b.getString(Constants.KEYNOTETITLE);
         mNoteContent = b.getString(Constants.KEYNOTECONTENT);
         mWithData = b.getBoolean(Constants.KEYNOTEWITHDATA);
+        Log.d("LOGTAG", "withData wird in Data entgegengenommen:"+mWithData);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent)
@@ -74,7 +76,7 @@ public class NoteData_Julius {
 
     public void updateNote(String title, String content)
     {
-        Note_Julius noteOld = mDb.noteDao().getNoteByTitleContent(title, content);
+        Note_Julius noteOld = mDb.noteDao().getNoteByTitleContent(title);
         if(noteOld != null) {
             mDb.noteDao().deleteNote(noteOld);
             createAndSaveNewNote();
@@ -86,10 +88,11 @@ public class NoteData_Julius {
     }
     public String getNoteTitle() {return mNoteTitle;}
     public String getNoteContent(){return mNoteContent;}
+    public AppDatabase getDb(){return mDb;}
     public boolean getWithData() {return mWithData;}
 
     public void setNoteTitle(String title){mNoteTitle = title;}
     public void setNoteContent(String content){mNoteContent = content;}
-    public void setmWithData (boolean withData) {mWithData = withData;}
+    public void setWithData (boolean withData) {mWithData = withData;}
 
 }

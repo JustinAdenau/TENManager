@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
@@ -30,6 +31,7 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
         initGui();
         initListAdapter();
         initApplicationLogic();
+
     }
 
     public void initData(Bundle savedInstanceState)
@@ -66,13 +68,12 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
 
     };*/
 
-    public void initGui(){
-        mGui = new GuiNoteOverview_Julius(this);
-        initToolbar();
-    }
-    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicNoteOverview_Julius(mNoteData, mGui, mDb, mNoteAdapter); }
+    public void initGui(){ mGui = new GuiNoteOverview_Julius(this);initToolbar(); }
+    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicNoteOverview_Julius(this, mNoteData, mGui, mDb, mNoteAdapter); }
     public void initListAdapter(){mNoteAdapter = new NoteAdapter_Julius(getApplicationContext());}
-    public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+    public void initToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Notes");
