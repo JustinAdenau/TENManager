@@ -31,6 +31,7 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         initApplicationLogic();
     }
 
+
     public void initData(Bundle savedInstanceState)
     {
         mData = new EventData_Lena(savedInstanceState, this);
