@@ -38,15 +38,16 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
 
-            //.addMigrations(MIGRATION_4_5)
 
+            //.addMigrations(MIGRATION_2_5)
             .allowMainThreadQueries()
             .build();
     }
 
     //if database table is changed (new version) migration is needed
 
-    /*static final Migration MIGRATION_2_5 = new Migration(4, 5) {
+
+    /*static final Migration MIGRATION_2_5 = new Migration(2, 5) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("CREATE TABLE IF NOT EXISTS 'note_julius'('note_id' INTEGER PRIMARY KEY NOT NULL, 'note_title' TEXT, 'note_content' TEXT)");
