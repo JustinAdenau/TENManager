@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
     android:layout_margin="10dp"
     android:background="@drawable/listview_item_style_notes">
@@ -10,21 +11,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/noteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true">
 
-        <EditText
-            android:id="@+id/notesTitle"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/noteTitleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titel"
+                android:gravity="left|top"
+                android:textSize="50dp"
+                android:textStyle="bold" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/noteContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Titel"
-            android:textSize="50dp"
-            android:textStyle="bold"/>
-        <EditText
-            android:id="@+id/notesText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Text"
-            android:textSize="30dp"
-            android:layout_below="@+id/notesTitle"/>
+            android:layout_below="@id/noteTitle"
+            app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/noteContentEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Text"
+                android:gravity="left|top"
+                android:textSize="30dp"
+                android:inputType="textMultiLine"/>
+
+        </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>
 </LinearLayout>

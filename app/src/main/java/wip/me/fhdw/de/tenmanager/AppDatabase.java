@@ -11,5 +11,6 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract EventDao_Lena eventDao();
     public abstract NoteDao_Julius noteDao();
+    // DAO - Data Excess Object
 }
 

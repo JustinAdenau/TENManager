@@ -8,10 +8,7 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
-
-import wip.me.fhdw.de.tenmanager.AppDatabase;
-import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteOverview_Julius {
 
@@ -39,30 +36,29 @@ public class ApplicationLogicNoteOverview_Julius {
         ListViewItemClickListener_Julius listViewItemClickListener = new ListViewItemClickListener_Julius(this);
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
         NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
-        if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
     }
 
     public void dataToGui(){
         mDb.noteDao().deleteAllNotes();
-        String einkaufslist = "- Eier \n- Milsch \n- Klopapier";
-        Note_Julius einkaufsliste = new Note_Julius("Einkaufsliste", einkaufslist);
 
-        String serien = "- GoT \n- Lucifer \n- HIMYM";
-        Note_Julius serienSchauen = new Note_Julius("Noch zu schauende Serien!", serien);
-        mDb.noteDao().insertAll(einkaufsliste, serienSchauen);
+            // TODO Temporäre Dateneingabe solange es keine DB einträge gibt
+            String einkaufslist = "- Eier \n- Milsch \n- Klopapier";
+            Note_Julius einkaufsliste = new Note_Julius("Einkaufsliste", einkaufslist);
+
+            String serien = "- GoT \n- Lucifer \n- HIMYM";
+            Note_Julius serienSchauen = new Note_Julius("Noch zu schauende Serien!", serien);
+            mDb.noteDao().insertAll(einkaufsliste, serienSchauen);
+
+            mNoteList = mDb.noteDao().getAllNotes();
+
+            for (int i = 0 ; i < mNoteList.size(); i++)
+            {
+                mNoteList.get(i).setContent(mNoteList.get(i).getFirstTwoContentRows());
+            }
 
 
-        mNoteList = mDb.noteDao().getAllNotes();
-
-        //ToDo Liste bearbeiten 2 Zeilen
-
-
-        for (int i = 0 ; i < mNoteList.size(); i++)
-        {
-            mNoteList.get(i).setContent(mNoteList.get(i).getFirstTwoContentRows());
-        }
-
+        //mNoteList = mDb.noteDao().getAllNotes();
         mNoteAdapter.setNoteList(mNoteList);
         mGui.getListView().setAdapter(mNoteAdapter);
 
@@ -71,12 +67,12 @@ public class ApplicationLogicNoteOverview_Julius {
     public void onListItemClicked(int position)
     {
         mNoteData.setNoteTitle(mNoteList.get(position).getTitle());
-        startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
+        startActivity(Constants.ACTIVITYNOTEDETAILVIEWCLASS, true);
+        mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onFabCreateNewClicked()
     {
-        //TODO change constant
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
     }
 
