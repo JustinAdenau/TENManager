@@ -44,16 +44,6 @@ public class Menu_Alina_und_Mona extends AppCompatActivity {
 
                             return true;
                         }
-                        @Override
-                        public boolean onOptionsItemSelected(MenuItem item) {
-                            // set item as selected to persist highlight
-                            switch (item.getItemId()) {
-                                case android.R.id.home:
-                                    mDrawerLayout.openDrawer(GravityCompat.START);
-                                    return true;
-                            }
-                            return super.onOptionsItemSelected(item);
-                        }
                     });
         }
     }
