@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Events.InitEventsOverview_Lena"
+            android:name=".ToDos.InitToDoOverview_Mona"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,7 +22,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".Events.InitEventsDetailView_Sebastian"/>
         <activity android:name=".Notes.InitNoteOverview_Julius"/>
-        <!--<activity android:name=".GuiEventsOverview_Lena"/>-->
+        <activity android:name=".Events.InitEventsOverview_Lena"/>
 
     </application>
 
