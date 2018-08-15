@@ -8,12 +8,13 @@ import wip.me.fhdw.de.tenmanager.Notes.Note_Julius;
 import wip.me.fhdw.de.tenmanager.ToDos.ToDoDao_Mona;
 import wip.me.fhdw.de.tenmanager.ToDos.ToDoOverview_Mona;
 
-@Database(entities = {Event.class, Note_Julius.class, ToDoOverview_Mona.class}, version = 5)
+@Database(entities = {Event.class, Note_Julius.class}, version = 5)
 public abstract class AppDatabase extends RoomDatabase {
 
+    // DAO - Data Excess Object
     public abstract EventDao_Lena eventDao();
     public abstract NoteDao_Julius noteDao();
     public abstract ToDoDao_Mona todoDao();
-    // DAO - Data Excess Object
+
 }
 
