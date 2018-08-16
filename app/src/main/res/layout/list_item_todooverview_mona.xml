@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/note_listview_item_style"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout_title_buttonDelete"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/listview_padding"
+        >
+
+<!--        <TextView
+            android:id="@+id/listviewitem_textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/textsize_title"
+            android:text="Titel"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            />-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="10">
+
+        <TextView
+            android:id="@+id/listviewitem_textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/textsize_title"
+            android:hint="Titel"
+            android:textStyle="bold"
+            android:gravity="start"
+            />
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutButtonDeleteToDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout_dateTimeEnd"
+            android:orientation="horizontal"
+            android:padding="@dimen/listview_padding"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            >
+
+            <ImageButton
+                android:id="@+id/buttonDeleteToDo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/colorRed"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="@drawable/round_button_style"
+                android:focusable="false"
+
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout_dateTime"
+        android:layout_below="@id/linearLayout_title_buttonDelete"
+        android:padding="@dimen/listview_padding"
+        android:layout_marginTop="0dp"
+        >
+
+        <TextView
+            android:id="@+id/listviewitem_textview_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textSize="@dimen/textsize_text"
+            android:text="- Fenster putzen \n - Wischen"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

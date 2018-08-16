@@ -1,22 +1,45 @@
 package wip.me.fhdw.de.tenmanager.ToDos;
 
 import android.support.design.widget.FloatingActionButton;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewStub;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiToDoOverview_Mona {
 
     private ListView mListView;
+    private ViewStub mStub;
+    private View mInflated;
+    private TextView mTitle;
+    private TextView mContent;
 
     private FloatingActionButton mFabCreateNew;
 
-    public GuiToDoOverview_Mona(InitToDoOverview_Mona activity) {
-        activity.setContentView(R.layout.todooverview_mona);
-        mListView = activity.findViewById(R.id.todooverviewListview);
+    public GuiToDoOverview_Mona(InitToDoOverview_Mona activity){
+        activity.setContentView(R.layout.activity_main);
+        mStub = (ViewStub) activity.findViewById(R.id.viewStub);
+        mStub.setLayoutResource(R.layout.notesoverview_julius);
+        mInflated = mStub.inflate();
 
-        mFabCreateNew = activity.findViewById(R.id.fabtodooverview);
+        mListView = activity.findViewById(android.R.id.list);
+
+        LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
+        View view = inflater.inflate(R.layout.list_item_notesoverview, null);
+
+        mTitle = view.findViewById(R.id.listviewitem_textview_title);
+        mContent = view.findViewById(R.id.listviewitem_textview_content);
+
+        mFabCreateNew = activity.findViewById(R.id.fab);
     }
 
+    public ListView getListView(){return mListView;}
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
+
+    public TextView getTextViewTitle(){return mTitle;}
+    public TextView getTextViewContent(){return mContent;}
 }
+

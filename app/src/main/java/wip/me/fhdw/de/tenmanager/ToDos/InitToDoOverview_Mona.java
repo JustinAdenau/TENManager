@@ -15,9 +15,9 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
 
     private GuiToDoOverview_Mona mGui;
     private ApplicationLogicToDoOverview_Mona mApplicationLogic;
-    private ToDoOverviewData_Mona mToDoData;
+    private ToDoData_Mona mToDoData;
     private AppDatabase mDb;
-    private ToDoOverviewAdapter_Mona mNoteAdapter;
+    private ToDoAdapter_Mona mToDoAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
@@ -29,13 +29,15 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
         initApplicationLogic();
     }
 
-    private void initData(Bundle savedInstanceState) {
-        mToDoData = new ToDoOverviewData_Mona(savedInstanceState, this);
+    private void initData(Bundle savedInstanceState)
+    {
+        mToDoData = new ToDoData_Mona(savedInstanceState, this);
     }
 
-    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicToDoOverview_Mona(mToDoData, mGui, mDb, mNoteAdapter); }
+    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicToDoOverview_Mona(mToDoData, mGui, mDb, mToDoAdapter); }
 
-    public void initListAdapter(){mNoteAdapter = new ToDoOverviewAdapter_Mona(getApplicationContext());}
+    public void initListAdapter(){
+        mToDoAdapter = new ToDoAdapter_Mona(getApplicationContext());}
 
     private void initGui() {
        mGui = new GuiToDoOverview_Mona(this);

@@ -4,21 +4,31 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Date;
+import java.util.List;
+
 @Entity
 public class ToDoOverview_Mona {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "note_id")
+    @ColumnInfo(name = "todo_id")
     private int mId;
-    @ColumnInfo(name = "note_title")
+    @ColumnInfo(name = "todo_title")
     private String mTitle;
-    @ColumnInfo(name = "note_content")
+    @ColumnInfo(name = "todo_content")
     private String mContent;
+    @ColumnInfo(name = "todo_datetime")
+    private String mDateTime;
+    @ColumnInfo(name = "todo_priority")
+    private int mStatus;
 
 
-    public ToDoOverview_Mona(String title, String content){
+
+    public ToDoOverview_Mona(String title, String content, String dateTime, int status){
         mTitle = title;
         mContent = content;
+        mDateTime = dateTime;
+        mStatus = status;
     }
 
     // Get / Set Methods
@@ -33,35 +43,47 @@ public class ToDoOverview_Mona {
         return mContent;
     }
 
+    public String getDateTime(){
+        return mDateTime;
+    }
 
-    public void setTitle(String title){
+    public int getStatus(){
+        return mStatus;
+    }
+
+
+    public void setTitle(String title) {
         mTitle = title;
     }
     public void setContent(String content){
         mContent = content;
     }
-    public void setId(int id){mId = id;}
+    public void setId ( int id){
+        mId = id;
+    }
+
+    public void setDateTime (String date){
+        mDateTime = date;
+    }
+
+    public void setStatus ( int status){
+        status = mStatus;
+    }
 
     // ToDo
-    public String getFirstTwoContentRows(){
+    public String getFirstTwoContentRows() {
         int z = 0;
         String zweiZeilen = "";
-        for(int i = 0; i < mContent.length(); i++){
-            if(mContent.charAt(i) == '-')
-            {
+        for (int i = 0; i < mContent.length(); i++) {
+            if (mContent.charAt(i) == '-') {
                 z++;
             }
-            if (z == 3)
-            {
-                zweiZeilen = mContent.substring(0,i);
+            if (z == 3) {
+                zweiZeilen = mContent.substring(0, i);
                 break;
             }
 
         }
         return zweiZeilen;
-    }
-
-    public void insertAll(ToDoOverview_Mona todo) {
-
     }
 }
