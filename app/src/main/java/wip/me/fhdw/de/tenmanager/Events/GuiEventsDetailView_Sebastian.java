@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.R;
 
@@ -28,6 +29,8 @@ public class GuiEventsDetailView_Sebastian {
     private TextInputLayout mTextInputLayoutLocation;
     private TextInputLayout mTextInputLayoutDescription;
 
+    private TextView mTextViewDateTimeValidation;
+
 
     private FloatingActionButton mFabSave;
 
@@ -48,6 +51,7 @@ public class GuiEventsDetailView_Sebastian {
         mTextInputLayoutTitle = activity.findViewById(R.id.eventTitle);
         mTextInputLayoutLocation = activity.findViewById(R.id.eventLocation);
         mTextInputLayoutDescription = activity.findViewById(R.id.eventDescription);
+        mTextViewDateTimeValidation = activity.findViewById(R.id.eventHintDateTimeValidation);
 
         mFabSave = activity.findViewById(R.id.fab);
         //mFabSave.setId(R.id.fabSave);
@@ -87,6 +91,10 @@ public class GuiEventsDetailView_Sebastian {
 
     public TextInputLayout getTextInputLayoutDescription() {
         return mTextInputLayoutDescription;
+    }
+
+    public TextView getTextViewDateTimeValidation(){
+        return mTextViewDateTimeValidation;
     }
 
     public FloatingActionButton getFabSave() {
