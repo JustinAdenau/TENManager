@@ -52,8 +52,10 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
         mApplicationLogic = new ApplicationLogicEventsDetailView_Sebastian(mData, mGui);
     }
 
-    public void initToolbar(){Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+    public void initToolbar()
+    {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Event");
     }
