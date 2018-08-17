@@ -55,7 +55,7 @@ public class ToDoOverviewAdapter_Mona extends BaseAdapter {
         EditText editTextToDoTitle = view.findViewById(R.id.todotitle);
         CheckBox checkBox1 = view.findViewById(R.id.todoCheckBox1);
         CheckBox checkBox2 = view.findViewById(R.id.todoCheckBox2);
-        CheckBox checkBox3 = view.findViewById(R.id.todocCheckBox3);
+        //CheckBox checkBox3 = view.findViewById(R.id.todocCheckBox3);
         TextView textViewToDoStatus = view.findViewById(R.id.todoStatus);
         TextView textViewToDoDuedate = view.findViewById(R.id.todoDuedate);
         //ImageButton buttonDeleteToDo = view.findViewById();
@@ -77,7 +77,7 @@ public class ToDoOverviewAdapter_Mona extends BaseAdapter {
         {
             checkBox1.setText(contents.get(0));
             checkBox2.setText(contents.get(1));
-            checkBox3.setText(contents.get(2));
+
         }
         else if(contents.size()==2)
         {
@@ -88,7 +88,7 @@ public class ToDoOverviewAdapter_Mona extends BaseAdapter {
 
 
         textViewToDoStatus.setText(mToDoList.get(position).getStatus());
-        textViewToDoDuedate.setText(mToDoList.get(position).getDueDate());
+        textViewToDoDuedate.setText(mToDoList.get(position).getDuedate());
 
         return null;
     }

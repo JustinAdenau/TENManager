@@ -22,6 +22,6 @@ public interface ToDoDao_Mona {
     @Delete
     void deleteToDos(ToDoOverview_Mona... todo);
 
-    @Query("SELECT * from todooverview_mona where todo_title like :title and :checkbox1 in todo_content and :checkbox2 in todo_content and :dueDate like todo_datetime")
-    ToDoOverview_Mona getToDoByToDoElements(String title, String checkbox1, String checkbox2, String dueDate);
+    @Query("SELECT * from todooverview_mona where todo_title like :title")
+    ToDoOverview_Mona getToDoByToDoElements(String title);
 }

@@ -45,26 +45,18 @@ public class ApplicationLogicToDoOverview_Mona {
 
     private void dataToGui() {
         mDb.todoDao().deleteAllToDos();
-        String frühjahr = "- Fenster putzen \n- Waschen \n- Wischen";
+        String frühjahr = "Fenster putzen, Waschen, Wischen";
         String Fertig = "18.12.2018";
         int Stand = 33;
         ToDoOverview_Mona frühjahrsputz = new ToDoOverview_Mona("Frühjahrsputz", frühjahr, Fertig, Stand);
 
-        String Uni = "- GBI \n- IuF \n- PIT";
+        String Uni = "GBI, IuF, PIT";
         String Faelligkeit = "12.12.2018";
         int Status = 66;
         ToDoOverview_Mona uniaufgaben = new ToDoOverview_Mona("Zu erledigende Uniaufgaben!", Uni, Faelligkeit, Status);
         mDb.todoDao().insertAll(frühjahrsputz, uniaufgaben);
 
         mToDoList = mDb.todoDao().getAllToDos();
-
-        //ToDo Liste bearbeiten 2 Zeilen
-
-
-        for (int i = 0 ; i < mToDoList.size(); i++)
-        {
-            mToDoList.get(i).setContent(mToDoList.get(i).getFirstTwoContentRows());
-        }
 
         mToDoAdapter.setToDoList(mToDoList);
         mGui.getListView().setAdapter(mToDoAdapter);
@@ -87,7 +79,7 @@ public class ApplicationLogicToDoOverview_Mona {
     public void onListItemClicked(int position)
     {
         mToDoData.setToDoTitle(mToDoList.get(position).getTitle());
-        startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
+        startActivity(Constants.ACTIVITYTODODETAILVIEWCLASS, true);
     }
 
     public void onBackPressed(){
@@ -134,7 +126,7 @@ public class ApplicationLogicToDoOverview_Mona {
         TextView checkbox2 = v.findViewById(R.id.todoCheckBox2);
         TextView dueDate = v.findViewById(R.id.todoDuedate);
 
-        ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString(), checkbox1.getText().toString(), checkbox2.getText().toString(), dueDate.getText().toString());
+        ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString());
         mDb.todoDao().deleteToDos(todoToBeDeleted);
 
         mActivity.recreate();

@@ -40,7 +40,7 @@ public class GuiToDoOverview_Mona {
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
         View view = inflater.inflate(R.layout.list_item_notesoverview, null);
 
-        mTitle = view.findViewById(R.id.listviewitem_textview_title);
+        mTitle = view.findViewById(R.id.listviewitem_textview_title_todo);
         mImButton = view.findViewById(R.id.buttonDeleteToDo);
         mCheckbox1 = view.findViewById(R.id.todoCheckBox1);
         mCheckbox2 = view.findViewById(R.id.todoCheckBox2);

@@ -17,17 +17,17 @@ public class ToDoOverview_Mona {
     private String mTitle;
     @ColumnInfo(name = "todo_content")
     private String mContent;
-    @ColumnInfo(name = "todo_datetime")
-    private String mDateTime;
+    @ColumnInfo(name = "todo_duedate")
+    private String mDuedate;
     @ColumnInfo(name = "todo_status")
     private int mStatus;
 
 
 
-    public ToDoOverview_Mona(String title, String content, String dateTime, int status){
+    public ToDoOverview_Mona(String title, String content, String duedate, int status){
         mTitle = title;
         mContent = content;
-        mDateTime = dateTime;
+        mDuedate = duedate;
         mStatus = status;
     }
 
@@ -39,12 +39,10 @@ public class ToDoOverview_Mona {
     public String getTitle(){
         return mTitle;
     }
-    public String getContent(){
-        return mContent;
-    }
+    public String getContent(){return mContent;}
 
-    public String getDateTime(){
-        return mDateTime;
+    public String getDuedate(){
+        return mDuedate;
     }
 
     public int getStatus(){
@@ -62,28 +60,12 @@ public class ToDoOverview_Mona {
         mId = id;
     }
 
-    public void setDateTime (String date){
-        mDateTime = date;
+    public void setDuedate (String date){
+        mDuedate = date;
     }
 
     public void setStatus ( int status){
         status = mStatus;
     }
 
-    // ToDo
-    public String getFirstTwoContentRows() {
-        int z = 0;
-        String zweiZeilen = "";
-        for (int i = 0; i < mContent.length(); i++) {
-            if (mContent.charAt(i) == '-') {
-                z++;
-            }
-            if (z == 3) {
-                zweiZeilen = mContent.substring(0, i);
-                break;
-            }
-
-        }
-        return zweiZeilen;
-    }
 }
