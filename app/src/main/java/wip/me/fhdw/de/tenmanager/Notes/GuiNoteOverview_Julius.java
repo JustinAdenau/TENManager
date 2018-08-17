@@ -30,7 +30,7 @@ public class GuiNoteOverview_Julius {
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
         View view = inflater.inflate(R.layout.list_item_notesoverview, null);
 
-        mTitle = view.findViewById(R.id.listviewitem_textview_title);
+        mTitle = view.findViewById(R.id.listviewitem_textview_event_title);
         mContent = view.findViewById(R.id.listviewitem_textview_content);
 
         mFabCreateNew = activity.findViewById(R.id.fab);

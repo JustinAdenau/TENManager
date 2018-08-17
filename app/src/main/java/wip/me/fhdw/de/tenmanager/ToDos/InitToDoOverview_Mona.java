@@ -17,7 +17,7 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
     private ApplicationLogicToDoOverview_Mona mApplicationLogic;
     private ToDoOverviewData_Mona mToDoData;
     private AppDatabase mDb;
-    private ToDoOverviewAdapter_Mona mNoteAdapter;
+    private ToDoOverviewAdapter_Mona mToDoAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
@@ -33,12 +33,13 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
         mToDoData = new ToDoOverviewData_Mona(savedInstanceState, this);
     }
 
-    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicToDoOverview_Mona(mToDoData, mGui, mDb, mNoteAdapter); }
+    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicToDoOverview_Mona(mToDoData, mGui, mDb, mToDoAdapter); }
 
-    public void initListAdapter(){mNoteAdapter = new ToDoOverviewAdapter_Mona(getApplicationContext());}
+    public void initListAdapter(){mToDoAdapter = new ToDoOverviewAdapter_Mona(getApplicationContext());}
 
     private void initGui() {
        mGui = new GuiToDoOverview_Mona(this);
+       initToolbar();
     }
 
     private void initDb() {
@@ -48,7 +49,8 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
                 .build();
     }
 
-    public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    public void initToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("ToDos");

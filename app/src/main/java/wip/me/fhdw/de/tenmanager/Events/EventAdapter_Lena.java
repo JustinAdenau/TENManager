@@ -48,7 +48,7 @@ public class EventAdapter_Lena extends BaseAdapter {
     @Override
     public View getView(int position, View v, ViewGroup viewGroup) {
         View view = View.inflate(mContext, R.layout.list_item_eventsoverview, null);
-        TextView textviewEventitemTitle = view.findViewById(R.id.listviewitem_textview_title);
+        TextView textviewEventitemTitle = view.findViewById(R.id.listviewitem_textview_event_title);
         TextView textviewEventitemDateStart = view.findViewById(R.id.listviewitem_textview_dateStart);
         TextView textviewEventitemTimeStart = view.findViewById(R.id.listviewitem_textview_timeStart);
         TextView textviewEventitemDateEnd = view.findViewById(R.id.listviewitem_textview_dateEnd);

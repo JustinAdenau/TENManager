@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
+import java.util.List;
+
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 
@@ -13,6 +15,7 @@ public class ApplicationLogicToDoOverview_Mona {
     private ToDoOverviewData_Mona mToDoData;
     private AppDatabase mDb;
     private ToDoOverviewAdapter_Mona mToDoAdapter;
+    private List<ToDoOverview_Mona> mToDoList;
 
     public ApplicationLogicToDoOverview_Mona(ToDoOverviewData_Mona data, GuiToDoOverview_Mona gui, AppDatabase db, ToDoOverviewAdapter_Mona noteAdapter){
         mToDoData = data;
@@ -33,6 +36,15 @@ public class ApplicationLogicToDoOverview_Mona {
 
     private void dataToGui() {
         //mDb.todoDao().deleteAllToDos();
+
+        ToDoOverview_Mona hausputz = new ToDoOverview_Mona("Hausputz", "Fenster, Küche, Bad", "20.08.2018", 0);
+        ToDoOverview_Mona uni = new ToDoOverview_Mona("Uni", "WIP, PIT, GBI, IuF", "25.09.2018", 3);
+        mDb.todoDao().insertAll(hausputz, uni);
+
+        mToDoList = mDb.todoDao().getAllToDos();
+        mToDoAdapter.setApplicationLogic(this);
+        mToDoAdapter.setToDoList(mToDoList);
+        mGui.getListView().setAdapter(mToDoAdapter);
     }
 
     public void onActivityReturned(int requestCode, int resultCode, Intent intent) {

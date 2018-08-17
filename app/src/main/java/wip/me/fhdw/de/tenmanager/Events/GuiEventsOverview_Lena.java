@@ -44,7 +44,7 @@ public class GuiEventsOverview_Lena {
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
         View view = inflater.inflate(R.layout.list_item_eventsoverview, null);
 
-        mTextViewTitle = view.findViewById(R.id.listviewitem_textview_title);
+        mTextViewTitle = view.findViewById(R.id.listviewitem_textview_event_title);
         mTextViewDateStart = view.findViewById(R.id.listviewitem_textview_dateStart);
         mTextViewTimeStart = view.findViewById(R.id.listviewitem_textview_timeStart);
         mTextViewDateEnd = view.findViewById(R.id.listviewitem_textview_dateEnd);

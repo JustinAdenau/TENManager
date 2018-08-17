@@ -20,7 +20,7 @@
         >
 
         <TextView
-            android:id="@+id/listviewitem_textview_title"
+            android:id="@+id/listviewitem_textview_event_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
