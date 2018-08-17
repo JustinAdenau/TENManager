@@ -8,21 +8,21 @@ import android.os.Bundle;
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 
-public class ToDoOverviewData_Mona {
+public class ToDoData_Mona {
 
     private Activity mActivity;
     AppDatabase mDb;
 
     private String mToDoTitle;
     private String mToDoContent;
-    private String mToDoDueDate;
-    private int mToDoStatus;
+    private String mToDoDateTime;
+    private int mStatus;
 
-    public ToDoOverviewData_Mona(Bundle savedInstanceState, Activity activity) {
+    public ToDoData_Mona(Bundle savedInstanceState, Activity activity) {
 
         mActivity = activity;
 
-        mDb = Room.databaseBuilder(activity.getApplicationContext(), AppDatabase.class, "events")
+        mDb = Room.databaseBuilder(activity.getApplicationContext(), AppDatabase.class, "todo")
                 .allowMainThreadQueries()
                 .build();
 
@@ -59,20 +59,16 @@ public class ToDoOverviewData_Mona {
     {
         b.putString(Constants.KEYNOTETITLE, mToDoTitle);
         b.putString(Constants.KEYNOTECONTENT, mToDoContent);
-        b.putString(Constants.KEYTODODUEDATE, mToDoDueDate);
-        b.putInt(Constants.KEYTODOSTATUS, mToDoStatus);
     }
 
     public void restoreDataFromBundle(Bundle b){ //Was macht diese Methode?????????????????
-        mToDoTitle = b.getString(Constants.KEYTODOTITLE);
-        mToDoContent = b.getString(Constants.KEYTODOCONTENT);
-        mToDoDueDate = b.getString(Constants.KEYTODODUEDATE);
-        mToDoStatus = b.getInt(Constants.KEYTODOSTATUS);
+        mToDoTitle = b.getString(Constants.KEYNOTETITLE);
+        mToDoContent = b.getString(Constants.KEYNOTECONTENT);
     }
 
     public void createAndSaveNewTodo()
     {
-        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDueDate, mToDoStatus );
+        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDateTime, mStatus);
         mDb.todoDao().insertAll(todo);
     }
 
@@ -82,11 +78,11 @@ public class ToDoOverviewData_Mona {
 
     public String getToDoTitle() {return mToDoTitle;}
     public String getToDoContent(){return mToDoContent;}
-    public String getToDoDueDate(){return mToDoDueDate;}
-    public int getToDoStatus(){return mToDoStatus;}
+    public String getmToDoDateTime() {return mToDoDateTime;}
+    public int getToDoStatus(){return mStatus;}
 
     public void setToDoTitle(String title){mToDoTitle = title;}
     public void setToDoContent(String content){mToDoContent = content;}
-    public void setToDoDueDate(String dueDate){mToDoDueDate = dueDate;}
-    public void setToDoStatus(int status){mToDoStatus = status;}
+    public void setToDoDateTime(String date){mToDoDateTime = date;}
+    public void setToDoStaus(int status){mStatus = status;}
 }

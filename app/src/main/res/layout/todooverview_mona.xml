@@ -1,53 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ToDos.InitToDoOverview_Mona"
-    android:background="@color/colorGrey">
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorGreen"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-            <TextView
-                android:id="@+id/toolbar_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textSize="@dimen/textsize_title"
-                />
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
-
-
-    <ViewStub
-        android:id="@+id/viewStub"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/listview_margin"
-        android:inflatedId="@+id/todoOverview_layout"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:focusable="true"
+    >
 
     <ListView
-        android:id="@+id/todooverviewListview"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:padding = "10dp"
+        android:padding = "@dimen/listview_padding"
         android:layout_height="match_parent"
         android:divider="@drawable/listview_divider"
         android:dividerHeight="10dp"
         android:background="@color/colorGrey"
         />
-
-
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

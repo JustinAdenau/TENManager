@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,47 +14,111 @@ import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiToDoOverview_Mona {
 
-    private ListView mListView;
-    private ViewStub mStub;
-    private View mInflated;
-    private EditText mEditTextTitle;
+    private EditText mTitle;
+    private ImageButton mImButton;
     private CheckBox mCheckbox1;
     private CheckBox mCheckbox2;
-    private CheckBox mCheckbox3;
-    private TextView mTextViewStatus;
-    private TextView mTextViewDuedate;
+    private TextView mStatusText;
+    private TextView mDueDateText;
+    private TextView mStatus;
+    private TextView mDueDate;
+
+    private View mInflated;
+    private ViewStub mStub;
+    private ListView mListView;
 
     private FloatingActionButton mFabCreateNew;
 
-    public GuiToDoOverview_Mona(InitToDoOverview_Mona activity) {
+    public GuiToDoOverview_Mona(InitToDoOverview_Mona activity){
         activity.setContentView(R.layout.activity_main);
-
         mStub = (ViewStub) activity.findViewById(R.id.viewStub);
         mStub.setLayoutResource(R.layout.todooverview_mona);
         mInflated = mStub.inflate();
 
-        mListView = activity.findViewById(R.id.todooverviewListview);
+        mListView = activity.findViewById(android.R.id.list);
 
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
-        View view = inflater.inflate(R.layout.listview_item, null);
+        View view = inflater.inflate(R.layout.list_item_notesoverview, null);
 
-        mEditTextTitle = view.findViewById(R.id.todotitle);
+        mTitle = view.findViewById(R.id.listviewitem_textview_title);
+        mImButton = view.findViewById(R.id.buttonDeleteToDo);
         mCheckbox1 = view.findViewById(R.id.todoCheckBox1);
         mCheckbox2 = view.findViewById(R.id.todoCheckBox2);
-        mCheckbox3 = view.findViewById(R.id.todocCheckBox3);
-        mTextViewStatus = view.findViewById(R.id.todoStatus);
-        mTextViewDuedate = view.findViewById(R.id.todoDuedate);
+        mStatusText = view.findViewById(R.id.todoStatusText);
+        mDueDateText = view.findViewById(R.id.todoDuedateText);
+        mStatus = view.findViewById(R.id.todoStatus);
+        mDueDate = view.findViewById(R.id.todoDuedate);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
     }
 
-    public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
     public ListView getListView(){return mListView;}
-    public EditText getEditTextTitle(){return mEditTextTitle;}
-    public CheckBox getCheckbox1(){return mCheckbox1;}
-    public CheckBox getCheckBox2(){return mCheckbox2;}
-    public CheckBox getCheckBox3(){return mCheckbox3;}
-    public TextView getTextViewStatus(){return mTextViewStatus;}
-    public TextView getTextViewDuedate(){return mTextViewDuedate;}
+    public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
 
+    public EditText getmTitle() {
+        return mTitle;
+    }
+
+    public void setmTitle(EditText mTitle) {
+        this.mTitle = mTitle;
+    }
+
+    public ImageButton getmImButton() {
+        return mImButton;
+    }
+
+    public void setmImButton(ImageButton mImButton) {
+        this.mImButton = mImButton;
+    }
+
+    public CheckBox getmCheckbox1() {
+        return mCheckbox1;
+    }
+
+    public void setmCheckbox1(CheckBox mCheckbox1) {
+        this.mCheckbox1 = mCheckbox1;
+    }
+
+    public CheckBox getmCheckbox2() {
+        return mCheckbox2;
+    }
+
+    public void setmCheckbox2(CheckBox mCheckbox2) {
+        this.mCheckbox2 = mCheckbox2;
+    }
+
+    public TextView getmStatusText() {
+        return mStatusText;
+    }
+
+    public void setmStatusText(TextView mStatusText) {
+        this.mStatusText = mStatusText;
+    }
+
+    public TextView getmDueDateText() {
+        return mDueDateText;
+    }
+
+    public void setmDueDateText(TextView mDueDateText) {
+        this.mDueDateText = mDueDateText;
+    }
+
+    public TextView getmStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(TextView mStatus) {
+        this.mStatus = mStatus;
+    }
+
+    public TextView getmDueDate() {
+        return mDueDate;
+    }
+
+    public void setmDueDate(TextView mDueDate) {
+        this.mDueDate = mDueDate;
+    }
+
+    public FloatingActionButton getFabSaved(){return mFabCreateNew;}
 }
+
