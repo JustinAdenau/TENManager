@@ -73,7 +73,7 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
     public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicNoteOverview_Julius(mNoteData, mGui, mDb, mNoteAdapter); }
     public void initListAdapter(){mNoteAdapter = new NoteAdapter_Julius(getApplicationContext());}
     public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Notes");
     }

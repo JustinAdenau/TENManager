@@ -32,7 +32,7 @@ public class ApplicationLogicToDoOverview_Mona {
     }
 
     private void dataToGui() {
-        mDb.todoDao().deleteAllToDos();
+        //mDb.todoDao().deleteAllToDos();
     }
 
     public void onActivityReturned(int requestCode, int resultCode, Intent intent) {

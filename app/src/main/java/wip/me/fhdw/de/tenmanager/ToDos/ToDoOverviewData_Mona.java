@@ -15,6 +15,8 @@ public class ToDoOverviewData_Mona {
 
     private String mToDoTitle;
     private String mToDoContent;
+    private String mToDoDueDate;
+    private int mToDoStatus;
 
     public ToDoOverviewData_Mona(Bundle savedInstanceState, Activity activity) {
 
@@ -57,16 +59,20 @@ public class ToDoOverviewData_Mona {
     {
         b.putString(Constants.KEYNOTETITLE, mToDoTitle);
         b.putString(Constants.KEYNOTECONTENT, mToDoContent);
+        b.putString(Constants.KEYTODODUEDATE, mToDoDueDate);
+        b.putInt(Constants.KEYTODOSTATUS, mToDoStatus);
     }
 
     public void restoreDataFromBundle(Bundle b){ //Was macht diese Methode?????????????????
-        mToDoTitle = b.getString(Constants.KEYNOTETITLE);
-        mToDoContent = b.getString(Constants.KEYNOTECONTENT);
+        mToDoTitle = b.getString(Constants.KEYTODOTITLE);
+        mToDoContent = b.getString(Constants.KEYTODOCONTENT);
+        mToDoDueDate = b.getString(Constants.KEYTODODUEDATE);
+        mToDoStatus = b.getInt(Constants.KEYTODOSTATUS);
     }
 
     public void createAndSaveNewTodo()
     {
-        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent);
+        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDueDate, mToDoStatus );
         mDb.todoDao().insertAll(todo);
     }
 
@@ -74,9 +80,13 @@ public class ToDoOverviewData_Mona {
         return mActivity;
     }
 
-    public String getNoteTitle() {return mToDoTitle;}
-    public String getNoteContent(){return mToDoContent;}
+    public String getToDoTitle() {return mToDoTitle;}
+    public String getToDoContent(){return mToDoContent;}
+    public String getToDoDueDate(){return mToDoDueDate;}
+    public int getToDoStatus(){return mToDoStatus;}
 
-    public void setNoteTitle(String title){mToDoTitle = title;}
-    public void setNoteContent(String content){mToDoContent = content;}
+    public void setToDoTitle(String title){mToDoTitle = title;}
+    public void setToDoContent(String content){mToDoContent = content;}
+    public void setToDoDueDate(String dueDate){mToDoDueDate = dueDate;}
+    public void setToDoStatus(int status){mToDoStatus = status;}
 }

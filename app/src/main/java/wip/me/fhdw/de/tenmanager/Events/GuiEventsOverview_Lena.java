@@ -1,6 +1,7 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -22,14 +23,18 @@ public class GuiEventsOverview_Lena {
     private TextView mTextViewTimeEnd;
 
     private ImageButton mButtonDeleteEvent;
-
-
+    private ImageButton mButtonMenu;
     private FloatingActionButton mFabCreateNew;
+    private NavigationView mNavigationView;
+
 
 
     public GuiEventsOverview_Lena(InitEventsOverview_Lena activity)
     {
         activity.setContentView(R.layout.activity_main);
+
+        //mButtonMenu = (ImageButton) activity.findViewById(R.id.button_menu);
+
         mStub = (ViewStub) activity.findViewById(R.id.viewStub);
         mStub.setLayoutResource(R.layout.eventsoverview_lena);
         mInflated = mStub.inflate();
@@ -48,18 +53,24 @@ public class GuiEventsOverview_Lena {
         mButtonDeleteEvent = view.findViewById(R.id.buttonDeleteEvent);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
+
+        /*View rootView = inflater.inflate(R.layout.menu_alina_und_mona, null);
+        mNavigationView = rootView.findViewById(R.id.nav_view);*/
     }
 
     //getter to access Views
     public ListView getListView(){return mlistView;}
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
     public ImageButton getButtonDeleteEvent(){return mButtonDeleteEvent;}
+    public NavigationView getNavigationView(){return mNavigationView;}
+    public ImageButton getButtonMenu(){return mButtonMenu;}
 
     public TextView getTextViewTitle(){return mTextViewTitle;}
     public TextView getTextViewDateStart(){return mTextViewDateStart;}
     public TextView getTextViewTimeStart(){return mTextViewTimeStart;}
     public TextView getTextViewDateEnd(){return mTextViewDateEnd;}
     public TextView getTextViewTimeEnd(){return mTextViewTimeEnd;}
+
 
     //methods to change View attributes
 
