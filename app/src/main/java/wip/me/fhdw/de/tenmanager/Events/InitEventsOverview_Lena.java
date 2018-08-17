@@ -37,7 +37,7 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_2_5)
+            //.addMigrations(MIGRATION_4_5)
             .allowMainThreadQueries()
             .build();
     }
@@ -55,6 +55,13 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         }
 
     };*/
+
+    static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+        database.execSQL("CREATE TABLE IF NOT EXISTS 'note_julius'('note_id' INTEGER PRIMARY KEY NOT NULL, 'note_title' TEXT, 'note_content' TEXT)");
+        }
+    };
 
     public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}
     public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(this, mData, mGui, mDb, mEventAdapter);}
