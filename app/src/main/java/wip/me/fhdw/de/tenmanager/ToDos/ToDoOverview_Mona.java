@@ -19,7 +19,7 @@ public class ToDoOverview_Mona {
     private String mContent;
     @ColumnInfo(name = "todo_datetime")
     private String mDateTime;
-    @ColumnInfo(name = "todo_priority")
+    @ColumnInfo(name = "todo_status")
     private int mStatus;
 
 

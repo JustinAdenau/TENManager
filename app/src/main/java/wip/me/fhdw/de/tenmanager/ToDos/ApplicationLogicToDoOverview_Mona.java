@@ -3,11 +3,14 @@ package wip.me.fhdw.de.tenmanager.ToDos;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicToDoOverview_Mona {
 
@@ -16,14 +19,16 @@ public class ApplicationLogicToDoOverview_Mona {
     private AppDatabase mDb;
     private List<ToDoOverview_Mona> mToDoList;
     private ToDoAdapter_Mona mToDoAdapter;
+    private Activity mActivity;
 
-    public ApplicationLogicToDoOverview_Mona(ToDoData_Mona data, GuiToDoOverview_Mona gui, AppDatabase db, ToDoAdapter_Mona todoAdapter){
+    public ApplicationLogicToDoOverview_Mona(ToDoData_Mona data, GuiToDoOverview_Mona gui, AppDatabase db, ToDoAdapter_Mona todoAdapter, Activity activity){
         mToDoData = data;
         mGui = gui;
         mDb = db;
         mToDoAdapter = todoAdapter;
         initGui();
         initListener();
+        mActivity = activity;
     }
 
     public void initListener(){
@@ -120,5 +125,18 @@ public class ApplicationLogicToDoOverview_Mona {
         Log.d("LOGTAG", "finishAktivityResultCanceled");
         mToDoData.getActivity().finish();
 
+    }
+
+    public void onButtonDeleteToDoClicked(View view) {
+        View v = (View)view.getParent().getParent().getParent();
+        TextView title = v.findViewById(R.id.listviewitem_textview_title_todo);
+        TextView checkbox1 = v.findViewById(R.id.todoCheckBox1);
+        TextView checkbox2 = v.findViewById(R.id.todoCheckBox2);
+        TextView dueDate = v.findViewById(R.id.todoDuedate);
+
+        ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString(), checkbox1.getText().toString(), checkbox2.getText().toString(), dueDate.getText().toString());
+        mDb.todoDao().deleteToDos(todoToBeDeleted);
+
+        mActivity.recreate();
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/note_listview_item_style"
+    android:background="@drawable/todo_listview_item_style"
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:descendantFocusability="blocksDescendants"
@@ -36,7 +36,7 @@
         android:layout_weight="10">
 
         <TextView
-            android:id="@+id/listviewitem_textview_title"
+            android:id="@+id/listviewitem_textview_title_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -85,16 +85,67 @@
         android:layout_marginTop="0dp"
         >
 
-        <TextView
-            android:id="@+id/listviewitem_textview_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearance"
-            android:textSize="@dimen/textsize_text"
-            android:text="- Fenster putzen \n - Wischen"
-            android:layout_weight="1"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <CheckBox
+                android:id="@+id/todoCheckBox1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="@dimen/textsize_text"
+                android:hint="Fenster putzen" />
+
+            <CheckBox
+                android:id="@+id/todoCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="@dimen/textsize_text"
+                android:hint="Fenster putzen" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/todoDuedateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="Status:"/>
+                <TextView
+                    android:id="@+id/todoStatusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fällig am:" />
+
+                <TextView
+                    android:id="@+id/todoStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/todoStatusText"
+                    android:text="x/100%"
+                    android:textSize="6.5pt"/>
+
+                <TextView
+                    android:id="@+id/eventDateStart"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:textSize="@dimen/textsize_text"
+                    android:hint="Datum"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_below="@+id/todoDuedateText"
+                    android:drawableStart="@android:drawable/ic_menu_today"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -34,7 +34,7 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
         mToDoData = new ToDoData_Mona(savedInstanceState, this);
     }
 
-    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicToDoOverview_Mona(mToDoData, mGui, mDb, mToDoAdapter); }
+    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicToDoOverview_Mona(mToDoData, mGui, mDb, mToDoAdapter, this); }
 
     public void initListAdapter(){
         mToDoAdapter = new ToDoAdapter_Mona(getApplicationContext());}
@@ -54,6 +54,12 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
         setSupportActionBar(toolbar);
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("ToDos");
+    }
+
+    public void initListener()
+    {
+        ToDoFloatingActionButtonClickListener_Mona floatingactionbutton = new ToDoFloatingActionButtonClickListener_Mona(mApplicationLogic);
+        mGui.getFabSaved().setOnClickListener(floatingactionbutton);
     }
 
 
