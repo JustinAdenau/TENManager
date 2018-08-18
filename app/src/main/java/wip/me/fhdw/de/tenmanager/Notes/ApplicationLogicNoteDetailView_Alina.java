@@ -2,8 +2,11 @@ package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -28,6 +31,7 @@ public class ApplicationLogicNoteDetailView_Alina {
         initGui();
         initListener();
         initUserInputValidation();
+
     }
 
 

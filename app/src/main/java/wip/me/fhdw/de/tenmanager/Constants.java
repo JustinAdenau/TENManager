@@ -29,7 +29,7 @@ public class Constants {
 
         public static final int REQUESTCODEONE = 1;
         public static final int REQUESTCODETWO = 2;
-
+        public static final int REQUESTIMAGECAPTURE = 3;
         public static final String KEYWITHDATA = "K50";
 
         //Spezifikation der Klassenobjekte
