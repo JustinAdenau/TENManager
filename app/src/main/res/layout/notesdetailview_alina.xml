@@ -23,9 +23,9 @@
                 android:id="@+id/noteTitleEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left|top"
+                android:gravity="start|top"
                 android:hint="Titel"
-                android:textSize="50dp"
+                android:textSize="@dimen/textsize_title"
                 android:textStyle="bold" />
 
         </android.support.design.widget.TextInputLayout>
@@ -41,10 +41,10 @@
                 android:id="@+id/noteContentEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left|top"
+                android:gravity="start|top"
                 android:hint="Text"
                 android:inputType="textMultiLine"
-                android:textSize="30dp" />
+                android:textSize="@dimen/textsize_text" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_photo_camera_black_24dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:background="@color/colorYellow"/>
     </RelativeLayout>
 
