@@ -22,6 +22,11 @@ public class Constants {
         public static final String KEYNOTECONTENT = "K8";
         public static final String KEYNOTEWITHDATA = "K11";
 
+        public static final String KEYTODOTITLE = "K12";
+        public static final String KEYTODOCONTENT = "K13";
+        public static final String KEYTODODUEDATE = "K14";
+        public static final String KEYTODOSTATUS = "K15";
+
         public static final int REQUESTCODEONE = 1;
         public static final int REQUESTCODETWO = 2;
 
@@ -32,7 +37,9 @@ public class Constants {
         public static final Class<?> ACTIVITYEVENTSOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.Events.InitEventsOverview_Lena.class;
         public static final Class<?> ACTIVITYNOTEOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.Notes.InitNoteOverview_Julius.class;
         public static final Class<?> ACTIVITYNOTEDETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.Notes.InitNoteDetailView_Alina.class;
-
+        public static final Class<?> ACTIVITYTODOOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.ToDos.InitToDoOverview_Mona.class;
+        //public static final Class<?> ACTIVITYTODODETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.ToDos.InitToDoDetailview_Mona.class;
+        public static final Class<?> ACTIVITYMENUCLASS = wip.me.fhdw.de.tenmanager.Menu.Menu_Alina_und_Mona.class;
 
 
 

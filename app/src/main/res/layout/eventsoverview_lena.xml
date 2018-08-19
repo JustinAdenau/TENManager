@@ -8,6 +8,7 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main"
     android:focusable="true"
+    android:id="@+id/RelativeLayout_listView"
     >
 
     <ListView
