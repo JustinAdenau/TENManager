@@ -5,6 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ public class GuiNoteOverview_Julius {
     private View mInflated;
     private TextView mTitle;
     private TextView mContent;
+
+    private ImageButton mButtonDeleteNote;
 
     private FloatingActionButton mFabCreateNew;
     private NavigationView mNavigationView;
@@ -32,8 +35,10 @@ public class GuiNoteOverview_Julius {
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
         View view = inflater.inflate(R.layout.list_item_notesoverview, null);
 
-        mTitle = view.findViewById(R.id.listviewitem_textview_event_title);
+        mTitle = view.findViewById(R.id.listviewitem_textview_note_title);
         mContent = view.findViewById(R.id.listviewitem_textview_content);
+
+        mButtonDeleteNote = view.findViewById(R.id.buttonDeleteNote);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
 
@@ -43,6 +48,7 @@ public class GuiNoteOverview_Julius {
     public ListView getListView(){return mListView;}
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
     public NavigationView getNavigationView(){return mNavigationView;}
+    public ImageButton getButtonDeleteNote(){return mButtonDeleteNote;}
 
     public TextView getTextViewTitle(){return mTitle;}
     public TextView getTextViewContent(){return mContent;}

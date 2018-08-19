@@ -70,15 +70,13 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
 
     };*/
 
-    public void initGui(){
-        mGui = new GuiNoteOverview_Julius(this);
-        initToolbar();
-    }
+    public void initGui(){ mGui = new GuiNoteOverview_Julius(this);initToolbar(); }
     public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicNoteOverview_Julius(this, mNoteData, mGui, mDb, mNoteAdapter); }
     public void initListAdapter(){mNoteAdapter = new NoteAdapter_Julius(getApplicationContext());}
 
-    public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        getSupportActionBar().hide();
+    public void initToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Notes");
         ActionBar actionBar = getSupportActionBar();
