@@ -2,12 +2,16 @@ package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 
 import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteOverview_Julius {
@@ -17,8 +21,10 @@ public class ApplicationLogicNoteOverview_Julius {
     private AppDatabase mDb;
     private List<Note_Julius> mNoteList;
     private NoteAdapter_Julius mNoteAdapter;
+    private Activity mActivity;
 
-    public ApplicationLogicNoteOverview_Julius(NoteData_Julius data, GuiNoteOverview_Julius gui, AppDatabase db, NoteAdapter_Julius noteAdapter){
+    public ApplicationLogicNoteOverview_Julius(Activity activity, NoteData_Julius data, GuiNoteOverview_Julius gui, AppDatabase db, NoteAdapter_Julius noteAdapter){
+        mActivity = activity;
         mNoteData = data;
         mGui = gui;
         mDb = db;
@@ -37,6 +43,8 @@ public class ApplicationLogicNoteOverview_Julius {
         mGui.getListView().setOnItemClickListener(listViewItemClickListener);
         NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
+        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
     public void dataToGui(){
@@ -69,6 +77,30 @@ public class ApplicationLogicNoteOverview_Julius {
         mNoteData.setNoteTitle(mNoteList.get(position).getTitle());
         startActivity(Constants.ACTIVITYNOTEDETAILVIEWCLASS, true);
         mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    public void onMenuItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if (id == R.id.menuNotes) {
+
+            startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
+            mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuEvent) {
+
+            startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
+            mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuTodo) {
+
+            startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
+            mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     public void onFabCreateNewClicked()
