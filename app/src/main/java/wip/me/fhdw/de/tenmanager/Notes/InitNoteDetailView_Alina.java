@@ -25,6 +25,7 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
     private Intent mIntent;
 
     //todo ApplicationLogic inizialisieren
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
