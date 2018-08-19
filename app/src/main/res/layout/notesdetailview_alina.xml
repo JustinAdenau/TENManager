@@ -49,9 +49,10 @@
         </android.support.design.widget.TextInputLayout>
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight = "9"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight = "9"
+        android:layout_below="@id/noteContent"/>
         <ImageButton
             android:id="@+id/btnCamera"
             android:layout_width="wrap_content"
