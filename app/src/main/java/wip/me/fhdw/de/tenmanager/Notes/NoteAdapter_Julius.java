@@ -49,7 +49,7 @@ public class NoteAdapter_Julius extends BaseAdapter{
     public View getView(int position, View v, ViewGroup viewGroup)
     {
         View view = View.inflate(mContext, R.layout.list_item_notesoverview, null);
-        TextView textViewNoteTitle = view.findViewById(R.id.listviewitem_textview_title);
+        TextView textViewNoteTitle = view.findViewById(R.id.listviewitem_textview_event_title);
         TextView textViewNoteContent = view.findViewById(R.id.listviewitem_textview_content);
         ImageButton buttonDeleteNote = view.findViewById(R.id.buttonDeleteNote);
 
