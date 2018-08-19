@@ -88,7 +88,7 @@ public class ApplicationLogicNoteOverview_Julius {
     public void onButtonDeleteNoteClicked(View view)
     {
         View v = (View)view.getParent().getParent();
-        TextView title = v.findViewById(R.id.listviewitem_textview_title);
+        TextView title = v.findViewById(R.id.listviewitem_textview_note_title);
         TextView content = v.findViewById(R.id.listviewitem_textview_content);
         Log.d("LOGTAG", "Title: " + title.getText().toString());
         Note_Julius noteToBeDeleted = mDb.noteDao().getNoteByTitleContent(title.getText().toString());

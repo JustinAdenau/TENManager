@@ -25,7 +25,7 @@
             android:layout_weight="10">
 
         <TextView
-            android:id="@+id/listviewitem_textview_event_title"
+            android:id="@+id/listviewitem_textview_note_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
