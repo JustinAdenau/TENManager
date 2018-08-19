@@ -2,6 +2,9 @@ package wip.me.fhdw.de.tenmanager.Events;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -50,7 +53,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
 
 
     private void initApplicationLogic(Intent intent){
-        mApplicationLogic = new ApplicationLogicEventsDetailView_Sebastian(mData, mGui);
+        mApplicationLogic = new ApplicationLogicEventsDetailView_Sebastian(this, mData, mGui);
     }
 
     public void initToolbar()
@@ -59,6 +62,17 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
         getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Event");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
 

@@ -2,7 +2,10 @@ package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,6 +14,7 @@ import java.util.Calendar;
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteDetailView_Alina {
@@ -20,10 +24,11 @@ public class ApplicationLogicNoteDetailView_Alina {
     private NoteData_Julius mData;
     private View mView;
     private UserInputValidationNoteDetailView_Alina mUserInputValidation;
+    private Activity mActivity;
 
 
-
-    public ApplicationLogicNoteDetailView_Alina(NoteData_Julius data, GuiNoteDetailView_Alina gui) {
+    public ApplicationLogicNoteDetailView_Alina(Activity activity, NoteData_Julius data, GuiNoteDetailView_Alina gui) {
+        mActivity = activity;
         mGui = gui;
         mData = data;
         initGui();
@@ -40,6 +45,8 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
+        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
 
@@ -99,6 +106,29 @@ public class ApplicationLogicNoteDetailView_Alina {
         finishActivityResultOk();
     }
 
+    public void onMenuItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if (id == R.id.menuNotes) {
+
+            startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuEvent) {
+
+            startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuTodo) {
+
+            startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
 
     public void onBackPressed() {
         Log.d("LOGTAG", "onBackPress called");
@@ -107,6 +137,15 @@ public class ApplicationLogicNoteDetailView_Alina {
     }
 
 
+    public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
+    {
+        Intent intent = new Intent();
+        intent.setClass(mData.getActivity(), activityClass);
+
+        if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());}
+
+        mData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
+    }
 
     //finish Activities
     public void onActivityReturned(int requestCode, int resultCode, Intent intent) {

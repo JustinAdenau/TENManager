@@ -34,7 +34,6 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
         initGui();
         initListAdapter();
         initApplicationLogic();
-        initListener();
     }
 
     private void initData(Bundle savedInstanceState)
@@ -82,11 +81,6 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
         toggle.syncState();
     }
 
-    public void initListener()
-    {
-        ToDoFloatingActionButtonClickListener_Mona floatingactionbutton = new ToDoFloatingActionButtonClickListener_Mona(mApplicationLogic);
-        mGui.getFabSaved().setOnClickListener(floatingactionbutton);
-    }
 
 
     @Override

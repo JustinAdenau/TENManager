@@ -1,6 +1,7 @@
 package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.ViewStub;
@@ -19,10 +20,11 @@ public class GuiNoteDetailView_Alina {
     private TextInputLayout mTextInputLayoutTitle;
     private TextInputLayout mTextInputLayoutContent;
     private FloatingActionButton mFabSave;
+    private NavigationView mNavigationView;
 
 
     public GuiNoteDetailView_Alina(InitNoteDetailView_Alina activity){
-        activity.setContentView(R.layout.activity_main);
+        activity.setContentView(R.layout.menu_alina_und_mona);
         stub = (ViewStub) activity.findViewById(R.id.viewStub);
         stub.setLayoutResource(R.layout.notesdetailview_alina);
         inflated = stub.inflate();
@@ -34,6 +36,7 @@ public class GuiNoteDetailView_Alina {
 
         mFabSave = activity.findViewById(R.id.fab);
         mFabSave.setImageResource(android.R.drawable.ic_menu_save);
+        mNavigationView = activity.findViewById(R.id.nav_view);
     }
 
 
@@ -51,4 +54,6 @@ public class GuiNoteDetailView_Alina {
     }
 
     public FloatingActionButton getFabSave() {return mFabSave;}
+
+    public NavigationView getNavigationView(){return mNavigationView;}
 }

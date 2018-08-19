@@ -1,6 +1,7 @@
 package wip.me.fhdw.de.tenmanager.ToDos;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
 import android.view.ViewStub;
 import android.view.View;
@@ -25,9 +26,10 @@ public class GuiToDoDetailview_Mona {
     private View inflated;
 
     private FloatingActionButton mFabSave;
+    private NavigationView mNavigationView;
 
     public GuiToDoDetailview_Mona(InitToDoDetailview_Mona activity){
-        activity.setContentView(R.layout.activity_main);
+        activity.setContentView(R.layout.menu_alina_und_mona);
         stub = (ViewStub) activity.findViewById(R.id.viewStub);
         stub.setLayoutResource(R.layout.todooverview_mona);
         inflated = stub.inflate();
@@ -44,7 +46,7 @@ public class GuiToDoDetailview_Mona {
         mFabSave = activity.findViewById(R.id.fab);
         //mFabSave.setId(R.id.fabSave);
         mFabSave.setImageResource(android.R.drawable.ic_menu_save);
-
+        mNavigationView = activity.findViewById(R.id.nav_view);
     }
 
 
@@ -117,4 +119,6 @@ public class GuiToDoDetailview_Mona {
     public FloatingActionButton getFabSave() {
         return mFabSave;
     }
+
+    public NavigationView getNavigationView(){return mNavigationView;}
 }
