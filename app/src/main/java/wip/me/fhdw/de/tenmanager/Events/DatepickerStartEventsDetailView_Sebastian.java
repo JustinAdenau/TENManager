@@ -23,6 +23,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
 
     private long mDiffDays;
     private Calendar mStartDate;
+    private Calendar mNewStartDate;
     private Calendar mEndDate;
 
 
@@ -73,7 +74,6 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
-                //enddatum
             }
         });
 
@@ -89,18 +89,18 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 int diff = (int)mDiffDays;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
-                Calendar newStartDate = Calendar.getInstance();
-                newStartDate.set(Calendar.DAY_OF_MONTH, day);
-                newStartDate.set(Calendar.MONTH, month-1);
-                newStartDate.set(Calendar.YEAR, year);
+                mNewStartDate = Calendar.getInstance();
+                mNewStartDate.set(Calendar.DAY_OF_MONTH, day);
+                mNewStartDate.set(Calendar.MONTH, month-1);
+                mNewStartDate.set(Calendar.YEAR, year);
 
-                newStartDate.add(Calendar.DATE, diff);
-                Calendar newEndDate = newStartDate;
+                mNewStartDate.add(Calendar.DATE, diff);
+                Calendar newEndDate = mNewStartDate;
                 Log.d("LOGTAG", "newEndDate:" +sdf.format(newEndDate.getTime()));
                 mGui.getButtonDateEnd().setText(sdf.format(newEndDate.getTime()));
+
             }
         };
     }
-
 
 }

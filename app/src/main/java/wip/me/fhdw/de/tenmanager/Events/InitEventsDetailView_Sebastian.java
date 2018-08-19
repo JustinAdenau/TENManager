@@ -22,6 +22,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
     private EventData_Lena mData;
     private AppDatabase mDb;
 
+
     private Intent mIntent;
 
     //todo ApplicationLogic inizialisieren
@@ -65,7 +66,23 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
     protected void onSaveInstanceState (Bundle outState) {
         //mData.saveDataInBundle(outState);
         super.onSaveInstanceState(outState);
+
+        outState.putString("EventTimeStart", mGui.getButtonTimeStart().getText().toString());
+        outState.putString("EventTimeEnd", mGui.getButtonTimeEnd().getText().toString());
+        outState.putString("EventDateStart", mGui.getButtonDateStart().getText().toString());
+        outState.putString("EventDateEnd", mGui.getButtonDateEnd().getText().toString());
     }
+
+    @Override
+    public void onRestoreInstanceState(Bundle outState) {
+        super.onRestoreInstanceState(outState);
+
+        mGui.setButtonTimeStart(outState.getString("EventTimeStart"));
+        mGui.setButtonTimeEnd(outState.getString("EventTimeEnd"));
+        mGui.setButtonDateStart(outState.getString("EventDateStart"));
+        mGui.setButtonDateEnd(outState.getString("EventDateEnd"));
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

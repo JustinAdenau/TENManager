@@ -45,7 +45,6 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         initGui();
         initListAdapter();
         initApplicationLogic();
-
     }
 
     public void initData(Bundle savedInstanceState)
