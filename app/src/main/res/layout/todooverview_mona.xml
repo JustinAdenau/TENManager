@@ -4,61 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ToDos.InitToDoOverview_Mona"
     android:background="@color/colorGrey">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:theme="@style/AppTheme.AppBarOverlay"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorGreen"
-            >
-
-            <!--<ImageButton
-                android:id="@+id/button_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu"
-                android:background="@color/colorGreen"
-                android:paddingRight="@dimen/listview_padding"/>-->
-
+            app:popupTheme="@style/AppTheme.PopupOverlay">
             <TextView
                 android:id="@+id/toolbar_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
                 android:textSize="@dimen/textsize_title"
-            />
+                />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    
+
     <ViewStub
         android:id="@+id/viewStub"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/listview_margin"
-        android:inflatedId="@+id/eventsOverview_layout"
+        android:inflatedId="@+id/todoOverview_layout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
+    <ListView
+        android:id="@+id/todooverviewListview"
+        android:layout_width="match_parent"
+        android:padding = "10dp"
+        android:layout_height="match_parent"
+        android:divider="@drawable/listview_divider"
+        android:dividerHeight="10dp"
+        android:background="@color/colorGrey"
+        />
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/fabtodooverview"
+        android:layout_width="90dp"
+        android:layout_height="80dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:background="@drawable/round_button_style"
-        android:scaleType="center"
         android:tint="@android:color/background_light"
         app:backgroundTint="@color/colorGreen"
-        app:fabSize="normal"
         app:rippleColor="@color/colorGreen"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
