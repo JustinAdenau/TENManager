@@ -8,19 +8,21 @@ import android.os.Bundle;
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 
-public class ToDoOverviewData_Mona {
+public class ToDoData_Mona {
 
     private Activity mActivity;
     AppDatabase mDb;
 
     private String mToDoTitle;
     private String mToDoContent;
+    private String mToDoDateTime;
+    private int mStatus;
 
-    public ToDoOverviewData_Mona(Bundle savedInstanceState, Activity activity) {
+    public ToDoData_Mona(Bundle savedInstanceState, Activity activity) {
 
         mActivity = activity;
 
-        mDb = Room.databaseBuilder(activity.getApplicationContext(), AppDatabase.class, "events")
+        mDb = Room.databaseBuilder(activity.getApplicationContext(), AppDatabase.class, "todo")
                 .allowMainThreadQueries()
                 .build();
 
@@ -66,7 +68,7 @@ public class ToDoOverviewData_Mona {
 
     public void createAndSaveNewTodo()
     {
-        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent);
+        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDateTime, mStatus);
         mDb.todoDao().insertAll(todo);
     }
 
@@ -74,9 +76,13 @@ public class ToDoOverviewData_Mona {
         return mActivity;
     }
 
-    public String getNoteTitle() {return mToDoTitle;}
-    public String getNoteContent(){return mToDoContent;}
+    public String getToDoTitle() {return mToDoTitle;}
+    public String getToDoContent(){return mToDoContent;}
+    public String getmToDoDateTime() {return mToDoDateTime;}
+    public int getToDoStatus(){return mStatus;}
 
-    public void setNoteTitle(String title){mToDoTitle = title;}
-    public void setNoteContent(String content){mToDoContent = content;}
+    public void setToDoTitle(String title){mToDoTitle = title;}
+    public void setToDoContent(String content){mToDoContent = content;}
+    public void setToDoDateTime(String date){mToDoDateTime = date;}
+    public void setToDoStaus(int status){mStatus = status;}
 }

@@ -1,0 +1,65 @@
+package wip.me.fhdw.de.tenmanager;
+
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.view.MenuItem;
+
+import wip.me.fhdw.de.tenmanager.Events.ApplicationLogicEventsDetailView_Sebastian;
+import wip.me.fhdw.de.tenmanager.Events.ApplicationLogicEventsOverview_Lena;
+import wip.me.fhdw.de.tenmanager.Notes.ApplicationLogicNoteDetailView_Alina;
+import wip.me.fhdw.de.tenmanager.Notes.ApplicationLogicNoteOverview_Julius;
+import wip.me.fhdw.de.tenmanager.ToDos.ApplicationLogicToDoDetailview_Mona;
+import wip.me.fhdw.de.tenmanager.ToDos.ApplicationLogicToDoOverview_Mona;
+
+public class NavigationItemSelectListener implements NavigationView.OnNavigationItemSelectedListener {
+
+    ApplicationLogicEventsOverview_Lena mApplicationLogicEventsOverview;
+    ApplicationLogicToDoOverview_Mona mApplicationLogicToDosOverview;
+    ApplicationLogicNoteOverview_Julius mApplicationLogicNotesOverview;
+    ApplicationLogicEventsDetailView_Sebastian mApplicationLogicEventsDetailview;
+    ApplicationLogicNoteDetailView_Alina mApplicationLogicNotesDetailview;
+    ApplicationLogicToDoDetailview_Mona mApplicationLogicToDosDetailview;
+
+
+    public NavigationItemSelectListener(ApplicationLogicEventsOverview_Lena applicationLogic)
+    {
+        mApplicationLogicEventsOverview = applicationLogic;
+    }
+
+    public NavigationItemSelectListener(ApplicationLogicNoteOverview_Julius applicationLogic)
+    {
+        mApplicationLogicNotesOverview = applicationLogic;
+    }
+
+    public NavigationItemSelectListener(ApplicationLogicToDoOverview_Mona applicationLogic)
+    {
+        mApplicationLogicToDosOverview = applicationLogic;
+    }
+
+    public NavigationItemSelectListener(ApplicationLogicEventsDetailView_Sebastian applicationLogic)
+    {
+        mApplicationLogicEventsDetailview = applicationLogic;
+    }
+
+    public NavigationItemSelectListener(ApplicationLogicNoteDetailView_Alina applicationLogic)
+    {
+        mApplicationLogicNotesDetailview = applicationLogic;
+    }
+
+    public NavigationItemSelectListener(ApplicationLogicToDoDetailview_Mona applicationLogic)
+    {
+        mApplicationLogicToDosDetailview = applicationLogic;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        if(mApplicationLogicEventsOverview != null) mApplicationLogicEventsOverview.onMenuItemSelected(item);
+        else if(mApplicationLogicNotesOverview != null){ mApplicationLogicNotesOverview.onMenuItemSelected(item); }
+        else if(mApplicationLogicToDosOverview != null) {mApplicationLogicToDosOverview.onMenuItemSelected(item);}
+        else if(mApplicationLogicEventsDetailview != null){mApplicationLogicEventsDetailview.onMenuItemSelected(item);}
+        else if(mApplicationLogicNotesDetailview != null){mApplicationLogicNotesDetailview.onMenuItemSelected(item);}
+        else if(mApplicationLogicToDosDetailview != null){mApplicationLogicToDosDetailview.onMenuItemSelected(item);}
+        return false;
+    }
+}

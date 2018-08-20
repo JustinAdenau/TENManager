@@ -1,11 +1,12 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.TextView;
 
 import java.util.List;
@@ -15,12 +16,7 @@ import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Event;
 
 
-import wip.me.fhdw.de.tenmanager.AppDatabase;
-import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Event;
-import wip.me.fhdw.de.tenmanager.Events.EventAdapter_Lena;
-import wip.me.fhdw.de.tenmanager.Events.EventData_Lena;
-import wip.me.fhdw.de.tenmanager.Events.GuiEventsOverview_Lena;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicEventsOverview_Lena {
@@ -54,14 +50,14 @@ public class ApplicationLogicEventsOverview_Lena {
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
         ButtonDeleteEventClickListener_Lena buttonDeleteEventClickListener = new ButtonDeleteEventClickListener_Lena(this);
         mGui.getButtonDeleteEvent().setOnClickListener(buttonDeleteEventClickListener);
+        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
 
 
     public void dataToGui()
     {
-        //mDb.eventDao().deleteAll();
-
         mEventList = mDb.eventDao().getAllEvents();
         mEventAdapter.setApplicationLogic(this);
         mEventAdapter.setEventList(mEventList);
@@ -89,10 +85,34 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
+    public void onMenuItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if (id == R.id.menuNotes) {
+
+            startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuEvent) {
+
+            startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuTodo) {
+
+            startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
     public void onButtonDeleteEventClicked(View view)
     {
         View v = (View)view.getParent().getParent().getParent();
-        TextView title = v.findViewById(R.id.listviewitem_textview_title);
+        TextView title = v.findViewById(R.id.listviewitem_textview_event_title);
         TextView dateStart = v.findViewById(R.id.listviewitem_textview_dateStart);
         TextView timeStart = v.findViewById(R.id.listviewitem_textview_timeStart);
         Event eventToBeDeleted = mDb.eventDao().getEventByTitleDateTime(title.getText().toString(), dateStart.getText().toString(), timeStart.getText().toString());

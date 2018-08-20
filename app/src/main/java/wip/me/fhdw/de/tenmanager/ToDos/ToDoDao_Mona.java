@@ -10,15 +10,18 @@ import java.util.List;
 @Dao
 public interface ToDoDao_Mona {
 
-    @Query("SELECT * FROM Note_Julius ORDER BY note_id")
+    @Query("SELECT * FROM todooverview_mona ORDER BY todo_id")
     List<ToDoOverview_Mona> getAllToDos();
 
     @Insert
     void insertAll(ToDoOverview_Mona... todo);
 
-    @Query("DELETE from Note_Julius")
+    @Query("DELETE from todooverview_mona")
     void deleteAllToDos();
 
     @Delete
     void deleteToDos(ToDoOverview_Mona... todo);
+
+    @Query("SELECT * from todooverview_mona where todo_title like :title")
+    ToDoOverview_Mona getToDoByToDoElements(String title);
 }

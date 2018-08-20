@@ -1,7 +1,7 @@
 package wip.me.fhdw.de.tenmanager.Notes;
 
-import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
@@ -32,9 +32,7 @@ public class Note_Julius {
     public String getTitle(){
         return mTitle;
     }
-    public String getContent(){
-        return mContent;
-    }
+    public String getContent(){ return mContent;}
 
 
     public void setTitle(String title){
@@ -51,6 +49,7 @@ public class Note_Julius {
     // ToDo
     public String getFirstTwoContentRows(){
         int z = 0;
+        String contentSafe = mContent;
         String zweiZeilen = "";
         for(int i = 0; i < mContent.length(); i++){
             if(mContent.charAt(i) == '-')
@@ -64,6 +63,11 @@ public class Note_Julius {
             }
 
         }
+        if(z == 1 || z ==2 ){
+            zweiZeilen = mContent;
+        }
+
+        this.setContent(contentSafe);
         return zweiZeilen;
     }
 

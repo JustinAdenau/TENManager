@@ -2,11 +2,13 @@ package wip.me.fhdw.de.tenmanager.Events;
 
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.R;
 
@@ -28,12 +30,15 @@ public class GuiEventsDetailView_Sebastian {
     private TextInputLayout mTextInputLayoutLocation;
     private TextInputLayout mTextInputLayoutDescription;
 
+    private TextView mTextViewDateTimeValidation;
+
 
     private FloatingActionButton mFabSave;
+    private NavigationView mNavigationView;
 
 
     public GuiEventsDetailView_Sebastian(InitEventsDetailView_Sebastian activity){
-        activity.setContentView(R.layout.activity_main);
+        activity.setContentView(R.layout.menu_alina_und_mona);
         stub = (ViewStub) activity.findViewById(R.id.viewStub);
         stub.setLayoutResource(R.layout.eventsdetailview_sebastian);
         inflated = stub.inflate();
@@ -48,10 +53,11 @@ public class GuiEventsDetailView_Sebastian {
         mTextInputLayoutTitle = activity.findViewById(R.id.eventTitle);
         mTextInputLayoutLocation = activity.findViewById(R.id.eventLocation);
         mTextInputLayoutDescription = activity.findViewById(R.id.eventDescription);
+        mTextViewDateTimeValidation = activity.findViewById(R.id.eventHintDateTimeValidation);
 
         mFabSave = activity.findViewById(R.id.fab);
-        //mFabSave.setId(R.id.fabSave);
         mFabSave.setImageResource(android.R.drawable.ic_menu_save);
+        mNavigationView = activity.findViewById(R.id.nav_view);
     }
 
 
@@ -89,8 +95,29 @@ public class GuiEventsDetailView_Sebastian {
         return mTextInputLayoutDescription;
     }
 
+    public TextView getTextViewDateTimeValidation(){
+        return mTextViewDateTimeValidation;
+    }
+
     public FloatingActionButton getFabSave() {
         return mFabSave;
     }
 
+    public NavigationView getNavigationView(){return mNavigationView;}
+
+    public void setButtonTimeStart(String ButtonTimeStart) {
+        this.mButtonTimeStart.setText(ButtonTimeStart);
+    }
+
+    public void setButtonTimeEnd(String ButtonTimeEnd) {
+        this.mButtonTimeEnd.setText(ButtonTimeEnd);
+    }
+
+    public void setButtonDateStart(String ButtonDateStart) {
+        this.mButtonDateStart.setText(ButtonDateStart);
+    }
+
+    public void setButtonDateEnd(String ButtonDateEnd) {
+        this.mButtonDateEnd.setText(ButtonDateEnd);
+    }
 }

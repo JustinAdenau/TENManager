@@ -1,6 +1,8 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -22,14 +24,15 @@ public class GuiEventsOverview_Lena {
     private TextView mTextViewTimeEnd;
 
     private ImageButton mButtonDeleteEvent;
-
-
     private FloatingActionButton mFabCreateNew;
+    private NavigationView mNavigationView;
+
 
 
     public GuiEventsOverview_Lena(InitEventsOverview_Lena activity)
     {
-        activity.setContentView(R.layout.activity_main);
+        activity.setContentView(R.layout.menu_alina_und_mona);
+
         mStub = (ViewStub) activity.findViewById(R.id.viewStub);
         mStub.setLayoutResource(R.layout.eventsoverview_lena);
         mInflated = mStub.inflate();
@@ -39,7 +42,7 @@ public class GuiEventsOverview_Lena {
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
         View view = inflater.inflate(R.layout.list_item_eventsoverview, null);
 
-        mTextViewTitle = view.findViewById(R.id.listviewitem_textview_title);
+        mTextViewTitle = view.findViewById(R.id.listviewitem_textview_event_title);
         mTextViewDateStart = view.findViewById(R.id.listviewitem_textview_dateStart);
         mTextViewTimeStart = view.findViewById(R.id.listviewitem_textview_timeStart);
         mTextViewDateEnd = view.findViewById(R.id.listviewitem_textview_dateEnd);
@@ -48,18 +51,23 @@ public class GuiEventsOverview_Lena {
         mButtonDeleteEvent = view.findViewById(R.id.buttonDeleteEvent);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
+
+        mNavigationView = activity.findViewById(R.id.nav_view);
+        if(mNavigationView == null) Log.d("LOGTAG", "NavigationView ist null in GuiEventsOverview Z.59!!!!!!!!!!");
     }
 
     //getter to access Views
     public ListView getListView(){return mlistView;}
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
     public ImageButton getButtonDeleteEvent(){return mButtonDeleteEvent;}
+    public NavigationView getNavigationView(){return mNavigationView;}
 
     public TextView getTextViewTitle(){return mTextViewTitle;}
     public TextView getTextViewDateStart(){return mTextViewDateStart;}
     public TextView getTextViewTimeStart(){return mTextViewTimeStart;}
     public TextView getTextViewDateEnd(){return mTextViewDateEnd;}
     public TextView getTextViewTimeEnd(){return mTextViewTimeEnd;}
+
 
     //methods to change View attributes
 

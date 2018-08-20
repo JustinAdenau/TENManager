@@ -1,23 +1,38 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
 import android.support.design.widget.TextInputLayout;
+import android.util.Log;
+import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 public class UserInputValidationEventsDetailView_Sebastian {
 
     private static final String TAG = "UserInputVali_Sebastian";
 
+
     private GuiEventsDetailView_Sebastian mGui;
     private TextInputLayout mTitleValidation;
     private TextInputLayout mLocationValidation;
     private TextInputLayout mDescriptionValidation;
+    private TextView mDateTimeValidation;
+
+
 
 
     public UserInputValidationEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
         mGui = gui;
 
+
         mTitleValidation = mGui.getTextInputLayoutTitle();
         mLocationValidation = mGui.getTextInputLayoutLocation();
         mDescriptionValidation = mGui.getTextInputLayoutDescription();
+        mDateTimeValidation = mGui.getTextViewDateTimeValidation();
+
     }
 
     private boolean validateTitle(){
@@ -59,12 +74,59 @@ public class UserInputValidationEventsDetailView_Sebastian {
         }
     }
 
+    private boolean validateDateTime(){
+
+        Calendar calendarStart;
+        Calendar calendarEnd;
+
+        calendarStart = Calendar.getInstance();
+        calendarEnd = Calendar.getInstance();
+
+
+        int hourStart = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(0,2));
+        int minuteStart = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(3, 5));
+        int dayStart = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(0,2));
+        int monthStart = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(3, 5))-1;
+        int yearStart = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(6,10));
+
+        int hourEnd = Integer.parseInt(mGui.getButtonTimeEnd().getText().toString().substring(0,2));
+        int minuteEnd = Integer.parseInt(mGui.getButtonTimeEnd().getText().toString().substring(3, 5));
+        int dayEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(0,2));
+        int monthEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(3, 5))-1;
+        int yearEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(6,10));
+
+        calendarStart.set(Calendar.HOUR_OF_DAY, hourStart );
+        calendarStart.set(Calendar.MINUTE, minuteStart);
+        calendarStart.set(Calendar.YEAR, yearStart);
+        calendarStart.set(Calendar.MONTH, monthStart);
+        calendarStart.set(Calendar.DAY_OF_MONTH, dayStart);
+        calendarEnd.set(Calendar.HOUR_OF_DAY, hourEnd);
+        calendarEnd.set(Calendar.MINUTE, minuteEnd);
+        calendarEnd.set(Calendar.YEAR, yearEnd);
+        calendarEnd.set(Calendar.MONTH, monthEnd);
+        calendarEnd.set(Calendar.DAY_OF_MONTH, dayEnd);
+
+//todo setError oder set Text -> Layout von setText
+        if(calendarEnd.getTime().getTime() <= calendarStart.getTime().getTime()){
+            mDateTimeValidation.setError("Das Startdatum muss vor dem Enddatum liegen");
+            return false;
+        } else {
+            mDateTimeValidation.setText(null);
+            return true;
+        }
+
+    }
+
+
+
+
+
 
 
 
     public boolean confirmInput(){
-        if (!validateTitle() | !validateLocation() | !validateDescription()){
-            return true;
+        if(!validateTitle() | !validateLocation() | !validateDescription() | !validateDateTime()){
+           return true;
         } else {
             return false;
         }

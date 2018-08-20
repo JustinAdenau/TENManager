@@ -5,12 +5,28 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.zip.Inflater;
+
 import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Menu.Menu_Alina_und_Mona;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class InitEventsOverview_Lena extends AppCompatActivity {
@@ -29,7 +45,6 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         initGui();
         initListAdapter();
         initApplicationLogic();
-
     }
 
     public void initData(Bundle savedInstanceState)
@@ -38,26 +53,27 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_2_5)
+            //.addMigrations(MIGRATION_5_6)
             .allowMainThreadQueries()
             .build();
     }
 
     //if database table is changed (new version) migration is needed
-    /*static final Migration MIGRATION_2_5 = new Migration(2, 5) {
+    /*static final Migration MIGRATION_5_6 = new Migration(5, 6) {
         @Override
-        public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL("CREATE TABLE IF NOT EXISTS 'note_julius'('note_id' INTEGER PRIMARY KEY NOT NULL, 'note_title' TEXT, 'note_content' TEXT)");
-            database.execSQL("ALTER TABLE 'event' RENAME TO 'event_old'");
-            database.execSQL("CREATE TABLE 'event' (id INTEGER PRIMARY KEY NOT NULL, event_title TEXT, event_date_start TEXT, " +
-                    "event_time_start TEXT, event_date_end TEXT, event_time_end TEXT," +
-                    "event_description TEXT, event_location TEXT)");
-            database.execSQL("DROP TABLE 'event_old'");
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS 'todoOverview_mona'('todo_id' INTEGER PRIMARY KEY NOT NULL, 'todo_title' TEXT, 'todo_duedate' TEXT, 'todo_status' INTEGER NOT NULL, 'todo_content' TEXT)");
         }
-
     };*/
 
-    public void initGui(){mGui = new GuiEventsOverview_Lena(this); initToolbar();}
+
+    public void initGui()
+    {
+        mGui = new GuiEventsOverview_Lena(this);
+        initToolbar();
+        //initMenu();
+    }
+
     public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(this, mData, mGui, mDb, mEventAdapter);}
     public void initListAdapter(){mEventAdapter = new EventAdapter_Lena(getApplicationContext());}
 
@@ -66,7 +82,46 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
-        toolbarTextview.setText("Events");  }
+        toolbarTextview.setText("Events");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    public void initMenu()
+    {
+        //Menu_Alina_und_Mona menu = new Menu_Alina_und_Mona();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {
