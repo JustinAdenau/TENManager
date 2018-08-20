@@ -54,13 +54,13 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_5_6)
+          //  .addMigrations(MIGRATION_5_6)
             .allowMainThreadQueries()
             .build();
     }
 
-    //if database table is changed (new version) migration is needed
-    /*static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+    /*//if database table is changed (new version) migration is needed
+    static final Migration MIGRATION_5_6 = new Migration(5, 6) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("CREATE TABLE IF NOT EXISTS 'todoOverview_mona'('todo_id' INTEGER PRIMARY KEY NOT NULL, 'todo_title' TEXT, 'todo_duedate' TEXT, 'todo_status' INTEGER NOT NULL, 'todo_content' TEXT)");

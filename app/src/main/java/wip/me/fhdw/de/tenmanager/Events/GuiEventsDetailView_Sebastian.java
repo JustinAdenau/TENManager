@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.R;
@@ -19,6 +20,7 @@ public class GuiEventsDetailView_Sebastian {
     private Button mButtonTimeEnd;
 
     private ViewStub stub;
+
     private View inflated;
 
     private EditText mEditTextTitle;
@@ -31,6 +33,7 @@ public class GuiEventsDetailView_Sebastian {
 
     private TextView mTextViewDateTimeValidation;
 
+    private Spinner mSpinnerReminder;
 
     private FloatingActionButton mFabSave;
 
@@ -52,6 +55,7 @@ public class GuiEventsDetailView_Sebastian {
         mTextInputLayoutLocation = activity.findViewById(R.id.eventLocation);
         mTextInputLayoutDescription = activity.findViewById(R.id.eventDescription);
         mTextViewDateTimeValidation = activity.findViewById(R.id.eventHintDateTimeValidation);
+        mSpinnerReminder = activity.findViewById(R.id.eventReminderSpinner);
 
         mFabSave = activity.findViewById(R.id.fab);
         //mFabSave.setId(R.id.fabSave);
@@ -99,6 +103,10 @@ public class GuiEventsDetailView_Sebastian {
 
     public FloatingActionButton getFabSave() {
         return mFabSave;
+    }
+
+    public Spinner getSpinnerReminder() {
+        return mSpinnerReminder;
     }
 
     public void setButtonTimeStart(String ButtonTimeStart) {

@@ -25,6 +25,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
     private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
     private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
+    private ReminderSpinnerEventsDetailView_Sebastian mReminderSpinner;
 
 
     public ApplicationLogicEventsDetailView_Sebastian(EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
@@ -39,6 +40,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         initTimepickerStart();
         initTimepickerEnd();
         initUserInputValidation();
+        initReminderSpinner();
     }
 
 
@@ -129,6 +131,11 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
+    private void initReminderSpinner(){
+        mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui);
+        mReminderSpinner.buildReminderSpinner();
+    }
+
 
     public void onFabSaveClicked() {
         if (mUserInputValidation.confirmInput()) return;
@@ -209,6 +216,5 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
-
 
 }
