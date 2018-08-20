@@ -15,7 +15,7 @@ import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class InitNoteDetailView_Alina extends AppCompatActivity{
-
+    //Variablen Deklaration & Instanziierung
     private static final String TAG = "InitNoteDetailView_Alina";
 
 
@@ -39,6 +39,7 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
         //initDb();
         setContentView(R.layout.notesdetailview_alina);
 
+        //Einbindung des Kamera-Icons und Methode um auf das Kamera-Icon zu klicken
         ImageButton btnCamera = (ImageButton)findViewById(R.id.btnCamera);
         imageView = (ImageView)findViewById(R.id.imageView);
         btnCamera.setOnClickListener(new View.OnClickListener() {

@@ -16,6 +16,7 @@ import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
 
 public class ApplicationLogicNoteDetailView_Alina {
+    //Variablen Deklaration & Instanziierung
     private static final String TAG = "AppLogic_Alina";
 
     private GuiNoteDetailView_Alina mGui;
@@ -24,14 +25,13 @@ public class ApplicationLogicNoteDetailView_Alina {
     private UserInputValidationNoteDetailView_Alina mUserInputValidation;
 
 
-
+    //Konstruktor
     public ApplicationLogicNoteDetailView_Alina(NoteData_Julius data, GuiNoteDetailView_Alina gui) {
         mGui = gui;
         mData = data;
         initGui();
         initListener();
         initUserInputValidation();
-
     }
 
 
@@ -63,15 +63,17 @@ public class ApplicationLogicNoteDetailView_Alina {
 
 
     //todo Methoden einfügen
+    //Einbindung der UserInputValidation Java-Class, Instanziierung??
     private void initUserInputValidation(){
         mUserInputValidation = new UserInputValidationNoteDetailView_Alina(mGui);
     }
-
+    //Methode zum Speichern wenn man auf den "Speicher-Button" klickt
     public void onFabSaveClicked()
     {
         if(mUserInputValidation.confirmInput()) return;
         String title = mData.getNoteTitle();
         String content = mGui.getEditTextContent().getText().toString();
+        String imageView = mData.getImageView();
 
         if(mData.getWithData())
         {

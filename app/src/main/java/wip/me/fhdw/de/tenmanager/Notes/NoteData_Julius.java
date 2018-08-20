@@ -16,6 +16,7 @@ public class NoteData_Julius {
     private String mNoteTitle;
     private String mNoteContent;
     private boolean mWithData;
+    private String mImageView;
 
     public NoteData_Julius(Bundle savedInstanceState, Activity activity) {
         mActivity = activity;
@@ -42,6 +43,7 @@ public class NoteData_Julius {
         mNoteTitle = b.getString(Constants.KEYNOTETITLE);
         mNoteContent = b.getString(Constants.KEYNOTECONTENT);
         mWithData = b.getBoolean(Constants.KEYNOTEWITHDATA);
+        mImageView = b.getString(Constants.KEYNOTEIMAGEVIEW);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent)
@@ -87,6 +89,7 @@ public class NoteData_Julius {
     public String getNoteTitle() {return mNoteTitle;}
     public String getNoteContent(){return mNoteContent;}
     public boolean getWithData() {return mWithData;}
+    public String getImageView() {return mImageView;}
 
     public void setNoteTitle(String title){mNoteTitle = title;}
     public void setNoteContent(String content){mNoteContent = content;}
