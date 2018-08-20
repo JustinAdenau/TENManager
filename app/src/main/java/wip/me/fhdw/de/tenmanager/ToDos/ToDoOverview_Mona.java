@@ -4,6 +4,9 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Date;
+import java.util.List;
+
 @Entity
 public class ToDoOverview_Mona {
 
@@ -15,16 +18,16 @@ public class ToDoOverview_Mona {
     @ColumnInfo(name = "todo_content")
     private String mContent;
     @ColumnInfo(name = "todo_duedate")
-    private String mDueDate;
+    private String mDuedate;
     @ColumnInfo(name = "todo_status")
     private int mStatus;
 
 
 
-    public ToDoOverview_Mona(String title, String content, String dueDate, int status){
+    public ToDoOverview_Mona(String title, String content, String duedate, int status){
         mTitle = title;
         mContent = content;
-        mDueDate = dueDate;
+        mDuedate = duedate;
         mStatus = status;
     }
 
@@ -36,42 +39,33 @@ public class ToDoOverview_Mona {
     public String getTitle(){
         return mTitle;
     }
-    public String getContent(){
-        return mContent;
+    public String getContent(){return mContent;}
+
+    public String getDuedate(){
+        return mDuedate;
     }
-    public String getDueDate(){return mDueDate;}
-    public int getStatus(){return mStatus;}
+
+    public int getStatus(){
+        return mStatus;
+    }
 
 
-
-    public void setTitle(String title){
+    public void setTitle(String title) {
         mTitle = title;
     }
     public void setContent(String content){
         mContent = content;
     }
-    public void setId(int id){mId = id;}
-    public void setDueDate(String dueDate){mDueDate = dueDate;}
-    public void setStatus(int status){mStatus = status;}
+    public void setId ( int id){
+        mId = id;
+    }
 
+    public void setDuedate (String date){
+        mDuedate = date;
+    }
 
-    // ToDo
-    public String getFirstTwoContentRows(){
-        int z = 0;
-        String zweiZeilen = "";
-        for(int i = 0; i < mContent.length(); i++){
-            if(mContent.charAt(i) == '-')
-            {
-                z++;
-            }
-            if (z == 3)
-            {
-                zweiZeilen = mContent.substring(0,i);
-                break;
-            }
-
-        }
-        return zweiZeilen;
+    public void setStatus ( int status){
+        status = mStatus;
     }
 
 }

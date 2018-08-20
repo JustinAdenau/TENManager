@@ -29,6 +29,7 @@ public class Constants {
 
         public static final int REQUESTCODEONE = 1;
         public static final int REQUESTCODETWO = 2;
+        public static final int CAMERAREQUEST = 3;
 
         public static final String KEYWITHDATA = "K50";
 
@@ -38,7 +39,7 @@ public class Constants {
         public static final Class<?> ACTIVITYNOTEOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.Notes.InitNoteOverview_Julius.class;
         public static final Class<?> ACTIVITYNOTEDETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.Notes.InitNoteDetailView_Alina.class;
         public static final Class<?> ACTIVITYTODOOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.ToDos.InitToDoOverview_Mona.class;
-        //public static final Class<?> ACTIVITYTODODETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.ToDos.InitToDoDetailview_Mona.class;
+        public static final Class<?> ACTIVITYTODODETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.ToDos.InitToDoDetailview_Mona.class;
         public static final Class<?> ACTIVITYMENUCLASS = wip.me.fhdw.de.tenmanager.Menu.Menu_Alina_und_Mona.class;
 
 

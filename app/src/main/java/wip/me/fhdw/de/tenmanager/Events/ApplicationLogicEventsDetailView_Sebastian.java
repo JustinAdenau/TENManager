@@ -3,13 +3,17 @@ package wip.me.fhdw.de.tenmanager.Events;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 
 
@@ -27,8 +31,11 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
     private ReminderSpinnerEventsDetailView_Sebastian mReminderSpinner;
 
+    private Activity mActivity;
 
-    public ApplicationLogicEventsDetailView_Sebastian(EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
+
+    public ApplicationLogicEventsDetailView_Sebastian(Activity activity, EventData_Lena data, GuiEventsDetailView_Sebastian gui) {
+        mActivity = activity;
         mGui = gui;
         mData = data;
         initGui();
@@ -51,6 +58,8 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     public void initListener() {
         EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
+        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
 
@@ -175,6 +184,30 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         finishActivityResultOk();
     }
 
+    public void onMenuItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if (id == R.id.menuNotes) {
+
+            startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuEvent) {
+
+            startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuTodo) {
+
+            startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
 
     public void onBackPressed() {
         Log.d("LOGTAG", "onBackPress called");
@@ -195,6 +228,17 @@ public class ApplicationLogicEventsDetailView_Sebastian {
                     break;
             }
         }
+    }
+
+    public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
+    {
+        Intent intent = new Intent();
+        intent.setClass(mData.getActivity(), activityClass);
+
+        if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());}
+        intent.putExtra(Constants.KEYWITHDATA, withData);
+        Log.d("LOGTAG", "withData: "+withData+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        mData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
     }
 
 

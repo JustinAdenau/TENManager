@@ -2,6 +2,7 @@ package wip.me.fhdw.de.tenmanager.Events;
 
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.ViewStub;
@@ -36,10 +37,11 @@ public class GuiEventsDetailView_Sebastian {
     private Spinner mSpinnerReminder;
 
     private FloatingActionButton mFabSave;
+    private NavigationView mNavigationView;
 
 
     public GuiEventsDetailView_Sebastian(InitEventsDetailView_Sebastian activity){
-        activity.setContentView(R.layout.activity_main);
+        activity.setContentView(R.layout.menu_alina_und_mona);
         stub = (ViewStub) activity.findViewById(R.id.viewStub);
         stub.setLayoutResource(R.layout.eventsdetailview_sebastian);
         inflated = stub.inflate();
@@ -58,8 +60,8 @@ public class GuiEventsDetailView_Sebastian {
         mSpinnerReminder = activity.findViewById(R.id.eventReminderSpinner);
 
         mFabSave = activity.findViewById(R.id.fab);
-        //mFabSave.setId(R.id.fabSave);
         mFabSave.setImageResource(android.R.drawable.ic_menu_save);
+        mNavigationView = activity.findViewById(R.id.nav_view);
     }
 
 
@@ -108,6 +110,8 @@ public class GuiEventsDetailView_Sebastian {
     public Spinner getSpinnerReminder() {
         return mSpinnerReminder;
     }
+
+    public NavigationView getNavigationView(){return mNavigationView;}
 
     public void setButtonTimeStart(String ButtonTimeStart) {
         this.mButtonTimeStart.setText(ButtonTimeStart);

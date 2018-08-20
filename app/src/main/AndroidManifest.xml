@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="wip.me.fhdw.de.tenmanager">
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -25,6 +28,7 @@
         <activity android:name=".ToDos.InitToDoOverview_Mona"/>
         <activity android:name=".Notes.InitNoteDetailView_Alina"></activity>
         <activity android:name=".Menu.Menu_Alina_und_Mona"></activity>
+
         <!--<activity android:name=".GuiEventsOverview_Lena"/>-->
 
     </application>
