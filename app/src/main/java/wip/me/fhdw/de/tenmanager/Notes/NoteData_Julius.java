@@ -40,6 +40,7 @@ public class NoteData_Julius {
 
     public void restoreDataFromBundle(Bundle b)
     {
+
         mNoteTitle = b.getString(Constants.KEYNOTETITLE);
         mNoteContent = b.getString(Constants.KEYNOTECONTENT);
         mWithData = b.getBoolean(Constants.KEYNOTEWITHDATA);

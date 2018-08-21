@@ -76,12 +76,12 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
 
     public void initToolbar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Notes");
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
         if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
