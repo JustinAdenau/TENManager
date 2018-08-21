@@ -16,6 +16,7 @@ import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Event;
 
 
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicEventsOverview_Lena {
@@ -49,18 +50,14 @@ public class ApplicationLogicEventsOverview_Lena {
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
         ButtonDeleteEventClickListener_Lena buttonDeleteEventClickListener = new ButtonDeleteEventClickListener_Lena(this);
         mGui.getButtonDeleteEvent().setOnClickListener(buttonDeleteEventClickListener);
-        //NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
-        //mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
-        //ButtonMenuClickListener buttonMenuClickListener = new ButtonMenuClickListener(this);
-        //mGui.getButtonMenu().setOnClickListener(buttonMenuClickListener);
+        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
 
 
     public void dataToGui()
     {
-        //mDb.eventDao().deleteAll();
-
         mEventList = mDb.eventDao().getAllEvents();
         mEventAdapter.setApplicationLogic(this);
         mEventAdapter.setEventList(mEventList);

@@ -2,10 +2,13 @@ package wip.me.fhdw.de.tenmanager.ToDos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
@@ -38,7 +41,7 @@ public class InitToDoDetailview_Mona extends AppCompatActivity {
     }
 
     private void initApplicationLogic(Intent mIntent) {
-        mApplicationLogic = new ApplicationLogicToDoDetailview_Mona(mData, mGui);
+        mApplicationLogic = new ApplicationLogicToDoDetailview_Mona(this, mData, mGui);
     }
 
     private void initGui() {
@@ -48,9 +51,19 @@ public class InitToDoDetailview_Mona extends AppCompatActivity {
 
     private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("ToDo");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     private void initData(Bundle savedInstanceState) {

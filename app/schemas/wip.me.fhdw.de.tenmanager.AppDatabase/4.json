@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 6,
-    "identityHash": "40d6d487c7fc4f71784b37f6a3a1f302",
+    "version": 4,
+    "identityHash": "3d630d14c6458e2fb59a40dbded4a940",
     "entities": [
       {
         "tableName": "Event",
@@ -97,56 +97,11 @@
         },
         "indices": [],
         "foreignKeys": []
-      },
-      {
-        "tableName": "ToDoOverview_Mona",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`todo_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `todo_title` TEXT, `todo_content` TEXT, `todo_duedate` TEXT, `todo_status` INTEGER NOT NULL)",
-        "fields": [
-          {
-            "fieldPath": "mId",
-            "columnName": "todo_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "mTitle",
-            "columnName": "todo_title",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "mContent",
-            "columnName": "todo_content",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-
-            "fieldPath": "mDuedate",
-            "columnName": "todo_duedate",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "mStatus",
-            "columnName": "todo_status",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "todo_id"
-          ],
-          "autoGenerate": true
-        },
-        "indices": [],
-        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"40d6d487c7fc4f71784b37f6a3a1f302\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3d630d14c6458e2fb59a40dbded4a940\")"
     ]
   }
 }

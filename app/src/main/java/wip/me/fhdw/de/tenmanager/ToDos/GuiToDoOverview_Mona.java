@@ -1,6 +1,7 @@
 package wip.me.fhdw.de.tenmanager.ToDos;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -28,9 +29,10 @@ public class GuiToDoOverview_Mona {
     private ListView mListView;
 
     private FloatingActionButton mFabCreateNew;
+    private NavigationView mNavigationView;
 
     public GuiToDoOverview_Mona(InitToDoOverview_Mona activity){
-        activity.setContentView(R.layout.activity_main);
+        activity.setContentView(R.layout.menu_alina_und_mona);
         mStub = (ViewStub) activity.findViewById(R.id.viewStub);
         mStub.setLayoutResource(R.layout.todooverview_mona);
         mInflated = mStub.inflate();
@@ -50,10 +52,13 @@ public class GuiToDoOverview_Mona {
         mDueDate = view.findViewById(R.id.todoDuedate);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
+
+        mNavigationView = activity.findViewById(R.id.nav_view);
     }
 
     public ListView getListView(){return mListView;}
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
+    public NavigationView getNavigationView(){return mNavigationView;}
 
     public EditText getmTitle() {
         return mTitle;

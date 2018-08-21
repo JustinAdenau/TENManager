@@ -2,7 +2,10 @@ package wip.me.fhdw.de.tenmanager.ToDos;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,6 +13,7 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicToDoOverview_Mona {
@@ -37,6 +41,8 @@ public class ApplicationLogicToDoOverview_Mona {
         ToDoFloatingActionButtonClickListener_Mona floatingActionButtonClickListener = new ToDoFloatingActionButtonClickListener_Mona(this);
         if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
+        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
     public void initGui(){
@@ -65,6 +71,30 @@ public class ApplicationLogicToDoOverview_Mona {
 
     public void onFabCreateNewClicked() {
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
+    }
+
+    public void onMenuItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if (id == R.id.menuNotes) {
+
+            startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
+            mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuEvent) {
+
+            startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
+            mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuTodo) {
+
+            startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
+            mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     private void startActivity(Class<?> activityClass, boolean withData) {
