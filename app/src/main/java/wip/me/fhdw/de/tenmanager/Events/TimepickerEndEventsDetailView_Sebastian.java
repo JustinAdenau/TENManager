@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TimePicker;
 
@@ -42,7 +43,9 @@ public class TimepickerEndEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+                Log.d(TAG, "Hour End: " + mHourEnd +" Minute End " + mMinuteEnd);
             }
         });
     }
+
 }

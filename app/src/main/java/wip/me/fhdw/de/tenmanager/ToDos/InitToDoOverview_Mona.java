@@ -1,11 +1,18 @@
 package wip.me.fhdw.de.tenmanager.ToDos;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
@@ -15,9 +22,9 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
 
     private GuiToDoOverview_Mona mGui;
     private ApplicationLogicToDoOverview_Mona mApplicationLogic;
-    private ToDoOverviewData_Mona mToDoData;
+    private ToDoData_Mona mToDoData;
     private AppDatabase mDb;
-    private ToDoOverviewAdapter_Mona mNoteAdapter;
+    private ToDoAdapter_Mona mToDoAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
@@ -29,30 +36,51 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
         initApplicationLogic();
     }
 
-    private void initData(Bundle savedInstanceState) {
-        mToDoData = new ToDoOverviewData_Mona(savedInstanceState, this);
+    private void initData(Bundle savedInstanceState)
+    {
+        mToDoData = new ToDoData_Mona(savedInstanceState, this);
     }
 
-    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicToDoOverview_Mona(mToDoData, mGui, mDb, mNoteAdapter); }
+    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicToDoOverview_Mona(mToDoData, mGui, mDb, mToDoAdapter, this); }
 
-    public void initListAdapter(){mNoteAdapter = new ToDoOverviewAdapter_Mona(getApplicationContext());}
+    public void initListAdapter(){
+        mToDoAdapter = new ToDoAdapter_Mona(getApplicationContext());}
 
     private void initGui() {
        mGui = new GuiToDoOverview_Mona(this);
+       initToolbar();
     }
 
     private void initDb() {
         mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-                //.addMigrations(MIGRATION_2_3)
+                .addMigrations(MIGRATION_5_6)
                 .allowMainThreadQueries()
                 .build();
     }
 
+    static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS 'todoOverview_mona'('todo_id' INTEGER PRIMARY KEY NOT NULL, 'todo_title' TEXT, 'todo_duedate' TEXT, 'todo_status' INTEGER NOT NULL, 'todo_content' TEXT)");
+        }
+    };
+
     public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("ToDos");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
     }
+
 
 
     @Override

@@ -21,7 +21,6 @@ public class NoteFloatingActionButtonClickListener_Julius implements View.OnClic
     public void onClick(View view) {
 
         //TODO extend activity check (Alina or Julius) with applicationLogic
-
         if(mApplicationLogicNoteDetailView_Alina == null) mApplicationlogicNoteOverview_Julius.onFabCreateNewClicked();
         else mApplicationLogicNoteDetailView_Alina.onFabSaveClicked();
     }

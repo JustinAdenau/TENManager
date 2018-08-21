@@ -30,7 +30,6 @@
             android:id="@+id/eventTitleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Silvesterparty"
             android:hint="Titel"
             android:gravity="left|top"
             android:inputType="textMultiLine" />
@@ -121,20 +120,35 @@
     </LinearLayout>
 
 
+    <!--todo Fehlerhinweis mit Roterfarbe-->
+    <TextView
+        android:id="@+id/eventHintDateTimeValidation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/eventDateTimeEnd"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
+
+
+    <Spinner
+        android:id="@+id/eventReminderSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventHintDateTimeValidation">
+    </Spinner>
+
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventDateTimeEnd"
+        android:layout_below="@id/eventReminderSpinner"
         app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/eventLocationEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:text="Monas Haus"
             android:hint="Ort"
             />
 
@@ -153,7 +167,6 @@
             android:id="@+id/eventDescriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Party bei Mona. Essen und Trinken mitbringen!"
             android:hint="Beschreibung"
             android:inputType="textMultiLine" />
 

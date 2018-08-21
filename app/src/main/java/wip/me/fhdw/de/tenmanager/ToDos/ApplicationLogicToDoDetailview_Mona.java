@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager.Notes;
+package wip.me.fhdw.de.tenmanager.ToDos;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,108 +7,38 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import java.util.Calendar;
-
-import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
 import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 
-public class ApplicationLogicNoteDetailView_Alina {
-    //Variablen Deklaration & Instanziierung
-    private static final String TAG = "AppLogic_Alina";
+public class ApplicationLogicToDoDetailview_Mona {
 
-    private GuiNoteDetailView_Alina mGui;
-    private NoteData_Julius mData;
-    private View mView;
-    private UserInputValidationNoteDetailView_Alina mUserInputValidation;
+    private DatepickerToDoDetailview_Mona mDatepicker;
+    private static final String TAG = "AppLogic_Sebastian";
+
+    private wip.me.fhdw.de.tenmanager.ToDos.GuiToDoDetailview_Mona mGui;
+    private wip.me.fhdw.de.tenmanager.ToDos.ToDoData_Mona mData;
     private Activity mActivity;
 
 
-    //Konstruktor
-    public ApplicationLogicNoteDetailView_Alina(NoteData_Julius data, GuiNoteDetailView_Alina gui) {
-    public ApplicationLogicNoteDetailView_Alina(Activity activity, NoteData_Julius data, GuiNoteDetailView_Alina gui) {
+    public ApplicationLogicToDoDetailview_Mona (Activity activity, ToDoData_Mona data, GuiToDoDetailview_Mona gui){
         mActivity = activity;
-        mGui = gui;
         mData = data;
+        mGui = gui;
+        initDatepicker();
         initGui();
         initListener();
-        initUserInputValidation();
     }
 
-
-    private void initGui() {
-        dataToGui();
+    public void initDatepicker(){
+        mDatepicker = new DatepickerToDoDetailview_Mona(mGui);
     }
 
     public void initListener()
     {
-        NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
-        mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
         NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
-    }
-
-
-//todo
-
-    public void dataToGui()
-    {
-        mGui.getEditTextTitle().setText(mData.getNoteTitle());
-        mGui.getEditTextContent().setText(mData.getNoteContent());
-    }
-
-
-
-
-    /////////////////////////////////////////////
-    // AppLogic
-    ////////////////////////////////////////////7
-
-
-    //todo Methoden einfügen
-    //Einbindung der UserInputValidation Java-Class, Instanziierung??
-    private void initUserInputValidation(){
-        mUserInputValidation = new UserInputValidationNoteDetailView_Alina(mGui);
-    }
-    //Methode zum Speichern wenn man auf den "Speicher-Button" klickt
-    public void onFabSaveClicked()
-    {
-        boolean noteExists = false;
-        if(mUserInputValidation.confirmInput()) return;
-
-        String titleOld = mData.getNoteTitle();
-        String contentOld = mData.getNoteContent();
-
-        String title = mGui.getEditTextTitle().getText().toString();
-        String content = mGui.getEditTextContent().getText().toString();
-        String imageView = mData.getImageView();
-
-        if(mData.getDb().noteDao().noteExists(title)!=0) noteExists = true;
-        if(!noteExists || mData.getWithData()) {
-            mData.setNoteTitle(title);
-            mData.setNoteContent(content);
-        }
-        Log.d("LOGTAG", "withData: "+mData.getWithData());
-        if(mData.getWithData())
-        {
-            mData.updateNote(titleOld, contentOld);
-        }
-        else
-        {
-
-            if(noteExists)
-            {
-                Toast.makeText(mData.getActivity().getApplicationContext(),"Es gibt bereits ein Note mit diesem Titel!", Toast.LENGTH_LONG ).show();
-
-                return;
-            }
-            mData.createAndSaveNewNote();
-        }
-        finishActivityResultOk();
     }
 
     public void onMenuItemSelected(MenuItem item)
@@ -135,12 +65,11 @@ public class ApplicationLogicNoteDetailView_Alina {
         drawer.closeDrawer(GravityCompat.START);
     }
 
+
     public void onBackPressed() {
         Log.d("LOGTAG", "onBackPress called");
         finishActivityResultCancelled();
-
     }
-
 
     public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
     {
@@ -167,6 +96,19 @@ public class ApplicationLogicNoteDetailView_Alina {
         }
     }
 
+    private void dataToGui() {
+        mGui.getMtodotitle().setText(mData.getToDoTitle());
+        mGui.getMtodoCheckBox1().setText(mData.getToDoContent());
+        mGui.getMtodoCheckBox2().setText(mData.getToDoContent());
+        mGui.getMtodoCheckBox3().setText(mData.getToDoContent());
+        mGui.getMtodoDetailviewDueDate().setText(mData.getmToDoDateTime());
+        mGui.getMtodoDetailviewStatus().setText(mData.getToDoStatus());
+    }
+
+    private void initGui() {
+        dataToGui();
+    }
+
 
     private void finishActivityResultOk()
     {
@@ -175,7 +117,6 @@ public class ApplicationLogicNoteDetailView_Alina {
         mData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishActivityResultOk");
         mData.getActivity().finish();
-        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 
@@ -186,6 +127,5 @@ public class ApplicationLogicNoteDetailView_Alina {
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
-        mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }

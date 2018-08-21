@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:layout_weight="0.9"
-    android:background="@drawable/listview_item_style"
+    android:background="@drawable/todo_listview_item_style"
     android:padding="10dp"
     android:orientation="vertical">
 
@@ -33,7 +33,7 @@
         android:hint="Waschen" />
 
     <CheckBox
-    android:id="@+id/todocCheckBox3"
+    android:id="@+id/todoCheckBox3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="Wischen" />
@@ -57,22 +57,25 @@
             android:text="Fällig am:"/>
 
         <TextView
-            android:id="@+id/todoStatus"
+            android:id="@+id/tododetailviewStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/todoDescriptionStatus"
             android:text="x/100%"
             android:textSize="6.5pt"/>
-        <EditText
-            android:id="@+id/todoDuedate"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/todoDetailviewDueDate"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textSize="@dimen/textsize_text"
+            android:hint="Datum"
+            android:layout_weight="1"
             android:gravity="start"
             android:layout_below="@+id/todoDescriptionDuedate"
-            android:hint="25.07.2018"
-            android:textSize="6.5pt"
-            android:background="@android:color/transparent"/>
+            android:drawableStart="@android:drawable/ic_menu_today"
+            />
 
     </RelativeLayout>
 
