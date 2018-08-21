@@ -44,18 +44,6 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
         initGui();
         initApplicationLogic(mIntent);
         //initDb();
-
-        //Einbindung des Kamera-Icons und Methode um auf das Kamera-Icon zu klicken
-        ImageButton btnCamera = (ImageButton)findViewById(R.id.btnCamera);
-        imageView = (ImageView)findViewById(R.id.imageView);
-        btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 0);
-
-            }
-        });
     }
 
     private void initGui(){
@@ -100,8 +88,7 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // super.onActivityResult(requestCode, resultCode, data);
         mApplicationLogic.onActivityReturned(requestCode, resultCode, data);
-        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-        imageView.setImageBitmap(bitmap);
+
     }
 
     @Override

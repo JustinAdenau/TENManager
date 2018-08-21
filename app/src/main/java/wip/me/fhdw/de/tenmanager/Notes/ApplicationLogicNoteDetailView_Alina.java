@@ -2,6 +2,8 @@ package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -29,7 +31,6 @@ public class ApplicationLogicNoteDetailView_Alina {
 
 
     //Konstruktor
-    public ApplicationLogicNoteDetailView_Alina(NoteData_Julius data, GuiNoteDetailView_Alina gui) {
     public ApplicationLogicNoteDetailView_Alina(Activity activity, NoteData_Julius data, GuiNoteDetailView_Alina gui) {
         mActivity = activity;
         mGui = gui;
@@ -85,12 +86,13 @@ public class ApplicationLogicNoteDetailView_Alina {
 
         String title = mGui.getEditTextTitle().getText().toString();
         String content = mGui.getEditTextContent().getText().toString();
-        String imageView = mData.getImageView();
+        Bitmap picture = ((BitmapDrawable) mGui.getImageView().getDrawable()).getBitmap();
 
         if(mData.getDb().noteDao().noteExists(title)!=0) noteExists = true;
         if(!noteExists || mData.getWithData()) {
             mData.setNoteTitle(title);
             mData.setNoteContent(content);
+            mData.setNotePicture(picture);
         }
         Log.d("LOGTAG", "withData: "+mData.getWithData());
         if(mData.getWithData())
@@ -165,6 +167,8 @@ public class ApplicationLogicNoteDetailView_Alina {
                     break;
             }
         }
+        Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
+        mGui.getImageView().setImageBitmap(bitmap);
     }
 
 
