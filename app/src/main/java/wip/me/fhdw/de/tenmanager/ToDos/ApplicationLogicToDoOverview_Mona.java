@@ -87,10 +87,6 @@ public class ApplicationLogicToDoOverview_Mona {
             startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
             mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
-        } else if (id == R.id.menuTodo) {
-
-            startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
-            mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
 
         DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
