@@ -13,7 +13,7 @@ public class Constants {
         public static final String KEYEVENTTIMESTART = "K3";
         public static final String KEYEVENTDESCRIPTION = "K4";
         public static final String KEYEVENTLOCATION = "K5";
-        public static final String KEYEVENTSPAN = "K6";
+        public static final String KEYEVENTTIMEREMINDER= "K6";
 
         public static final String KEYEVENTDATEEND = "K9";
         public static final String KEYEVENTTIMEEND = "K10";

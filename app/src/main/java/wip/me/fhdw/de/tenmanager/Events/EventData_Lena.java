@@ -22,6 +22,7 @@ public class EventData_Lena {
     private String mEventTimeEnd;
     private String mEventDescription;
     private String mEventLocation;
+    private String mEventTimeReminder;
 
     private boolean mWithData;
 
@@ -57,6 +58,7 @@ public class EventData_Lena {
         mEventDescription = b.getString(Constants.KEYEVENTDESCRIPTION);
         mEventLocation = b.getString(Constants.KEYEVENTLOCATION);
         mWithData = b.getBoolean(Constants.KEYWITHDATA);
+        mEventTimeReminder = b.getString(Constants.KEYEVENTTIMEREMINDER);
         Log.d("LOGTAG", "withData wird in Data entgegengenommen:"+mWithData);
     }
 
@@ -83,11 +85,12 @@ public class EventData_Lena {
         b.putString(Constants.KEYEVENTDESCRIPTION, mEventDescription);
         b.putString(Constants.KEYEVENTLOCATION, mEventLocation);
         b.putBoolean(Constants.KEYWITHDATA, mWithData);
+        b.putString(Constants.KEYEVENTTIMEREMINDER, mEventTimeReminder);
     }
 
     public void createAndSaveNewEvent()
     {
-        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation);
+        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation/*, mEventTimeReminder*/);
         mDb.eventDao().insertAll(event);
     }
 
@@ -112,6 +115,7 @@ public class EventData_Lena {
     public void setEventDescription(String description){mEventDescription = description;}
     public void setEventLocation(String location){mEventLocation = location;}
     public void setWithData(boolean withData){mWithData = withData;}
+    public void setTimeReminder(String timeReminder){mEventTimeReminder = timeReminder;}
 
 
     //getter
@@ -128,6 +132,7 @@ public class EventData_Lena {
     public String getEventDescription(){return mEventDescription;}
     public String getEventLocation(){return mEventLocation;}
     public boolean getWithData(){return mWithData;}
+    public String getEventTimeReminder(){return mEventTimeReminder;}
 
 
 }

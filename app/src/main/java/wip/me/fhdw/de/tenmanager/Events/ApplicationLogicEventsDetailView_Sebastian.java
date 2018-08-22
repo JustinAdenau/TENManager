@@ -71,6 +71,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getButtonTimeEnd().setText(mData.getEventTimeEnd());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
+        //todo: Spinner setzen
     }
 
 

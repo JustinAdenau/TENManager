@@ -24,9 +24,11 @@ public class Event {
     private String mEventDescription;
     @ColumnInfo(name = "event_location")
     private String mEventLocation;
+    @ColumnInfo(name = "event_time_reminder")
+    private String mEventTimeReminder;
 
 
-    public Event(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation){
+    public Event(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation /*,String timeReminder*/){
         mEventTitle=eventTitle;
         mEventDateStart=eventDateStart;
         mEventTimeStart=eventTimeStart;
@@ -34,6 +36,7 @@ public class Event {
         mEventTimeEnd = eventTimeEnd;
         mEventDescription=eventDescription;
         mEventLocation=eventLocation;
+        //mEventTimeReminder = timeReminder;
     }
 
     public int getId() {
@@ -93,5 +96,9 @@ public class Event {
     public String getEventLocation(){ return mEventLocation; }
 
     public void setEventLocation(String eventLocation){this.mEventLocation = eventLocation;}
+
+    public String getEventTimeReminder(){return mEventTimeReminder;}
+
+    public void setEventTimeReminder(String timeReminder){mEventTimeReminder = timeReminder;}
 
 }
