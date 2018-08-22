@@ -41,8 +41,8 @@ public interface EventDao_Lena {
             "OR((SUBSTR(event_date_start,7,4) < SUBSTR(:dateToday, 7,4)) " +
                     "OR (SUBSTR(event_date_start,7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(event_date_start, 4,2) < SUBSTR(:dateToday, 4,2))" +
                     "OR (SUBSTR(event_date_start, 7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(event_date_start, 4,2) like SUBSTR(:dateToday, 4,2) AND SUBSTR(event_date_start, 1,2) < SUBSTR(:dateToday, 1,2)))" +
-                "AND SUBSTR(event_date_end, 7,4) > SUBSTR(:dateToday, 7,4)" +
+                "AND (SUBSTR(event_date_end, 7,4) > SUBSTR(:dateToday, 7,4)" +
                     "OR SUBSTR(event_date_end, 7,4) like SUBSTR(:dateToday, 7,4) AND SUBSTR(event_date_end, 4,2) > SUBSTR(:dateToday, 4,2)" +
-                    "OR (SUBSTR(event_date_end, 7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(event_date_end, 4,2) like SUBSTR(:dateToday, 4,2) AND SUBSTR(event_date_end, 1,2) > SUBSTR(:dateToday, 1,2))")
+                    "OR SUBSTR(event_date_end, 7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(event_date_end, 4,2) like SUBSTR(:dateToday, 4,2) AND SUBSTR(event_date_end, 1,2) > SUBSTR(:dateToday, 1,2))")
     List<Event> getEventsToday(String dateToday);
 }
