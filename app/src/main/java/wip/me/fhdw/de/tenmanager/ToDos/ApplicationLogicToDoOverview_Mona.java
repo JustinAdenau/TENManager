@@ -89,8 +89,8 @@ public class ApplicationLogicToDoOverview_Mona {
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
-        drawer.closeDrawer(GravityCompat.START);
+        //DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
+        //drawer.closeDrawer(GravityCompat.START);
     }
 
     private void startActivity(Class<?> activityClass, boolean withData) {

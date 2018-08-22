@@ -12,6 +12,7 @@
         android:id="@+id/homepage_date"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_weight="1"
         android:text="#Datum#"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
@@ -19,9 +20,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/homepage_title_todo"
+        android:id="@+id/homepage_header_todo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="To Do's:"
         android:textAllCaps="false"
         android:textColor="@color/colorBlack"
@@ -32,20 +34,23 @@
         android:id="@+id/listview_todos"
         android:layout_width="match_parent"
         android:layout_height="124dp"
+        android:layout_weight="7"
         android:background="@color/colorGrey"
         android:divider="@drawable/listview_divider" />
 
     <TextView
-        android:id="@+id/homepage_title_event"
+        android:id="@+id/homepage_header_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Events:"
         android:textColor="@color/colorBlack"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/listview_events"
         android:layout_width="match_parent"
-        android:layout_height="138dp" />
+        android:layout_height="138dp"
+        android:layout_weight="7" />
 </LinearLayout>

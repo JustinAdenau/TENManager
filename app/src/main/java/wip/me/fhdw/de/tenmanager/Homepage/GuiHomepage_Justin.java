@@ -10,15 +10,22 @@ import android.widget.TextView;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiHomepage_Justin {
-    private ListView mListView;
     private ViewStub mStub;
     private View mInflated;
-    private TextView mTitle;
-    private TextView mDate;
-    private TextView mTime;
 
-    private TextView mEvent;
+    private TextView mCurrentDate;
+    private ListView mEventListView;
+    private ListView mTodoListView;
 
+    private TextView mTodoHeader;
+    private TextView mTodoTitle;
+    private TextView mTodoDate;
+    private ImageButton mButtonDeleteTodo;
+
+    private TextView mEventHeader;
+    private TextView mEventTitle;
+    private TextView mEventDate;
+    private TextView mEventTime;
     private ImageButton mButtonDeleteEvent;
 
 
@@ -27,30 +34,45 @@ public class GuiHomepage_Justin {
         mStub = (ViewStub) activity.findViewById(R.id.viewStub);
         mStub.setLayoutResource(R.layout.homepage_justin);
 
+
         mInflated = mStub.inflate();
-        mEvent = activity.findViewById(R.id.homepage_title_event);
-        mListView = activity.findViewById(android.R.id.list);
+        mCurrentDate = activity.findViewById(R.id.homepage_date);
+        mEventHeader = activity.findViewById(R.id.homepage_header_event);
+        mTodoHeader = activity.findViewById(R.id.homepage_header_todo);
+
 
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
         View view = inflater.inflate(R.layout.list_item_homepage_event, null);
 
-        mTitle = view.findViewById(R.id.homepage_event_title);
-        mDate = view.findViewById(R.id.homepage_event_date);
-        mTime = view.findViewById(R.id.homepage_event_time);
 
-
-
+        mEventListView = activity.findViewById(R.id.listview_events);
+        mEventTitle = view.findViewById(R.id.homepage_event_title);
+        mEventDate = view.findViewById(R.id.homepage_event_date);
+        mEventTime = view.findViewById(R.id.homepage_event_time);
         mButtonDeleteEvent = view.findViewById(R.id.homepage_buttonDeleteEvent);
+
+        View view2 = inflater.inflate(R.layout.list_item_homepage_todo, null);
+
+        mTodoListView = activity.findViewById(R.id.listview_todos);
+        mTodoTitle = view2.findViewById(R.id.homepage_todo_title);
+        mTodoDate = view2.findViewById(R.id.homepage_todo_date);
+        mButtonDeleteTodo = view2.findViewById(R.id.homepage_buttonDeleteTodo);
 
     }
 
-    public ListView getListView(){return mListView;}
+    public TextView getmCurrentDate(){return mCurrentDate;}
+    public ListView getEventListView(){return mEventListView;}
+    public ListView getTodoListView(){return mTodoListView;}
 
-    public TextView getTextViewTitle(){return mTitle;}
-    public TextView getTextViewDate(){return mDate;}
-    public TextView getTextViewTime(){return mTime;}
+    public TextView getEventHeader(){return mEventHeader;}
+    public TextView getTodoHeader(){return mTodoHeader;}
 
-    public TextView getEvent(){return mEvent;}
-
+    public TextView getTextViewEventTitle(){return mEventTitle;}
+    public TextView getTextViewEventDate(){return mEventDate;}
+    public TextView getTextViewEventTime(){return mEventTime;}
     public ImageButton getButtonDeleteEvent(){return mButtonDeleteEvent;}
+
+    public TextView getTextViewTodoTitle(){return mTodoTitle;}
+    public TextView getTextViewTodoDate(){return mTodoDate;}
+    public ImageButton getButtonDeleteTodo(){return mButtonDeleteTodo;}
 }

@@ -10,18 +10,17 @@ import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Events.EventData_Lena;
-import wip.me.fhdw.de.tenmanager.Notes.ApplicationLogicNoteOverview_Julius;
-import wip.me.fhdw.de.tenmanager.Notes.GuiNoteOverview_Julius;
-import wip.me.fhdw.de.tenmanager.Notes.NoteAdapter_Julius;
-import wip.me.fhdw.de.tenmanager.Notes.NoteData_Julius;
 import wip.me.fhdw.de.tenmanager.R;
+import wip.me.fhdw.de.tenmanager.ToDos.ToDoData_Mona;
 
 public class InitHomepage_Justin extends AppCompatActivity{
 
     private GuiHomepage_Justin mGui;
     private ApplicationLogicHomepage_Justin mApplicationLogic;
-    private EventData_Lena mData;
+    private ToDoData_Mona mTodoData;
+    private EventData_Lena mEventData;
     private AppDatabase mDb;
+    private ToDoAdapter_Justin mTodoAdapter;
     private EventAdapter_Justin mEventAdapter;
 
     @Override
@@ -36,7 +35,8 @@ public class InitHomepage_Justin extends AppCompatActivity{
 
     public void initData(Bundle savedInstanceState)
     {
-        mData = new EventData_Lena(savedInstanceState, this);
+        mEventData = new EventData_Lena(savedInstanceState, this);
+        mTodoData = new ToDoData_Mona(savedInstanceState,this);
     }
 
     public void initDb()
@@ -50,8 +50,10 @@ public class InitHomepage_Justin extends AppCompatActivity{
     public void initGui(){
         mGui = new GuiHomepage_Justin(this);initToolbar();
     }
-    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicHomepage_Justin(this, mData, mGui, mDb, mEventAdapter); }
-    public void initListAdapter(){mEventAdapter = new EventAdapter_Justin(getApplicationContext());}
+    public void initApplicationLogic(){ mApplicationLogic = new ApplicationLogicHomepage_Justin(this, mEventData,mTodoData,
+            mGui, mDb, mTodoAdapter,mEventAdapter); }
+    public void initListAdapter(){mEventAdapter = new EventAdapter_Justin(getApplicationContext());
+        mTodoAdapter = new ToDoAdapter_Justin(getApplicationContext());}
     public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);

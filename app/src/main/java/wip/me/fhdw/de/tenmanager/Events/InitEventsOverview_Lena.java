@@ -1,8 +1,11 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -39,18 +42,18 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_5_6)
+            .addMigrations(MIGRATION_5_6)
             .allowMainThreadQueries()
             .build();
     }
 
     //if database table is changed (new version) migration is needed
-    /*static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+    static final Migration MIGRATION_5_6 = new Migration(5, 6) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("CREATE TABLE IF NOT EXISTS 'todoOverview_mona'('todo_id' INTEGER PRIMARY KEY NOT NULL, 'todo_title' TEXT, 'todo_duedate' TEXT, 'todo_status' INTEGER NOT NULL, 'todo_content' TEXT)");
         }
-    };*/
+    };
 
 
     public void initGui()
