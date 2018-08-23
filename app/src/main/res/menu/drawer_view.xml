@@ -4,7 +4,8 @@
     <item
         android:id="@+id/menuNotes"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="Notes"/>
+        android:title="Notes"
+        />
     <item
         android:id="@+id/menuEvent"
         android:icon="@android:drawable/ic_menu_today"

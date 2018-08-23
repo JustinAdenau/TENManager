@@ -42,13 +42,13 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
     }
 
     public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_6_7)
+            .addMigrations(MIGRATION_6_7)
             .allowMainThreadQueries()
             .build();
     }
 
     //if database table is changed (new version) migration is needed
-    /*static final Migration MIGRATION_6_7 = new Migration(6, 7) {
+    static final Migration MIGRATION_6_7 = new Migration(6, 7) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
 
@@ -62,6 +62,16 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
             database.execSQL("CREATE TABLE 'todoOverview_mona' (todo_id INTEGER PRIMARY KEY NOT NULL, todo_title TEXT, todo_duedate TEXT, " +
                     "todo_status INTEGER NOT NULL, todo_content TEXT, todo_checkboxactivated TEXT)");
             database.execSQL("DROP TABLE 'todo_old'");
+        }
+    };*/
+
+    /*static final Migration MIGRATION_7_8 = new Migration(7, 8) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+
+            database.execSQL("ALTER TABLE 'note_julius' RENAME TO 'note_old'");
+            database.execSQL("CREATE TABLE 'note_julius' (note_id INTEGER PRIMARY KEY NOT NULL, note_title TEXT, note_content TEXT, note_picture TEXT)");
+            database.execSQL("DROP TABLE 'note_old'");
         }
     };*/
 

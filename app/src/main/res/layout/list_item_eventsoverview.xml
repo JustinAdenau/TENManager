@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/listview_item_style"
+    android:background="@drawable/listview_item_style_events"
     android:orientation="vertical"
     android:id="@+id/idRelativeLayoutListItem"
     android:descendantFocusability="blocksDescendants"
