@@ -20,6 +20,7 @@ import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class InitNoteDetailView_Alina extends AppCompatActivity{
+    //Variablen Deklaration & Instanziierung
 
 
     private static final String TAG = "InitNoteDetailView_Alina";
@@ -43,17 +44,6 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
         initGui();
         initApplicationLogic(mIntent);
         //initDb();
-
-        ImageButton btnCamera = (ImageButton)findViewById(R.id.btnCamera);
-        imageView = (ImageView)findViewById(R.id.imageView);
-        btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 0);
-
-            }
-        });
     }
 
     private void initGui(){
@@ -98,8 +88,7 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // super.onActivityResult(requestCode, resultCode, data);
         mApplicationLogic.onActivityReturned(requestCode, resultCode, data);
-        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-        imageView.setImageBitmap(bitmap);
+
     }
 
     @Override

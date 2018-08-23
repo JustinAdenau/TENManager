@@ -3,6 +3,8 @@ package wip.me.fhdw.de.tenmanager.Notes;
 import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -17,6 +19,8 @@ public class NoteData_Julius {
     private String mNoteTitle;
     private String mNoteContent;
     private boolean mWithData;
+    private String mImageView;
+    private Bitmap mPicture;
 
     public NoteData_Julius(Bundle savedInstanceState, Activity activity) {
         mActivity = activity;
@@ -45,6 +49,9 @@ public class NoteData_Julius {
         mNoteContent = b.getString(Constants.KEYNOTECONTENT);
         mWithData = b.getBoolean(Constants.KEYNOTEWITHDATA);
         Log.d("LOGTAG", "withData wird in Data entgegengenommen:"+mWithData);
+        byte[] byteArray = b.getByteArray(Constants.KEYNOTEIMAGEVIEW);
+        mPicture = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent)
@@ -67,6 +74,8 @@ public class NoteData_Julius {
         b.putString(Constants.KEYNOTETITLE, mNoteTitle);
         b.putString(Constants.KEYNOTECONTENT, mNoteContent);
         b.putBoolean(Constants.KEYNOTEWITHDATA, mWithData);
+        byte[] byteArray = b.getByteArray(Constants.KEYNOTEIMAGEVIEW);
+        b.putByteArray(Constants.KEYNOTEIMAGEVIEW, byteArray);
     }
 
     public void createAndSaveNewNote()
@@ -91,9 +100,11 @@ public class NoteData_Julius {
     public String getNoteContent(){return mNoteContent;}
     public AppDatabase getDb(){return mDb;}
     public boolean getWithData() {return mWithData;}
+    public String getImageView() {return mImageView;}
 
     public void setNoteTitle(String title){mNoteTitle = title;}
     public void setNoteContent(String content){mNoteContent = content;}
     public void setWithData (boolean withData) {mWithData = withData;}
+    public void setNotePicture (Bitmap picture) {mPicture = picture;}
 
 }

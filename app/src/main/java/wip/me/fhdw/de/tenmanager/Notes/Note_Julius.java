@@ -14,11 +14,14 @@ public class Note_Julius {
     private String mTitle;
     @ColumnInfo(name = "note_content")
     private String mContent;
+    @ColumnInfo(name ="note_picture")
+    private String mPicture;
 
 
-    public Note_Julius(String title, String content){
+    public Note_Julius(String title, String content, String picture){
         mTitle = title;
         mContent = content;
+        mPicture = picture;
 
     }
 
@@ -33,6 +36,7 @@ public class Note_Julius {
         return mTitle;
     }
     public String getContent(){ return mContent;}
+    public String getPicture(){ return mPicture;}
 
 
     public void setTitle(String title){
@@ -41,6 +45,7 @@ public class Note_Julius {
     public void setContent(String content){
         mContent = content;
     }
+    public void setPicture (String picture) {mPicture = picture;}
     public void setId(int id){mId = id;}
 
 

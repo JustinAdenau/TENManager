@@ -2,6 +2,8 @@ package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -18,6 +20,7 @@ import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteDetailView_Alina {
+    //Variablen Deklaration & Instanziierung
     private static final String TAG = "AppLogic_Alina";
 
     private GuiNoteDetailView_Alina mGui;
@@ -27,6 +30,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     private Activity mActivity;
 
 
+    //Konstruktor
     public ApplicationLogicNoteDetailView_Alina(Activity activity, NoteData_Julius data, GuiNoteDetailView_Alina gui) {
         mActivity = activity;
         mGui = gui;
@@ -67,10 +71,11 @@ public class ApplicationLogicNoteDetailView_Alina {
 
 
     //todo Methoden einfügen
+    //Einbindung der UserInputValidation Java-Class, Instanziierung??
     private void initUserInputValidation(){
         mUserInputValidation = new UserInputValidationNoteDetailView_Alina(mGui);
     }
-
+    //Methode zum Speichern wenn man auf den "Speicher-Button" klickt
     public void onFabSaveClicked()
     {
         boolean noteExists = false;
@@ -81,11 +86,13 @@ public class ApplicationLogicNoteDetailView_Alina {
 
         String title = mGui.getEditTextTitle().getText().toString();
         String content = mGui.getEditTextContent().getText().toString();
+        Bitmap picture = ((BitmapDrawable) mGui.getImageView().getDrawable()).getBitmap();
 
         if(mData.getDb().noteDao().noteExists(title)!=0) noteExists = true;
         if(!noteExists || mData.getWithData()) {
             mData.setNoteTitle(title);
             mData.setNoteContent(content);
+            mData.setNotePicture(picture);
         }
         Log.d("LOGTAG", "withData: "+mData.getWithData());
         if(mData.getWithData())
@@ -160,6 +167,8 @@ public class ApplicationLogicNoteDetailView_Alina {
                     break;
             }
         }
+        Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
+        mGui.getImageView().setImageBitmap(bitmap);
     }
 
 
