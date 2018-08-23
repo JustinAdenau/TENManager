@@ -6,7 +6,7 @@
         android:layout_height="165dp"
         android:layout_margin="10dp"
         android:layout_weight="0.9"
-        android:background="@drawable/listview_item_style"
+        android:background="@drawable/listview_item_style_events"
         android:padding="10dp"
         android:orientation="vertical">
 

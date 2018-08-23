@@ -65,6 +65,16 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         }
     };*/
 
+    /*static final Migration MIGRATION_7_8 = new Migration(7, 8) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+
+            database.execSQL("ALTER TABLE 'note_julius' RENAME TO 'note_old'");
+            database.execSQL("CREATE TABLE 'note_julius' (note_id INTEGER PRIMARY KEY NOT NULL, note_title TEXT, note_content TEXT, note_picture TEXT)");
+            database.execSQL("DROP TABLE 'note_old'");
+        }
+    };*/
+
 
     public void initGui()
     {
