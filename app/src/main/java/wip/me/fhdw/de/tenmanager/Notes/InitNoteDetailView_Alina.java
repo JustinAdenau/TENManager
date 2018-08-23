@@ -45,7 +45,7 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
         //initDb();
 
         ImageButton btnCamera = (ImageButton)findViewById(R.id.btnCamera);
-        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView)findViewById(R.id.imageView1);
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

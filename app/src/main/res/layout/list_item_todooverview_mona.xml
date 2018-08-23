@@ -137,7 +137,7 @@
                     android:textColor="@color/colorBlack"/>
 
                 <TextView
-                    android:id="@+id/eventDateStart"
+                    android:id="@+id/todo_duedate"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearance"

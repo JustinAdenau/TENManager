@@ -51,15 +51,14 @@ public class ToDoOverviewAdapter_Mona extends BaseAdapter {
 
     @Override
     public View getView(int position, View v, ViewGroup viewGroup) {
-        View view = View.inflate(mContext, R.layout.listview_item, null);
+        View view = View.inflate(mContext, R.layout.list_item_todooverview_mona, null);
         EditText editTextToDoTitle = view.findViewById(R.id.todotitle);
         CheckBox checkBox1 = view.findViewById(R.id.todoCheckBox1);
-        CheckBox checkBox2 = view.findViewById(R.id.todoCheckBox2);
-        //CheckBox checkBox3 = view.findViewById(R.id.todocCheckBox3);
+        CheckBox checkBox2 = view.findViewById(R.id.todoCheckBox);
         TextView textViewToDoStatus = view.findViewById(R.id.todoStatus);
-        TextView textViewToDoDuedate = view.findViewById(R.id.todoDuedate);
+        TextView textViewToDoDuedate = view.findViewById(R.id.todo_duedate);
         //ImageButton buttonDeleteToDo = view.findViewById();
-        //buttonDeleteToDo.setOnClickListener(new ButtonDeleteToDoClickListener_Mona(mApplocationLogic));
+        //buttonDeleteToDo.setOnClickListener(new ButtonDeleteToDoClickListener_Mona(mApplicationLogic));
 
         editTextToDoTitle.setText(mToDoList.get(position).getTitle());
         String content = mToDoList.get(position).getContent();
@@ -73,19 +72,13 @@ public class ToDoOverviewAdapter_Mona extends BaseAdapter {
                 startindex = i;
             }
         }
-        if(contents.size()>=3)
+        if(contents.size()>=2 )
         {
             checkBox1.setText(contents.get(0));
             checkBox2.setText(contents.get(1));
 
-        }
-        else if(contents.size()==2)
-        {
-            checkBox1.setText(contents.get(0));
-            checkBox2.setText(contents.get(1));
         }
         else  checkBox1.setText(contents.get(0));
-
 
         textViewToDoStatus.setText(mToDoList.get(position).getStatus());
         textViewToDoDuedate.setText(mToDoList.get(position).getDuedate());

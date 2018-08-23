@@ -38,7 +38,7 @@ public class GuiNoteDetailView_Alina {
         mEditTextContent = activity.findViewById(R.id.noteContentEditText);
         mTextInputLayoutTitle = activity.findViewById(R.id.noteTitle);
         mTextInputLayoutContent = activity.findViewById(R.id.noteContent);
-        mImageView = activity.findViewById(R.id.imageView);
+        mImageView = activity.findViewById(R.id.imageView1);
         mImageButton = activity.findViewById(R.id.btnCamera);
 
         mFabSave = activity.findViewById(R.id.fab);

@@ -45,11 +45,11 @@ public class GuiToDoOverview_Mona {
         mTitle = view.findViewById(R.id.listviewitem_textview_title_todo);
         mImButton = view.findViewById(R.id.buttonDeleteToDo);
         mCheckbox1 = view.findViewById(R.id.todoCheckBox1);
-        mCheckbox2 = view.findViewById(R.id.todoCheckBox2);
+        mCheckbox2 = view.findViewById(R.id.todoCheckBox);
         mStatusText = view.findViewById(R.id.todoStatusText);
         mDueDateText = view.findViewById(R.id.todoDuedateText);
         mStatus = view.findViewById(R.id.todoStatus);
-        mDueDate = view.findViewById(R.id.todoDuedate);
+        mDueDate = view.findViewById(R.id.todo_duedate);
 
         mFabCreateNew = activity.findViewById(R.id.fab);
 

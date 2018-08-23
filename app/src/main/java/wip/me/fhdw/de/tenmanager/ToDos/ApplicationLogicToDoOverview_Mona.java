@@ -50,27 +50,21 @@ public class ApplicationLogicToDoOverview_Mona {
     }
 
     private void dataToGui() {
-        mDb.todoDao().deleteAllToDos();
-        String frühjahr = "Fenster putzen, Waschen, Wischen";
-        String Fertig = "18.12.2018";
-        int Stand = 33;
-        ToDoOverview_Mona frühjahrsputz = new ToDoOverview_Mona("Frühjahrsputz", frühjahr, Fertig, Stand/*, "YYY"*/);
 
-        String Uni = "GBI, IuF, PIT";
-        String Faelligkeit = "12.12.2018";
-        int Status = 66;
-        ToDoOverview_Mona uniaufgaben = new ToDoOverview_Mona("Zu erledigende Uniaufgaben!", Uni, Faelligkeit, Status/*, "NYY"*/);
-        mDb.todoDao().insertAll(frühjahrsputz, uniaufgaben);
-
+        //mDb.todoDao().deleteAllToDos();
+        //ToDoOverview_Mona todo = new ToDoOverview_Mona("Fertig werden!!!", "eventDetailview, todos, fotos,", "23.08.2018", 50);
+        //mDb.todoDao().insertAll(todo);
         mToDoList = mDb.todoDao().getAllToDos();
 
         mToDoAdapter.setToDoList(mToDoList);
+        mToDoAdapter.setApplicationLogic(this);
         mGui.getListView().setAdapter(mToDoAdapter);
 
     }
 
     public void onFabCreateNewClicked() {
-        startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, false);
+        startActivity(Constants.ACTIVITYTODODETAILVIEWCLASS, false);
+        mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onMenuItemSelected(MenuItem item)
@@ -105,6 +99,10 @@ public class ApplicationLogicToDoOverview_Mona {
     public void onListItemClicked(int position)
     {
         mToDoData.setToDoTitle(mToDoList.get(position).getTitle());
+        mToDoData.setToDoContent(mToDoList.get(position).getContent());
+        mToDoData.setToDoDuedate(mToDoList.get(position).getDuedate());
+        mToDoData.setToDoStaus(mToDoList.get(position).getStatus());
+        mToDoData.setWithData(true);
         startActivity(Constants.ACTIVITYTODODETAILVIEWCLASS, true);
     }
 
@@ -148,12 +146,8 @@ public class ApplicationLogicToDoOverview_Mona {
     public void onButtonDeleteToDoClicked(View view) {
         View v = (View)view.getParent().getParent().getParent();
         TextView title = v.findViewById(R.id.listviewitem_textview_title_todo);
-        TextView checkbox1 = v.findViewById(R.id.todoCheckBox1);
-        TextView checkbox2 = v.findViewById(R.id.todoCheckBox2);
-        TextView dueDate = v.findViewById(R.id.todoDuedate);
 
-        ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString());
-        mDb.todoDao().deleteToDos(todoToBeDeleted);
+        mDb.todoDao().deleteToDoByTitle(title.getText().toString());
 
         mActivity.recreate();
     }
