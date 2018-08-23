@@ -1,5 +1,7 @@
 package wip.me.fhdw.de.tenmanager.Homepage;
 
+import android.support.design.widget.NavigationView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -27,10 +29,11 @@ public class GuiHomepage_Justin {
     private TextView mEventDate;
     private TextView mEventTime;
     private ImageButton mButtonDeleteEvent;
+    private NavigationView mNavigationView;
 
 
     public GuiHomepage_Justin(InitHomepage_Justin activity){
-        activity.setContentView(R.layout.homepage_layout_justin);
+        activity.setContentView(R.layout.menu_homepage);
         mStub = (ViewStub) activity.findViewById(R.id.viewStub);
         mStub.setLayoutResource(R.layout.homepage_justin);
 
@@ -58,6 +61,8 @@ public class GuiHomepage_Justin {
         mTodoDate = view2.findViewById(R.id.homepage_todo_date);
         mButtonDeleteTodo = view2.findViewById(R.id.homepage_buttonDeleteTodo);
 
+        mNavigationView = activity.findViewById(R.id.nav_view);
+        if(mNavigationView == null) Log.d("LOGTAG", "NavigationView ist null in GuiEventsOverview Z.59!!!!!!!!!!");
     }
 
     public TextView getmCurrentDate(){return mCurrentDate;}
@@ -75,4 +80,6 @@ public class GuiHomepage_Justin {
     public TextView getTextViewTodoTitle(){return mTodoTitle;}
     public TextView getTextViewTodoDate(){return mTodoDate;}
     public ImageButton getButtonDeleteTodo(){return mButtonDeleteTodo;}
+
+    public NavigationView getNavigationView(){return mNavigationView;}
 }

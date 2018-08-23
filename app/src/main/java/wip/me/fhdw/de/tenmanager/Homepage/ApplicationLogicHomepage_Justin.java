@@ -2,7 +2,10 @@ package wip.me.fhdw.de.tenmanager.Homepage;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.Event;
 import wip.me.fhdw.de.tenmanager.Events.EventData_Lena;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
 import wip.me.fhdw.de.tenmanager.R;
 import wip.me.fhdw.de.tenmanager.ToDos.ToDoData_Mona;
 import wip.me.fhdw.de.tenmanager.ToDos.ToDoOverview_Mona;
@@ -68,6 +72,9 @@ public class ApplicationLogicHomepage_Justin {
         mGui.getEventHeader().setOnClickListener(titleEventClickListener);
         TitleTodoClickListener titleTodoClickListener = new TitleTodoClickListener(this);
         mGui.getTodoHeader().setOnClickListener(titleTodoClickListener);
+
+        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
     public void dataToGui(){
@@ -113,6 +120,30 @@ public class ApplicationLogicHomepage_Justin {
         mTodoData.setToDoTitle(mTodoList.get(position).getTitle());
         startActivity(Constants.ACTIVITYTODODETAILVIEWCLASS, true);
         mTodoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    public void onMenuItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if (id == R.id.menuNotes) {
+
+            startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
+            mEventData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+
+        } else if (id == R.id.menuTodo) {
+
+            startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
+            mEventData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+
+        else if (id==R.id.menuEvent){
+            startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
+            mEventData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer_homepage);
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     public void onButtonDeleteEventClicked(View view)
