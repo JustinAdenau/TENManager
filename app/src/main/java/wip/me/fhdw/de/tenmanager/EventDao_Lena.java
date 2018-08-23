@@ -28,13 +28,6 @@ public interface EventDao_Lena {
     @Insert
     void insertAll(Event... events);
 
-    @Query("UPDATE event set event_title=:title and event_date_start=:dateStart and event_time_start=:timeStart " +
-            "and event_date_end=:dateEnd and event_time_end=:timeEnd and event_description=:description " +
-            "and event_location=:location " +
-            "where event_title like:titleOld and event_date_start like:dateStartOld " +
-            "and event_time_start like :timeStartOld")
-    void updateEvent(String titleOld, String dateStartOld, String timeStartOld, String title, String dateStart,
-                     String timeStart, String dateEnd, String timeEnd, String description, String location);
 
     @Query("DELETE from event")
     void deleteAll();
@@ -42,7 +35,14 @@ public interface EventDao_Lena {
     @Delete
     void deleteEvents(Event... events);
 
-    @Query("DELETE from event where id like :id")
-    void deleteEventById(int id);
-
+    @Query("SELECT * from event " +
+            "where event_date_start like :dateToday " +
+            "OR event_date_end like :dateToday " +
+            "OR((SUBSTR(event_date_start,7,4) < SUBSTR(:dateToday, 7,4)) " +
+                    "OR (SUBSTR(event_date_start,7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(event_date_start, 4,2) < SUBSTR(:dateToday, 4,2))" +
+                    "OR (SUBSTR(event_date_start, 7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(event_date_start, 4,2) like SUBSTR(:dateToday, 4,2) AND SUBSTR(event_date_start, 1,2) < SUBSTR(:dateToday, 1,2)))" +
+                "AND (SUBSTR(event_date_end, 7,4) > SUBSTR(:dateToday, 7,4)" +
+                    "OR SUBSTR(event_date_end, 7,4) like SUBSTR(:dateToday, 7,4) AND SUBSTR(event_date_end, 4,2) > SUBSTR(:dateToday, 4,2)" +
+                    "OR SUBSTR(event_date_end, 7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(event_date_end, 4,2) like SUBSTR(:dateToday, 4,2) AND SUBSTR(event_date_end, 1,2) > SUBSTR(:dateToday, 1,2))")
+    List<Event> getEventsToday(String dateToday);
 }

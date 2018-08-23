@@ -54,12 +54,12 @@ public class ApplicationLogicToDoOverview_Mona {
         String frühjahr = "Fenster putzen, Waschen, Wischen";
         String Fertig = "18.12.2018";
         int Stand = 33;
-        ToDoOverview_Mona frühjahrsputz = new ToDoOverview_Mona("Frühjahrsputz", frühjahr, Fertig, Stand);
+        ToDoOverview_Mona frühjahrsputz = new ToDoOverview_Mona("Frühjahrsputz", frühjahr, Fertig, Stand/*, "YYY"*/);
 
         String Uni = "GBI, IuF, PIT";
         String Faelligkeit = "12.12.2018";
         int Status = 66;
-        ToDoOverview_Mona uniaufgaben = new ToDoOverview_Mona("Zu erledigende Uniaufgaben!", Uni, Faelligkeit, Status);
+        ToDoOverview_Mona uniaufgaben = new ToDoOverview_Mona("Zu erledigende Uniaufgaben!", Uni, Faelligkeit, Status/*, "NYY"*/);
         mDb.todoDao().insertAll(frühjahrsputz, uniaufgaben);
 
         mToDoList = mDb.todoDao().getAllToDos();
@@ -87,10 +87,6 @@ public class ApplicationLogicToDoOverview_Mona {
             startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
             mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
-        } else if (id == R.id.menuTodo) {
-
-            startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
-            mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
 
         DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
