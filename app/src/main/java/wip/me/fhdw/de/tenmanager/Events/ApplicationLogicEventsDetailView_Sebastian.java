@@ -20,6 +20,8 @@ import wip.me.fhdw.de.tenmanager.R;
 public class ApplicationLogicEventsDetailView_Sebastian {
 
     private static final String TAG = "AppLogic_Sebastian";
+   // public static final String CHANNEL_1_ID = "channel1";
+
 
     private GuiEventsDetailView_Sebastian mGui;
     private EventData_Lena mData;
@@ -39,6 +41,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui = gui;
         mData = data;
         initGui();
+       // initNotification();
         initListener();
         initCurrentDate();
         initCurrentTime();
@@ -54,6 +57,20 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     private void initGui() {
         dataToGui();
     }
+
+    /*public void initNotification(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel1 = new NotificationChannel(
+                    CHANNEL_1_ID,
+                    "Channel1",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            channel1.setDescription("This is a Testchannel ändern in AppLogic");
+
+            NotificationManager manager = mActivity.getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel1);
+        }
+    }*/
 
     public void initListener() {
         EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
@@ -73,6 +90,8 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getButtonTimeEnd().setText(mData.getEventTimeEnd());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
+        //todo an Datenbank
+       // mGui.getSpinnerReminder().setSelection(mData.getEvent());
     }
 
 
@@ -141,13 +160,18 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     }
 
     private void initReminderSpinner(){
-        mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui);
+        mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
         mReminderSpinner.buildReminderSpinner();
     }
 
 
     public void onFabSaveClicked() {
         if (mUserInputValidation.confirmInput()) return;
+        if(mReminderSpinner.isNotificationActive()==true){
+            mReminderSpinner.startAlarm(mReminderSpinner.getCalendar());
+        } else {
+            mReminderSpinner.cancelAlarm(mReminderSpinner.getCalendar());
+        }
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
         String dateStartOld = mData.getEventDateStart();
@@ -165,6 +189,8 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
             mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
             mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
+            //todo Position von adapterview
+            //mData.setEventDateEnd(mGui.getSpinnerReminder().getSelectedItemPosition());
         }
 
         Log.d("LOGTAG", "withData: " + mData.getWithData());

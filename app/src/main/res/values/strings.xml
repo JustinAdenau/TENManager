@@ -6,10 +6,4 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
-    <string-array name="reminder_list">
-        <item>test1</item>
-        <item>test2</item>
-        <item>test3</item>
-    </string-array>
 </resources>

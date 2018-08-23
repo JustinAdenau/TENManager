@@ -128,4 +128,8 @@ public class GuiEventsDetailView_Sebastian {
     public void setButtonDateEnd(String ButtonDateEnd) {
         this.mButtonDateEnd.setText(ButtonDateEnd);
     }
+
+    public void setSpinnerReminder(String SpinnerReminder){
+        this.mSpinnerReminder.setSelection(Integer.parseInt(SpinnerReminder));
+    }
 }

@@ -29,6 +29,8 @@
         <activity android:name=".Notes.InitNoteDetailView_Alina"></activity>
         <activity android:name=".Menu.Menu_Alina_und_Mona"></activity>
 
+        <receiver android:name=".Events.AlertReceiverEventsDetailView_Sebastian"/>
+
         <!--<activity android:name=".GuiEventsOverview_Lena"/>-->
 
     </application>
