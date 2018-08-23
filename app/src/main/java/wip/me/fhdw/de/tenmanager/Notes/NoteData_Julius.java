@@ -19,8 +19,7 @@ public class NoteData_Julius {
     private String mNoteTitle;
     private String mNoteContent;
     private boolean mWithData;
-    private String mImageView;
-    private Bitmap mPicture;
+    private String mPictureString;
 
     public NoteData_Julius(Bundle savedInstanceState, Activity activity) {
         mActivity = activity;
@@ -40,17 +39,17 @@ public class NoteData_Julius {
                 restoreDataFromBundle(intentParameters);
             }
         }
+
+
     }
 
     public void restoreDataFromBundle(Bundle b)
     {
-
         mNoteTitle = b.getString(Constants.KEYNOTETITLE);
         mNoteContent = b.getString(Constants.KEYNOTECONTENT);
         mWithData = b.getBoolean(Constants.KEYNOTEWITHDATA);
-        Log.d("LOGTAG", "withData wird in Data entgegengenommen:"+mWithData);
-        byte[] byteArray = b.getByteArray(Constants.KEYNOTEIMAGEVIEW);
-        mPicture = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        mPictureString = b.getString(Constants.KEYNOTEPICTURE);
+
 
     }
 
@@ -74,13 +73,13 @@ public class NoteData_Julius {
         b.putString(Constants.KEYNOTETITLE, mNoteTitle);
         b.putString(Constants.KEYNOTECONTENT, mNoteContent);
         b.putBoolean(Constants.KEYNOTEWITHDATA, mWithData);
-        byte[] byteArray = b.getByteArray(Constants.KEYNOTEIMAGEVIEW);
-        b.putByteArray(Constants.KEYNOTEIMAGEVIEW, byteArray);
+        b.putString(Constants.KEYNOTEPICTURE, mPictureString);
     }
 
     public void createAndSaveNewNote()
     {
-        Note_Julius note = new Note_Julius(mNoteTitle, mNoteContent);
+
+        Note_Julius note = new Note_Julius(mNoteTitle, mNoteContent, mPictureString);
         mDb.noteDao().insertAll(note);
     }
 
@@ -100,11 +99,11 @@ public class NoteData_Julius {
     public String getNoteContent(){return mNoteContent;}
     public AppDatabase getDb(){return mDb;}
     public boolean getWithData() {return mWithData;}
-    public String getImageView() {return mImageView;}
+    public String getPictureURI() {return mPictureString;}
 
     public void setNoteTitle(String title){mNoteTitle = title;}
     public void setNoteContent(String content){mNoteContent = content;}
     public void setWithData (boolean withData) {mWithData = withData;}
-    public void setNotePicture (Bitmap picture) {mPicture = picture;}
+    public void setNotePictureString (String picture) {mPictureString = picture;}
 
 }

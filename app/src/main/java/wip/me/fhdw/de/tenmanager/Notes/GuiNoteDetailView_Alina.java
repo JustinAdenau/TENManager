@@ -21,12 +21,14 @@ public class GuiNoteDetailView_Alina {
     private EditText mEditTextTitle;
     private EditText mEditTextContent;
     private ImageView mImageView;
+    private ImageButton btnCamera;
 
     private TextInputLayout mTextInputLayoutTitle;
     private TextInputLayout mTextInputLayoutContent;
     private FloatingActionButton mFabSave;
     private NavigationView mNavigationView;
-    private ImageView imageView;
+
+
 
 
 
@@ -40,22 +42,13 @@ public class GuiNoteDetailView_Alina {
         mEditTextContent = activity.findViewById(R.id.noteContentEditText);
         mTextInputLayoutTitle = activity.findViewById(R.id.noteTitle);
         mTextInputLayoutContent = activity.findViewById(R.id.noteContent);
-        mImageView = activity.findViewById(R.id.imageView);
 
         mFabSave = activity.findViewById(R.id.fab);
         mFabSave.setImageResource(android.R.drawable.ic_menu_save);
         mNavigationView = activity.findViewById(R.id.nav_view);
 
-        ImageButton btnCamera = (ImageButton)activity.findViewById(R.id.btnCamera);
-        imageView = (ImageView)activity.findViewById(R.id.imageView);
-        btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                activity.startActivityForResult(intent, 0);
-
-            }
-        });
+        btnCamera = activity.findViewById(R.id.btnCamera);
+        mImageView = activity.findViewById(R.id.imageView);
     }
 
 
@@ -73,6 +66,8 @@ public class GuiNoteDetailView_Alina {
     }
 
     public ImageView getImageView() {return mImageView; }
+
+    public ImageButton getCameraButton(){return btnCamera;}
 
     public FloatingActionButton getFabSave() {return mFabSave;}
 

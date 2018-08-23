@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -51,6 +53,14 @@ public class ApplicationLogicNoteDetailView_Alina {
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
         NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
+        mGui.getCameraButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                mActivity.startActivityForResult(intent, 0);
+
+            }
+        });
     }
 
 
@@ -60,6 +70,8 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         mGui.getEditTextTitle().setText(mData.getNoteTitle());
         mGui.getEditTextContent().setText(mData.getNoteContent());
+        Uri mPictureUri =Uri.parse(mData.getPictureURI());
+        mGui.getImageView().setImageURI(mPictureUri);
     }
 
 
@@ -86,13 +98,17 @@ public class ApplicationLogicNoteDetailView_Alina {
 
         String title = mGui.getEditTextTitle().getText().toString();
         String content = mGui.getEditTextContent().getText().toString();
+        //String pictureString = createPictureString();
+
+        //ToDo Methode zum Auflösen von Bitmap zu 1 String
         Bitmap picture = ((BitmapDrawable) mGui.getImageView().getDrawable()).getBitmap();
+
 
         if(mData.getDb().noteDao().noteExists(title)!=0) noteExists = true;
         if(!noteExists || mData.getWithData()) {
             mData.setNoteTitle(title);
             mData.setNoteContent(content);
-            mData.setNotePicture(picture);
+           // mData.setNotePictureString(pictureString); //
         }
         Log.d("LOGTAG", "withData: "+mData.getWithData());
         if(mData.getWithData())
