@@ -99,7 +99,7 @@ public class NoteData_Julius {
     public String getNoteContent(){return mNoteContent;}
     public AppDatabase getDb(){return mDb;}
     public boolean getWithData() {return mWithData;}
-    public String getPictureURI() {return mPictureString;}
+    public String getPictureString() {return mPictureString;}
 
     public void setNoteTitle(String title){mNoteTitle = title;}
     public void setNoteContent(String content){mNoteContent = content;}

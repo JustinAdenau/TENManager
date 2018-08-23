@@ -20,12 +20,11 @@ public class GuiNoteDetailView_Alina {
 
     private EditText mEditTextTitle;
     private EditText mEditTextContent;
-    private ImageView mImageView;
     private ImageButton btnCamera;
 
     private TextInputLayout mTextInputLayoutTitle;
     private TextInputLayout mTextInputLayoutContent;
-    private ImageView mImageView;
+    private ImageView mImageView1,mImageView2,mImageView3,mImageView4,mImageView5;
     private ImageButton mImageButton;
 
     private FloatingActionButton mFabSave;
@@ -45,7 +44,6 @@ public class GuiNoteDetailView_Alina {
         mEditTextContent = activity.findViewById(R.id.noteContentEditText);
         mTextInputLayoutTitle = activity.findViewById(R.id.noteTitle);
         mTextInputLayoutContent = activity.findViewById(R.id.noteContent);
-        mImageView = activity.findViewById(R.id.imageView);
         mImageButton = activity.findViewById(R.id.btnCamera);
 
         mFabSave = activity.findViewById(R.id.fab);
@@ -53,7 +51,13 @@ public class GuiNoteDetailView_Alina {
         mNavigationView = activity.findViewById(R.id.nav_view);
 
         btnCamera = activity.findViewById(R.id.btnCamera);
-        mImageView = activity.findViewById(R.id.imageView);
+        mImageView1 = activity.findViewById(R.id.imageView1);
+        mImageView2 = activity.findViewById(R.id.imageView2);
+        mImageView3 = activity.findViewById(R.id.imageView3);
+        mImageView4 = activity.findViewById(R.id.imageView4);
+        mImageView5 = activity.findViewById(R.id.imageView5);
+
+
     }
 
 
@@ -70,7 +74,12 @@ public class GuiNoteDetailView_Alina {
         return mTextInputLayoutContent;
     }
 
-    public ImageView getImageView() {return mImageView; }
+    public ImageView getImageView1() {return mImageView1; }
+    public ImageView getImageView2() {return mImageView2; }
+    public ImageView getImageView3() {return mImageView3; }
+    public ImageView getImageView4() {return mImageView4; }
+    public ImageView getImageView5() {return mImageView5; }
+
 
     public ImageButton getCameraButton(){return btnCamera;}
 
@@ -78,7 +87,6 @@ public class GuiNoteDetailView_Alina {
 
     public NavigationView getNavigationView(){return mNavigationView;}
 
-    public ImageView getImageView(){return mImageView;}
 
     public ImageButton getBtnCamera(){return mImageButton;}
 }

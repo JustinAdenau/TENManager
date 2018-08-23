@@ -1,6 +1,7 @@
 package wip.me.fhdw.de.tenmanager.Notes;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,7 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
@@ -70,8 +74,34 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         mGui.getEditTextTitle().setText(mData.getNoteTitle());
         mGui.getEditTextContent().setText(mData.getNoteContent());
-        Uri mPictureUri =Uri.parse(mData.getPictureURI());
-        mGui.getImageView().setImageURI(mPictureUri);
+
+        List<String> StringUriList = new ArrayList<>();
+
+        Log.d("LOGTAG", "mData getPictureString: " + mData.getPictureString());
+
+        if(mData.getPictureString() != null){
+            StringUriList = getStringUriList(mData.getPictureString());
+            if(StringUriList.size() != 0) {
+                Log.d("LOGTAG", "Bild Uri: " + Uri.parse(StringUriList.get(0)));
+                if (StringUriList.size() > 0 && StringUriList.get(0) != null) {
+                    mGui.getImageView1().setImageURI(Uri.parse(StringUriList.get(0)));
+                }
+                if (StringUriList.size() > 1 && StringUriList.get(1) != null) {
+                    mGui.getImageView2().setImageURI(Uri.parse(StringUriList.get(1)));
+                }
+                if (StringUriList.size() > 2 && StringUriList.get(2) != null) {
+                    mGui.getImageView3().setImageURI(Uri.parse(StringUriList.get(2)));
+                }
+                if (StringUriList.size() > 3 && StringUriList.get(3) != null) {
+                    mGui.getImageView4().setImageURI(Uri.parse(StringUriList.get(3)));
+                }
+                if (StringUriList.size() > 4 && StringUriList.get(4) != null) {
+                    mGui.getImageView5().setImageURI(Uri.parse(StringUriList.get(4)));
+                }
+            }
+        }
+
+
     }
 
 
@@ -98,17 +128,15 @@ public class ApplicationLogicNoteDetailView_Alina {
 
         String title = mGui.getEditTextTitle().getText().toString();
         String content = mGui.getEditTextContent().getText().toString();
-        //String pictureString = createPictureString();
-
-        //ToDo Methode zum Auflösen von Bitmap zu 1 String
-        Bitmap picture = ((BitmapDrawable) mGui.getImageView().getDrawable()).getBitmap();
+        String pictureString = createPictureString();
+        Log.d("LOGTAG", "PictureString:  " + pictureString + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 
         if(mData.getDb().noteDao().noteExists(title)!=0) noteExists = true;
         if(!noteExists || mData.getWithData()) {
             mData.setNoteTitle(title);
             mData.setNoteContent(content);
-           // mData.setNotePictureString(pictureString); //
+            mData.setNotePictureString(pictureString);
         }
         Log.d("LOGTAG", "withData: "+mData.getWithData());
         if(mData.getWithData())
@@ -184,7 +212,31 @@ public class ApplicationLogicNoteDetailView_Alina {
             }
         }
         Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
-        mGui.getImageView().setImageBitmap(bitmap);
+        boolean allreadySet = false;
+        if(mGui.getImageView1().getDrawable() == null) {
+
+                mGui.getImageView1().setImageBitmap(bitmap);
+                allreadySet = true;
+        }
+        if(allreadySet == false && mGui.getImageView2().getDrawable() == null) {
+
+            mGui.getImageView2().setImageBitmap(bitmap);
+            allreadySet = true;
+        }
+        if(allreadySet == false && mGui.getImageView3().getDrawable() == null ) {
+
+            mGui.getImageView3().setImageBitmap(bitmap);
+            allreadySet = true;
+        }
+        if(allreadySet == false && mGui.getImageView4().getDrawable() == null) {
+
+            mGui.getImageView4().setImageBitmap(bitmap);
+            allreadySet = true;
+        }
+        if(allreadySet == false && mGui.getImageView5().getDrawable() == null) {
+
+            mGui.getImageView5().setImageBitmap(bitmap);
+        }
     }
 
 
@@ -207,5 +259,62 @@ public class ApplicationLogicNoteDetailView_Alina {
         Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+    }
+
+
+    private List<String> getStringUriList(String uriString){
+
+        List<String> uriList = new ArrayList<String>();
+        int counter = 0;
+
+            for (int i = 0; i < uriString.length(); i++) {
+                if (uriString.charAt(i) == ';') {
+                    uriList.add(uriString.substring(counter, i));
+                    counter = i + 1;
+                }
+            }
+
+        return uriList;
+    }
+
+
+    private String createPictureString(){
+
+        String pictureString = "";
+
+        if(mGui.getImageView1().getDrawable() != null) {
+            if (getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView1().getDrawable()).getBitmap()) != null) {
+                pictureString = pictureString + getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView1().getDrawable()).getBitmap()) + ";";
+            }
+        }
+        if(mGui.getImageView2().getDrawable() != null) {
+            if (getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView2().getDrawable()).getBitmap()) != null) {
+                pictureString = pictureString + getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView2().getDrawable()).getBitmap()) + ";";
+            }
+        }
+        if(mGui.getImageView3().getDrawable() != null) {
+            if (getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView3().getDrawable()).getBitmap()) != null) {
+                pictureString = pictureString + getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView3().getDrawable()).getBitmap()) + ";";
+            }
+        }
+        if(mGui.getImageView4().getDrawable() != null) {
+            if (getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView4().getDrawable()).getBitmap()) != null) {
+                    pictureString = pictureString + getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView4().getDrawable()).getBitmap()) + ";";
+            }
+        }
+        if(mGui.getImageView5().getDrawable() != null) {
+            if (getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView5().getDrawable()).getBitmap()) != null) {
+                        pictureString = pictureString + getImageString(mActivity.getApplicationContext(), ((BitmapDrawable) mGui.getImageView5().getDrawable()).getBitmap()) + ";";
+            }
+        }
+
+        return pictureString;
+    }
+
+    private String getImageString(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return path;
     }
 }

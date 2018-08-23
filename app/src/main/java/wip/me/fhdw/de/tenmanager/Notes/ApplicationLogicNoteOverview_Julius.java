@@ -57,7 +57,7 @@ public class ApplicationLogicNoteOverview_Julius {
     public void dataToGui(){
         //mDb.noteDao().deleteAllNotes();
 
-        //Note_Julius neu = new Note_Julius("Test", "-Eier \n-Wasser \n-Mehl");
+        //Note_Julius neu = new Note_Julius("Test", "-Eier \n-Wasser \n-Mehl", "c://");
         //mDb.noteDao().insertAll(neu);
 
         mNoteList = mDb.noteDao().getAllNotes();
@@ -80,6 +80,7 @@ public class ApplicationLogicNoteOverview_Julius {
     {
         mNoteData.setNoteTitle(mNoteList.get(position).getTitle());
         mNoteData.setNoteContent(mNoteList.get(position).getContent());
+        mNoteData.setNotePictureString(mNoteList.get(position).getPicture());
         mNoteData.setWithData(true);
         startActivity(Constants.ACTIVITYNOTEDETAILVIEWCLASS, true);
         mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
