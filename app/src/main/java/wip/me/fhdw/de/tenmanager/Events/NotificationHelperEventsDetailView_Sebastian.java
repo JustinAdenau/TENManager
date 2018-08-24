@@ -13,7 +13,6 @@ import wip.me.fhdw.de.tenmanager.R;
 public class NotificationHelperEventsDetailView_Sebastian extends ContextWrapper {
 
     public static final String channel1ID = "channel1ID";
-    public static final String channel1Name = "Channel 1";
 
 
     private NotificationManager mManager;
@@ -51,7 +50,9 @@ public class NotificationHelperEventsDetailView_Sebastian extends ContextWrapper
                 .setContentTitle(title)
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_event_note_black_24dp)
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
     }
 
 }

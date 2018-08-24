@@ -39,7 +39,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui = gui;
         mData = data;
         initGui();
-       // initNotification();
         initListener();
         initCurrentDate();
         initCurrentTime();
@@ -48,7 +47,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         initTimepickerStart();
         initTimepickerEnd();
         initUserInputValidation();
-        //initReminderSpinner();
     }
 
 
@@ -56,19 +54,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         dataToGui();
     }
 
-    /*public void initNotification(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel1 = new NotificationChannel(
-                    CHANNEL_1_ID,
-                    "Channel1",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
-            channel1.setDescription("This is a Testchannel ändern in AppLogic");
-
-            NotificationManager manager = mActivity.getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel1);
-        }
-    }*/
 
     public void initListener() {
         EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
@@ -160,9 +145,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
-    private void initReminderSpinner(){
-
-    }
 
 
     public void onFabSaveClicked() {

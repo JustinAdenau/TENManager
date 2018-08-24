@@ -16,9 +16,11 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String title = intent.getStringExtra(Constants.KEYNOTIFICATIONTITLE);
         String message = intent.getStringExtra(Constants.KEYNOTIFICATIONMESSAGE);
-        Log.d(TAG, "onReceive: title und message" + title + " " + message);
+        int eventID = Integer.parseInt(intent.getStringExtra(Constants.KEYNOTIFICATIONID));
+        Log.d(TAG, "onReceive: title und message, eventID " + title + " " + message + " " + eventID + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         NotificationHelperEventsDetailView_Sebastian notificationHelper = new NotificationHelperEventsDetailView_Sebastian(context);
         NotificationCompat.Builder nb = notificationHelper.getChannel1Notification(title, message);
+        //notificationHelper.getManager().notify(eventID, nb.build());
         notificationHelper.getManager().notify(1, nb.build());
         }
 }

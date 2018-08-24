@@ -31,6 +31,9 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     private String mSpinnerPosition;
 
+    //todo löschen!!!!!
+    private int mEventID = 1;
+
 
   //  private NotificationManagerCompat mNotificationManager;
   //  private NotificationHelperEventsDetailView_Sebastian mNotificationHelper;
@@ -42,8 +45,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
        mGui = gui;
        mActivity = activity;
 
-      // mNotificationManager = NotificationManagerCompat.from(mActivity.getApplicationContext());
-      // mNotificationHelper = new NotificationHelperEventsDetailView_Sebastian(mActivity.getApplication());
     }
 
 
@@ -54,7 +55,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
         Spinner spinner = mGui.getSpinnerReminder();
         spinner.setAdapter(adapter);
-        //todo warten bis Datenbankläuft
+        
         if (mSpinnerPosition != null) {
             spinner.setSelection(Integer.parseInt(mSpinnerPosition));
         } else {
@@ -151,8 +152,11 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
         intent.putExtra(Constants.KEYNOTIFICATIONTITLE, mTitle);
         intent.putExtra(Constants.KEYNOTIFICATIONMESSAGE, mMessage);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), 1, intent, 0);
+        intent.putExtra(Constants.KEYNOTIFICATIONID, Integer.toString(mEventID));
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), mEventID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Log.d(TAG, "startAlarm: " + intent.getStringExtra(Constants.KEYNOTIFICATIONMESSAGE) + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         Log.d(TAG, "startAlarm: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Titel: " + mTitle  + " " + mMessage);
+
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
@@ -160,7 +164,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
     public void cancelAlarm(Calendar calendar){
         AlarmManager alarmManager = (AlarmManager) mActivity.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), 1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), mEventID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         alarmManager.cancel(pendingIntent);
     }
@@ -197,6 +201,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     }
 
+    //todo abfangen wenn über ne stunde vergangen ist
     public int minutesToEvent(){
         int minDiff;
 
@@ -207,14 +212,17 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         int year = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(6, 10));
 
         final Calendar calendar = Calendar.getInstance();
-        final Calendar calendarNew = Calendar.getInstance();
+        final Calendar calendarNow = Calendar.getInstance();
+
 
         calendar.set(year, month, day);
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
 
-        minDiff = (int) ((calendar.getTime().getTime() - calendarNew.getTime().getTime())/(1000*60) % 60);
+        minDiff = (int) ((calendar.getTime().getTime() - calendarNow.getTime().getTime())/(1000*60) % 60);
+
+        Log.d(TAG, "minutesToEvent: Die Differenz ist " + minDiff + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 
         return minDiff;
