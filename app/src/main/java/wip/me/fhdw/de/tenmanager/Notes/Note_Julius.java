@@ -3,6 +3,12 @@ package wip.me.fhdw.de.tenmanager.Notes;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+
+import java.io.ByteArrayOutputStream;
 
 @Entity
 public class Note_Julius {
@@ -14,11 +20,14 @@ public class Note_Julius {
     private String mTitle;
     @ColumnInfo(name = "note_content")
     private String mContent;
+    @ColumnInfo(name ="note_picture")
+    private String mPicture;
 
 
-    public Note_Julius(String title, String content){
+    public Note_Julius(String title, String content, String picture){
         mTitle = title;
         mContent = content;
+        mPicture = picture;
 
     }
 
@@ -33,6 +42,7 @@ public class Note_Julius {
         return mTitle;
     }
     public String getContent(){ return mContent;}
+    public String getPicture(){ return mPicture;}
 
 
     public void setTitle(String title){
@@ -41,6 +51,7 @@ public class Note_Julius {
     public void setContent(String content){
         mContent = content;
     }
+    public void setPicture (String picture) {mPicture = picture;}
     public void setId(int id){mId = id;}
 
 

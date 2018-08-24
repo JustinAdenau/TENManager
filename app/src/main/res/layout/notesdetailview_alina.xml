@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/noteTitle"
             android:layout_width="match_parent"
@@ -42,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|top"
-                android:hint="Text"
+                android:hint="Text (bitte mit Spiegelstrich eingeben)"
                 android:inputType="textMultiLine"
                 android:textSize="@dimen/textsize_text" />
 
@@ -51,14 +52,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_below="@+id/noteContent">
 
 
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight = "9"
+                android:layout_weight = "1"
                 android:layout_below="@id/noteContent"
             />
 
@@ -66,28 +68,28 @@
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight = "9"
+                android:layout_weight = "1"
                 android:layout_below="@id/noteContent"
                 />
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight = "9"
+                android:layout_weight = "1"
                 android:layout_below="@id/noteContent"
                 />
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight = "9"
+                android:layout_weight = "1"
                 android:layout_below="@id/noteContent"
                 />
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight = "9"
+                android:layout_weight = "1"
                 android:layout_below="@id/noteContent"
                 />
         </LinearLayout>

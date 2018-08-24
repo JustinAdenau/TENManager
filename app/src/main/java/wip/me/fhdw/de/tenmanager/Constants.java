@@ -21,6 +21,7 @@ public class Constants {
         public static final String KEYNOTETITLE = "K7";
         public static final String KEYNOTECONTENT = "K8";
         public static final String KEYNOTEWITHDATA = "K11";
+        public static final String KEYNOTEPICTURE = "K18";
 
         public static final String KEYTODOTITLE = "K12";
         public static final String KEYTODOCONTENT = "K13";
