@@ -45,7 +45,7 @@ public class NotificationHelperEventsDetailView_Sebastian extends ContextWrapper
         return mManager;
     }
 
-    public NotificationCompat.Builder getChannel1Notification( String title, String message){
+    public NotificationCompat.Builder getChannel1Notification(String title, String message){
 
         return new NotificationCompat.Builder(getApplicationContext(), channel1ID)
                 .setContentTitle(title)

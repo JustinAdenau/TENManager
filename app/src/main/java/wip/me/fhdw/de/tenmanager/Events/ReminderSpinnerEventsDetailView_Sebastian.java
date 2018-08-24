@@ -15,8 +15,9 @@ import android.widget.Spinner;
 
 import java.util.Calendar;
 
+import wip.me.fhdw.de.tenmanager.Constants;
+
 import static android.content.ContentValues.TAG;
-//import static wip.me.fhdw.de.tenmanager.Events.ApplicationLogicEventsDetailView_Sebastian.CHANNEL_1_ID;
 
 public class ReminderSpinnerEventsDetailView_Sebastian {
 
@@ -25,14 +26,13 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
     private Calendar mCalendar;
     private boolean mNotificationActive = false;
 
+    private String mTitle;
+    private String mMessage;
 
 
-
-
-    ////coding flow!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     private NotificationManagerCompat mNotificationManager;
     private NotificationHelperEventsDetailView_Sebastian mNotificationHelper;
-    private AlertReceiverEventsDetailView_Sebastian mAlertReceiver;
+
 
 
 
@@ -40,10 +40,8 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
        mGui = gui;
        mActivity = activity;
 
-       ////codingflow1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
        mNotificationManager = NotificationManagerCompat.from(mActivity.getApplicationContext());
        mNotificationHelper = new NotificationHelperEventsDetailView_Sebastian(mActivity.getApplication());
-       mAlertReceiver = new AlertReceiverEventsDetailView_Sebastian();
     }
 
 
@@ -66,8 +64,8 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(0);
                     mNotificationActive = true;
 
-                   // String title = mGui.getEditTextTitle().getText().toString();
-                   // String message = "Dein Termin startet jetzt";
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    mMessage = "Dein Termin startet jetzt";
 
                    // NotificationCompat.Builder nb = mNotificationHelper.getChannel1Notification(title, message);
                    // mNotificationHelper.getManager().notify(1, nb.build());
@@ -78,10 +76,9 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(5);
                     mNotificationActive = true;
 
-                    String title = mGui.getEditTextTitle().getText().toString();
-                    String message = "Dein Termin startet in 5 Minuten";
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    mMessage = "Dein Termin startet in 5 Minuten";
 
-                  //  mAlertReceiver.buildAlertMessage(title, message);
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
                     Log.d(TAG, "onItemSelected: vor 15 min");
@@ -89,10 +86,9 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(15);
                     mNotificationActive = true;
 
-                    String title = mGui.getEditTextTitle().getText().toString();
-                    String message = "Dein Termin startet in 15 Minuten";
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    mMessage = "Dein Termin startet in 15 Minuten";
 
-                    // mAlertReceiver.buildAlertMessage(title, message);
 
                 } if(item.toString()=="Erinnere mich 30 Minuten vorher") {
                     Log.d(TAG, "onItemSelected: vor 30 min");
@@ -100,10 +96,9 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(30);
                     mNotificationActive = true;
 
-                    String title = mGui.getEditTextTitle().getText().toString();
-                    String message = "Dein Termin startet in 30 Minuten";
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    mMessage = "Dein Termin startet in 30 Minuten";
 
-                   // mAlertReceiver.buildAlertMessage(title, message);
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
                     Log.d(TAG, "onItemSelected: vor 1 h");
@@ -111,10 +106,9 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(60);
                     mNotificationActive = true;
 
-                    String title = mGui.getEditTextTitle().getText().toString();
-                    String message = "Dein Termin startet in 1 Stunde";
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    mMessage = "Dein Termin startet in 1 Stunde";
 
-                    // mAlertReceiver.buildAlertMessage(title, message);
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
                     Log.d(TAG, "onItemSelected: vor 2 h");
@@ -122,10 +116,11 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(120);
                     mNotificationActive = true;
 
-                    String title = mGui.getEditTextTitle().getText().toString();
-                    String message = "Dein Termin startet in 2 Stunden";
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    mMessage = "Dein Termin startet in 2 Stunden";
 
-                    // mAlertReceiver.buildAlertMessage(title, message);
+                } if(item.toString()=="Keine Erinnerung") {
+                    mNotificationActive = false;
                 }
             }
 
@@ -152,11 +147,15 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         //Quelle https://www.youtube.com/watch?v=tTbd1Mfi-Sk&t=0s&list=PLrnPJCHvNZuCN52QwGu7YTSLIMrjCF0gM&index=2
     }*/
 
-//////////////////////////////////    ///////
+
+    //todo pendingIntent requestcode mit laufender EventID
     public void startAlarm(Calendar calendar){
         AlarmManager alarmManager = (AlarmManager) mActivity.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
+        intent.putExtra(Constants.KEYNOTIFICATIONTITLE, mTitle);
+        intent.putExtra(Constants.KEYNOTIFICATIONMESSAGE, mMessage);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), 1, intent, 0);
+        Log.d(TAG, "startAlarm: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Titel: " + mTitle  + " " + mMessage);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
@@ -196,6 +195,5 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         return mNotificationActive;
     }
 
-    //todo Abfangen von Stundenübertritten und Datumsübertritten
     //Quelle http://blog.blundellapps.co.uk/notification-for-a-user-chosen-time/
 }

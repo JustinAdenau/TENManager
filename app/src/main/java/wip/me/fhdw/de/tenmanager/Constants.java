@@ -33,6 +33,9 @@ public class Constants {
 
         public static final String KEYWITHDATA = "K50";
 
+        public static final String KEYNOTIFICATIONTITLE = "K60";
+        public static final String KEYNOTIFICATIONMESSAGE = "K61";
+
         //Spezifikation der Klassenobjekte
         public static final Class<?> ACTIVITYEVENTSDETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.Events.InitEventsDetailView_Sebastian.class;
         public static final Class<?> ACTIVITYEVENTSOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.Events.InitEventsOverview_Lena.class;
