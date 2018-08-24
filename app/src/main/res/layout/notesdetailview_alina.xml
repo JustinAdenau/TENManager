@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|top"
-                android:hint="Text"
+                android:hint="Text (bitte mit Spiegelstrich eingeben)"
                 android:inputType="textMultiLine"
                 android:textSize="@dimen/textsize_text" />
 
