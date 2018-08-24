@@ -22,6 +22,8 @@ public interface EventDao_Lena {
     @Query("SELECT * from event where event_title like :title and event_date_start like :dateStart and event_time_start like :timeStart")
     Event getEventByTitleDateTime(String title, String dateStart, String timeStart);
 
+    @Query("SELECT id from event where event_title like :title and event_date_start like :dateStart and event_time_start like :timeStart")
+    int getEventIdByTitleDateTime(String title, String dateStart, String timeStart);
 
 
 
