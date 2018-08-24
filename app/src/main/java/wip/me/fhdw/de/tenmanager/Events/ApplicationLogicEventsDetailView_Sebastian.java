@@ -48,7 +48,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         initTimepickerStart();
         initTimepickerEnd();
         initUserInputValidation();
-        initReminderSpinner();
+        //initReminderSpinner();
     }
 
 
@@ -89,7 +89,10 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
         //todo an Datenbank
-       // mGui.getSpinnerReminder().setSelection(mData.getEvent());
+        mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
+
+        mReminderSpinner.setSpinnerPosition(mData.getEventTimeReminder());
+        mReminderSpinner.buildReminderSpinner();
     }
 
 
@@ -158,8 +161,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     }
 
     private void initReminderSpinner(){
-        mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
-        mReminderSpinner.buildReminderSpinner();
+
     }
 
 
@@ -188,7 +190,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
             mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
             //todo Position von adapterview
-            //mData.setEventDateEnd(mGui.getSpinnerReminder().getSelectedItemPosition());
+            mData.setEventTimeReminder(mReminderSpinner.getSpinnerPosition());
         }
 
         Log.d("LOGTAG", "withData: " + mData.getWithData());

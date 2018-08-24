@@ -29,9 +29,11 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
     private String mTitle;
     private String mMessage;
 
+    private String mSpinnerPosition;
 
-    private NotificationManagerCompat mNotificationManager;
-    private NotificationHelperEventsDetailView_Sebastian mNotificationHelper;
+
+  //  private NotificationManagerCompat mNotificationManager;
+  //  private NotificationHelperEventsDetailView_Sebastian mNotificationHelper;
 
 
 
@@ -40,8 +42,8 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
        mGui = gui;
        mActivity = activity;
 
-       mNotificationManager = NotificationManagerCompat.from(mActivity.getApplicationContext());
-       mNotificationHelper = new NotificationHelperEventsDetailView_Sebastian(mActivity.getApplication());
+      // mNotificationManager = NotificationManagerCompat.from(mActivity.getApplicationContext());
+      // mNotificationHelper = new NotificationHelperEventsDetailView_Sebastian(mActivity.getApplication());
     }
 
 
@@ -52,10 +54,17 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
         Spinner spinner = mGui.getSpinnerReminder();
         spinner.setAdapter(adapter);
+        //todo warten bis Datenbankläuft
+        if (mSpinnerPosition != null) {
+            spinner.setSelection(Integer.parseInt(mSpinnerPosition));
+        } else {
+            spinner.setSelection(0);
+        }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                mSpinnerPosition = Integer.toString(pos);
                 Object item = parent.getItemAtPosition(pos);
                 Log.d(TAG, "onItemSelected: Position" + pos);
                 if(item.toString()=="Erinnere mich zur Startzeit") {
@@ -64,11 +73,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(0);
                     mNotificationActive = true;
 
-                    mTitle = mGui.getEditTextTitle().getText().toString();
-                    mMessage = "Dein Termin startet jetzt";
+                    int minDiff = minutesToEvent();
 
-                   // NotificationCompat.Builder nb = mNotificationHelper.getChannel1Notification(title, message);
-                   // mNotificationHelper.getManager().notify(1, nb.build());
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 5 Minuten vorher"){
                     Log.d(TAG, "onItemSelected: vor 5 min");
@@ -76,9 +84,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(5);
                     mNotificationActive = true;
 
-                    mTitle = mGui.getEditTextTitle().getText().toString();
-                    mMessage = "Dein Termin startet in 5 Minuten";
+                    int minDiff = minutesToEvent();
 
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
                     Log.d(TAG, "onItemSelected: vor 15 min");
@@ -86,9 +95,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(15);
                     mNotificationActive = true;
 
-                    mTitle = mGui.getEditTextTitle().getText().toString();
-                    mMessage = "Dein Termin startet in 15 Minuten";
+                    int minDiff = minutesToEvent();
 
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 30 Minuten vorher") {
                     Log.d(TAG, "onItemSelected: vor 30 min");
@@ -96,9 +106,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(30);
                     mNotificationActive = true;
 
-                    mTitle = mGui.getEditTextTitle().getText().toString();
-                    mMessage = "Dein Termin startet in 30 Minuten";
+                    int minDiff = minutesToEvent();
 
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
                     Log.d(TAG, "onItemSelected: vor 1 h");
@@ -106,9 +117,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(60);
                     mNotificationActive = true;
 
-                    mTitle = mGui.getEditTextTitle().getText().toString();
-                    mMessage = "Dein Termin startet in 1 Stunde";
+                    int minDiff = minutesToEvent();
 
+                    mTitle = mGui.getEditTextTitle().getText().toString();
+                    setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
                     Log.d(TAG, "onItemSelected: vor 2 h");
@@ -116,8 +128,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(120);
                     mNotificationActive = true;
 
+                    int minDiff = minutesToEvent();
+
                     mTitle = mGui.getEditTextTitle().getText().toString();
-                    mMessage = "Dein Termin startet in 2 Stunden";
+                    setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Keine Erinnerung") {
                     mNotificationActive = false;
@@ -129,23 +143,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
             }
         });
     }
-
-
-    /*public void creatNotification(View v){
-        String title = mGui.getEditTextTitle().getText().toString();
-        String message = "Startzeit " + mGui.getButtonTimeStart().getText().toString() + " am " + mGui.getButtonDateStart().getText().toString();
-        Notification notification = new NotificationCompat.Builder(mActivity, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_event_note_black_24dp)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-               // .setCategory(NotificationCompat.CATEGORY_EVENT)
-                .build();
-        Log.d(TAG, "creatNotification: Notification" + title + " " + message);
-
-        mNotificationManager.notify(1,notification);
-        //Quelle https://www.youtube.com/watch?v=tTbd1Mfi-Sk&t=0s&list=PLrnPJCHvNZuCN52QwGu7YTSLIMrjCF0gM&index=2
-    }*/
 
 
     //todo pendingIntent requestcode mit laufender EventID
@@ -168,7 +165,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         alarmManager.cancel(pendingIntent);
     }
 
-    public Calendar createCalendar(int  mindiff){
+    public Calendar createCalendar(int  minDiff){
 
         int hour = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(0, 2));
         int minute = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(3, 5));
@@ -182,9 +179,45 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
-        calendar.add(Calendar.MINUTE, -mindiff);
+        calendar.add(Calendar.MINUTE, -minDiff);
 
         return calendar;
+    }
+
+    public void setNotificicationMessage(int timeDiff){
+
+        if (timeDiff > 1) {
+            mMessage = "Dein Termin startet in " + timeDiff + " Minuten";
+        } if(timeDiff < 1) {
+            timeDiff = -timeDiff;
+            mMessage = "Dein Termin hat vor " + timeDiff + " Minuten begonnen";
+        } if(timeDiff == 0) {
+            mMessage = "Dein Termin startet jetzt";
+        }
+
+    }
+
+    public int minutesToEvent(){
+        int minDiff;
+
+        int hour = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(0, 2));
+        int minute = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(3, 5));
+        int day = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(0, 2));
+        int month = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(3, 5)) - 1;
+        int year = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(6, 10));
+
+        final Calendar calendar = Calendar.getInstance();
+        final Calendar calendarNew = Calendar.getInstance();
+
+        calendar.set(year, month, day);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+
+        minDiff = (int) ((calendar.getTime().getTime() - calendarNew.getTime().getTime())/(1000*60) % 60);
+
+
+        return minDiff;
     }
 
     public Calendar getCalendar() {
@@ -193,6 +226,14 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     public boolean isNotificationActive() {
         return mNotificationActive;
+    }
+
+    public String getSpinnerPosition() {
+        return mSpinnerPosition;
+    }
+
+    public void setSpinnerPosition(String SpinnerPosition) {
+        this.mSpinnerPosition = SpinnerPosition;
     }
 
     //Quelle http://blog.blundellapps.co.uk/notification-for-a-user-chosen-time/

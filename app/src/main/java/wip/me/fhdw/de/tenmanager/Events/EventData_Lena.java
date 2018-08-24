@@ -90,7 +90,7 @@ public class EventData_Lena {
 
     public void createAndSaveNewEvent()
     {
-        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation/*, mEventTimeReminder*/);
+        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation, mEventTimeReminder);
         mDb.eventDao().insertAll(event);
     }
 
@@ -115,7 +115,7 @@ public class EventData_Lena {
     public void setEventDescription(String description){mEventDescription = description;}
     public void setEventLocation(String location){mEventLocation = location;}
     public void setWithData(boolean withData){mWithData = withData;}
-    public void setTimeReminder(String timeReminder){mEventTimeReminder = timeReminder;}
+    public void setEventTimeReminder(String timeReminder){mEventTimeReminder = timeReminder;}
 
 
     //getter
