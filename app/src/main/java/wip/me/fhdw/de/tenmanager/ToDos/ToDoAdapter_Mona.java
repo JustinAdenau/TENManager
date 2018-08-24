@@ -16,6 +16,7 @@ public class ToDoAdapter_Mona extends BaseAdapter{
 
         private Context mContext;
         private List<ToDoOverview_Mona> mToDoList;
+        private ApplicationLogicToDoOverview_Mona mApplicationLogic;
 
     public ToDoAdapter_Mona(Context context, List<ToDoOverview_Mona> todoList)
         {
@@ -30,6 +31,8 @@ public class ToDoAdapter_Mona extends BaseAdapter{
         }
 
         public void setToDoList(List<ToDoOverview_Mona> todoList){mToDoList=todoList;}
+
+        public void setApplicationLogic(ApplicationLogicToDoOverview_Mona applicationLogic){mApplicationLogic = applicationLogic;}
 
         @Override
         public int getCount() {

@@ -94,11 +94,6 @@ public class ApplicationLogicEventsOverview_Lena {
             startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
             mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
-        } else if (id == R.id.menuEvent) {
-
-            startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
-            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-
         } else if (id == R.id.menuTodo) {
 
             startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);

@@ -5,8 +5,10 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
 import android.view.ViewStub;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.R;
@@ -14,13 +16,13 @@ import wip.me.fhdw.de.tenmanager.R;
 public class GuiToDoDetailview_Mona {
 
     private EditText mtodotitle;
-    private CheckBox mtodoCheckBox1;
-    private CheckBox mtodoCheckBox2;
-    private CheckBox mtodoCheckBox3;
+    private ListView mListView;
     private TextView mtodoDescriptionStatus;
     private TextView mtodoDescriptionDuedate;
     private TextView mtodoDetailviewStatus;
-    private TextView mtodoDetailviewDueDate;
+    private EditText mtodoDetailviewDueDate;
+    private EditText mtodoEditTextNew;
+    private Button mtodoButtonNew;
 
     private ViewStub stub;
     private View inflated;
@@ -31,17 +33,15 @@ public class GuiToDoDetailview_Mona {
     public GuiToDoDetailview_Mona(InitToDoDetailview_Mona activity){
         activity.setContentView(R.layout.menu_alina_und_mona);
         stub = (ViewStub) activity.findViewById(R.id.viewStub);
-        stub.setLayoutResource(R.layout.todooverview_mona);
+        stub.setLayoutResource(R.layout.tododetailview_mona);
         inflated = stub.inflate();
 
         mtodotitle = activity.findViewById(R.id.todotitle);
-        mtodoCheckBox1 = activity.findViewById(R.id.todoCheckBox1);
-        mtodoCheckBox2 = activity.findViewById(R.id.todoCheckBox2);
-        mtodoCheckBox3 = activity.findViewById(R.id.todoCheckBox3);
-        mtodoDescriptionStatus = activity.findViewById(R.id.todoDescriptionStatus);
-        mtodoDescriptionDuedate = activity.findViewById(R.id.todoDescriptionDuedate);
-        mtodoDetailviewStatus = activity.findViewById(R.id.todoDescriptionStatus);
+        mListView = activity.findViewById(R.id.listview_todo_detailview);
+        mtodoDetailviewStatus = activity.findViewById(R.id.tododetailviewStatus);
         mtodoDetailviewDueDate = activity.findViewById(R.id.todoDetailviewDueDate);
+        mtodoEditTextNew = activity.findViewById(R.id.edittext_newTodo);
+        mtodoButtonNew = activity.findViewById(R.id.button_newTodo);
 
         mFabSave = activity.findViewById(R.id.fab);
         //mFabSave.setId(R.id.fabSave);
@@ -59,29 +59,7 @@ public class GuiToDoDetailview_Mona {
         this.mtodotitle = mtodotitle;
     }
 
-    public CheckBox getMtodoCheckBox1() {
-        return mtodoCheckBox1;
-    }
-
-    public void setMtodoCheckBox1(CheckBox mtodoCheckBox1) {
-        this.mtodoCheckBox1 = mtodoCheckBox1;
-    }
-
-    public CheckBox getMtodoCheckBox2() {
-        return mtodoCheckBox2;
-    }
-
-    public void setMtodoCheckBox2(CheckBox mtodoCheckBox2) {
-        this.mtodoCheckBox2 = mtodoCheckBox2;
-    }
-
-    public CheckBox getMtodoCheckBox3() {
-        return mtodoCheckBox3;
-    }
-
-    public void setMtodoCheckBox3(CheckBox mtodoCheckBox3) {
-        this.mtodoCheckBox3 = mtodoCheckBox3;
-    }
+    public ListView getListView(){return mListView;}
 
     public TextView getMtodoDescriptionStatus() {
         return mtodoDescriptionStatus;
@@ -107,13 +85,17 @@ public class GuiToDoDetailview_Mona {
         this.mtodoDetailviewStatus = mtodoDetailviewStatus;
     }
 
-    public TextView getMtodoDetailviewDueDate() {
+    public EditText getMtodoDetailviewDueDate() {
         return mtodoDetailviewDueDate;
     }
 
-    public void setMtodoDetailviewDueDate(TextView mtodoDetailviewDueDate) {
+    public void setMtodoDetailviewDueDate(EditText mtodoDetailviewDueDate) {
         this.mtodoDetailviewDueDate = mtodoDetailviewDueDate;
     }
+
+    public EditText getTodoEdittextNew(){return mtodoEditTextNew;}
+
+    public Button getTodoButtonNew(){return mtodoButtonNew;}
 
 
     public FloatingActionButton getFabSave() {

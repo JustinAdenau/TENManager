@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface ToDoDao_Mona {
 
-    @Query("SELECT * FROM todooverview_mona ORDER BY todo_id")
+    @Query("SELECT * FROM todooverview_mona")
     List<ToDoOverview_Mona> getAllToDos();
 
     @Insert
@@ -24,4 +24,13 @@ public interface ToDoDao_Mona {
 
     @Query("SELECT * from todooverview_mona where todo_title like :title")
     ToDoOverview_Mona getToDoByToDoElements(String title);
+
+    @Query("SELECT COUNT(*) from todooverview_mona where todo_title like :title")
+    int todoExists(String title);
+
+    @Query("SELECT * from todooverview_mona where todo_title like :title")
+    ToDoOverview_Mona getTodoByTitle(String title);
+
+    @Query("DELETE from todooverview_mona where todo_title like :title")
+    void deleteToDoByTitle(String title);
 }

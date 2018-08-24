@@ -41,7 +41,7 @@ public class InitToDoDetailview_Mona extends AppCompatActivity {
     }
 
     private void initApplicationLogic(Intent mIntent) {
-        mApplicationLogic = new ApplicationLogicToDoDetailview_Mona(this, mData, mGui);
+        mApplicationLogic = new ApplicationLogicToDoDetailview_Mona(this, mData, mGui, getApplicationContext());
     }
 
     private void initGui() {

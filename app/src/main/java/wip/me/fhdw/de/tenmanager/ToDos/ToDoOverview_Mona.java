@@ -21,14 +21,17 @@ public class ToDoOverview_Mona {
     private String mDuedate;
     @ColumnInfo(name = "todo_status")
     private int mStatus;
+    @ColumnInfo(name="todo_checkboxactivated")
+    private String mCheckboxActivated;
 
 
 
-    public ToDoOverview_Mona(String title, String content, String duedate, int status){
+    public ToDoOverview_Mona(String title, String content, String duedate, int status /*, String checkboxActivated*/){
         mTitle = title;
         mContent = content;
         mDuedate = duedate;
         mStatus = status;
+        //mCheckboxActivated = checkboxActivated;
     }
 
     // Get / Set Methods
@@ -48,6 +51,7 @@ public class ToDoOverview_Mona {
     public int getStatus(){
         return mStatus;
     }
+    public String getCheckboxActivated(){return mCheckboxActivated;}
 
 
     public void setTitle(String title) {
@@ -67,5 +71,6 @@ public class ToDoOverview_Mona {
     public void setStatus ( int status){
         status = mStatus;
     }
+    public void setCheckboxActivated(String checkboxActivated){mCheckboxActivated = checkboxActivated;}
 
 }

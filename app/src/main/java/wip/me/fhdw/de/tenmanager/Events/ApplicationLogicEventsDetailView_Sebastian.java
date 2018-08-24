@@ -20,8 +20,6 @@ import wip.me.fhdw.de.tenmanager.R;
 public class ApplicationLogicEventsDetailView_Sebastian {
 
     private static final String TAG = "AppLogic_Sebastian";
-   // public static final String CHANNEL_1_ID = "channel1";
-
 
     private GuiEventsDetailView_Sebastian mGui;
     private EventData_Lena mData;
@@ -260,10 +258,8 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     {
         Intent intent = new Intent();
         intent.setClass(mData.getActivity(), activityClass);
-
         if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());}
         intent.putExtra(Constants.KEYWITHDATA, withData);
-        Log.d("LOGTAG", "withData: "+withData+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         mData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
     }
 

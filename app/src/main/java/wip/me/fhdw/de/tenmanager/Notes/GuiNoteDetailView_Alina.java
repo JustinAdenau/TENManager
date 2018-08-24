@@ -6,6 +6,8 @@ import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import wip.me.fhdw.de.tenmanager.R;
 
@@ -19,6 +21,9 @@ public class GuiNoteDetailView_Alina {
 
     private TextInputLayout mTextInputLayoutTitle;
     private TextInputLayout mTextInputLayoutContent;
+    private ImageView mImageView;
+    private ImageButton mImageButton;
+
     private FloatingActionButton mFabSave;
     private NavigationView mNavigationView;
 
@@ -33,6 +38,8 @@ public class GuiNoteDetailView_Alina {
         mEditTextContent = activity.findViewById(R.id.noteContentEditText);
         mTextInputLayoutTitle = activity.findViewById(R.id.noteTitle);
         mTextInputLayoutContent = activity.findViewById(R.id.noteContent);
+        mImageView = activity.findViewById(R.id.imageView1);
+        mImageButton = activity.findViewById(R.id.btnCamera);
 
         mFabSave = activity.findViewById(R.id.fab);
         mFabSave.setImageResource(android.R.drawable.ic_menu_save);
@@ -56,4 +63,8 @@ public class GuiNoteDetailView_Alina {
     public FloatingActionButton getFabSave() {return mFabSave;}
 
     public NavigationView getNavigationView(){return mNavigationView;}
+
+    public ImageView getImageView(){return mImageView;}
+
+    public ImageButton getBtnCamera(){return mImageButton;}
 }

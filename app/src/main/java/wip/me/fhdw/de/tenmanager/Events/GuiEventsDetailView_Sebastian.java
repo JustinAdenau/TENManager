@@ -21,7 +21,6 @@ public class GuiEventsDetailView_Sebastian {
     private Button mButtonTimeEnd;
 
     private ViewStub stub;
-
     private View inflated;
 
     private EditText mEditTextTitle;

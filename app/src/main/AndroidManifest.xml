@@ -26,8 +26,8 @@
         <activity android:name=".Events.InitEventsDetailView_Sebastian"/>
         <activity android:name=".Notes.InitNoteOverview_Julius"/>
         <activity android:name=".ToDos.InitToDoOverview_Mona"/>
+        <activity android:name=".ToDos.InitToDoDetailview_Mona"/>
         <activity android:name=".Notes.InitNoteDetailView_Alina"></activity>
-        <activity android:name=".Menu.Menu_Alina_und_Mona"></activity>
 
         <receiver android:name=".Events.AlertReceiverEventsDetailView_Sebastian"/>
 
