@@ -7,6 +7,8 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+import wip.me.fhdw.de.tenmanager.Event;
+
 @Dao
 public interface ToDoDao_Mona {
 
@@ -14,7 +16,10 @@ public interface ToDoDao_Mona {
     List<ToDoOverview_Mona> getAllToDos();
 
     @Insert
-    void insertAll(ToDoOverview_Mona... todo);
+    void insertAll(ToDoOverview_Mona... toDoOverview_monas);
+
+    //@Query("INSERT INTO todooverview_mona(todo_title, todo_content, todo_duedate, todo_status, todo_checkboxactivated) VALUES(:title, :content, :duedate, :status, :checkboxactivated)")
+    //void insertToDo(String title, String content, String duedate, int status, String checkboxactivated);
 
     @Query("DELETE from todooverview_mona")
     void deleteAllToDos();
@@ -33,4 +38,11 @@ public interface ToDoDao_Mona {
 
     @Query("DELETE from todooverview_mona where todo_title like :title")
     void deleteToDoByTitle(String title);
+
+    @Query("SELECT * from todooverview_mona " +
+            "where todo_duedate like :dateToday " +
+            "OR((SUBSTR(todo_duedate,7,4) < SUBSTR(:dateToday, 7,4)) " +
+            "OR (SUBSTR(todo_duedate,7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(todo_duedate, 4,2) < SUBSTR(:dateToday, 4,2))" +
+            "OR (SUBSTR(todo_duedate, 7,4) like SUBSTR(:dateToday, 7,4 ) AND SUBSTR(todo_duedate, 4,2) like SUBSTR(:dateToday, 4,2) AND SUBSTR(todo_duedate, 1,2) < SUBSTR(:dateToday, 1,2)))")
+    List<ToDoOverview_Mona> getToDosToday(String dateToday);
 }

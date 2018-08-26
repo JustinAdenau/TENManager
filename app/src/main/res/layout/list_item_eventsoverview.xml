@@ -43,10 +43,8 @@
             android:id="@+id/RelativeLayoutButtonDeleteEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout_dateTimeEnd"
             android:orientation="horizontal"
             android:padding="@dimen/listview_padding"
-            android:layout_alignParentRight="true"
             android:layout_weight="0"
             >
 

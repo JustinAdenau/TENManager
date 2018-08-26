@@ -14,9 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
-
-import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.R;
+import wip.me.fhdw.de.tenmanager.AppDatabase;
+
 
 public class InitEventsOverview_Lena extends AppCompatActivity {
 
@@ -41,12 +41,15 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         mData = new EventData_Lena(savedInstanceState, this);
     }
 
-    public void initDb(){mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-            //.addMigrations(MIGRATION_6_7)
-            //.addMigrations(MIGRATION_7_8)
-            .allowMainThreadQueries()
-            .build();
+    public void initDb(){
+
+        mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
+             //.addMigrations(MIGRATION_6_7)
+             //.addMigrations(MIGRATION_7_8)
+             .allowMainThreadQueries()
+             .build();
     }
+
 
     //if database table is changed (new version) migration is needed
     /*static final Migration MIGRATION_6_7 = new Migration(6, 7) {
@@ -74,7 +77,7 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
             database.execSQL("CREATE TABLE 'note_julius' (note_id INTEGER PRIMARY KEY NOT NULL, note_title TEXT, note_content TEXT, note_picture TEXT)");
             database.execSQL("DROP TABLE 'note_old'");
         }
-    };
+    };*/
 
 
     public void initGui()

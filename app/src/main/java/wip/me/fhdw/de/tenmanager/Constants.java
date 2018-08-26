@@ -42,6 +42,7 @@ public class Constants {
         public static final Class<?> ACTIVITYNOTEDETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.Notes.InitNoteDetailView_Alina.class;
         public static final Class<?> ACTIVITYTODOOVERVIEWCLASS = wip.me.fhdw.de.tenmanager.ToDos.InitToDoOverview_Mona.class;
         public static final Class<?> ACTIVITYTODODETAILVIEWCLASS = wip.me.fhdw.de.tenmanager.ToDos.InitToDoDetailview_Mona.class;
+        public static final Class<?> ACTIVITYHOMEPAGECLASS = wip.me.fhdw.de.tenmanager.Homepage.InitHomepage_Justin.class;
 
 
 

@@ -30,6 +30,7 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         initDb();
+        if(mDb.todoDao().getTodoByTitle("") == null) Log.d("LOGTAG", "null ist nicht in der Datenbank vorhanden!!!!!!!!!!!!!!!!!!1");
         initData(savedInstanceState);
         initGui();
         initListAdapter();
@@ -53,17 +54,17 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
 
     private void initDb() {
         mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-                .addMigrations(MIGRATION_5_6)
+                //.addMigrations(MIGRATION_5_6)
                 .allowMainThreadQueries()
                 .build();
     }
 
-    static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+    /*static final Migration MIGRATION_5_6 = new Migration(5, 6) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("CREATE TABLE IF NOT EXISTS 'todoOverview_mona'('todo_id' INTEGER PRIMARY KEY NOT NULL, 'todo_title' TEXT, 'todo_duedate' TEXT, 'todo_status' INTEGER NOT NULL, 'todo_content' TEXT)");
         }
-    };
+    };*/
 
     public void initToolbar(){Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         getSupportActionBar().hide();

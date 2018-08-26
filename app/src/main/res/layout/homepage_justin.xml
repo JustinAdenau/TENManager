@@ -36,7 +36,9 @@
         android:layout_height="124dp"
         android:layout_weight="7"
         android:background="@color/colorGrey"
-        android:divider="@drawable/listview_divider" />
+        android:divider="@drawable/listview_divider"
+        android:dividerHeight="10dp"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/homepage_header_event"
@@ -53,5 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="138dp"
         android:layout_weight="7"
-        android:divider="@drawable/listview_divider"/>
+        android:divider="@drawable/listview_divider"
+        android:dividerHeight="10dp"
+        android:focusable="true"/>
 </LinearLayout>

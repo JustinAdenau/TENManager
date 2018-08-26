@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -43,6 +44,8 @@ public class ApplicationLogicToDoOverview_Mona {
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
         NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
+        ButtonDeleteToDoClickListener_Mona buttonDeleteClickListener = new ButtonDeleteToDoClickListener_Mona(this);
+        mGui.getButtonDelete().setOnClickListener(buttonDeleteClickListener);
     }
 
     public void initGui(){
@@ -59,7 +62,6 @@ public class ApplicationLogicToDoOverview_Mona {
         mToDoAdapter.setToDoList(mToDoList);
         mToDoAdapter.setApplicationLogic(this);
         mGui.getListView().setAdapter(mToDoAdapter);
-
     }
 
     public void onFabCreateNewClicked() {
@@ -71,7 +73,12 @@ public class ApplicationLogicToDoOverview_Mona {
     {
         int id = item.getItemId();
 
-        if (id == R.id.menuNotes) {
+        if(id == R.id.menuHome)
+        {
+            startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
+            mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if (id == R.id.menuNotes) {
 
             startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
             mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -83,8 +90,8 @@ public class ApplicationLogicToDoOverview_Mona {
 
         }
 
-        //DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
-        //drawer.closeDrawer(GravityCompat.START);
+        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     private void startActivity(Class<?> activityClass, boolean withData) {
@@ -104,6 +111,7 @@ public class ApplicationLogicToDoOverview_Mona {
         mToDoData.setToDoStaus(mToDoList.get(position).getStatus());
         mToDoData.setWithData(true);
         startActivity(Constants.ACTIVITYTODODETAILVIEWCLASS, true);
+        mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onBackPressed(){
@@ -131,6 +139,7 @@ public class ApplicationLogicToDoOverview_Mona {
         mToDoData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishAktivityResultOK");
         mToDoData.getActivity().finish();
+        mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
     private void finishActivityResultCanceled() {
@@ -139,14 +148,15 @@ public class ApplicationLogicToDoOverview_Mona {
         mToDoData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCanceled");
         mToDoData.getActivity().finish();
+        mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 
 
     public void onButtonDeleteToDoClicked(View view) {
-        View v = (View)view.getParent().getParent().getParent();
-        TextView title = v.findViewById(R.id.listviewitem_textview_title_todo);
-
+        Log.d("LOGTAG", "ButtonDelete wurde angeklickt!!!!!!!!!!!!!!!!");
+        View v = (View)view.getParent().getParent();
+        TextView title = view.findViewById(R.id.listviewitem_textview_title_todo);
         mDb.todoDao().deleteToDoByTitle(title.getText().toString());
 
         mActivity.recreate();

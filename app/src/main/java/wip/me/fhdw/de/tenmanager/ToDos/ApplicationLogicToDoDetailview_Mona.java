@@ -25,6 +25,8 @@ public class ApplicationLogicToDoDetailview_Mona {
     private wip.me.fhdw.de.tenmanager.ToDos.ToDoData_Mona mData;
     private Activity mActivity;
     private Context mContext;
+    ToDoDetailviewAdapter_Lena mAdapter;
+    List<String> mContentList;
 
 
     public ApplicationLogicToDoDetailview_Mona(Activity activity, ToDoData_Mona data, GuiToDoDetailview_Mona gui, Context context){
@@ -56,9 +58,10 @@ public class ApplicationLogicToDoDetailview_Mona {
         boolean todoExists = false;
         String titleOld = mData.getToDoTitle();
         String title = mGui.getMtodotitle().getText().toString();
-        if(mData.getDb().todoDao().todoExists(title) != 0) todoExists = true;
+        if(mData.getDb().todoDao().todoExists(title) != 0) todoExists = true; Log.d("LOGTAG", "todoExists wird auf true gesetzt!!!!!!!!!!!!!!!!!!");
         if(!todoExists || mData.getWithData())
         {
+            Log.d("LOGTAG", "Daten aus Gui werden in Data gespeichert!!!!!!!!!!!!!!!!!!");
             mData.setToDoTitle(mGui.getMtodotitle().getText().toString());
             String content="";
             for(int i=0; i< mGui.getListView().getCount(); i++)
@@ -68,11 +71,16 @@ public class ApplicationLogicToDoDetailview_Mona {
                 content = content+",";
             }
             Log.d("LOGTAG", "content: "+content+"!!!!!!!!!!!!!!!!!!!!!");
-            if(!mGui.getTodoEdittextNew().getText().toString().isEmpty()) content = content+", "+mGui.getTodoEdittextNew().getText().toString();
+            if(!mGui.getTodoEdittextNew().getText().toString().isEmpty()) content = content+", "+mGui.getTodoEdittextNew().getText().toString()+", ";
             mData.setToDoContent(content);
             Log.d("LOGTAG", "content: "+mData.getToDoContent()+"!!!!!!!!!!!!!!!!!!!!!");
             mData.setToDoDuedate(mGui.getMtodoDetailviewDueDate().getText().toString());
-            mData.setToDoStaus(Integer.parseInt(mGui.getMtodoDetailviewStatus().getText().toString()));
+            String statusString = mGui.getMtodoDetailviewStatus().getText().toString();
+            int status = 0;
+            if(statusString.length() == 7) status = Integer.parseInt(statusString.substring(0,2));
+            else if(statusString.length() == 8) status = Integer.parseInt(statusString.substring(0,3));
+            else if(statusString.length() == 6) status = Integer.parseInt(statusString.substring(0,1));
+            mData.setToDoStaus(status);
         }
         if(mData.getWithData())
         {
@@ -93,19 +101,31 @@ public class ApplicationLogicToDoDetailview_Mona {
 
     public void onButtonNewTaskClicked()
     {
-        Log.d("LOGTAG", "Content: "+mData.getToDoContent().toString()+"!!!!!!!!!!!!!!!!!!");
-        mData.setToDoContent(mData.getToDoContent()+mGui.getTodoEdittextNew().getText().toString()+", ");
-        Log.d("LOGTAG", "Content: "+ mData.getToDoContent().toString()+"!!!!!!!!!!!!!!!!!!");
+        //Log.d("LOGTAG", "Content: "+mData.getToDoContent().toString()+"!!!!!!!!!!!!!!!!!!");
+        if(mData.getToDoContent() != null) mData.setToDoContent(mData.getToDoContent()+mGui.getTodoEdittextNew().getText().toString()+", ");
+        else mData.setToDoContent(mGui.getTodoEdittextNew().getText().toString()+", ");
+        //Log.d("LOGTAG", "Content: "+ mData.getToDoContent().toString()+"!!!!!!!!!!!!!!!!!!");
         mData.updateTodo(mData.getToDoTitle());
+        //dataToGui();
+        //if(mContentList.isEmpty()) mContentList.clear();
+        mContentList.add(mGui.getTodoEdittextNew().getText().toString());
+        for (String content:mContentList) {
+            Log.d("LOGTAG", "content in List nach add: "+content+"!!!!!!!!!!!!!!!!!!!!!!1");
+        }
+        mAdapter.refresh(mContentList);
         mGui.getTodoEdittextNew().setText("");
-        dataToGui();
     }
 
     public void onMenuItemSelected(MenuItem item)
     {
         int id = item.getItemId();
 
-        if (id == R.id.menuNotes) {
+        if(id == R.id.menuHome)
+        {
+            startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if (id == R.id.menuNotes) {
 
             startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
             mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -158,28 +178,29 @@ public class ApplicationLogicToDoDetailview_Mona {
 
     private void dataToGui() {
         mGui.getMtodotitle().setText(mData.getToDoTitle());
-
+        Log.d("LOGTAG", "withData in Detailview: "+mData.getWithData()+ "Titel in Detailview: "+mData.getToDoTitle()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         if(mData.getWithData()) {
-            ToDoDetailviewAdapter_Lena adapter = new ToDoDetailviewAdapter_Lena(mContext);
-            List<String> contentList = new ArrayList<>();
             int startindex = 0;
             String content = mData.getToDoContent();
             Log.d("LOGTAG", "content der ausgelesen wird: "+content+"!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             for (int i = 0; i < content.length(); i++) {
                 if (content.charAt(i) == ',') {
-                    contentList.add(content.substring(startindex, i));
+                    mContentList.add(content.substring(startindex, i));
                     startindex = i + 1;
                 }
             }
-            adapter.setContentList(contentList);
-            mGui.getListView().setAdapter(adapter);
+            mAdapter.setContentList(mContentList);
+            mGui.getListView().setAdapter(mAdapter);
         }
 
         mGui.getMtodoDetailviewDueDate().setText(mData.getToDoDuedate());
-        mGui.getMtodoDetailviewStatus().setText(String.valueOf(mData.getToDoStatus()));
+        mGui.getMtodoDetailviewStatus().setText(String.valueOf(mData.getToDoStatus())+"/100%");
     }
 
     private void initGui() {
+        mContentList = new ArrayList<>();
+        mAdapter = new ToDoDetailviewAdapter_Lena(mContext);
+        mAdapter.setActivity(mActivity);
         dataToGui();
     }
 

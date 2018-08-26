@@ -8,6 +8,8 @@
     android:orientation="vertical"
     android:id="@+id/idRelativeLayoutListItem"
     android:descendantFocusability="blocksDescendants"
+    android:padding="@dimen/listview_padding"
+    android:layout_margin="@dimen/listview_margin"
     >
 
     <!--android:layout_margin="10dp"-->
@@ -43,7 +45,9 @@
                     android:textAlignment="viewStart"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="@dimen/textsize_title"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/colorBlack"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,15 +59,18 @@
                         android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="fällig am:" />
+                        android:layout_marginStart="20dp"
+                        android:text="fällig am:"
+                        android:textColor="@color/colorGreyDark"
+                        />
 
                     <TextView
                         android:id="@+id/homepage_todo_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:hint="Datum" />
+                        android:layout_marginStart="5dp"
+                        android:hint="Datum"
+                        android:textColor="@color/colorBlack"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -74,8 +81,6 @@
             android:id="@+id/RelativeLayoutButtonDeleteEvent"
             android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/linearLayout_dateTimeEnd"
             android:layout_weight="0"
             android:orientation="horizontal">
 
@@ -86,7 +91,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/round_button_style"
-                android:backgroundTint="@color/colorRed"
                 android:focusable="false"
                 android:foregroundGravity="center_vertical|center_horizontal"
                 android:src="@android:drawable/ic_menu_close_clear_cancel" />

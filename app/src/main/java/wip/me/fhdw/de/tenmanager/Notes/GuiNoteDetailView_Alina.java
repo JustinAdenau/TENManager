@@ -87,7 +87,6 @@ public class GuiNoteDetailView_Alina {
 
     public NavigationView getNavigationView(){return mNavigationView;}
 
-    public ImageView getImageView(){return mImageView;}
 
     public ImageButton getBtnCamera(){return mImageButton;}
 }

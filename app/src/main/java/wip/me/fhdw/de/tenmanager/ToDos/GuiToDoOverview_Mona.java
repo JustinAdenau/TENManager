@@ -15,12 +15,10 @@ import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiToDoOverview_Mona {
 
-    private EditText mTitle;
-    private ImageButton mImButton;
+    private TextView mTitle;
+    private ImageButton mButtonDelete;
     private CheckBox mCheckbox1;
     private CheckBox mCheckbox2;
-    private TextView mStatusText;
-    private TextView mDueDateText;
     private TextView mStatus;
     private TextView mDueDate;
 
@@ -40,14 +38,12 @@ public class GuiToDoOverview_Mona {
         mListView = activity.findViewById(android.R.id.list);
 
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
-        View view = inflater.inflate(R.layout.list_item_notesoverview, null);
+        View view = inflater.inflate(R.layout.list_item_todooverview_mona, null);
 
         mTitle = view.findViewById(R.id.listviewitem_textview_title_todo);
-        mImButton = view.findViewById(R.id.buttonDeleteToDo);
+        mButtonDelete = view.findViewById(R.id.buttonDeleteToDo);
         mCheckbox1 = view.findViewById(R.id.todoCheckBox1);
         mCheckbox2 = view.findViewById(R.id.todoCheckBox);
-        mStatusText = view.findViewById(R.id.todoStatusText);
-        mDueDateText = view.findViewById(R.id.todoDuedateText);
         mStatus = view.findViewById(R.id.todoStatus);
         mDueDate = view.findViewById(R.id.todo_duedate);
 
@@ -60,67 +56,51 @@ public class GuiToDoOverview_Mona {
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
     public NavigationView getNavigationView(){return mNavigationView;}
 
-    public EditText getmTitle() {
+    public TextView getTitle() {
         return mTitle;
     }
 
-    public void setmTitle(EditText mTitle) {
+    public void setTitle(EditText mTitle) {
         this.mTitle = mTitle;
     }
 
-    public ImageButton getmImButton() {
-        return mImButton;
+    public ImageButton getButtonDelete() {
+        return mButtonDelete;
     }
 
-    public void setmImButton(ImageButton mImButton) {
-        this.mImButton = mImButton;
+    public void setButtonDelete(ImageButton mImButton) {
+        this.mButtonDelete = mImButton;
     }
 
-    public CheckBox getmCheckbox1() {
+    public CheckBox getCheckbox1() {
         return mCheckbox1;
     }
 
-    public void setmCheckbox1(CheckBox mCheckbox1) {
+    public void setCheckbox1(CheckBox mCheckbox1) {
         this.mCheckbox1 = mCheckbox1;
     }
 
-    public CheckBox getmCheckbox2() {
+    public CheckBox getCheckbox2() {
         return mCheckbox2;
     }
 
-    public void setmCheckbox2(CheckBox mCheckbox2) {
+    public void setCheckbox2(CheckBox mCheckbox2) {
         this.mCheckbox2 = mCheckbox2;
     }
 
-    public TextView getmStatusText() {
-        return mStatusText;
-    }
-
-    public void setmStatusText(TextView mStatusText) {
-        this.mStatusText = mStatusText;
-    }
-
-    public TextView getmDueDateText() {
-        return mDueDateText;
-    }
-
-    public void setmDueDateText(TextView mDueDateText) {
-        this.mDueDateText = mDueDateText;
-    }
-
-    public TextView getmStatus() {
+    public TextView getStatus() {
         return mStatus;
     }
 
-    public void setmStatus(TextView mStatus) {
+    public void setStatus(TextView mStatus) {
         this.mStatus = mStatus;
     }
 
-    public TextView getmDueDate() {
+    public TextView getDueDate() {
         return mDueDate;
     }
 
-    public void setmDueDate(TextView mDueDate) {
+    public void setDueDate(TextView mDueDate) {
         this.mDueDate = mDueDate;
     }
 

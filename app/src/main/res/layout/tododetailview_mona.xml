@@ -18,12 +18,15 @@
         android:id="@+id/todotitle"
         android:textSize="12pt"
         android:textStyle="bold"
-        android:hint="Titel"/>
+        android:hint="Titel"
+        android:focusedByDefault="false"/>
 
     <ListView
         android:id="@+id/listview_todo_detailview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:divider="@drawable/listview_divider_blue"
+        android:dividerHeight="5dp">
 
     </ListView>
 
@@ -41,7 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aufgabe hinzufügen"
-            android:layout_below="@id/edittext_newTodo"/>
+            android:layout_below="@id/edittext_newTodo"
+            android:background="@color/colorBlueDark"/>
     </RelativeLayout>
 
     <RelativeLayout

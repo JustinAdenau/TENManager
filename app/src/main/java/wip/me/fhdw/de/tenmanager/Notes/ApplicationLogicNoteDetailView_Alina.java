@@ -161,7 +161,12 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         int id = item.getItemId();
 
-        if (id == R.id.menuNotes) {
+        if(id == R.id.menuHome)
+        {
+            startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if (id == R.id.menuNotes) {
 
             startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
             mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);

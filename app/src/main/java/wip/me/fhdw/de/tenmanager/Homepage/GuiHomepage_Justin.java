@@ -62,7 +62,6 @@ public class GuiHomepage_Justin {
         mButtonDeleteTodo = view2.findViewById(R.id.homepage_buttonDeleteTodo);
 
         mNavigationView = activity.findViewById(R.id.nav_view);
-        if(mNavigationView == null) Log.d("LOGTAG", "NavigationView ist null in GuiEventsOverview Z.59!!!!!!!!!!");
     }
 
     public TextView getmCurrentDate(){return mCurrentDate;}

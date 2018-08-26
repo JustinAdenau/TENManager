@@ -118,6 +118,10 @@ public class ApplicationLogicHomepage_Justin {
     public void onTodoListItemClicked(int position)
     {
         mTodoData.setToDoTitle(mTodoList.get(position).getTitle());
+        mTodoData.setToDoContent(mTodoList.get(position).getContent());
+        mTodoData.setToDoDuedate(mTodoList.get(position).getDuedate());
+        mTodoData.setToDoStaus(mTodoList.get(position).getStatus());
+        mTodoData.setWithData(true);
         startActivity(Constants.ACTIVITYTODODETAILVIEWCLASS, true);
         mTodoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
@@ -161,11 +165,8 @@ public class ApplicationLogicHomepage_Justin {
     public void onButtonDeleteTodoClicked(View view)
     {
         View v = (View)view.getParent().getParent().getParent();
-        TextView title = v.findViewById(R.id.listviewitem_textview_title_todo);
-        TextView checkbox1 = v.findViewById(R.id.todoCheckBox1);
-        TextView checkbox2 = v.findViewById(R.id.todoCheckBox2);
-        TextView dueDate = v.findViewById(R.id.todoDuedate);
-
+        TextView title = v.findViewById(R.id.homepage_todo_title);
+        Log.d("LOGTAG", "Titel des zu löschenden ToDos: "+title.getText().toString()+"!!!!!!!!!!!!!!!!!!!!");
         ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString());
         mDb.todoDao().deleteToDos(todoToBeDeleted);
 
@@ -175,11 +176,13 @@ public class ApplicationLogicHomepage_Justin {
     public void onTitleEventClicked(View view){
         View v = (View)view.getParent().getParent().getParent();
         startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
+        mActivity.overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onTitleTodoClicked(View view){
         View v = (View)view.getParent().getParent().getParent();
         startActivity(Constants.ACTIVITYTODOOVERVIEWCLASS, false);
+        mActivity.overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     public void onBackPressed(){
@@ -207,9 +210,12 @@ public class ApplicationLogicHomepage_Justin {
         Intent intent = new Intent();
         intent.setClass(mEventData.getActivity(), activityClass);
 
-        if(withData){ intent.putExtra(Constants.KEYDATABUNDLE, mEventData.getDataBundle());}
+        if(withData)
+        {
+            if(activityClass == Constants.ACTIVITYEVENTSDETAILVIEWCLASS)  intent.putExtra(Constants.KEYDATABUNDLE, mEventData.getDataBundle());
+            else intent.putExtra(Constants.KEYDATABUNDLE, mTodoData.getDataBundle());
+        }
         intent.putExtra(Constants.KEYWITHDATA, withData);
-        Log.d("LOGTAG", "withData: "+withData+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         mEventData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
     }
 
@@ -220,6 +226,7 @@ public class ApplicationLogicHomepage_Justin {
         mEventData.getActivity().setResult(Activity.RESULT_OK, intent);
         Log.d("LOGTAG", "finishActivityResultOk");
         mEventData.getActivity().finish();
+        mActivity.overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
     private void finishActivityResultCanceled()
@@ -229,6 +236,7 @@ public class ApplicationLogicHomepage_Justin {
         mEventData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
         Log.d("LOGTAG", "finishActivityResultCancel");
         mEventData.getActivity().finish();
+        mActivity.overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }
 

@@ -77,7 +77,8 @@ public class ToDoData_Mona {
 
     public void createAndSaveNewTodo()
     {
-        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus);
+        Log.d("LOGTAG", "neues Todo: "+mToDoTitle+" "+mToDoContent+" "+mToDoDuedate+" "+mStatus+"!!!!!!!!!!!!!!!!!!!!");
+        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus, "01010");
         mDb.todoDao().insertAll(todo);
     }
 
@@ -85,7 +86,7 @@ public class ToDoData_Mona {
     {
         mDb.todoDao().deleteToDoByTitle(titleOld);
         Log.d("LOGTAG", "Content der gespeichert wird: "+mToDoContent);
-        ToDoOverview_Mona newTodo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus);
+        ToDoOverview_Mona newTodo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus, "01010");
         mDb.todoDao().insertAll(newTodo);
     }
 

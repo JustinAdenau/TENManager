@@ -90,7 +90,12 @@ public class ApplicationLogicNoteOverview_Julius {
     {
         int id = item.getItemId();
 
-        if (id == R.id.menuEvent) {
+        if(id == R.id.menuHome)
+        {
+            startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
+            mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if (id == R.id.menuEvent) {
 
             startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
             mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);

@@ -76,7 +76,7 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
 
     public void initToolbar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //getSupportActionBar().hide();
+        getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Notes");
         ActionBar actionBar = getSupportActionBar();

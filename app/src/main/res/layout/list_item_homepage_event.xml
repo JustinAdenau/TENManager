@@ -2,10 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/listview_item_style"
+    android:background="@drawable/listview_item_style_events"
     android:orientation="vertical"
     android:id="@+id/idRelativeLayoutListItem"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+
+    android:layout_margin="@dimen/listview_margin">
 
     <!--android:layout_margin="10dp"-->
 
@@ -27,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="@dimen/listview_margin">
 
                 <TextView
                     android:id="@+id/homepage_event_title"
@@ -39,7 +42,9 @@
                     android:textAlignment="viewStart"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="@dimen/textsize_title"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorBlack"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -59,7 +64,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1"
-                            android:hint="Startdatum" />
+                            android:hint="Startdatum"
+                            android:textColor="@color/colorBlack"/>
 
                         <TextView
                             android:id="@+id/homepage_event_time"
@@ -67,7 +73,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1"
-                            android:hint="Startzeit" />
+                            android:hint="Startzeit"
+                            android:textColor="@color/colorBlack"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -83,7 +90,8 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/linearLayout_dateTimeEnd"
             android:layout_weight="0"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/listview_margin">
 
             <ImageButton
                 android:id="@+id/homepage_buttonDeleteEvent"
