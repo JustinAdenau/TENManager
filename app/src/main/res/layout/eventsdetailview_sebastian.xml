@@ -18,13 +18,13 @@
 
 <!--todo dimen einfügen schriftart und größe-->
 
-<!--todo margin erhöhen-> titel ist nicht mehr im  & Weißer Bereich um die Anzeige Box -->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/error_appearance">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/eventTitleEditText"
@@ -48,8 +48,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/eventDateTimeStart"
         android:layout_below="@id/eventStartHeadline">
-
-
 
         <Button
             android:id="@+id/eventDateStart"
@@ -84,14 +82,11 @@
         android:layout_below="@id/eventDateTimeStart"
         android:text="Ende"/>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/eventDateTimeEnd"
         android:layout_below="@id/eventEndHeadline">
-
-
 
         <Button
             android:id="@+id/eventDateEnd"
@@ -103,7 +98,6 @@
             android:drawableStart="@android:drawable/ic_menu_today"
             android:background="@color/colorApricotDark"
             android:hint="Enddatum"/>
-
 
         <Button
             android:id="@+id/eventTimeEnd"
@@ -119,16 +113,14 @@
 
     </LinearLayout>
 
-
-    <!--todo Fehlerhinweis mit Roterfarbe-->
     <TextView
         android:id="@+id/eventHintDateTimeValidation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/eventDateTimeEnd"
         android:focusable="true"
-        android:focusableInTouchMode="true"/>
-
+        android:focusableInTouchMode="true"
+        android:textColor="@color/colorRedLight"/>
 
     <Spinner
         android:id="@+id/eventReminderSpinner"
@@ -137,13 +129,13 @@
         android:layout_below="@id/eventHintDateTimeValidation">
     </Spinner>
 
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/eventReminderSpinner"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/error_appearance">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/eventLocationEditText"
@@ -154,14 +146,13 @@
 
     </android.support.design.widget.TextInputLayout>
 
-
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/eventLocation"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/error_appearance">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/eventDescriptionEditText"
@@ -171,8 +162,7 @@
             android:inputType="textMultiLine" />
 
     </android.support.design.widget.TextInputLayout>
-
-
+    
 </RelativeLayout>
 
 </ScrollView>

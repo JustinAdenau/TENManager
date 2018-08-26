@@ -55,7 +55,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
         Spinner spinner = mGui.getSpinnerReminder();
         spinner.setAdapter(adapter);
-        
+
         if (mSpinnerPosition != null) {
             spinner.setSelection(Integer.parseInt(mSpinnerPosition));
         } else {
