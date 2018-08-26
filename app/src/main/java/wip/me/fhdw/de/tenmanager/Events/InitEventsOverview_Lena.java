@@ -74,7 +74,7 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
             database.execSQL("CREATE TABLE 'note_julius' (note_id INTEGER PRIMARY KEY NOT NULL, note_title TEXT, note_content TEXT, note_picture TEXT)");
             database.execSQL("DROP TABLE 'note_old'");
         }
-    };*/
+    };
 
 
     public void initGui()
