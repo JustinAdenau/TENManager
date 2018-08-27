@@ -244,5 +244,9 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         this.mSpinnerPosition = SpinnerPosition;
     }
 
+    public void setEventID(int EventID) {
+        this.mEventID = EventID;
+    }
+
     //Quelle http://blog.blundellapps.co.uk/notification-for-a-user-chosen-time/
 }
