@@ -29,6 +29,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
     private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
     private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
+    private ReminderSpinnerEventsDetailView_Sebastian mReminderSpinner;
 
     private Activity mActivity;
 
@@ -53,6 +54,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         dataToGui();
     }
 
+
     public void initListener() {
         EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
@@ -71,7 +73,11 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getButtonTimeEnd().setText(mData.getEventTimeEnd());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
-        //todo: Spinner setzen
+        //todo an Datenbank
+        mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
+
+        mReminderSpinner.setSpinnerPosition(mData.getEventTimeReminder());
+        mReminderSpinner.buildReminderSpinner();
     }
 
 
@@ -140,8 +146,14 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     }
 
 
+
     public void onFabSaveClicked() {
         if (mUserInputValidation.confirmInput()) return;
+        if(mReminderSpinner.isNotificationActive()==true){
+            mReminderSpinner.startAlarm(mReminderSpinner.getCalendar());
+        } else {
+            mReminderSpinner.cancelAlarm(mReminderSpinner.getCalendar());
+        }
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
         String dateStartOld = mData.getEventDateStart();
@@ -159,6 +171,8 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
             mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
             mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
+            //todo Position von adapterview
+            mData.setEventTimeReminder(mReminderSpinner.getSpinnerPosition());
         }
 
         Log.d("LOGTAG", "withData: " + mData.getWithData());
@@ -257,6 +271,5 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
-
 
 }

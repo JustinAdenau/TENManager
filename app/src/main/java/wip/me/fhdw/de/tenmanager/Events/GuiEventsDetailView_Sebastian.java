@@ -32,6 +32,7 @@ public class GuiEventsDetailView_Sebastian {
     private TextInputLayout mTextInputLayoutDescription;
 
     private TextView mTextViewDateTimeValidation;
+
     private Spinner mSpinnerReminder;
 
     private FloatingActionButton mFabSave;
@@ -105,9 +106,11 @@ public class GuiEventsDetailView_Sebastian {
         return mFabSave;
     }
 
-    public NavigationView getNavigationView(){return mNavigationView;}
+    public Spinner getSpinnerReminder() {
+        return mSpinnerReminder;
+    }
 
-    public Spinner getSpinnerReminder(){return mSpinnerReminder;}
+    public NavigationView getNavigationView(){return mNavigationView;}
 
     public void setButtonTimeStart(String ButtonTimeStart) {
         this.mButtonTimeStart.setText(ButtonTimeStart);
@@ -123,5 +126,9 @@ public class GuiEventsDetailView_Sebastian {
 
     public void setButtonDateEnd(String ButtonDateEnd) {
         this.mButtonDateEnd.setText(ButtonDateEnd);
+    }
+
+    public void setSpinnerReminder(String SpinnerReminder){
+        this.mSpinnerReminder.setSelection(Integer.parseInt(SpinnerReminder));
     }
 }

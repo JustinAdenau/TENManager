@@ -27,12 +27,10 @@ public class UserInputValidationEventsDetailView_Sebastian {
     public UserInputValidationEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
         mGui = gui;
 
-
         mTitleValidation = mGui.getTextInputLayoutTitle();
         mLocationValidation = mGui.getTextInputLayoutLocation();
         mDescriptionValidation = mGui.getTextInputLayoutDescription();
         mDateTimeValidation = mGui.getTextViewDateTimeValidation();
-
     }
 
     private boolean validateTitle(){
@@ -108,7 +106,7 @@ public class UserInputValidationEventsDetailView_Sebastian {
 
 //todo setError oder set Text -> Layout von setText
         if(calendarEnd.getTime().getTime() <= calendarStart.getTime().getTime()){
-            mDateTimeValidation.setError("Das Startdatum muss vor dem Enddatum liegen");
+            mDateTimeValidation.setText("Das Startdatum muss vor dem Enddatum liegen");
             return false;
         } else {
             mDateTimeValidation.setText(null);
