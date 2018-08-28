@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

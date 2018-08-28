@@ -16,13 +16,10 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteDetailView_Alina {
@@ -55,7 +52,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
         mGui.getCameraButton().setOnClickListener(new View.OnClickListener() {
             @Override

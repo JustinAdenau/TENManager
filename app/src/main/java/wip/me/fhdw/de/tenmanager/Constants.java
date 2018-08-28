@@ -28,6 +28,7 @@ public class Constants {
         public static final String KEYTODODUEDATE = "K14";
         public static final String KEYTODOSTATUS = "K15";
         public static final String KEYTODOWITHDATA = "K16";
+        public static final String KEYTODOCHECKBOXACTIVATED = "K17";
 
         public static final int REQUESTCODEONE = 1;
         public static final int REQUESTCODETWO = 2;

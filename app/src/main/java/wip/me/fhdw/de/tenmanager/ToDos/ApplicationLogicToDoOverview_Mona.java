@@ -8,13 +8,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicToDoOverview_Mona {
@@ -42,7 +41,7 @@ public class ApplicationLogicToDoOverview_Mona {
         ToDoFloatingActionButtonClickListener_Mona floatingActionButtonClickListener = new ToDoFloatingActionButtonClickListener_Mona(this);
         if(mGui.getFabCreateNew() == null)Log.d("LOGTAG", "FAB ist null !!!!");
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
         ButtonDeleteToDoClickListener_Mona buttonDeleteClickListener = new ButtonDeleteToDoClickListener_Mona(this);
         mGui.getButtonDelete().setOnClickListener(buttonDeleteClickListener);
@@ -55,12 +54,13 @@ public class ApplicationLogicToDoOverview_Mona {
     private void dataToGui() {
 
         //mDb.todoDao().deleteAllToDos();
-        //ToDoOverview_Mona todo = new ToDoOverview_Mona("Fertig werden!!!", "eventDetailview, todos, fotos,", "23.08.2018", 50);
-        //mDb.todoDao().insertAll(todo);
+        //ToDoOverview_Mona todoNew = new ToDoOverview_Mona("Fertig werden!!!", "eventDetailview, todos, fotos,", "23.08.2018", 50, "010");
+        //mDb.todoDao().insertAll(todoNew);
         mToDoList = mDb.todoDao().getAllToDos();
 
         mToDoAdapter.setToDoList(mToDoList);
         mToDoAdapter.setApplicationLogic(this);
+        mToDoAdapter.setCheckboxActivated(mToDoData.getToDoCheckboxActivated());
         mGui.getListView().setAdapter(mToDoAdapter);
     }
 
@@ -109,6 +109,7 @@ public class ApplicationLogicToDoOverview_Mona {
         mToDoData.setToDoContent(mToDoList.get(position).getContent());
         mToDoData.setToDoDuedate(mToDoList.get(position).getDuedate());
         mToDoData.setToDoStaus(mToDoList.get(position).getStatus());
+        mToDoData.setToDoCheckboxActivated(mToDoList.get(position).getCheckboxActivated());
         mToDoData.setWithData(true);
         startActivity(Constants.ACTIVITYTODODETAILVIEWCLASS, true);
         mToDoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -155,9 +156,12 @@ public class ApplicationLogicToDoOverview_Mona {
 
     public void onButtonDeleteToDoClicked(View view) {
         Log.d("LOGTAG", "ButtonDelete wurde angeklickt!!!!!!!!!!!!!!!!");
-        View v = (View)view.getParent().getParent();
-        TextView title = view.findViewById(R.id.listviewitem_textview_title_todo);
-        mDb.todoDao().deleteToDoByTitle(title.getText().toString());
+        View v = (View)view.getParent().getParent().getParent();
+        TextView title = v.findViewById(R.id.listviewitem_textview_title_todo);
+        if(title == null) Log.d("LOGTAG", "Title ist null!!!!!!!!!!!!!!!!!!");
+        else Log.d("LOGTAG", "Title ist nicht null!!!!!!!!!!!!!!!!!!");
+        ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getTodoByTitle(title.getText().toString());
+        mDb.todoDao().deleteToDos(todoToBeDeleted);
 
         mActivity.recreate();
     }

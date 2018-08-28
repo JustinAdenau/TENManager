@@ -7,13 +7,15 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicToDoDetailview_Mona {
@@ -36,18 +38,22 @@ public class ApplicationLogicToDoDetailview_Mona {
         mContext = context;
         initDatepicker();
         initGui();
+        initDatepicker();
         initListener();
     }
 
-    public void initDatepicker(){
+    public void initDatepicker()
+    {
         mDatepicker = new DatepickerToDoDetailview_Mona(mGui);
+        mDatepicker.buildDateStartDuedatepicker();
+        mDatepicker.setDuedateToButton();
     }
 
     public void initListener()
     {
         ToDoFloatingActionButtonClickListener_Mona fabClickListener = new ToDoFloatingActionButtonClickListener_Mona(this);
         mGui.getFabSave().setOnClickListener(fabClickListener);
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
         ButtonNewTaskClickListener_Lena buttonNewTaskClickListener = new ButtonNewTaskClickListener_Lena(this);
         mGui.getTodoButtonNew().setOnClickListener(buttonNewTaskClickListener);
@@ -55,14 +61,16 @@ public class ApplicationLogicToDoDetailview_Mona {
 
     public void onFabSaveClicked()
     {
+        if(mGui.getTodoDetailviewTitle().getText().toString().trim().isEmpty()) {mGui.getTodoDetailviewTitle().setError("Bitte einen Titel eingeben"); return;}
+        if(mGui.getTodoEdittextNew().getText().toString().contains(",")){mGui.getTodoEdittextNew().setError("Eine Aufgabe darf kein Komma enthalten"); return;}
         boolean todoExists = false;
         String titleOld = mData.getToDoTitle();
-        String title = mGui.getMtodotitle().getText().toString();
+        String title = mGui.getTodoDetailviewTitle().getText().toString();
         if(mData.getDb().todoDao().todoExists(title) != 0) todoExists = true; Log.d("LOGTAG", "todoExists wird auf true gesetzt!!!!!!!!!!!!!!!!!!");
         if(!todoExists || mData.getWithData())
         {
             Log.d("LOGTAG", "Daten aus Gui werden in Data gespeichert!!!!!!!!!!!!!!!!!!");
-            mData.setToDoTitle(mGui.getMtodotitle().getText().toString());
+            mData.setToDoTitle(mGui.getTodoDetailviewTitle().getText().toString());
             String content="";
             for(int i=0; i< mGui.getListView().getCount(); i++)
             {
@@ -71,16 +79,21 @@ public class ApplicationLogicToDoDetailview_Mona {
                 content = content+",";
             }
             Log.d("LOGTAG", "content: "+content+"!!!!!!!!!!!!!!!!!!!!!");
-            if(!mGui.getTodoEdittextNew().getText().toString().isEmpty()) content = content+", "+mGui.getTodoEdittextNew().getText().toString()+", ";
+            if(!mGui.getTodoEdittextNew().getText().toString().isEmpty()) content = content+mGui.getTodoEdittextNew().getText().toString()+",";
             mData.setToDoContent(content);
             Log.d("LOGTAG", "content: "+mData.getToDoContent()+"!!!!!!!!!!!!!!!!!!!!!");
-            mData.setToDoDuedate(mGui.getMtodoDetailviewDueDate().getText().toString());
-            String statusString = mGui.getMtodoDetailviewStatus().getText().toString();
+            mData.setToDoDuedate(mGui.getTodoDetailviewButtonDuedate().getText().toString());
+            String statusString = mGui.getTodoDetailviewTextviewStatus().getText().toString();
             int status = 0;
             if(statusString.length() == 7) status = Integer.parseInt(statusString.substring(0,2));
             else if(statusString.length() == 8) status = Integer.parseInt(statusString.substring(0,3));
             else if(statusString.length() == 6) status = Integer.parseInt(statusString.substring(0,1));
             mData.setToDoStaus(status);
+            String checkboxActivated = buildCheckboxActivated();
+
+            Log.d("LOGTAG", "checkboxActivated beim Speichern: "+checkboxActivated.trim()+"!!!!!!!!!!!!!!!!");
+            if(!mGui.getTodoEdittextNew().getText().toString().isEmpty()) checkboxActivated = checkboxActivated+"0";
+            mData.setToDoCheckboxActivated(checkboxActivated.trim());
         }
         if(mData.getWithData())
         {
@@ -101,19 +114,37 @@ public class ApplicationLogicToDoDetailview_Mona {
 
     public void onButtonNewTaskClicked()
     {
-        //Log.d("LOGTAG", "Content: "+mData.getToDoContent().toString()+"!!!!!!!!!!!!!!!!!!");
+        if(mGui.getTodoEdittextNew().getText().toString().contains(","))
+        {
+            mGui.getTodoEdittextNew().setError("Eine Aufgabe darf kein Komma enthalten");
+            return;
+        }
         if(mData.getToDoContent() != null) mData.setToDoContent(mData.getToDoContent()+mGui.getTodoEdittextNew().getText().toString()+", ");
         else mData.setToDoContent(mGui.getTodoEdittextNew().getText().toString()+", ");
-        //Log.d("LOGTAG", "Content: "+ mData.getToDoContent().toString()+"!!!!!!!!!!!!!!!!!!");
-        mData.updateTodo(mData.getToDoTitle());
-        //dataToGui();
-        //if(mContentList.isEmpty()) mContentList.clear();
+        //mData.updateTodo(mData.getToDoTitle());
         mContentList.add(mGui.getTodoEdittextNew().getText().toString());
         for (String content:mContentList) {
             Log.d("LOGTAG", "content in List nach add: "+content+"!!!!!!!!!!!!!!!!!!!!!!1");
         }
         mAdapter.refresh(mContentList);
+        if(mData.getToDoCheckboxActivated() != null) mData.setToDoCheckboxActivated(mData.getToDoCheckboxActivated()+"0");
+        else mData.setToDoCheckboxActivated("0");
+        //mAdapter.setCheckboxActivated(mData.getToDoCheckboxActivated());
+        mGui.getTodoDetailviewTextviewStatus().setText(String.valueOf((int)(calculateStatus()*100))+"/100%");
         mGui.getTodoEdittextNew().setText("");
+    }
+
+    public String buildCheckboxActivated()
+    {
+        String checkboxActivated = "";
+        for (int i=0; i<mGui.getListView().getCount(); i++)
+        {
+            CheckBox checkbox = mAdapter.getCheckboxList().get(i);
+
+            if(checkbox.isChecked()) checkboxActivated = checkboxActivated+"1";
+            else checkboxActivated = checkboxActivated+"0";
+        }
+        return checkboxActivated;
     }
 
     public void onMenuItemSelected(MenuItem item)
@@ -143,6 +174,49 @@ public class ApplicationLogicToDoDetailview_Mona {
 
         DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);
+    }
+
+    public void onCheckboxClicked(View view, int position)
+    {
+        int add = 0;
+        int subtract = 0;
+        double status=0;
+        int count = 0;
+        if(!mAdapter.getCheckboxList().get(position).isChecked())
+        {
+            mAdapter.getCheckboxList().get(position).setChecked(true);
+            add++;
+        }
+        else
+        {
+            mAdapter.getCheckboxList().get(position).setChecked(false);
+            subtract--;
+        }
+        for(int i=0; i<mData.getToDoCheckboxActivated().length(); i++)
+        {
+            if(mData.getToDoCheckboxActivated().charAt(i)=='1') status++;
+            count++;
+        }
+        status = status + add + subtract;
+        status = (status / count) *100;
+        //status = calculateStatus() + (add/mData.getToDoCheckboxActivated().length()) + (subtract/mData.getToDoCheckboxActivated().length());
+        //status = status *100;
+        mData.setToDoStaus((int)status);
+        mData.setToDoCheckboxActivated(buildCheckboxActivated());
+        mGui.getTodoDetailviewTextviewStatus().setText(String.valueOf((int)status) +"/100%");
+    }
+
+    public double calculateStatus()
+    {
+        double status =0;
+        int count =0;
+        for(int i=0; i<mData.getToDoCheckboxActivated().length(); i++)
+        {
+            if(mData.getToDoCheckboxActivated().charAt(i)=='1') status++;
+            count++;
+        }
+        Log.d("LOGTAG", "calculateStatus: "+status+"/"+count+"!!!!!!!!!!!!!!!");
+        return status/count;
     }
 
 
@@ -177,7 +251,7 @@ public class ApplicationLogicToDoDetailview_Mona {
     }
 
     private void dataToGui() {
-        mGui.getMtodotitle().setText(mData.getToDoTitle());
+        mGui.getTodoDetailviewTitle().setText(mData.getToDoTitle());
         Log.d("LOGTAG", "withData in Detailview: "+mData.getWithData()+ "Titel in Detailview: "+mData.getToDoTitle()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         if(mData.getWithData()) {
             int startindex = 0;
@@ -190,17 +264,20 @@ public class ApplicationLogicToDoDetailview_Mona {
                 }
             }
             mAdapter.setContentList(mContentList);
+            Log.d("LOGTAG", "getToDoCheckboxActivated in dataToGui: "+mData.getToDoCheckboxActivated()+"!!!!!!!!!!!!!!!!!!!!!");
+            mAdapter.setCheckboxActivated(mData.getToDoCheckboxActivated());
             mGui.getListView().setAdapter(mAdapter);
         }
+        mGui.getTodoDetailviewButtonDuedate().setText(mData.getToDoDuedate());
+        mGui.getTodoDetailviewTextviewStatus().setText(String.valueOf(mData.getToDoStatus())+"/100%");
 
-        mGui.getMtodoDetailviewDueDate().setText(mData.getToDoDuedate());
-        mGui.getMtodoDetailviewStatus().setText(String.valueOf(mData.getToDoStatus())+"/100%");
     }
 
     private void initGui() {
         mContentList = new ArrayList<>();
         mAdapter = new ToDoDetailviewAdapter_Lena(mContext);
         mAdapter.setActivity(mActivity);
+        mAdapter.setApplicationLogic(this);
         dataToGui();
     }
 

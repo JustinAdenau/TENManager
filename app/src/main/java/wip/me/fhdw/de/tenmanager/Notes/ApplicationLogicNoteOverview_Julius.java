@@ -13,9 +13,7 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Event;
-import wip.me.fhdw.de.tenmanager.Events.ButtonDeleteEventClickListener_Lena;
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteOverview_Julius {
@@ -50,7 +48,7 @@ public class ApplicationLogicNoteOverview_Julius {
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
         ButtonDeleteNoteClickListener_Julius buttonDeleteNoteClickListener = new ButtonDeleteNoteClickListener_Julius(this);
         mGui.getButtonDeleteNote().setOnClickListener(buttonDeleteNoteClickListener);
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
@@ -58,7 +56,7 @@ public class ApplicationLogicNoteOverview_Julius {
         //mDb.noteDao().deleteAllNotes();
 
         //Note_Julius neu = new Note_Julius("Test", "-Eier \n-Wasser \n-Mehl", "c://");
-        //mDb.noteDao().insertAll(neu);
+        //mDb.noteDao().insert(neu);
 
         mNoteList = mDb.noteDao().getAllNotes();
 

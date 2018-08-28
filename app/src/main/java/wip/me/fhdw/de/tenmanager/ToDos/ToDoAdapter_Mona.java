@@ -1,6 +1,7 @@
 package wip.me.fhdw.de.tenmanager.ToDos;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,6 +19,7 @@ public class ToDoAdapter_Mona extends BaseAdapter{
     private Context mContext;
     private List<ToDoOverview_Mona> mToDoList;
     private ApplicationLogicToDoOverview_Mona mApplicationLogic;
+    private String mCheckboxActivated;
 
 
     public ToDoAdapter_Mona(Context context, List<ToDoOverview_Mona> todoList)
@@ -33,6 +35,9 @@ public class ToDoAdapter_Mona extends BaseAdapter{
     }
 
     public void setToDoList(List<ToDoOverview_Mona> todoList){mToDoList=todoList;}
+
+    public void setCheckboxActivated(String checkboxActivated){mCheckboxActivated = checkboxActivated;
+        Log.d("LOGTAG", "checkBoxActivated wurde in OverviewAdapter gesetzt: "+mCheckboxActivated+"!!!!!!!!!!!!!!!!!!!!!");}
 
     public void setApplicationLogic(ApplicationLogicToDoOverview_Mona applicationLogic){mApplicationLogic = applicationLogic;}
 
@@ -79,6 +84,19 @@ public class ToDoAdapter_Mona extends BaseAdapter{
         textViewNoteTitle.setText(mToDoList.get(position).getTitle());
         if(!checkboxList.isEmpty())checkbox1.setText(checkboxList.get(0));
         if(checkboxList.size()>=2){checkbox2.setText(checkboxList.get(1));}
+        if(mToDoList != null && mToDoList.size()>0 && mToDoList.get(position).getCheckboxActivated() != null)
+        {
+            Log.d("LOGTAG", "checkboxAcivated: "+mToDoList.get(position).getCheckboxActivated()+"!!!!!!!!!!!!!!!");
+            Log.d("LOGTAG", "position: "+position+"!!!!!!!!!!!!!!!");
+            if(mToDoList.get(position).getCheckboxActivated().length() >1 && mToDoList.get(position).getCheckboxActivated().substring(0 ,1).equals("1"))
+            {
+                checkbox1.setChecked(true);
+            }
+            if( mToDoList.get(position).getCheckboxActivated().length() >2 && mToDoList.get(position).getCheckboxActivated().substring(1,2).equals("1"))
+            {
+                checkbox2.setChecked(true);
+            }
+        }
         textViewDuedate.setText(mToDoList.get(position).getDuedate());
         textViewStatus.setText(String.valueOf(mToDoList.get(position).getStatus())+"/100%");
 

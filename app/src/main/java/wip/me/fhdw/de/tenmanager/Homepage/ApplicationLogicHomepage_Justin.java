@@ -15,9 +15,9 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Event;
+import wip.me.fhdw.de.tenmanager.Events.Event;
 import wip.me.fhdw.de.tenmanager.Events.EventData_Lena;
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 import wip.me.fhdw.de.tenmanager.ToDos.ToDoData_Mona;
 import wip.me.fhdw.de.tenmanager.ToDos.ToDoOverview_Mona;
@@ -73,7 +73,7 @@ public class ApplicationLogicHomepage_Justin {
         TitleTodoClickListener titleTodoClickListener = new TitleTodoClickListener(this);
         mGui.getTodoHeader().setOnClickListener(titleTodoClickListener);
 
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
@@ -84,9 +84,10 @@ public class ApplicationLogicHomepage_Justin {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Date date = new Date();
 
-        //mEventList = mDb.eventDao().getAllEvents(); //andere Abfrage??
-        mEventList = mDb.eventDao().getEventsToday((formatter.format(date).toString()));
-        mTodoList = mDb.todoDao().getAllToDos(); //andere Abfrage??
+        mEventList = mDb.eventDao().getEventsToday((formatter.format(date)));
+        mTodoList = mDb.todoDao().getToDosToday((formatter.format(date)));
+        Log.d("LOGTAG", "Anzahl der in der DB gespeicherten ToDos: "+mDb.todoDao().getCount()+"!!!!!!!!!!!!!!!!!!!!!!!!!" );
+        //Log.d("LOGTAG", "ToDo: "+mTodoList.get(0).getTitle()+" "+mTodoList.get(0).getDuedate()+" "+mTodoList.get(0).getContent()+" "+mTodoList.get(0).getCheckboxActivated()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
 
         mEventAdapter.setApplicationLogic(this);
         mEventAdapter.setEventList(mEventList);
@@ -110,6 +111,7 @@ public class ApplicationLogicHomepage_Justin {
         mEventData.setEventTimeEnd(mEventList.get(position).getEventTimeEnd());
         mEventData.setEventDescription(mEventList.get(position).getEventDescription());
         mEventData.setEventLocation(mEventList.get(position).getEventLocation());
+        mEventData.setEventTimeReminder(mEventList.get(position).getEventTimeReminder());
         mEventData.setWithData(true);
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
         mEventData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -121,6 +123,7 @@ public class ApplicationLogicHomepage_Justin {
         mTodoData.setToDoContent(mTodoList.get(position).getContent());
         mTodoData.setToDoDuedate(mTodoList.get(position).getDuedate());
         mTodoData.setToDoStaus(mTodoList.get(position).getStatus());
+        mTodoData.setToDoCheckboxActivated(mTodoList.get(position).getCheckboxActivated());
         mTodoData.setWithData(true);
         startActivity(Constants.ACTIVITYTODODETAILVIEWCLASS, true);
         mTodoData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -167,9 +170,9 @@ public class ApplicationLogicHomepage_Justin {
         View v = (View)view.getParent().getParent().getParent();
         TextView title = v.findViewById(R.id.homepage_todo_title);
         Log.d("LOGTAG", "Titel des zu löschenden ToDos: "+title.getText().toString()+"!!!!!!!!!!!!!!!!!!!!");
-        ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString());
-        mDb.todoDao().deleteToDos(todoToBeDeleted);
-
+        //ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString());
+        //mDb.todoDao().deleteToDos(todoToBeDeleted);
+        mDb.todoDao().deleteToDoByTitle(title.getText().toString());
         mActivity.recreate();
     }
 

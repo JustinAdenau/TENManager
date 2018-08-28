@@ -16,15 +16,16 @@
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             />
-
         <EditText
             android:id="@+id/textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Beispiel"
             android:background="@color/colorBlue"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorBlack"
+            android:layout_margin="5dp"/>
 
 
     </LinearLayout>

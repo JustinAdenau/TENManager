@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import wip.me.fhdw.de.tenmanager.Event;
 import wip.me.fhdw.de.tenmanager.R;
 import wip.me.fhdw.de.tenmanager.ToDos.ToDoOverview_Mona;
 
@@ -59,7 +58,7 @@ public class ToDoAdapter_Justin extends BaseAdapter{
 
         //aus Datenklasse
         textviewHomepageTodoitemTitle.setText(mTodoList.get(position).getTitle());
-        //textviewHomepageTodoitemDate.setText(mTodoList.get(position).getTodoDate());
+        textviewHomepageTodoitemDate.setText(mTodoList.get(position).getDuedate());
 
         view.setTag(mTodoList.get(position).getId());
         return view;

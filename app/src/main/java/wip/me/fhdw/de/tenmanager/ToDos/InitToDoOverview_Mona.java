@@ -16,6 +16,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
+import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class InitToDoOverview_Mona extends AppCompatActivity {

@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
+import wip.me.fhdw.de.tenmanager.R;
 
 import static android.content.ContentValues.TAG;
 
@@ -51,7 +52,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
    public void buildReminderSpinner(){
         String[] ReminderList = new String[]{"Keine Erinnerung","Erinnere mich zur Startzeit","Erinnere mich 5 Minuten vorher","Erinnere mich 15 Minuten vorher", "Erinnere mich 30 Minuten vorher","Erinnere mich 1 Stunde vorher","Erinnere mich 2 Stunden vorher"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(mActivity.getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, ReminderList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mActivity.getApplicationContext(), R.layout.spinner_item, ReminderList);
 
         Spinner spinner = mGui.getSpinnerReminder();
         spinner.setAdapter(adapter);
