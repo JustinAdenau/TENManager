@@ -8,7 +8,6 @@ import android.util.Log;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Event;
 
 public class EventData_Lena {
 

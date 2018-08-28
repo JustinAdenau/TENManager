@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 7,
-    "identityHash": "0208975d3ca0fe4432553b5e5cba20b2",
+    "identityHash": "3a353d3dbdb9548959f44fd1fb846d5f",
     "entities": [
       {
         "tableName": "Event",
@@ -74,7 +74,7 @@
       },
       {
         "tableName": "Note_Julius",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`note_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `note_title` TEXT, `note_content` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`note_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `note_title` TEXT, `note_content` TEXT, `note_picture` TEXT)",
         "fields": [
           {
             "fieldPath": "mId",
@@ -91,6 +91,12 @@
           {
             "fieldPath": "mContent",
             "columnName": "note_content",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPicture",
+            "columnName": "note_picture",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -127,6 +133,7 @@
             "notNull": false
           },
           {
+
             "fieldPath": "mDuedate",
             "columnName": "todo_duedate",
             "affinity": "TEXT",
@@ -157,7 +164,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0208975d3ca0fe4432553b5e5cba20b2\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3a353d3dbdb9548959f44fd1fb846d5f\")"
     ]
   }
 }

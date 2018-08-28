@@ -2,11 +2,9 @@ package wip.me.fhdw.de.tenmanager.ToDos;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TextInputLayout;
 import android.view.ViewStub;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,14 +13,12 @@ import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiToDoDetailview_Mona {
 
-    private EditText mtodotitle;
+    private EditText mTodoDetailviewTitle;
     private ListView mListView;
-    private TextView mtodoDescriptionStatus;
-    private TextView mtodoDescriptionDuedate;
-    private TextView mtodoDetailviewStatus;
-    private EditText mtodoDetailviewDueDate;
-    private EditText mtodoEditTextNew;
-    private Button mtodoButtonNew;
+    private TextView mTodoDetailviewTextviewStatus;
+    private Button mTodoDetailviewButtonDuedate;
+    private EditText mTodoDetailviewEditTextNew;
+    private Button mTodoDetailviewButtonNew;
 
     private ViewStub stub;
     private View inflated;
@@ -36,12 +32,12 @@ public class GuiToDoDetailview_Mona {
         stub.setLayoutResource(R.layout.tododetailview_mona);
         inflated = stub.inflate();
 
-        mtodotitle = activity.findViewById(R.id.todotitle);
+        mTodoDetailviewTitle = activity.findViewById(R.id.todotitle);
         mListView = activity.findViewById(R.id.listview_todo_detailview);
-        mtodoDetailviewStatus = activity.findViewById(R.id.tododetailviewStatus);
-        mtodoDetailviewDueDate = activity.findViewById(R.id.todoDetailviewDueDate);
-        mtodoEditTextNew = activity.findViewById(R.id.edittext_newTodo);
-        mtodoButtonNew = activity.findViewById(R.id.button_newTodo);
+        mTodoDetailviewTextviewStatus = activity.findViewById(R.id.tododetailviewStatus);
+        mTodoDetailviewButtonDuedate = activity.findViewById(R.id.todoDetailviewButtonDueDate);
+        mTodoDetailviewEditTextNew = activity.findViewById(R.id.edittext_newTodo);
+        mTodoDetailviewButtonNew = activity.findViewById(R.id.button_newTodo);
 
         mFabSave = activity.findViewById(R.id.fab);
         //mFabSave.setId(R.id.fabSave);
@@ -51,51 +47,36 @@ public class GuiToDoDetailview_Mona {
 
 
 
-    public EditText getMtodotitle() {
-        return mtodotitle;
+    public EditText getTodoDetailviewTitle() {
+        return mTodoDetailviewTitle;
     }
 
-    public void setMtodotitle(EditText mtodotitle) {
-        this.mtodotitle = mtodotitle;
+    public void setTodoDetailviewTitle(EditText todoDetailviewTitle) {
+        this.mTodoDetailviewTitle = todoDetailviewTitle;
     }
 
     public ListView getListView(){return mListView;}
 
-    public TextView getMtodoDescriptionStatus() {
-        return mtodoDescriptionStatus;
+
+    public TextView getTodoDetailviewTextviewStatus() {
+        return mTodoDetailviewTextviewStatus;
     }
 
-    public void setMtodoDescriptionStatus(TextView mtodoDescriptionStatus) {
-        this.mtodoDescriptionStatus = mtodoDescriptionStatus;
+    public void setTodoDetailviewStatus(TextView todoDetailviewTextviewStatus) {
+        this.mTodoDetailviewTextviewStatus = todoDetailviewTextviewStatus;
     }
 
-    public TextView getMtodoDescriptionDuedate() {
-        return mtodoDescriptionDuedate;
+    public Button getTodoDetailviewButtonDuedate() {
+        return mTodoDetailviewButtonDuedate;
     }
 
-    public void setMtodoDescriptionDuedate(TextView mtodoDescriptionDuedate) {
-        this.mtodoDescriptionDuedate = mtodoDescriptionDuedate;
+    public void setTodoDetailviewDuedate(Button todoDetailviewDuedate) {
+        this.mTodoDetailviewButtonDuedate = todoDetailviewDuedate;
     }
 
-    public TextView getMtodoDetailviewStatus() {
-        return mtodoDetailviewStatus;
-    }
+    public EditText getTodoEdittextNew(){return mTodoDetailviewEditTextNew;}
 
-    public void setMtodoDetailviewStatus(TextView mtodoDetailviewStatus) {
-        this.mtodoDetailviewStatus = mtodoDetailviewStatus;
-    }
-
-    public EditText getMtodoDetailviewDueDate() {
-        return mtodoDetailviewDueDate;
-    }
-
-    public void setMtodoDetailviewDueDate(EditText mtodoDetailviewDueDate) {
-        this.mtodoDetailviewDueDate = mtodoDetailviewDueDate;
-    }
-
-    public EditText getTodoEdittextNew(){return mtodoEditTextNew;}
-
-    public Button getTodoButtonNew(){return mtodoButtonNew;}
+    public Button getTodoButtonNew(){return mTodoDetailviewButtonNew;}
 
 
     public FloatingActionButton getFabSave() {

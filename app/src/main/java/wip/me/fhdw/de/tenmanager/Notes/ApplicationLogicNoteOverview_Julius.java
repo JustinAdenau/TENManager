@@ -13,9 +13,7 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Event;
-import wip.me.fhdw.de.tenmanager.Events.ButtonDeleteEventClickListener_Lena;
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteOverview_Julius {
@@ -50,15 +48,15 @@ public class ApplicationLogicNoteOverview_Julius {
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
         ButtonDeleteNoteClickListener_Julius buttonDeleteNoteClickListener = new ButtonDeleteNoteClickListener_Julius(this);
         mGui.getButtonDeleteNote().setOnClickListener(buttonDeleteNoteClickListener);
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
     public void dataToGui(){
         //mDb.noteDao().deleteAllNotes();
 
-        //Note_Julius neu = new Note_Julius("Test", "-Eier \n-Wasser \n-Mehl");
-        //mDb.noteDao().insertAll(neu);
+        //Note_Julius neu = new Note_Julius("Test", "-Eier \n-Wasser \n-Mehl", "c://");
+        //mDb.noteDao().insert(neu);
 
         mNoteList = mDb.noteDao().getAllNotes();
 
@@ -80,6 +78,7 @@ public class ApplicationLogicNoteOverview_Julius {
     {
         mNoteData.setNoteTitle(mNoteList.get(position).getTitle());
         mNoteData.setNoteContent(mNoteList.get(position).getContent());
+        mNoteData.setNotePictureString(mNoteList.get(position).getPicture());
         mNoteData.setWithData(true);
         startActivity(Constants.ACTIVITYNOTEDETAILVIEWCLASS, true);
         mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -89,7 +88,12 @@ public class ApplicationLogicNoteOverview_Julius {
     {
         int id = item.getItemId();
 
-        if (id == R.id.menuEvent) {
+        if(id == R.id.menuHome)
+        {
+            startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
+            mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if (id == R.id.menuEvent) {
 
             startActivity(Constants.ACTIVITYEVENTSOVERVIEWCLASS, false);
             mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);

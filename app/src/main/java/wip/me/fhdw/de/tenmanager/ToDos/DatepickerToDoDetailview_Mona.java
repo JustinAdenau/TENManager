@@ -3,14 +3,11 @@ package wip.me.fhdw.de.tenmanager.ToDos;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import wip.me.fhdw.de.tenmanager.Events.GuiEventsDetailView_Sebastian;
 
 
 public class DatepickerToDoDetailview_Mona {
@@ -22,9 +19,7 @@ public class DatepickerToDoDetailview_Mona {
     private int mMonthStart;
     private int mYearStart;
 
-    private long mDiffDays;
     private Calendar mStartDate;
-    private Calendar mEndDate;
 
 
     private GuiToDoDetailview_Mona mGui;
@@ -36,14 +31,14 @@ public class DatepickerToDoDetailview_Mona {
     }
 
 
-    public void buildDateStartpicker() {
-        mGui.getMtodoDetailviewDueDate().setOnClickListener(new View.OnClickListener() {
+    public void buildDateStartDuedatepicker() {
+        mGui.getTodoDetailviewButtonDuedate().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                mDayStart = Integer.parseInt(mGui.getMtodoDetailviewDueDate().getText().toString().substring(0,2));
-                mMonthStart = Integer.parseInt(mGui.getMtodoDetailviewDueDate().getText().toString().substring(3, 5))-1;
-                mYearStart = Integer.parseInt(mGui.getMtodoDetailviewDueDate().getText().toString().substring(6,10));
+                mDayStart = Integer.parseInt(mGui.getTodoDetailviewButtonDuedate().getText().toString().substring(0,2));
+                mMonthStart = Integer.parseInt(mGui.getTodoDetailviewButtonDuedate().getText().toString().substring(3, 5))-1;
+                mYearStart = Integer.parseInt(mGui.getTodoDetailviewButtonDuedate().getText().toString().substring(6,10));
 
                 mStartDate = Calendar.getInstance();
                 mStartDate.set(Calendar.DAY_OF_MONTH, mDayStart);
@@ -63,13 +58,13 @@ public class DatepickerToDoDetailview_Mona {
 
     }
 
-    public void setDateStartToButton() {
+    public void setDuedateToButton() {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
 
-                mGui.getMtodoDetailviewDueDate().setText(String.format("%02d.%02d.%04d", day, month, year));
+                mGui.getTodoDetailviewButtonDuedate().setText(String.format("%02d.%02d.%04d", day, month, year));
                 SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
                 Calendar newStartDate = Calendar.getInstance();

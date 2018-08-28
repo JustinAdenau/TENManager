@@ -126,7 +126,8 @@
         android:id="@+id/eventReminderSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventHintDateTimeValidation">
+        android:layout_below="@id/eventHintDateTimeValidation"
+        >
     </Spinner>
 
     <android.support.design.widget.TextInputLayout

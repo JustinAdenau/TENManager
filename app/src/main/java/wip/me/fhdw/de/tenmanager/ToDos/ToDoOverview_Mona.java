@@ -26,12 +26,12 @@ public class ToDoOverview_Mona {
 
 
 
-    public ToDoOverview_Mona(String title, String content, String duedate, int status /*, String checkboxActivated*/){
+    public ToDoOverview_Mona(String title, String content, String duedate, int status , String checkboxActivated){
         mTitle = title;
         mContent = content;
         mDuedate = duedate;
         mStatus = status;
-        //mCheckboxActivated = checkboxActivated;
+        mCheckboxActivated = checkboxActivated;
     }
 
     // Get / Set Methods
