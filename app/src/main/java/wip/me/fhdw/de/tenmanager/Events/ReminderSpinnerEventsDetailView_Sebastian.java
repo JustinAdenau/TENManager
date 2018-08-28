@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
@@ -74,21 +75,21 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(0);
                     mNotificationActive = true;
 
-                    int minDiff = minutesToEvent();
+                    //int minDiff = minutesToEvent();
 
                     mTitle = mGui.getEditTextTitle().getText().toString();
-                    setNotificicationMessage(minDiff);
+                    //setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 5 Minuten vorher"){
                     Log.d(TAG, "onItemSelected: vor 5 min");
 
                     mCalendar = createCalendar(5);
-                    mNotificationActive = true;
+                    //mNotificationActive = true;
 
                     int minDiff = minutesToEvent();
 
                     mTitle = mGui.getEditTextTitle().getText().toString();
-                    setNotificicationMessage(minDiff);
+                    //setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
                     Log.d(TAG, "onItemSelected: vor 15 min");
@@ -96,10 +97,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(15);
                     mNotificationActive = true;
 
-                    int minDiff = minutesToEvent();
+                    //int minDiff = minutesToEvent();
 
                     mTitle = mGui.getEditTextTitle().getText().toString();
-                    setNotificicationMessage(minDiff);
+                    //setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 30 Minuten vorher") {
                     Log.d(TAG, "onItemSelected: vor 30 min");
@@ -107,10 +108,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(30);
                     mNotificationActive = true;
 
-                    int minDiff = minutesToEvent();
+                  //  int minDiff = minutesToEvent();
 
                     mTitle = mGui.getEditTextTitle().getText().toString();
-                    setNotificicationMessage(minDiff);
+                    //setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
                     Log.d(TAG, "onItemSelected: vor 1 h");
@@ -118,10 +119,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(60);
                     mNotificationActive = true;
 
-                    int minDiff = minutesToEvent();
+                   // int minDiff = minutesToEvent();
 
                     mTitle = mGui.getEditTextTitle().getText().toString();
-                    setNotificicationMessage(minDiff);
+                   // setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
                     Log.d(TAG, "onItemSelected: vor 2 h");
@@ -129,10 +130,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mCalendar = createCalendar(120);
                     mNotificationActive = true;
 
-                    int minDiff = minutesToEvent();
+                   // int minDiff = minutesToEvent();
 
                     mTitle = mGui.getEditTextTitle().getText().toString();
-                    setNotificicationMessage(minDiff);
+                   // setNotificicationMessage(minDiff);
 
                 } if(item.toString()=="Keine Erinnerung") {
                     mNotificationActive = false;
@@ -151,7 +152,9 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         AlarmManager alarmManager = (AlarmManager) mActivity.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
         intent.putExtra(Constants.KEYNOTIFICATIONTITLE, mTitle);
-        intent.putExtra(Constants.KEYNOTIFICATIONMESSAGE, mMessage);
+        //intent.putExtra(Constants.KEYNOTIFICATIONMESSAGE, mMessage);
+        //
+        intent.putExtra(Constants.KEYNOTIFICATIONMESSAGE, mGui.getButtonTimeStart().getText().toString());
         intent.putExtra(Constants.KEYNOTIFICATIONID, Integer.toString(mEventID));
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), mEventID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Log.d(TAG, "startAlarm: " + intent.getStringExtra(Constants.KEYNOTIFICATIONMESSAGE) + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -190,13 +193,16 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     public void setNotificicationMessage(int timeDiff){
 
-        if (timeDiff > 1) {
-            mMessage = "Dein Termin startet in " + timeDiff + " Minuten";
+        if (timeDiff > 1 && timeDiff < 60) {
+            mMessage = "Dein Termin beginnt in " + timeDiff + " Minuten";
+        } if (timeDiff > 60) {
+            timeDiff = timeDiff - 60;
+                mMessage = "Dein Termin beginnt in 1 Stunde " + timeDiff + " Minuten";
         } if(timeDiff < 1) {
             timeDiff = -timeDiff;
             mMessage = "Dein Termin hat vor " + timeDiff + " Minuten begonnen";
         } if(timeDiff == 0) {
-            mMessage = "Dein Termin startet jetzt";
+            mMessage = "Dein Termin beginnt jetzt";
         }
 
     }
@@ -220,7 +226,11 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
 
-        minDiff = (int) ((calendar.getTime().getTime() - calendarNow.getTime().getTime())/(1000*60) % 60);
+        minDiff = (int) ((calendar.getTime().getTime() - calendarNow.getTime().getTime())/(1000*60));
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+        Log.d(TAG, "Date von Button: " + minute+":"+hour);
+        Log.d("LOGTAG", "EventstartDate:" +sdf.format(calendar.getTime()));
+        Log.d("LOGTAG", "Zeit jetzt:" +sdf.format(calendarNow.getTime()));
 
         Log.d(TAG, "minutesToEvent: Die Differenz ist " + minDiff + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 

@@ -76,7 +76,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         //todo an Datenbank
         mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
         //todo EventID aus Datenbankholen
-        mReminderSpinner.setEventID(mData.getDb().eventDao().getIDByTitleDateTime(mData.getEventTitle(), mData.getEventDateStart(), mData.getEventTimeStart()));
+        //mReminderSpinner.setEventID(mData.getDb().eventDao().getIDByTitleDateTime(mData.getEventTitle(), mData.getEventDateStart(), mData.getEventTimeStart()));
 
         mReminderSpinner.setSpinnerPosition(mData.getEventTimeReminder());
         mReminderSpinner.buildReminderSpinner();
