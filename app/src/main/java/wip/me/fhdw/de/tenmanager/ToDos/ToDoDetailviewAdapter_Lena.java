@@ -55,7 +55,14 @@ public class ToDoDetailviewAdapter_Lena extends BaseAdapter {
 
         public List<CheckBox> getCheckboxList(){return mCheckboxList;}
 
-        public void setContentList(List<String> contentList){mContentList = contentList;}
+        public void setContentList(List<String> contentList)
+        {
+             mContentList = contentList;
+             for(String content: mContentList)
+             {
+                 Log.d("LOGTAG", "Content wurde in mContentList in DetailviewAdapter gespeichertn: "+content+"!!!!!!!!!!!!!!!!!!!!!");
+             }
+        }
 
         public void setActivity(Activity activity){mActivity = activity;}
 
@@ -70,7 +77,8 @@ public class ToDoDetailviewAdapter_Lena extends BaseAdapter {
             View view = View.inflate(mContext, R.layout.list_item_tododetailview, null);
             final CheckBox checkBox = view.findViewById(R.id.checkbox);
             final EditText editText = (EditText)view.findViewById(R.id.textview);
-            Log.d("LOGTAG", "getView content: "+mContentList.get(position)+"!!!!!!!!!!!!!!!!!!!!!!!");
+            for(String content: mContentList) Log.d("LOGTAG", "contents in mContentList beim Aufbau der Liste: "+content+"!!!!!!!!!!!!!!!!!");
+            Log.d("LOGTAG", "getView content: "+mContentList.get(position)+" at position: "+position+"!!!!!!!!!!!!!!!!!!!!!!!");
             editText.setText(mContentList.get(position));
             if(mCheckboxActivated.length()>position && mCheckboxActivated.substring(position, position+1).equals("1")) checkBox.setChecked(true);
             mCheckboxList.add(checkBox);

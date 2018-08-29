@@ -59,6 +59,7 @@ public class ToDoAdapter_Mona extends BaseAdapter{
     @Override
     public View getView(int position, View v, ViewGroup viewGroup)
     {
+        Log.d("LOGTAG", "position in getView TodoOverviewAdapter: "+position+"!!!!!!!!!!!!!!!!!!");
         View view = android.view.View.inflate(mContext, R.layout.list_item_todooverview_mona, null);
         TextView textViewNoteTitle = view.findViewById(R.id.listviewitem_textview_title_todo);
         TextView textViewDuedate = view.findViewById(R.id.todo_duedate);
