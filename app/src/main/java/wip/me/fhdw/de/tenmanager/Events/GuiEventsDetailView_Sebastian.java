@@ -33,7 +33,9 @@ public class GuiEventsDetailView_Sebastian {
 
     private TextView mTextViewDateTimeValidation;
 
-    private Spinner mSpinnerReminder;
+    private Spinner mSpinnerReminder1;
+    private Spinner mSpinnerReminder2;
+    private Spinner mSpinnerReminder3;
 
     private FloatingActionButton mFabSave;
     private NavigationView mNavigationView;
@@ -56,7 +58,9 @@ public class GuiEventsDetailView_Sebastian {
         mTextInputLayoutLocation = activity.findViewById(R.id.eventLocation);
         mTextInputLayoutDescription = activity.findViewById(R.id.eventDescription);
         mTextViewDateTimeValidation = activity.findViewById(R.id.eventHintDateTimeValidation);
-        mSpinnerReminder = activity.findViewById(R.id.eventReminderSpinner);
+        mSpinnerReminder1 = activity.findViewById(R.id.eventReminderSpinner);
+        mSpinnerReminder2 = activity.findViewById(R.id.eventReminderSpinner2);
+        mSpinnerReminder3 = activity.findViewById(R.id.eventReminderSpinner3);
 
         mFabSave = activity.findViewById(R.id.fab);
         mFabSave.setImageResource(android.R.drawable.ic_menu_save);
@@ -106,8 +110,16 @@ public class GuiEventsDetailView_Sebastian {
         return mFabSave;
     }
 
-    public Spinner getSpinnerReminder() {
-        return mSpinnerReminder;
+    public Spinner getSpinnerReminder1() {
+        return mSpinnerReminder1;
+    }
+
+    public Spinner getSpinnerReminder2() {
+        return mSpinnerReminder2;
+    }
+
+    public Spinner getSpinnerReminder3() {
+        return mSpinnerReminder3;
     }
 
     public NavigationView getNavigationView(){return mNavigationView;}
@@ -129,6 +141,6 @@ public class GuiEventsDetailView_Sebastian {
     }
 
     public void setSpinnerReminder(String SpinnerReminder){
-        this.mSpinnerReminder.setSelection(Integer.parseInt(SpinnerReminder));
+        this.mSpinnerReminder1.setSelection(Integer.parseInt(SpinnerReminder));
     }
 }
