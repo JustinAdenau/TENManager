@@ -73,13 +73,15 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getButtonTimeEnd().setText(mData.getEventTimeEnd());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
-        //todo an Datenbank
+        //todo substring bilden für Spinner ,Spinner2 ,Spinner3
         mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
-        //todo EventID aus Datenbankholen
-        //mReminderSpinner.setEventID(mData.getDb().eventDao().getIDByTitleDateTime(mData.getEventTitle(), mData.getEventDateStart(), mData.getEventTimeStart()));
+        //todo EventID aus Datenbankholen/
+        mReminderSpinner.setEventID(mData.getDb().eventDao().getEventIdByTitleDateTime(mData.getEventTitle(), mData.getEventDateStart(), mData.getEventTimeStart()));
 
         mReminderSpinner.setSpinnerPosition(mData.getEventTimeReminder());
-        mReminderSpinner.buildReminderSpinner();
+        mReminderSpinner.buildReminderSpinner1();
+        mReminderSpinner.buildReminderSpinner2();
+        mReminderSpinner.buildReminderSpinner3();
     }
 
 
@@ -150,10 +152,11 @@ public class ApplicationLogicEventsDetailView_Sebastian {
 
     public void onFabSaveClicked() {
         if (mUserInputValidation.confirmInput()) return;
-        if(mReminderSpinner.isNotificationActive()==true){
-            mReminderSpinner.startAlarm(mReminderSpinner.getCalendar());
+        if(mReminderSpinner.isNotification1Active()==true){
+            mReminderSpinner.startAlarm(mReminderSpinner.getCalendar1(), mReminderSpinner.getCalendar2(), mReminderSpinner. getCalendar3());
         } else {
-            mReminderSpinner.cancelAlarm(mReminderSpinner.getCalendar());
+            //todo cancel anpassen
+            mReminderSpinner.cancelAlarm1(mReminderSpinner.getCalendar1());
         }
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
@@ -173,7 +176,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
             mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
             //todo Position von adapterview überprüfen
-            mData.setEventTimeReminder(mReminderSpinner.getSpinnerPosition());
+            mData.setEventTimeReminder(mReminderSpinner.getSpinner1Position());
         }
 
         Log.d("LOGTAG", "withData: " + mData.getWithData());

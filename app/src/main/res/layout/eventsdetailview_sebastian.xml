@@ -126,15 +126,28 @@
         android:id="@+id/eventReminderSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventHintDateTimeValidation"
-        >
+        android:layout_below="@id/eventHintDateTimeValidation">
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/eventReminderSpinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventReminderSpinner">
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/eventReminderSpinner3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventReminderSpinner2">
     </Spinner>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventReminderSpinner"
+        android:layout_below="@id/eventReminderSpinner3"
         app:errorEnabled="true"
         app:errorTextAppearance="@style/error_appearance">
 

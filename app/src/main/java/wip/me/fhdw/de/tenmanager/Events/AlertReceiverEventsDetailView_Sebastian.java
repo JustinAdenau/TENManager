@@ -15,66 +15,84 @@ import static android.content.ContentValues.TAG;
 
 public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
 
-    private int mHour;
-    private int mMinute;
-    private String mMessage;
+    private String mStartTime;
+    private int mHour1;
+    private int mMinute1;
+    private String mTitle;
+    private String mMessage1;
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String title = intent.getStringExtra(Constants.KEYNOTIFICATIONTITLE);
-        String message = intent.getStringExtra(Constants.KEYNOTIFICATIONMESSAGE);
+        mTitle = intent.getStringExtra(Constants.KEYNOTIFICATIONTITLE);
+        mStartTime = intent.getStringExtra(Constants.KEYNOTIFICATIONEVENTSTARTTIME);
+        int eventID = Integer.parseInt(intent.getStringExtra(Constants.KEYNOTIFICATIONID));
+        int notificationNumber = Integer.parseInt(intent.getStringExtra(Constants.KEYNOTIFICATIONNUMBER));
 
-        mHour = Integer.parseInt(message.substring(0, 2));
-        mMinute = Integer.parseInt(message.substring(3, 5));
+
+        mHour1 = Integer.parseInt(mStartTime.substring(0, 2));
+        mMinute1 = Integer.parseInt(mStartTime.substring(3, 5));
         int minDiff = minutesToEvent();
         setNotificicationMessage(minDiff);
-        int eventID = Integer.parseInt(intent.getStringExtra(Constants.KEYNOTIFICATIONID));
-        Log.d(TAG, "onReceive: title und message, eventID " + title + " " + message + " " + eventID + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        Log.d(TAG, "onReceive: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + mTitle);
+
+
+
         NotificationHelperEventsDetailView_Sebastian notificationHelper = new NotificationHelperEventsDetailView_Sebastian(context);
-        NotificationCompat.Builder nb = notificationHelper.getChannel1Notification(title, mMessage);
-        //NotificationCompat.Builder nb = notificationHelper.getChannel1Notification(title, message);
-        notificationHelper.getManager().notify(eventID, nb.build());
-        //notificationHelper.getManager().notify(1, nb.build());
+        NotificationCompat.Builder nb = notificationHelper.getChannel1Notification(mTitle, mMessage1);
+        if (notificationNumber == 1){
+            eventID = eventID + 10000;
+            notificationHelper.getManager().notify(eventID, nb.build());
+            Log.d(TAG, "onReceive: noti1");
+        } if (notificationNumber == 2){
+            eventID = eventID + 20000;
+            notificationHelper.getManager().notify(eventID, nb.build());
+            Log.d(TAG, "onReceive: noti2");
+        } if (notificationNumber == 3){
+            eventID = eventID + 30000;
+            notificationHelper.getManager().notify(eventID, nb.build());
+            Log.d(TAG, "onReceive: noti3");
         }
+    }
 
 
     public int minutesToEvent(){
         int minDiff;
-
-
-
         final Calendar calendar = Calendar.getInstance();
         final Calendar calendarNow = Calendar.getInstance();
 
-
-        calendar.set(Calendar.HOUR_OF_DAY, mHour);
-        calendar.set(Calendar.MINUTE, mMinute);
+        calendar.set(Calendar.HOUR_OF_DAY, mHour1);
+        calendar.set(Calendar.MINUTE, mMinute1);
         calendar.set(Calendar.SECOND, 0);
 
         minDiff = (int) ((calendar.getTime().getTime() - calendarNow.getTime().getTime())/(1000*60));
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
-        Log.d(TAG, "Date von Button: " + mMinute+":"+mHour);
-        Log.d("LOGTAG", "EventstartDate:" +sdf.format(calendar.getTime()));
-        Log.d("LOGTAG", "Zeit jetzt:" +sdf.format(calendarNow.getTime()));
+        Log.d(TAG, "Date von Button: " + mMinute1 +":"+ mHour1);
 
-        Log.d(TAG, "minutesToEvent: Die Differenz ist " + minDiff + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
+        Log.d(TAG, "minutesToEvent: Die Zeitdif ist !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + minDiff);
 
         return minDiff;
     }
 
     public void setNotificicationMessage(int timeDiff){
 
-        if (timeDiff > 1 && timeDiff < 60) {
-            mMessage = "Dein Termin beginnt in " + timeDiff + " Minuten";
+        if (timeDiff >= 1 && timeDiff < 2) {
+            mMessage1 = "Dein Termin beginnt in " + timeDiff + " Minute";
+        } if (timeDiff >= 2 && timeDiff <= 60) {
+            mMessage1 = "Dein Termin beginnt in " + timeDiff + " Minuten";
         } if (timeDiff > 60) {
             timeDiff = timeDiff - 60;
-            mMessage = "Dein Termin beginnt in 1 Stunde " + timeDiff + " Minuten";
-        } if(timeDiff < 1) {
+            mMessage1 = "Dein Termin beginnt in 1 Stunde und " + timeDiff + " Minuten";
+        } if(timeDiff < -1 && timeDiff > -2) {
             timeDiff = -timeDiff;
-            mMessage = "Dein Termin hat vor " + timeDiff + " Minuten begonnen";
+            mMessage1 = "Dein Termin hat vor " + timeDiff + " Minute begonnen";
+        } if(timeDiff <= -2 && timeDiff >= -60) {
+            timeDiff = -timeDiff;
+            mMessage1 = "Dein Termin hat vor " + timeDiff + " Minuten begonnen";
+        } if(timeDiff < -60) {
+            mMessage1 = "Dein Termin hat um " + mStartTime + " Uhr begonnen";
         } if(timeDiff == 0) {
-            mMessage = "Dein Termin beginnt jetzt";
+            mMessage1 = "Dein Termin beginnt jetzt";
         }
 
     }
