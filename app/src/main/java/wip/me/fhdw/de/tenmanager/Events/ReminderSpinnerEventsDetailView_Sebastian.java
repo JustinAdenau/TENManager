@@ -52,7 +52,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     }
 
-
    public void buildReminderSpinner1(){
         String[] ReminderList = new String[]{"Keine Erinnerung","Erinnere mich zur Startzeit","Erinnere mich 5 Minuten vorher","Erinnere mich 15 Minuten vorher", "Erinnere mich 30 Minuten vorher","Erinnere mich 1 Stunde vorher","Erinnere mich 2 Stunden vorher"};
 
@@ -235,7 +234,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
     }
 
 
-    //todo pendingIntent requestcode mit laufender EventID
     public void startAlarm(Calendar calendar1, Calendar calendar2, Calendar calendar3){
 
         mTitle = mGui.getEditTextTitle().getText().toString();
@@ -286,9 +284,8 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
     public void cancelAlarm(){
         AlarmManager alarmManager = (AlarmManager) mActivity.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
-
-
-        for (int i = 1; i <= mNotificationNumber; i++){
+        
+        for (int i = 3; i > mNotificationNumber; i--){
             //todo Reihenfolge der Notification ID herumdrehen, damit zuerst die 3. gelöscht wird.
             int notificationid;
             intent.putExtra(Constants.KEYNOTIFICATIONNUMBER, Integer.toString(i));
@@ -300,23 +297,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         }
     }
 
-    public void cancelAlarm2(Calendar calendar){
-        int notification2id = mEventID + 20000;
-        AlarmManager alarmManager = (AlarmManager) mActivity.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), mEventID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        alarmManager.cancel(pendingIntent);
-    }
-
-    public void cancelAlarm3(Calendar calendar){
-        int notification3id = mEventID + 30000;
-        AlarmManager alarmManager = (AlarmManager) mActivity.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), notification3id, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        alarmManager.cancel(pendingIntent);
-    }
 
     public Calendar createCalendar(int  minDiff){
 
@@ -357,7 +337,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
         return mSpinner123Position;
     }
-    
+
 
     public Calendar getCalendar1() {
         return mCalendar1;
@@ -371,36 +351,8 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         return mCalendar3;
     }
 
-    public boolean isNotification1Active() {
-        return mNotification1Active;
-    }
-
-    public boolean isNotification2Active() {
-        return mNotification2Active;
-    }
-
-    public boolean isNotification3Active() {
-        return mNotification3Active;
-    }
-
-    public String getSpinner1Position() {
-        return mSpinner1Position;
-    }
-
-    public String getSpinner2Position() {
-        return mSpinner2Position;
-    }
-
-    public String getSpinner3Position() {
-        return mSpinner3Position;
-    }
-
     public String getSpinner123Position() {
         return mSpinner123Position;
-    }
-
-    public void setSpinner123Position(String SpinnerPosition) {
-        this.mSpinner123Position = SpinnerPosition;
     }
 
     public void setEventID(int EventID) {
