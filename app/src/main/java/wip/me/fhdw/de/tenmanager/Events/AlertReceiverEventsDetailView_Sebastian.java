@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
@@ -34,9 +33,6 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         mMinute1 = Integer.parseInt(mStartTime.substring(3, 5));
         int minDiff = minutesToEvent();
         setNotificicationMessage(minDiff);
-        Log.d(TAG, "onReceive: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + mTitle);
-
-
 
         NotificationHelperEventsDetailView_Sebastian notificationHelper = new NotificationHelperEventsDetailView_Sebastian(context);
         NotificationCompat.Builder nb = notificationHelper.getChannel1Notification(mTitle, mMessage1);
@@ -66,10 +62,6 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         calendar.set(Calendar.SECOND, 0);
 
         minDiff = (int) ((calendar.getTime().getTime() - calendarNow.getTime().getTime())/(1000*60));
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
-        Log.d(TAG, "Date von Button: " + mMinute1 +":"+ mHour1);
-
-        Log.d(TAG, "minutesToEvent: Die Zeitdif ist !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + minDiff);
 
         return minDiff;
     }
