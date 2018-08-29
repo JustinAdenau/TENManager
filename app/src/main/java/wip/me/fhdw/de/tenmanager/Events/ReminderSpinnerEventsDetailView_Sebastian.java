@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,8 @@ import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.R;
+
+import static android.content.ContentValues.TAG;
 
 public class ReminderSpinnerEventsDetailView_Sebastian {
 
@@ -31,11 +34,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
     private String mTitle;
     private String mMessage;
 
-    //todo aufteilung der positions
     private String mSpinner123Position;
     private String mSpinner1Position;
-    private String mSpinner2Position = "0";
-    private String mSpinner3Position = "0";
+    private String mSpinner2Position;
+    private String mSpinner3Position;
 
     private Spinner mSpinner1;
     private Spinner mSpinner2;
@@ -120,6 +122,8 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
         mSpinner2 = mGui.getSpinnerReminder2();
         mSpinner2.setAdapter(adapter);
+
+        Log.d(TAG, "buildReminderSpinner2: Spinner 2 Position" + (Integer.parseInt(mSpinner2Position)));
 
         if (mSpinner2 != null) {
             mSpinner2.setSelection(Integer.parseInt(mSpinner2Position));
@@ -263,25 +267,37 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
             intent.putExtra(Constants.KEYNOTIFICATIONNUMBER, Integer.toString(i));
             notificationid = mEventID + i * 10000;
             PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), notificationid, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
             if(i==1){
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), pendingIntent);
+
             } if(i==2){
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), pendingIntent);
+
             } if(i==3){
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), pendingIntent);
+
             }
         }
     }
 
 
     //todo cancelAlarm
-    public void cancelAlarm1(Calendar calendar){
-        int notification3id = mEventID + 10000;
+    public void cancelAlarm(){
         AlarmManager alarmManager = (AlarmManager) mActivity.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), mEventID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        alarmManager.cancel(pendingIntent);
+
+        for (int i = 1; i <= mNotificationNumber; i++){
+            //todo Reihenfolge der Notification ID herumdrehen, damit zuerst die 3. gelöscht wird.
+            int notificationid;
+            intent.putExtra(Constants.KEYNOTIFICATIONNUMBER, Integer.toString(i));
+            notificationid = mEventID + i * 10000;
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(), notificationid, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            alarmManager.cancel(pendingIntent);
+
+        }
     }
 
     public void cancelAlarm2(Calendar calendar){
@@ -321,6 +337,28 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         return calendar;
     }
 
+    public void restoreSpinnerPosition(String spinner123Position){
+        mSpinner1Position = spinner123Position.substring(0,1);
+
+        if(spinner123Position.length() < 2) {
+            mSpinner2Position = "0";
+            mSpinner3Position = "0";
+        } if(spinner123Position.length() < 3){
+            mSpinner3Position = "0";
+            mSpinner2Position = spinner123Position.substring(1,2);
+        } else{
+            mSpinner2Position = spinner123Position.substring(1,2);
+            mSpinner3Position = spinner123Position.substring(2,3);
+        }
+    }
+
+    public String saveSpinner123Position(){
+        mSpinner123Position = mSpinner1Position + mSpinner2Position + mSpinner3Position;
+
+        return mSpinner123Position;
+    }
+    
+
     public Calendar getCalendar1() {
         return mCalendar1;
     }
@@ -357,7 +395,11 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         return mSpinner3Position;
     }
 
-    public void setSpinnerPosition(String SpinnerPosition) {
+    public String getSpinner123Position() {
+        return mSpinner123Position;
+    }
+
+    public void setSpinner123Position(String SpinnerPosition) {
         this.mSpinner123Position = SpinnerPosition;
     }
 
