@@ -58,7 +58,6 @@ public class EventData_Lena {
         mEventLocation = b.getString(Constants.KEYEVENTLOCATION);
         mWithData = b.getBoolean(Constants.KEYWITHDATA);
         mEventTimeReminder = b.getString(Constants.KEYEVENTTIMEREMINDER);
-        Log.d("LOGTAG", "withData wird in Data entgegengenommen:"+mWithData);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent) {
@@ -95,7 +94,6 @@ public class EventData_Lena {
 
     public void updateEvent(String titleOld, String dateStartOld, String timeStartOld)
     {
-        Log.d("LOGTAG", "updateEvent called with: "+titleOld +dateStartOld+timeStartOld+mEventTitle+mEventDateStart);
         Event eventOld = mDb.eventDao().getEventByTitleDateTime(titleOld, dateStartOld, timeStartOld);
         if(eventOld != null)
         {

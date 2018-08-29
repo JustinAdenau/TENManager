@@ -61,7 +61,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         mSpinner1 = mGui.getSpinnerReminder1();
         mSpinner1.setAdapter(adapter);
 
-        if (mSpinner1Position != null) {
+        if (mSpinner1Position != null && mSpinner1Position != null) {
             mSpinner1.setSelection(Integer.parseInt(mSpinner1Position));
         } else {
             mSpinner1.setSelection(0);
@@ -123,9 +123,9 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         mSpinner2 = mGui.getSpinnerReminder2();
         mSpinner2.setAdapter(adapter);
 
-        Log.d(TAG, "buildReminderSpinner2: Spinner 2 Position" + (Integer.parseInt(mSpinner2Position)));
+        //Log.d(TAG, "buildReminderSpinner2: Spinner 2 Position" + (Integer.parseInt(mSpinner2Position)));
 
-        if (mSpinner2 != null) {
+        if (mSpinner2 != null && mSpinner2Position != null) {
             mSpinner2.setSelection(Integer.parseInt(mSpinner2Position));
         } else {
             mSpinner2.setSelection(0);
@@ -187,7 +187,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         mSpinner3 = mGui.getSpinnerReminder3();
         mSpinner3.setAdapter(adapter);
 
-        if (mSpinner3 != null) {
+        if (mSpinner3 != null && mSpinner3Position != null) {
             mSpinner3.setSelection(Integer.parseInt(mSpinner3Position));
         } else {
             mSpinner3.setSelection(0);
@@ -338,17 +338,20 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
     }
 
     public void restoreSpinnerPosition(String spinner123Position){
-        mSpinner1Position = spinner123Position.substring(0,1);
+        if(spinner123Position != null && !spinner123Position.isEmpty())
+        {
+            mSpinner1Position = spinner123Position.substring(0,1);
 
-        if(spinner123Position.length() < 2) {
-            mSpinner2Position = "0";
-            mSpinner3Position = "0";
-        } if(spinner123Position.length() < 3){
+            if(spinner123Position.length() < 2) {
+                mSpinner2Position = "0";
+                mSpinner3Position = "0";
+            } if(spinner123Position.length() < 3){
             mSpinner3Position = "0";
             mSpinner2Position = spinner123Position.substring(1,2);
         } else{
             mSpinner2Position = spinner123Position.substring(1,2);
             mSpinner3Position = spinner123Position.substring(2,3);
+        }
         }
     }
 

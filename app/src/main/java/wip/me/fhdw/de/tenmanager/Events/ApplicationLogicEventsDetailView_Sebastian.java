@@ -23,7 +23,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
 
     private GuiEventsDetailView_Sebastian mGui;
     private EventData_Lena mData;
-    private View mView;
     private DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
     private DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
     private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
