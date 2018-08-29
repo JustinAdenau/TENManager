@@ -50,7 +50,7 @@ public class NotificationHelperEventsDetailView_Sebastian extends ContextWrapper
         return new NotificationCompat.Builder(getApplicationContext(), channel1ID)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setSmallIcon(R.drawable.ic_event_note_black_24dp)
+                .setSmallIcon(R.drawable.ic_event_notification)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);
 

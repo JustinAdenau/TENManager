@@ -75,6 +75,8 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getEditTextLocation().setText(mData.getEventLocation());
         //todo an Datenbank
         mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
+        //todo EventID aus Datenbankholen
+        //mReminderSpinner.setEventID(mData.getDb().eventDao().getIDByTitleDateTime(mData.getEventTitle(), mData.getEventDateStart(), mData.getEventTimeStart()));
 
         mReminderSpinner.setSpinnerPosition(mData.getEventTimeReminder());
         mReminderSpinner.buildReminderSpinner();
@@ -140,7 +142,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mTimepickerEnd.buildTimeEndpicker();
     }
 
-    //todo Methoden einfügen
     private void initUserInputValidation() {
         mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
@@ -171,7 +172,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
             mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
             mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
-            //todo Position von adapterview
+            //todo Position von adapterview überprüfen
             mData.setEventTimeReminder(mReminderSpinner.getSpinnerPosition());
         }
 
