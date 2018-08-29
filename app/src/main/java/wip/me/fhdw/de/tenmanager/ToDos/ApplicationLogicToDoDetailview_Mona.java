@@ -271,8 +271,8 @@ public class ApplicationLogicToDoDetailview_Mona {
             mAdapter.setContentList(mContentList);
             Log.d("LOGTAG", "getToDoCheckboxActivated in dataToGui: "+mData.getToDoCheckboxActivated()+"!!!!!!!!!!!!!!!!!!!!!");
             mAdapter.setCheckboxActivated(mData.getToDoCheckboxActivated());
-            mGui.getListView().setAdapter(mAdapter);
         }
+        mGui.getListView().setAdapter(mAdapter);
         mGui.getTodoDetailviewButtonDuedate().setText(mData.getToDoDuedate());
         mGui.getTodoDetailviewTextviewStatus().setText(String.valueOf(mData.getToDoStatus())+"/100%");
         initCurrentDate();
