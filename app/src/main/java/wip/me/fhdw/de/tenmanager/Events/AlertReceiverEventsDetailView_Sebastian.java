@@ -20,7 +20,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
     private String mTitle;
     private String mMessage1;
 
-
+    //push up to 3 notification
     @Override
     public void onReceive(Context context, Intent intent) {
         mTitle = intent.getStringExtra(Constants.KEYNOTIFICATIONTITLE);
@@ -51,7 +51,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         }
     }
 
-
+    //calculate minutes until start time of event
     public int minutesToEvent(){
         int minDiff;
         final Calendar calendar = Calendar.getInstance();
@@ -66,6 +66,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         return minDiff;
     }
 
+    //set message text to notification
     public void setNotificicationMessage(int timeDiff){
 
         if (timeDiff >= 1 && timeDiff < 2) {

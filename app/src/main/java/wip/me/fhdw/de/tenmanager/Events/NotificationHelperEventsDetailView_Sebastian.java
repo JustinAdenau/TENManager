@@ -1,11 +1,9 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
-import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
@@ -24,6 +22,7 @@ public class NotificationHelperEventsDetailView_Sebastian extends ContextWrapper
             createChannels();
     }
 
+    //create notification channel for api 26 or higher
     public void createChannels(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel1 = new NotificationChannel(
@@ -35,9 +34,9 @@ public class NotificationHelperEventsDetailView_Sebastian extends ContextWrapper
 
             getManager().createNotificationChannel(channel1);
         }
-
     }
 
+    //create notification manager
     public NotificationManager getManager(){
         if(mManager == null){
             mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -45,15 +44,14 @@ public class NotificationHelperEventsDetailView_Sebastian extends ContextWrapper
         return mManager;
     }
 
+    //settings of notifications
     public NotificationCompat.Builder getChannel1Notification(String title, String message){
-
         return new NotificationCompat.Builder(getApplicationContext(), channel1ID)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_event_notification)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);
-
     }
 
 }
