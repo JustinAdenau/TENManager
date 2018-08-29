@@ -90,17 +90,9 @@ public class ToDoData_Mona {
 
     public void updateTodo(String titleOld)
     {
-        if(mDb.todoDao().todoExists(titleOld)>=1) Log.d("LOGTAG", "vor Löschen: Fertig werden!!! existiert !!!!!!!!!!!!!!!!!!!!");
-        else Log.d("LOGTAG", "vor Löschen: Fertig werden!!! existiert NICHT !!!!!!!!!!!!!!!!!!!!");
         mDb.todoDao().deleteToDoByTitle(titleOld);
-        if(mDb.todoDao().todoExists(titleOld)>=1) Log.d("LOGTAG", "nach Löschen: Fertig werden!!! existiert !!!!!!!!!!!!!!!!!!!!");
-        else Log.d("LOGTAG", "nach Löschen: Fertig werden!!! existiert NICHT !!!!!!!!!!!!!!!!!!!!");
-        Log.d("LOGTAG", "Content der gespeichert wird: "+mToDoContent);
-        Log.d("LOGTAG", "neues Todo das beim Update gespeichert wird: "+mToDoTitle+" "+mToDoContent+" "+mToDoDuedate+" "+mStatus+" "+mCheckboxActivated+"!!!!!!!!!!!!!!!!!!!!");
         ToDoOverview_Mona newTodo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus, mCheckboxActivated);
         mDb.todoDao().insertAll(newTodo);
-        if(mDb.todoDao().todoExists(titleOld)>=1) Log.d("LOGTAG", "nach Hinzufügen: Fertig werden!!! existiert !!!!!!!!!!!!!!!!!!!!");
-        else Log.d("LOGTAG", "nach Hinzufügen: Fertig werden!!! existiert NICHT !!!!!!!!!!!!!!!!!!!!");
     }
 
     public Activity getActivity () {

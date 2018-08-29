@@ -26,17 +26,17 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
     private AppDatabase mDb;
 
 
-    private Intent mIntent;
+   // private Intent mIntent;
 
     //todo ApplicationLogic inizialisieren
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIntent = this.getIntent();
-        Log.d("LOGTAG", "onCreate InitEventsDetailView_Sebastian. title: "+ mIntent.getBundleExtra(Constants.KEYEVENTTITLE));
+        //mIntent = this.getIntent();
+        //Log.d("LOGTAG", "onCreate InitEventsDetailView_Sebastian. title: "+ mIntent.getBundleExtra(Constants.KEYEVENTTITLE));
         initData(savedInstanceState);
         initGui();
-        initApplicationLogic(mIntent);
+        initApplicationLogic();
         //initDb();
 
     }
@@ -52,7 +52,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
     }
 
 
-    private void initApplicationLogic(Intent intent){
+    private void initApplicationLogic(){
         mApplicationLogic = new ApplicationLogicEventsDetailView_Sebastian(this, mData, mGui);
     }
 

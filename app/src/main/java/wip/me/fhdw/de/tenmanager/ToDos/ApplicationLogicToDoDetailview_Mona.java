@@ -3,6 +3,7 @@ package wip.me.fhdw.de.tenmanager.ToDos;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.Constants;
@@ -21,14 +23,13 @@ import wip.me.fhdw.de.tenmanager.R;
 public class ApplicationLogicToDoDetailview_Mona {
 
     private DatepickerToDoDetailview_Mona mDatepicker;
-    private static final String TAG = "AppLogic_Sebastian";
 
     private wip.me.fhdw.de.tenmanager.ToDos.GuiToDoDetailview_Mona mGui;
     private wip.me.fhdw.de.tenmanager.ToDos.ToDoData_Mona mData;
     private Activity mActivity;
     private Context mContext;
-    ToDoDetailviewAdapter_Lena mAdapter;
-    List<String> mContentList;
+    private ToDoDetailviewAdapter_Lena mAdapter;
+    private List<String> mContentList;
 
 
     public ApplicationLogicToDoDetailview_Mona(Activity activity, ToDoData_Mona data, GuiToDoDetailview_Mona gui, Context context){
@@ -71,16 +72,7 @@ public class ApplicationLogicToDoDetailview_Mona {
         {
             Log.d("LOGTAG", "Daten aus Gui werden in Data gespeichert!!!!!!!!!!!!!!!!!!");
             mData.setToDoTitle(mGui.getTodoDetailviewTitle().getText().toString());
-            String content="";
-            for(int i=0; i< mGui.getListView().getCount(); i++)
-            {
-                Log.d("LOGTAG", "content: "+mGui.getListView().getAdapter().getItem(i)+"!!!!!!!!!!!!!!!!!!!!!");
-                content = content+(String)mGui.getListView().getAdapter().getItem(i);
-                content = content+",";
-            }
-            Log.d("LOGTAG", "content: "+content+"!!!!!!!!!!!!!!!!!!!!!");
-            if(!mGui.getTodoEdittextNew().getText().toString().isEmpty()) content = content+mGui.getTodoEdittextNew().getText().toString()+",";
-            mData.setToDoContent(content);
+            mData.setToDoContent(buildContentStringFromGui());
             Log.d("LOGTAG", "content: "+mData.getToDoContent()+"!!!!!!!!!!!!!!!!!!!!!");
             mData.setToDoDuedate(mGui.getTodoDetailviewButtonDuedate().getText().toString());
             String statusString = mGui.getTodoDetailviewTextviewStatus().getText().toString();
@@ -112,24 +104,44 @@ public class ApplicationLogicToDoDetailview_Mona {
         finishActivityResultOk();
     }
 
+    public String buildContentStringFromGui()
+    {
+        String content = "";
+        for(int i=0; i< mGui.getListView().getCount(); i++)
+        {
+            content = content+(String)mGui.getListView().getAdapter().getItem(i);
+            content = content+",";
+        }
+        if(!mGui.getTodoEdittextNew().getText().toString().isEmpty()) content = content+mGui.getTodoEdittextNew().getText().toString()+",";
+        Log.d("LOGTAG", "content von buildContentStringFromGui: "+content+"!!!!!!!!!!!!!!!!!!!!1");
+        return content;
+    }
+
     public void onButtonNewTaskClicked()
     {
+        mContentList = mAdapter.getContentList();
         if(mGui.getTodoEdittextNew().getText().toString().contains(","))
         {
             mGui.getTodoEdittextNew().setError("Eine Aufgabe darf kein Komma enthalten");
             return;
         }
+        if(mGui.getTodoEdittextNew().getText().toString().isEmpty())
+        {
+            mGui.getTodoEdittextNew().setError("Bitte eine neue Aufgabe eingeben, die hinzugefügt werden soll");
+            return;
+        }
         if(mData.getToDoContent() != null) mData.setToDoContent(mData.getToDoContent()+mGui.getTodoEdittextNew().getText().toString()+", ");
         else mData.setToDoContent(mGui.getTodoEdittextNew().getText().toString()+", ");
-        //mData.updateTodo(mData.getToDoTitle());
         mContentList.add(mGui.getTodoEdittextNew().getText().toString());
         for (String content:mContentList) {
             Log.d("LOGTAG", "content in List nach add: "+content+"!!!!!!!!!!!!!!!!!!!!!!1");
         }
-        mAdapter.refresh(mContentList);
         if(mData.getToDoCheckboxActivated() != null) mData.setToDoCheckboxActivated(mData.getToDoCheckboxActivated()+"0");
         else mData.setToDoCheckboxActivated("0");
-        //mAdapter.setCheckboxActivated(mData.getToDoCheckboxActivated());
+        ((ToDoDetailviewAdapter_Lena)mGui.getListView().getAdapter()).setCheckboxActivated(mData.getToDoCheckboxActivated());
+        ((ToDoDetailviewAdapter_Lena)mGui.getListView().getAdapter()).setContentList(mContentList);
+        //mGui.getListView().setAdapter(mAdapter);
+        ((ToDoDetailviewAdapter_Lena)mGui.getListView().getAdapter()).refresh(mContentList);
         mGui.getTodoDetailviewTextviewStatus().setText(String.valueOf((int)(calculateStatus()*100))+"/100%");
         mGui.getTodoEdittextNew().setText("");
     }
@@ -140,10 +152,10 @@ public class ApplicationLogicToDoDetailview_Mona {
         for (int i=0; i<mGui.getListView().getCount(); i++)
         {
             CheckBox checkbox = mAdapter.getCheckboxList().get(i);
-
             if(checkbox.isChecked()) checkboxActivated = checkboxActivated+"1";
             else checkboxActivated = checkboxActivated+"0";
         }
+        Log.d("LOGTAG", "buildCheckboxActivated: "+checkboxActivated+"!!!!!!!!!!!!!!!!!!");
         return checkboxActivated;
     }
 
@@ -254,33 +266,65 @@ public class ApplicationLogicToDoDetailview_Mona {
         mGui.getTodoDetailviewTitle().setText(mData.getToDoTitle());
         Log.d("LOGTAG", "withData in Detailview: "+mData.getWithData()+ "Titel in Detailview: "+mData.getToDoTitle()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         if(mData.getWithData()) {
-            int startindex = 0;
-            String content = mData.getToDoContent();
-            Log.d("LOGTAG", "content der ausgelesen wird: "+content+"!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            for (int i = 0; i < content.length(); i++) {
-                if (content.charAt(i) == ',') {
-                    mContentList.add(content.substring(startindex, i));
-                    startindex = i + 1;
-                }
-            }
+            mContentList = buildContentList(mData.getToDoContent());
+            if(mGui.getListView() == null) Log.d("LOGTAG", "ListView ist null in dataToGui!!!!!!!!!!!!!!!!!");
             mAdapter.setContentList(mContentList);
             Log.d("LOGTAG", "getToDoCheckboxActivated in dataToGui: "+mData.getToDoCheckboxActivated()+"!!!!!!!!!!!!!!!!!!!!!");
             mAdapter.setCheckboxActivated(mData.getToDoCheckboxActivated());
-            mGui.getListView().setAdapter(mAdapter);
         }
+        mGui.getListView().setAdapter(mAdapter);
         mGui.getTodoDetailviewButtonDuedate().setText(mData.getToDoDuedate());
         mGui.getTodoDetailviewTextviewStatus().setText(String.valueOf(mData.getToDoStatus())+"/100%");
+        initCurrentDate();
+    }
 
+    public List<String> buildContentList(String content)
+    {
+        int startindex = 0;
+        List<String> contentList = new ArrayList<>();
+        Log.d("LOGTAG", "content der ausgelesen wird: "+content+"!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        for (int i = 0; i < content.length(); i++) {
+            if (content.charAt(i) == ',') {
+                contentList.add(content.substring(startindex, i));
+                startindex = i + 1;
+            }
+        }
+        return contentList;
     }
 
     private void initGui() {
         mContentList = new ArrayList<>();
         mAdapter = new ToDoDetailviewAdapter_Lena(mContext);
+        mAdapter.setContentList(mContentList);
         mAdapter.setActivity(mActivity);
         mAdapter.setApplicationLogic(this);
         dataToGui();
     }
 
+    public void restoreInstanceState(Bundle outState)
+    {
+        mGui.getTodoDetailviewButtonDuedate().setText(outState.getString("TodoDuedate"));
+        mAdapter.setCheckboxActivated(outState.getString("CheckboxActivated"));
+        mData.setToDoCheckboxActivated(outState.getString("CheckboxActivated"));
+        mData.setToDoContent(outState.getString("TodoContent"));
+        mAdapter.refresh(buildContentList(outState.getString("TodoContent")));
+        mGui.getListView().setAdapter(mAdapter);
+        mGui.getTodoDetailviewTextviewStatus().setText(String.valueOf((int)(calculateStatus()*100))+"/100%");
+        mData.setWithData(outState.getBoolean("WithData"));
+    }
+
+    private void initCurrentDate() {
+        if (mGui.getTodoDetailviewButtonDuedate().getText().toString().matches("\\d{2}.\\d{2}.\\d{4}")){Log.d("LOGTAG", "Button schon mit Datum befüllt!!!!!!!!!!!!!!!!!!!!!!!!"); return;}
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        month = month + 1;
+
+        mGui.getTodoDetailviewButtonDuedate().setText(String.format("%02d.%02d.%04d", day, month, year));
+        mGui.getTodoDetailviewButtonDuedate().setText(String.format("%02d.%02d.%04d", day, month, year));
+    }
 
     private void finishActivityResultOk()
     {

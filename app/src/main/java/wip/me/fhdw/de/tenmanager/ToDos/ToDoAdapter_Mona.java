@@ -59,6 +59,7 @@ public class ToDoAdapter_Mona extends BaseAdapter{
     @Override
     public View getView(int position, View v, ViewGroup viewGroup)
     {
+        Log.d("LOGTAG", "position in getView TodoOverviewAdapter: "+position+"!!!!!!!!!!!!!!!!!!");
         View view = android.view.View.inflate(mContext, R.layout.list_item_todooverview_mona, null);
         TextView textViewNoteTitle = view.findViewById(R.id.listviewitem_textview_title_todo);
         TextView textViewDuedate = view.findViewById(R.id.todo_duedate);
@@ -88,13 +89,23 @@ public class ToDoAdapter_Mona extends BaseAdapter{
         {
             Log.d("LOGTAG", "checkboxAcivated: "+mToDoList.get(position).getCheckboxActivated()+"!!!!!!!!!!!!!!!");
             Log.d("LOGTAG", "position: "+position+"!!!!!!!!!!!!!!!");
-            if(mToDoList.get(position).getCheckboxActivated().length() >1 && mToDoList.get(position).getCheckboxActivated().substring(0 ,1).equals("1"))
+            if(mToDoList.get(position).getCheckboxActivated().length() < 1){ checkbox1.setVisibility(View.INVISIBLE); checkbox2.setVisibility(View.INVISIBLE);}
+            else
             {
-                checkbox1.setChecked(true);
-            }
-            if( mToDoList.get(position).getCheckboxActivated().length() >2 && mToDoList.get(position).getCheckboxActivated().substring(1,2).equals("1"))
-            {
-                checkbox2.setChecked(true);
+                if(mToDoList.get(position).getCheckboxActivated().length() < 2) checkbox2.setVisibility(View.INVISIBLE);
+                else
+                {
+                    checkbox1.setVisibility(View.VISIBLE);
+                    checkbox2.setVisibility(View.VISIBLE);
+                    if(mToDoList.get(position).getCheckboxActivated().substring(0 ,1).equals("1"))
+                    {
+                        checkbox1.setChecked(true);
+                    }
+                    if(mToDoList.get(position).getCheckboxActivated().substring(1,2).equals("1"))
+                    {
+                        checkbox2.setChecked(true);
+                    }
+                }
             }
         }
         textViewDuedate.setText(mToDoList.get(position).getDuedate());

@@ -31,7 +31,6 @@ public class InitToDoOverview_Mona extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         initDb();
-        if(mDb.todoDao().getTodoByTitle("") == null) Log.d("LOGTAG", "null ist nicht in der Datenbank vorhanden!!!!!!!!!!!!!!!!!!1");
         initData(savedInstanceState);
         initGui();
         initListAdapter();
