@@ -73,6 +73,7 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.setEventTimeEnd(mEventList.get(position).getEventTimeEnd());
         mData.setEventDescription(mEventList.get(position).getEventDescription());
         mData.setEventLocation(mEventList.get(position).getEventLocation());
+        mData.setEventTimeReminder(mEventList.get(position).getEventTimeReminder());
         mData.setWithData(true);
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
         mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
