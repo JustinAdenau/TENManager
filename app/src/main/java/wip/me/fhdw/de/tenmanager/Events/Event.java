@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -28,7 +28,7 @@ public class Event {
     private String mEventTimeReminder;
 
 
-    public Event(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation /*,String timeReminder*/){
+    public Event(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation, String eventTimeReminder){
         mEventTitle=eventTitle;
         mEventDateStart=eventDateStart;
         mEventTimeStart=eventTimeStart;
@@ -36,7 +36,7 @@ public class Event {
         mEventTimeEnd = eventTimeEnd;
         mEventDescription=eventDescription;
         mEventLocation=eventLocation;
-        //mEventTimeReminder = timeReminder;
+        mEventTimeReminder = eventTimeReminder;
     }
 
     public int getId() {
@@ -99,6 +99,6 @@ public class Event {
 
     public String getEventTimeReminder(){return mEventTimeReminder;}
 
-    public void setEventTimeReminder(String timeReminder){mEventTimeReminder = timeReminder;}
+    public void setEventTimeReminder(String eventTimeReminder){mEventTimeReminder = eventTimeReminder;}
 
 }

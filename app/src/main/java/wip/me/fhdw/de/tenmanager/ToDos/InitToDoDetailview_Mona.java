@@ -19,29 +19,19 @@ public class InitToDoDetailview_Mona extends AppCompatActivity {
     private GuiToDoDetailview_Mona mGui;
     private ApplicationLogicToDoDetailview_Mona mApplicationLogic;
     private ToDoData_Mona mData;
-    private AppDatabase mDb;
-
-    private Intent mIntent;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIntent = this.getIntent();
-        Log.d("LOGTAG", "onCreate InitEventsDetailView_Sebastian. title: " + mIntent.getBundleExtra(Constants.KEYEVENTTITLE));
         initData(savedInstanceState);
         initGui();
-        initApplicationLogic(mIntent);
-        initDb();
+        initApplicationLogic();
     }
 
-    private void initDb() {
 
-
-    }
-
-    private void initApplicationLogic(Intent mIntent) {
-        mApplicationLogic = new ApplicationLogicToDoDetailview_Mona(this, mData, mGui);
+    private void initApplicationLogic() {
+        mApplicationLogic = new ApplicationLogicToDoDetailview_Mona(this, mData, mGui, getApplicationContext());
     }
 
     private void initGui() {
@@ -70,11 +60,21 @@ public class InitToDoDetailview_Mona extends AppCompatActivity {
         mData = new ToDoData_Mona(savedInstanceState, this);
     }
 
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        mData.saveDataInBundle(outState);
+        super.onSaveInstanceState(outState);
+
+        outState.putString("TodoDuedate", mGui.getTodoDetailviewButtonDuedate().getText().toString());
+        outState.putString("TodoContent", mApplicationLogic.buildContentStringFromGui());
+        outState.putString("CheckboxActivated", mApplicationLogic.buildCheckboxActivated());
+        outState.putBoolean("WithData", mData.getWithData());
+    }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        //mData.saveDataInBundle(outState);
-        super.onSaveInstanceState(outState);
+    public void onRestoreInstanceState(Bundle outState) {
+        super.onRestoreInstanceState(outState);
+        mApplicationLogic.restoreInstanceState(outState);
     }
 
     @Override

@@ -8,7 +8,6 @@ import android.util.Log;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Event;
 
 public class EventData_Lena {
 
@@ -59,7 +58,6 @@ public class EventData_Lena {
         mEventLocation = b.getString(Constants.KEYEVENTLOCATION);
         mWithData = b.getBoolean(Constants.KEYWITHDATA);
         mEventTimeReminder = b.getString(Constants.KEYEVENTTIMEREMINDER);
-        Log.d("LOGTAG", "withData wird in Data entgegengenommen:"+mWithData);
     }
 
     public void readIntentParametersOrSetDefaultValues(Intent intent) {
@@ -90,13 +88,12 @@ public class EventData_Lena {
 
     public void createAndSaveNewEvent()
     {
-        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation/*, mEventTimeReminder*/);
+        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation, mEventTimeReminder);
         mDb.eventDao().insertAll(event);
     }
 
     public void updateEvent(String titleOld, String dateStartOld, String timeStartOld)
     {
-        Log.d("LOGTAG", "updateEvent called with: "+titleOld +dateStartOld+timeStartOld+mEventTitle+mEventDateStart);
         Event eventOld = mDb.eventDao().getEventByTitleDateTime(titleOld, dateStartOld, timeStartOld);
         if(eventOld != null)
         {
@@ -115,7 +112,7 @@ public class EventData_Lena {
     public void setEventDescription(String description){mEventDescription = description;}
     public void setEventLocation(String location){mEventLocation = location;}
     public void setWithData(boolean withData){mWithData = withData;}
-    public void setTimeReminder(String timeReminder){mEventTimeReminder = timeReminder;}
+    public void setEventTimeReminder(String timeReminder){mEventTimeReminder = timeReminder;}
 
 
     //getter

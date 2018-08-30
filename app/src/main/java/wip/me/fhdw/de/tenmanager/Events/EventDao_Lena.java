@@ -1,4 +1,4 @@
-package wip.me.fhdw.de.tenmanager;
+package wip.me.fhdw.de.tenmanager.Events;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -6,6 +6,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import java.util.List;
+
+import wip.me.fhdw.de.tenmanager.Events.Event;
 
 @Dao
 public interface EventDao_Lena {
@@ -22,7 +24,8 @@ public interface EventDao_Lena {
     @Query("SELECT * from event where event_title like :title and event_date_start like :dateStart and event_time_start like :timeStart")
     Event getEventByTitleDateTime(String title, String dateStart, String timeStart);
 
-
+    @Query("SELECT id from event where event_title like :title and event_date_start like :dateStart and event_time_start like :timeStart")
+    int getEventIdByTitleDateTime(String title, String dateStart, String timeStart);
 
 
     @Insert

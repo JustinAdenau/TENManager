@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,13 +17,10 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Events.EventFloatingActionButtonClickListener_Lena;
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicNoteDetailView_Alina {
@@ -55,7 +53,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         NoteFloatingActionButtonClickListener_Julius floatingActionButtonClickListener = new NoteFloatingActionButtonClickListener_Julius(this);
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
         mGui.getCameraButton().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +159,12 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         int id = item.getItemId();
 
-        if (id == R.id.menuNotes) {
+        if(id == R.id.menuHome)
+        {
+            startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if (id == R.id.menuNotes) {
 
             startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
             mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -261,7 +264,12 @@ public class ApplicationLogicNoteDetailView_Alina {
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
-
+    public void restoreInstanceState(Bundle outState)
+    {
+        mGui.getEditTextTitle().setText(outState.getString("NoteTitel"));
+        mData.setNoteContent(outState.getString("NoteContent"));
+        mData.setWithData(outState.getBoolean("WithData"));
+    }
     private List<String> getStringUriList(String uriString){
 
         List<String> uriList = new ArrayList<String>();

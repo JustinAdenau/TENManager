@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/menuHome"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home" />
     <item
         android:id="@+id/menuNotes"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="Notes"
-        />
+        android:iconTint="@color/colorGreyDark"
+        android:title="Notes" />
     <item
         android:id="@+id/menuEvent"
         android:icon="@android:drawable/ic_menu_today"
+        android:iconTint="@color/colorGreyDark"
         android:title="Events"/>
     <item
         android:id="@+id/menuTodo"
-        android:icon="@android:drawable/checkbox_on_background"
+        android:icon="@drawable/ic_menu_todo"
         android:title="ToDo's"/>
 </group>
 </menu>

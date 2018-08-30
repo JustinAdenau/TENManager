@@ -13,10 +13,9 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Event;
 
 
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class ApplicationLogicEventsOverview_Lena {
@@ -50,7 +49,7 @@ public class ApplicationLogicEventsOverview_Lena {
         mGui.getFabCreateNew().setOnClickListener(floatingActionButtonClickListener);
         ButtonDeleteEventClickListener_Lena buttonDeleteEventClickListener = new ButtonDeleteEventClickListener_Lena(this);
         mGui.getButtonDeleteEvent().setOnClickListener(buttonDeleteEventClickListener);
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
@@ -74,6 +73,7 @@ public class ApplicationLogicEventsOverview_Lena {
         mData.setEventTimeEnd(mEventList.get(position).getEventTimeEnd());
         mData.setEventDescription(mEventList.get(position).getEventDescription());
         mData.setEventLocation(mEventList.get(position).getEventLocation());
+        mData.setEventTimeReminder(mEventList.get(position).getEventTimeReminder());
         mData.setWithData(true);
         startActivity(Constants.ACTIVITYEVENTSDETAILVIEWCLASS, true);
         mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -89,7 +89,12 @@ public class ApplicationLogicEventsOverview_Lena {
     {
         int id = item.getItemId();
 
-        if (id == R.id.menuNotes) {
+        if(id == R.id.menuHome)
+        {
+            startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if (id == R.id.menuNotes) {
 
             startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
             mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);

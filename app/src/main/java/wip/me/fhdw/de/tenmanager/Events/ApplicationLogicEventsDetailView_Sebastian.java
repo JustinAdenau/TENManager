@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener;
+import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 
@@ -23,12 +23,12 @@ public class ApplicationLogicEventsDetailView_Sebastian {
 
     private GuiEventsDetailView_Sebastian mGui;
     private EventData_Lena mData;
-    private View mView;
     private DatepickerStartEventsDetailView_Sebastian mDatepickerStart;
     private DatepickerEndEventsDetailView_Sebastian mDatepickerEnd;
     private TimepickerStartEventsDetailView_Sebastian mTimepickerStart;
     private TimepickerEndEventsDetailView_Sebastian mTimepickerEnd;
     private UserInputValidationEventsDetailView_Sebastian mUserInputValidation;
+    private ReminderSpinnerEventsDetailView_Sebastian mReminderSpinner;
 
     private Activity mActivity;
 
@@ -53,10 +53,11 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         dataToGui();
     }
 
+
     public void initListener() {
         EventFloatingActionButtonClickListener_Lena floatingActionButtonClickListener = new EventFloatingActionButtonClickListener_Lena(this);
         mGui.getFabSave().setOnClickListener(floatingActionButtonClickListener);
-        NavigationItemSelectListener navigationItemSelectListener = new NavigationItemSelectListener(this);
+        NavigationItemSelectListener_Lena navigationItemSelectListener = new NavigationItemSelectListener_Lena(this);
         mGui.getNavigationView().setNavigationItemSelectedListener(navigationItemSelectListener);
     }
 
@@ -71,14 +72,14 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getButtonTimeEnd().setText(mData.getEventTimeEnd());
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
-        //todo: Spinner setzen
+        mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
+        mReminderSpinner.setEventID(mData.getDb().eventDao().getEventIdByTitleDateTime(mData.getEventTitle(), mData.getEventDateStart(), mData.getEventTimeStart()));
+        //mReminderSpinner.setSpinner123Position(mData.getEventTimeReminder());
+        mReminderSpinner.restoreSpinnerPosition(mData.getEventTimeReminder());
+        mReminderSpinner.buildReminderSpinner1();
+        mReminderSpinner.buildReminderSpinner2();
+        mReminderSpinner.buildReminderSpinner3();
     }
-
-
-    /////////////////////////////////////////////
-    // AppLogic
-    ////////////////////////////////////////////7
-
 
     //todo Validierung Enddatum muss nach Startdatum liegen
     //todo in if auch  ButtonDateEnd Befüllung anfragen
@@ -134,14 +135,22 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mTimepickerEnd.buildTimeEndpicker();
     }
 
-    //todo Methoden einfügen
     private void initUserInputValidation() {
         mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
 
+
     public void onFabSaveClicked() {
         if (mUserInputValidation.confirmInput()) return;
+
+       // if(mReminderSpinner.isNotification1Active()==true){
+            mReminderSpinner.startAlarm(mReminderSpinner.getCalendar1(), mReminderSpinner.getCalendar2(), mReminderSpinner. getCalendar3());
+       // } else {
+            //todo cancel anpassen
+            mReminderSpinner.cancelAlarm();
+       // }
+        mReminderSpinner.saveSpinner123Position();
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
         String dateStartOld = mData.getEventDateStart();
@@ -159,6 +168,8 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
             mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
             mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
+            //todo Position von adapterview überprüfen
+            mData.setEventTimeReminder(mReminderSpinner.getSpinner123Position());
         }
 
         Log.d("LOGTAG", "withData: " + mData.getWithData());
@@ -182,7 +193,12 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     {
         int id = item.getItemId();
 
-        if (id == R.id.menuNotes) {
+        if(id == R.id.menuHome)
+        {
+            startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
+            mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if (id == R.id.menuNotes) {
 
             startActivity(Constants.ACTIVITYNOTEOVERVIEWCLASS, false);
             mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
@@ -252,6 +268,5 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
-
 
 }

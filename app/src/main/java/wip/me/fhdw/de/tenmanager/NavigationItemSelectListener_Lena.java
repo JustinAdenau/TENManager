@@ -6,12 +6,13 @@ import android.view.MenuItem;
 
 import wip.me.fhdw.de.tenmanager.Events.ApplicationLogicEventsDetailView_Sebastian;
 import wip.me.fhdw.de.tenmanager.Events.ApplicationLogicEventsOverview_Lena;
+import wip.me.fhdw.de.tenmanager.Homepage.ApplicationLogicHomepage_Justin;
 import wip.me.fhdw.de.tenmanager.Notes.ApplicationLogicNoteDetailView_Alina;
 import wip.me.fhdw.de.tenmanager.Notes.ApplicationLogicNoteOverview_Julius;
 import wip.me.fhdw.de.tenmanager.ToDos.ApplicationLogicToDoDetailview_Mona;
 import wip.me.fhdw.de.tenmanager.ToDos.ApplicationLogicToDoOverview_Mona;
 
-public class NavigationItemSelectListener implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationItemSelectListener_Lena implements NavigationView.OnNavigationItemSelectedListener {
 
     ApplicationLogicEventsOverview_Lena mApplicationLogicEventsOverview;
     ApplicationLogicToDoOverview_Mona mApplicationLogicToDosOverview;
@@ -19,36 +20,42 @@ public class NavigationItemSelectListener implements NavigationView.OnNavigation
     ApplicationLogicEventsDetailView_Sebastian mApplicationLogicEventsDetailview;
     ApplicationLogicNoteDetailView_Alina mApplicationLogicNotesDetailview;
     ApplicationLogicToDoDetailview_Mona mApplicationLogicToDosDetailview;
+    ApplicationLogicHomepage_Justin mApplicationLogicHomepage;
 
 
-    public NavigationItemSelectListener(ApplicationLogicEventsOverview_Lena applicationLogic)
+    public NavigationItemSelectListener_Lena(ApplicationLogicEventsOverview_Lena applicationLogic)
     {
         mApplicationLogicEventsOverview = applicationLogic;
     }
 
-    public NavigationItemSelectListener(ApplicationLogicNoteOverview_Julius applicationLogic)
+    public NavigationItemSelectListener_Lena(ApplicationLogicNoteOverview_Julius applicationLogic)
     {
         mApplicationLogicNotesOverview = applicationLogic;
     }
 
-    public NavigationItemSelectListener(ApplicationLogicToDoOverview_Mona applicationLogic)
+    public NavigationItemSelectListener_Lena(ApplicationLogicToDoOverview_Mona applicationLogic)
     {
         mApplicationLogicToDosOverview = applicationLogic;
     }
 
-    public NavigationItemSelectListener(ApplicationLogicEventsDetailView_Sebastian applicationLogic)
+    public NavigationItemSelectListener_Lena(ApplicationLogicEventsDetailView_Sebastian applicationLogic)
     {
         mApplicationLogicEventsDetailview = applicationLogic;
     }
 
-    public NavigationItemSelectListener(ApplicationLogicNoteDetailView_Alina applicationLogic)
+    public NavigationItemSelectListener_Lena(ApplicationLogicNoteDetailView_Alina applicationLogic)
     {
         mApplicationLogicNotesDetailview = applicationLogic;
     }
 
-    public NavigationItemSelectListener(ApplicationLogicToDoDetailview_Mona applicationLogic)
+    public NavigationItemSelectListener_Lena(ApplicationLogicToDoDetailview_Mona applicationLogic)
     {
         mApplicationLogicToDosDetailview = applicationLogic;
+    }
+
+    public NavigationItemSelectListener_Lena(ApplicationLogicHomepage_Justin applicationLogic)
+    {
+        mApplicationLogicHomepage = applicationLogic;
     }
 
     @Override
@@ -60,6 +67,7 @@ public class NavigationItemSelectListener implements NavigationView.OnNavigation
         else if(mApplicationLogicEventsDetailview != null){mApplicationLogicEventsDetailview.onMenuItemSelected(item);}
         else if(mApplicationLogicNotesDetailview != null){mApplicationLogicNotesDetailview.onMenuItemSelected(item);}
         else if(mApplicationLogicToDosDetailview != null){mApplicationLogicToDosDetailview.onMenuItemSelected(item);}
+        else if(mApplicationLogicHomepage != null){mApplicationLogicHomepage.onMenuItemSelected(item);}
         return false;
     }
 }

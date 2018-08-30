@@ -5,11 +5,13 @@
     <color name="colorGreenDark">#8a9d7d</color>
     <color name="colorYellow">#FAD97A</color>
     <color name="colorBlue">#A5C7E3</color>
+    <color name="colorBlueDark">#92b0c8</color>
     <color name="colorGrey">#f2f2f2</color>
     <color name="colorGreyDark">#5e5e5e</color>
     <color name="colorBlack">#000000</color>
     <color name="colorApricot">#f8bca5</color>
     <color name="colorApricotDark">#e3b29f</color>
     <color name="colorRed">#af4e56</color>
+    <color name="colorRedLight">#e21818</color>
 
 </resources>
