@@ -72,7 +72,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         if (timeDiff >= 1 && timeDiff < 2) {
             mMessage1 = "Dein Termin beginnt in " + timeDiff + " Minute";
         } if (timeDiff >= 2 && timeDiff <= 60) {
-            mMessage1 = "Dein Termin beginnt in " + timeDiff + " Minuten";
+            mMessage1 = "Dein Termin beginnt in " + (timeDiff+1) + " Minuten";
         } if (timeDiff > 60) {
             timeDiff = timeDiff - 60;
             mMessage1 = "Dein Termin beginnt in 1 Stunde und " + timeDiff + " Minuten";
@@ -81,7 +81,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
             mMessage1 = "Dein Termin hat vor " + timeDiff + " Minute begonnen";
         } if(timeDiff <= -2 && timeDiff >= -60) {
             timeDiff = -timeDiff;
-            mMessage1 = "Dein Termin hat vor " + timeDiff + " Minuten begonnen";
+            mMessage1 = "Dein Termin hat vor " + (timeDiff+1) + " Minuten begonnen";
         } if(timeDiff < -60) {
             mMessage1 = "Dein Termin hat um " + mStartTime + " Uhr begonnen";
         } if(timeDiff == 0) {

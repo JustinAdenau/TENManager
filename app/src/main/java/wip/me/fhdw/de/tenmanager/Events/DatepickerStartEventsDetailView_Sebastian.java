@@ -73,10 +73,8 @@ public class DatepickerStartEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-
             }
         });
-
     }
 
     //set chosen date to button
@@ -99,9 +97,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 Calendar newEndDate = mNewStartDate;
                 Log.d("LOGTAG", "newEndDate:" +sdf.format(newEndDate.getTime()));
                 mGui.getButtonDateEnd().setText(sdf.format(newEndDate.getTime()));
-
             }
         };
     }
-
 }
