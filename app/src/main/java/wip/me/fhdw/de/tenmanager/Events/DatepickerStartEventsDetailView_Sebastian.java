@@ -35,7 +35,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
         mGui = gui;
     }
 
-
+    //date picker to set event start date
     public void buildDateStartpicker() {
         mGui.getButtonDateStart().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,12 +73,11 @@ public class DatepickerStartEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-
             }
         });
-
     }
 
+    //set chosen date to button
     public void setDateStartToButton() {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -98,9 +97,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 Calendar newEndDate = mNewStartDate;
                 Log.d("LOGTAG", "newEndDate:" +sdf.format(newEndDate.getTime()));
                 mGui.getButtonDateEnd().setText(sdf.format(newEndDate.getTime()));
-
             }
         };
     }
-
 }

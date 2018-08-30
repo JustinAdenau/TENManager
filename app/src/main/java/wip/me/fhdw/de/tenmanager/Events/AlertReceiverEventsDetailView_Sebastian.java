@@ -20,7 +20,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
     private String mTitle;
     private String mMessage1;
 
-
+    //push up to 3 notification
     @Override
     public void onReceive(Context context, Intent intent) {
         mTitle = intent.getStringExtra(Constants.KEYNOTIFICATIONTITLE);
@@ -51,7 +51,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         }
     }
 
-
+    //calculate minutes until start time of event
     public int minutesToEvent(){
         int minDiff;
         final Calendar calendar = Calendar.getInstance();
@@ -66,12 +66,13 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         return minDiff;
     }
 
+    //set message text to notification
     public void setNotificicationMessage(int timeDiff){
 
         if (timeDiff >= 1 && timeDiff < 2) {
             mMessage1 = "Dein Termin beginnt in " + timeDiff + " Minute";
         } if (timeDiff >= 2 && timeDiff <= 60) {
-            mMessage1 = "Dein Termin beginnt in " + timeDiff + " Minuten";
+            mMessage1 = "Dein Termin beginnt in " + (timeDiff+1) + " Minuten";
         } if (timeDiff > 60) {
             timeDiff = timeDiff - 60;
             mMessage1 = "Dein Termin beginnt in 1 Stunde und " + timeDiff + " Minuten";
@@ -80,7 +81,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
             mMessage1 = "Dein Termin hat vor " + timeDiff + " Minute begonnen";
         } if(timeDiff <= -2 && timeDiff >= -60) {
             timeDiff = -timeDiff;
-            mMessage1 = "Dein Termin hat vor " + timeDiff + " Minuten begonnen";
+            mMessage1 = "Dein Termin hat vor " + (timeDiff+1) + " Minuten begonnen";
         } if(timeDiff < -60) {
             mMessage1 = "Dein Termin hat um " + mStartTime + " Uhr begonnen";
         } if(timeDiff == 0) {
