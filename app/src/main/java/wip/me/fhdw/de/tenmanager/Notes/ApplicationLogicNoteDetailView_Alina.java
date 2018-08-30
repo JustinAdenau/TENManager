@@ -73,9 +73,13 @@ public class ApplicationLogicNoteDetailView_Alina {
         mGui.getEditTextTitle().setText(mData.getNoteTitle());
         mGui.getEditTextContent().setText(mData.getNoteContent());
 
-        List<String> StringUriList = new ArrayList<>();
-
         Log.d("LOGTAG", "mData getPictureString: " + mData.getPictureString());
+
+        pictureToGui();
+    }
+
+    public void pictureToGui(){
+        List<String> StringUriList = new ArrayList<>();
 
         if(mData.getPictureString() != null){
             StringUriList = getStringUriList(mData.getPictureString());
@@ -98,8 +102,6 @@ public class ApplicationLogicNoteDetailView_Alina {
                 }
             }
         }
-
-
     }
 
 
@@ -268,7 +270,10 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         mGui.getEditTextTitle().setText(outState.getString("NoteTitel"));
         mData.setNoteContent(outState.getString("NoteContent"));
-        mData.setWithData(outState.getBoolean("WithData"));
+        mData.setNotePictureString(outState.getString("NotePicture"));
+        mData.setWithData(outState.getBoolean("NoteWithData"));
+
+        pictureToGui();
     }
     private List<String> getStringUriList(String uriString){
 
@@ -286,7 +291,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     }
 
 
-    private String createPictureString(){
+    public String createPictureString(){
 
         String pictureString = "";
 
