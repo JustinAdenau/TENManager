@@ -15,12 +15,14 @@ public class TimepickerStartEventsDetailView_Sebastian {
 
     private GuiEventsDetailView_Sebastian mGui;
     private TimePickerDialog.OnTimeSetListener mTimeSetListener;
+    private ReminderSpinnerEventsDetailView_Sebastian mReminderSpinner;
 
     private int mHourStart;
     private int mMinuteStart;
 
-    public TimepickerStartEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
+    public TimepickerStartEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui, ReminderSpinnerEventsDetailView_Sebastian reminderSpinner){
         mGui = gui;
+        mReminderSpinner = reminderSpinner;
     }
 
     //time picker to set event start time
@@ -46,9 +48,10 @@ public class TimepickerStartEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+                mReminderSpinner.buildReminderSpinner1();
+                mReminderSpinner.buildReminderSpinner2();
+                mReminderSpinner.buildReminderSpinner3();
             }
         });
-
     }
-
 }

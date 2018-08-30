@@ -126,7 +126,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
 
 
     private void initTimepickerStart() {
-        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
+        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui, mReminderSpinner);
         mTimepickerStart.bulidTimeStartpicker();
     }
 
@@ -144,12 +144,9 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     public void onFabSaveClicked() {
         if (mUserInputValidation.confirmInput()) return;
 
-       // if(mReminderSpinner.isNotification1Active()==true){
-            mReminderSpinner.startAlarm(mReminderSpinner.getCalendar1(), mReminderSpinner.getCalendar2(), mReminderSpinner. getCalendar3());
-       // } else {
-            //todo cancel anpassen
-            mReminderSpinner.cancelAlarm();
-       // }
+        mReminderSpinner.startAlarm(mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff1()), mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff2()), mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff3()));
+        //mReminderSpinner.startAlarm(mReminderSpinner.getCalendar1(), mReminderSpinner.getCalendar2(), mReminderSpinner. getCalendar3());
+        mReminderSpinner.cancelAlarm();
         mReminderSpinner.saveSpinner123Position();
         boolean eventExists = false;
         String titleOld = mData.getEventTitle();
