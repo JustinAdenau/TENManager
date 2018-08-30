@@ -59,12 +59,11 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         mSpinner1 = mGui.getSpinnerReminder1();
         mSpinner1.setAdapter(adapter);
 
-        if (mSpinner1Position != null && mSpinner1Position != null) {
+        if (mSpinner1 != null && mSpinner1Position != null) {
             mSpinner1.setSelection(Integer.parseInt(mSpinner1Position));
         } else {
             mSpinner1.setSelection(0);
         }
-
 
        mSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -317,10 +316,10 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         return calendar;
     }
 
-    //restore selected position of spinner 1, 2 & 3 from datebase
+    //restore selected position of spinner 1, 2 & 3 from database
     public void restoreSpinnerPosition(String spinner123Position){
-        if(spinner123Position != null && !spinner123Position.isEmpty())
-        {
+        if(spinner123Position != null && !spinner123Position.isEmpty()){
+
             mSpinner1Position = spinner123Position.substring(0,1);
 
             if(spinner123Position.length() < 2) {
@@ -329,14 +328,14 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
             } if(spinner123Position.length() < 3){
             mSpinner3Position = "0";
             mSpinner2Position = spinner123Position.substring(1,2);
-        } else{
+            } else{
             mSpinner2Position = spinner123Position.substring(1,2);
             mSpinner3Position = spinner123Position.substring(2,3);
-        }
+            }
         }
     }
 
-    //save selected position of spinner 1, 2 & 3 to datebase
+    //save selected position of spinner 1, 2 & 3 to database
     public String saveSpinner123Position(){
         mSpinner123Position = mSpinner1Position + mSpinner2Position + mSpinner3Position;
 

@@ -35,7 +35,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
         mGui = gui;
     }
 
-
+    //date picker to set event start date
     public void buildDateStartpicker() {
         mGui.getButtonDateStart().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +79,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
 
     }
 
+    //set chosen date to button
     public void setDateStartToButton() {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override

@@ -23,7 +23,7 @@ public class TimepickerStartEventsDetailView_Sebastian {
         mGui = gui;
     }
 
-
+    //time picker to set event start time
     public void bulidTimeStartpicker(){
         mGui.getButtonTimeStart().setOnClickListener(new View.OnClickListener(){
             @Override
@@ -46,7 +46,6 @@ public class TimepickerStartEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-
             }
         });
 

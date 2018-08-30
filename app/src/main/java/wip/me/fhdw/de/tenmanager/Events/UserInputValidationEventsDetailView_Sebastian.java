@@ -33,6 +33,7 @@ public class UserInputValidationEventsDetailView_Sebastian {
         mDateTimeValidation = mGui.getTextViewDateTimeValidation();
     }
 
+    //validation title is not empty
     private boolean validateTitle(){
         String titleInput;
 
@@ -46,6 +47,7 @@ public class UserInputValidationEventsDetailView_Sebastian {
         }
     }
 
+    //validation location is not empty
     private boolean validateLocation(){
         String lacationInput;
 
@@ -59,6 +61,7 @@ public class UserInputValidationEventsDetailView_Sebastian {
         }
     }
 
+    //validation description is not empty
     private boolean validateDescription(){
         String descriptionInput;
 
@@ -72,6 +75,7 @@ public class UserInputValidationEventsDetailView_Sebastian {
         }
     }
 
+    //validation start time is before end time
     private boolean validateDateTime(){
 
         Calendar calendarStart;
@@ -104,7 +108,6 @@ public class UserInputValidationEventsDetailView_Sebastian {
         calendarEnd.set(Calendar.MONTH, monthEnd);
         calendarEnd.set(Calendar.DAY_OF_MONTH, dayEnd);
 
-//todo setError oder set Text -> Layout von setText
         if(calendarEnd.getTime().getTime() <= calendarStart.getTime().getTime()){
             mDateTimeValidation.setText("Das Startdatum muss vor dem Enddatum liegen");
             return false;
@@ -112,16 +115,9 @@ public class UserInputValidationEventsDetailView_Sebastian {
             mDateTimeValidation.setText(null);
             return true;
         }
-
     }
 
-
-
-
-
-
-
-
+    //proof all validations are true
     public boolean confirmInput(){
         if(!validateTitle() | !validateLocation() | !validateDescription() | !validateDateTime()){
            return true;
