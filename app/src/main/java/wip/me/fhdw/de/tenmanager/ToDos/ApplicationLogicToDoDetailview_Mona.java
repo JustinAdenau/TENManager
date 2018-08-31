@@ -252,7 +252,9 @@ public class ApplicationLogicToDoDetailview_Mona {
         status = status + add + subtract;
         status = (status / count) *100;
         mData.setToDoStaus((int)status);
-        mData.setToDoCheckboxActivated(buildCheckboxActivated());
+        String checkboxActivated = buildCheckboxActivated();
+        mData.setToDoCheckboxActivated(checkboxActivated);
+        mAdapter.setCheckboxActivated(checkboxActivated);
         mGui.getTodoDetailviewTextviewStatus().setText(String.valueOf((int)status) +"/100%");
     }
 

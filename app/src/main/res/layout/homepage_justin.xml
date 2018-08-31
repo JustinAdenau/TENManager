@@ -16,6 +16,16 @@
         android:text="#Datum#"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/homepage_description"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_weight="1"
+        android:text="Das steht heute an:"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
         android:textSize="24sp"
         android:textStyle="bold" />
 

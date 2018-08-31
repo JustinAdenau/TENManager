@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 8,
-    "identityHash": "3a353d3dbdb9548959f44fd1fb846d5f",
+    "identityHash": "daae246d48fc7c8ab48eeb7062f71858",
     "entities": [
       {
-        "tableName": "Event",
+        "tableName": "Event_Lena",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `event_title` TEXT, `event_date_start` TEXT, `event_time_start` TEXT, `event_date_end` TEXT, `event_time_end` TEXT, `event_description` TEXT, `event_location` TEXT, `event_time_reminder` TEXT)",
         "fields": [
           {
@@ -163,7 +163,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3a353d3dbdb9548959f44fd1fb846d5f\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"daae246d48fc7c8ab48eeb7062f71858\")"
     ]
   }
 }
