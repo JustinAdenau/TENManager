@@ -80,10 +80,20 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {
-        //mData.saveDataInBundle(outState);
+        mData.saveDataInBundle(outState);
         super.onSaveInstanceState(outState);
+        outState.putString("NoteTitel", mGui.getEditTextTitle().getText().toString());
+        outState.putString("NoteContent", mGui.getEditTextContent().getText().toString());
+        outState.putString("NotePicture", mApplicationLogic.createPictureString());
+        outState.putBoolean("NoteWithData", mData.getWithData());
+
     }
 
+    @Override
+    public void onRestoreInstanceState(Bundle outState) {
+        super.onRestoreInstanceState(outState);
+        mApplicationLogic.restoreInstanceState(outState);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // super.onActivityResult(requestCode, resultCode, data);
