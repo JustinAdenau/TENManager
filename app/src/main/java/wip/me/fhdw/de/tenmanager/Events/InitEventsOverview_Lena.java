@@ -5,7 +5,6 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -41,10 +40,9 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
         mData = new EventData_Lena(savedInstanceState, this);
     }
 
+    //database 'events' is build from RoomDatabase
     public void initDb(){
-
         mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-             //.addMigrations(MIGRATION_6_7)
              //.addMigrations(MIGRATION_7_8)
              .allowMainThreadQueries()
              .build();
@@ -52,44 +50,19 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
 
 
     //if database table is changed (new version) migration is needed
-    /*static final Migration MIGRATION_6_7 = new Migration(6, 7) {
-        @Override
-        public void migrate(@NonNull SupportSQLiteDatabase database) {
-
-            database.execSQL("ALTER TABLE 'event' RENAME TO 'event_old'");
-            database.execSQL("CREATE TABLE 'event' (id INTEGER PRIMARY KEY NOT NULL, event_title TEXT, event_date_start TEXT, " +
-                    "event_time_start TEXT, event_date_end TEXT, event_time_end TEXT," +
-                    "event_description TEXT, event_location TEXT, event_time_reminder TEXT)");
-            database.execSQL("DROP TABLE 'event_old'");
-
-            database.execSQL("ALTER TABLE 'todoOverview_mona' RENAME TO 'todo_old'");
-            database.execSQL("CREATE TABLE 'todoOverview_mona' (todo_id INTEGER PRIMARY KEY NOT NULL, todo_title TEXT, todo_duedate TEXT, " +
-                    "todo_status INTEGER NOT NULL, todo_content TEXT, todo_checkboxactivated TEXT)");
-            database.execSQL("DROP TABLE 'todo_old'");
-        }
-    };*/
-
-    /*static final Migration MIGRATION_7_8 = new Migration(7, 8) {
-        @Override
-        public void migrate(@NonNull SupportSQLiteDatabase database) {
-
-            database.execSQL("ALTER TABLE 'note_julius' RENAME TO 'note_old'");
-            database.execSQL("CREATE TABLE 'note_julius' (note_id INTEGER PRIMARY KEY NOT NULL, note_title TEXT, note_content TEXT, note_picture TEXT)");
-            database.execSQL("DROP TABLE 'note_old'");
-        }
-    };*/
 
 
     public void initGui()
     {
         mGui = new GuiEventsOverview_Lena(this);
         initToolbar();
-        //initMenu();
     }
 
     public void initApplicationLogic(){mApplicationLogic = new ApplicationLogicEventsOverview_Lena(this, mData, mGui, mDb, mEventAdapter);}
     public void initListAdapter(){mEventAdapter = new EventAdapter_Lena(getApplicationContext());}
 
+
+    //toolbar is initialised and text 'Events' is set. Also Navigationbar icon is added to the toolbar
     public void initToolbar()
     {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -102,7 +75,6 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -112,19 +84,16 @@ public class InitEventsOverview_Lena extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {
-        //mData.saveDataInBundle(outState);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // super.onActivityResult(requestCode, resultCode, data);
         mApplicationLogic.onActivityReturned(requestCode, resultCode, data);
     }
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         mApplicationLogic.onBackPressed();
     }
 

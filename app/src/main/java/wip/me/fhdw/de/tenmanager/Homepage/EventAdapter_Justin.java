@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import wip.me.fhdw.de.tenmanager.Events.Event;
+import wip.me.fhdw.de.tenmanager.Events.Event_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 
 public class EventAdapter_Justin extends BaseAdapter {
     private Context mContext;
-    private List<Event> mEventList;
+    private List<Event_Lena> mEventList;
     private ApplicationLogicHomepage_Justin mApplicationLogic;
 
 
@@ -23,7 +23,7 @@ public class EventAdapter_Justin extends BaseAdapter {
         this.mContext=context;
     }
 
-    public void setEventList(List<Event> eventList){mEventList=eventList;}
+    public void setEventList(List<Event_Lena> eventList){mEventList=eventList;}
 
     public void setApplicationLogic(ApplicationLogicHomepage_Justin applicationLogic){mApplicationLogic=applicationLogic;}
 
@@ -42,7 +42,7 @@ public class EventAdapter_Justin extends BaseAdapter {
         return position;
     }
 
-    public List<Event> getEventList(){return mEventList;}
+    public List<Event_Lena> getEventList(){return mEventList;}
 
     @Override
     public View getView(int position, View v, ViewGroup viewGroup) {

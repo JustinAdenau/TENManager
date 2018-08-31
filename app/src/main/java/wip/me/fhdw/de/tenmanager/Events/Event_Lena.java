@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
-public class Event {
+public class Event_Lena {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
@@ -28,7 +28,7 @@ public class Event {
     private String mEventTimeReminder;
 
 
-    public Event(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation, String eventTimeReminder){
+    public Event_Lena(String eventTitle, String eventDateStart, String eventTimeStart, String eventDateEnd, String eventTimeEnd, String eventDescription, String eventLocation, String eventTimeReminder){
         mEventTitle=eventTitle;
         mEventDateStart=eventDateStart;
         mEventTimeStart=eventTimeStart;

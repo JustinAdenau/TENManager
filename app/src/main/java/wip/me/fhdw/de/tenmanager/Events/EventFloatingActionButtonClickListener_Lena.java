@@ -26,8 +26,6 @@ public class EventFloatingActionButtonClickListener_Lena implements View.OnClick
     @Override
     public void onClick(View view) {
 
-        Log.d("LOGTAG", "FAB wurde angeklickt!!");
-
         if(mApplicationlogicEventsDetailview == null) mApplicationlogicEventsOverview.onFabCreateNewClicked();
         else mApplicationlogicEventsDetailview.onFabSaveClicked();
 

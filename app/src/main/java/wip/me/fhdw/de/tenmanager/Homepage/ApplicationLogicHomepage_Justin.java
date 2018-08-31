@@ -15,7 +15,7 @@ import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
-import wip.me.fhdw.de.tenmanager.Events.Event;
+import wip.me.fhdw.de.tenmanager.Events.Event_Lena;
 import wip.me.fhdw.de.tenmanager.Events.EventData_Lena;
 import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
@@ -26,7 +26,7 @@ public class ApplicationLogicHomepage_Justin {
     private GuiHomepage_Justin mGui;
     private AppDatabase mDb;
 
-    private List<Event> mEventList;
+    private List<Event_Lena> mEventList;
     private List<ToDoOverview_Mona> mTodoList;
 
     private EventAdapter_Justin mEventAdapter;
@@ -159,7 +159,7 @@ public class ApplicationLogicHomepage_Justin {
         TextView title = v.findViewById(R.id.homepage_event_title);
         TextView dateStart = v.findViewById(R.id.homepage_event_date);
         TextView timeStart = v.findViewById(R.id.homepage_event_time);
-        Event eventToBeDeleted = mDb.eventDao().getEventByTitleDateTime(title.getText().toString(), dateStart.getText().toString(), timeStart.getText().toString());
+        Event_Lena eventToBeDeleted = mDb.eventDao().getEventByTitleDateTime(title.getText().toString(), dateStart.getText().toString(), timeStart.getText().toString());
         mDb.eventDao().deleteEvents(eventToBeDeleted);
 
         mActivity.recreate();
