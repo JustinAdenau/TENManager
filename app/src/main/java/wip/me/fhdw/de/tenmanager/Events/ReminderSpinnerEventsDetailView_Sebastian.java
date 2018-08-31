@@ -44,6 +44,11 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     private int mEventID;
 
+    private int mMinDiff1;
+    private int mMinDiff2;
+    private int mMinDiff3;
+
+
 
     public ReminderSpinnerEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui, Activity activity){
        mGui = gui;
@@ -71,17 +76,20 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                 mSpinner1Position = Integer.toString(pos);
                 Object item = parent.getItemAtPosition(pos);
                 if(item.toString()=="Erinnere mich zur Startzeit") {
-                    mCalendar1 = createCalendar(0);
+                    //mCalendar1 = createCalendar(0);
+                    mMinDiff1 = 0;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 5 Minuten vorher"){
-                    mCalendar1 = createCalendar(5);
+                    //mCalendar1 = createCalendar(5);
+                    mMinDiff1 = 5;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
-                    mCalendar1 = createCalendar(15);
+                    //mCalendar1 = createCalendar(15);
+                    mMinDiff1 = 15;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
@@ -91,12 +99,14 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
-                    mCalendar1 = createCalendar(60);
+                    //mCalendar1 = createCalendar(60);
+                    mMinDiff1 = 60;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
-                    mCalendar1 = createCalendar(120);
+                    //mCalendar1 = createCalendar(120);
+                    mMinDiff1 = 120;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
@@ -137,32 +147,38 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                 mSpinner2Position = Integer.toString(pos);
                 Object item = parent.getItemAtPosition(pos);
                 if(item.toString()=="Erinnere mich zur Startzeit") {
-                    mCalendar2 = createCalendar(0);
+                    //mCalendar2 = createCalendar(0);
+                    mMinDiff2 = 0;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 5 Minuten vorher"){
-                    mCalendar2 = createCalendar(5);
+                    //mCalendar2 = createCalendar(5);
+                    mMinDiff2 = 5;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
-                    mCalendar2 = createCalendar(15);
+                    //mCalendar2 = createCalendar(15);
+                    mMinDiff2 = 15;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 30 Minuten vorher") {
-                    mCalendar2 = createCalendar(30);
+                    //mCalendar2 = createCalendar(30);
+                    mMinDiff2 = 30;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
-                    mCalendar2 = createCalendar(60);
+                    //mCalendar2 = createCalendar(60);
+                    mMinDiff2 = 60;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
-                    mCalendar2 = createCalendar(120);
+                    //mCalendar2 = createCalendar(120);
+                    mMinDiff2 = 120;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
@@ -200,27 +216,33 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                 mSpinner3Position = Integer.toString(pos);
                 Object item = parent.getItemAtPosition(pos);
                 if(item.toString()=="Erinnere mich zur Startzeit") {
-                    mCalendar3 = createCalendar(0);
+                    //mCalendar3 = createCalendar(0);
+                    mMinDiff3 = 0;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 5 Minuten vorher"){
-                    mCalendar3 = createCalendar(5);
+                    //mCalendar3 = createCalendar(5);
+                    mMinDiff3 = 5;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
-                    mCalendar3 = createCalendar(15);
+                    //mCalendar3 = createCalendar(15);
+                    mMinDiff3 = 15;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 30 Minuten vorher") {
-                    mCalendar3 = createCalendar(30);
+                    //mCalendar3 = createCalendar(30);
+                    mMinDiff3 = 30;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
-                    mCalendar3 = createCalendar(60);
+                    //mCalendar3 = createCalendar(60);
+                    mMinDiff3 = 60;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
-                    mCalendar3 = createCalendar(120);
+                    //mCalendar3 = createCalendar(120);
+                    mMinDiff3 = 120;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Keine 3. Erinnerung") {
@@ -358,6 +380,18 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     public String getSpinner123Position() {
         return mSpinner123Position;
+    }
+
+    public int getMinDiff1() {
+        return mMinDiff1;
+    }
+
+    public int getMinDiff2() {
+        return mMinDiff2;
+    }
+
+    public int getMinDiff3() {
+        return mMinDiff3;
     }
 
     //setter
