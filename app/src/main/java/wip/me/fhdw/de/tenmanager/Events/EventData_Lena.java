@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import wip.me.fhdw.de.tenmanager.AppDatabase;
 import wip.me.fhdw.de.tenmanager.Constants;
@@ -88,13 +87,13 @@ public class EventData_Lena {
 
     public void createAndSaveNewEvent()
     {
-        Event event = new Event(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation, mEventTimeReminder);
+        Event_Lena event = new Event_Lena(mEventTitle, mEventDateStart, mEventTimeStart, mEventDateEnd, mEventTimeEnd, mEventDescription, mEventLocation, mEventTimeReminder);
         mDb.eventDao().insertAll(event);
     }
 
     public void updateEvent(String titleOld, String dateStartOld, String timeStartOld)
     {
-        Event eventOld = mDb.eventDao().getEventByTitleDateTime(titleOld, dateStartOld, timeStartOld);
+        Event_Lena eventOld = mDb.eventDao().getEventByTitleDateTime(titleOld, dateStartOld, timeStartOld);
         if(eventOld != null)
         {
             mDb.eventDao().deleteEvents(eventOld);

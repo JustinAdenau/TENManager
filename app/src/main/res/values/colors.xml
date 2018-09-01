@@ -13,5 +13,6 @@
     <color name="colorApricotDark">#e3b29f</color>
     <color name="colorRed">#af4e56</color>
     <color name="colorRedLight">#e21818</color>
+    <color name="colorWhite">#ffffff</color>
 
 </resources>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -72,9 +73,13 @@ public class ApplicationLogicNoteDetailView_Alina {
         mGui.getEditTextTitle().setText(mData.getNoteTitle());
         mGui.getEditTextContent().setText(mData.getNoteContent());
 
-        List<String> StringUriList = new ArrayList<>();
-
         Log.d("LOGTAG", "mData getPictureString: " + mData.getPictureString());
+
+        pictureToGui();
+    }
+
+    public void pictureToGui(){
+        List<String> StringUriList = new ArrayList<>();
 
         if(mData.getPictureString() != null){
             StringUriList = getStringUriList(mData.getPictureString());
@@ -97,8 +102,6 @@ public class ApplicationLogicNoteDetailView_Alina {
                 }
             }
         }
-
-
     }
 
 
@@ -263,7 +266,15 @@ public class ApplicationLogicNoteDetailView_Alina {
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
+    public void restoreInstanceState(Bundle outState)
+    {
+        mGui.getEditTextTitle().setText(outState.getString("NoteTitel"));
+        mData.setNoteContent(outState.getString("NoteContent"));
+        mData.setNotePictureString(outState.getString("NotePicture"));
+        mData.setWithData(outState.getBoolean("NoteWithData"));
 
+        pictureToGui();
+    }
     private List<String> getStringUriList(String uriString){
 
         List<String> uriList = new ArrayList<String>();
@@ -280,7 +291,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     }
 
 
-    private String createPictureString(){
+    public String createPictureString(){
 
         String pictureString = "";
 

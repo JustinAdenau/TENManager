@@ -2,7 +2,6 @@ package wip.me.fhdw.de.tenmanager.Events;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -14,7 +13,7 @@ import wip.me.fhdw.de.tenmanager.R;
 
 public class GuiEventsOverview_Lena {
 
-    private ListView mlistView;
+    private ListView mListView;
     private ViewStub mStub;
     private View mInflated;
     private TextView mTextViewTitle;
@@ -37,7 +36,7 @@ public class GuiEventsOverview_Lena {
         mStub.setLayoutResource(R.layout.eventsoverview_lena);
         mInflated = mStub.inflate();
 
-        mlistView = activity.findViewById(android.R.id.list);
+        mListView = activity.findViewById(android.R.id.list);
 
         LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
         View view = inflater.inflate(R.layout.list_item_eventsoverview, null);
@@ -53,11 +52,10 @@ public class GuiEventsOverview_Lena {
         mFabCreateNew = activity.findViewById(R.id.fab);
 
         mNavigationView = activity.findViewById(R.id.nav_view);
-        if(mNavigationView == null) Log.d("LOGTAG", "NavigationView ist null in GuiEventsOverview Z.59!!!!!!!!!!");
     }
 
     //getter to access Views
-    public ListView getListView(){return mlistView;}
+    public ListView getListView(){return mListView;}
     public FloatingActionButton getFabCreateNew() {return mFabCreateNew;}
     public ImageButton getButtonDeleteEvent(){return mButtonDeleteEvent;}
     public NavigationView getNavigationView(){return mNavigationView;}

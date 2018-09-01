@@ -13,20 +13,25 @@ import wip.me.fhdw.de.tenmanager.R;
 
 public class EventAdapter_Lena extends BaseAdapter {
 
+    //instance variables
     private Context mContext;
-    private List<Event> mEventList;
+    private List<Event_Lena> mEventList;
     private ApplicationLogicEventsOverview_Lena mApplicationLogic;
 
-
+    //constructor
     public EventAdapter_Lena(Context context)
     {
         this.mContext=context;
     }
 
-    public void setEventList(List<Event> eventList){mEventList=eventList;}
+
+    //setter
+    public void setEventList(List<Event_Lena> eventList){mEventList=eventList;}
 
     public void setApplicationLogic(ApplicationLogicEventsOverview_Lena applicationLogic){mApplicationLogic=applicationLogic;}
 
+
+    //getter
     @Override
     public int getCount() {
         return mEventList.size();
@@ -42,8 +47,9 @@ public class EventAdapter_Lena extends BaseAdapter {
         return position;
     }
 
-    public List<Event> getEventList(){return mEventList;}
 
+
+    //set data to ListView element in gui
     @Override
     public View getView(int position, View v, ViewGroup viewGroup) {
         View view = View.inflate(mContext, R.layout.list_item_eventsoverview, null);

@@ -133,7 +133,6 @@
             "notNull": false
           },
           {
-
             "fieldPath": "mDuedate",
             "columnName": "todo_duedate",
             "affinity": "TEXT",

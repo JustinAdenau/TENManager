@@ -61,7 +61,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
-        toolbarTextview.setText("Event");
+        toolbarTextview.setText("Event_Lena");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
@@ -85,6 +85,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
         outState.putString("EventTimeEnd", mGui.getButtonTimeEnd().getText().toString());
         outState.putString("EventDateStart", mGui.getButtonDateStart().getText().toString());
         outState.putString("EventDateEnd", mGui.getButtonDateEnd().getText().toString());
+        outState.putBoolean("EventWithData", mData.getWithData());
     }
 
     @Override
@@ -95,6 +96,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
         mGui.setButtonTimeEnd(outState.getString("EventTimeEnd"));
         mGui.setButtonDateStart(outState.getString("EventDateStart"));
         mGui.setButtonDateEnd(outState.getString("EventDateEnd"));
+        mData.setWithData(outState.getBoolean("EventWithData"));
     }
 
 
