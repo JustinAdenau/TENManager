@@ -399,5 +399,4 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         this.mEventID = EventID;
     }
 
-    //Quelle http://blog.blundellapps.co.uk/notification-for-a-user-chosen-time/
 }
