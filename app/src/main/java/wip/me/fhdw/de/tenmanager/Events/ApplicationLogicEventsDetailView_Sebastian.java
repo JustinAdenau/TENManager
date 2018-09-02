@@ -62,8 +62,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     }
 
 
-//todo
-
     public void dataToGui() {
         mGui.getEditTextTitle().setText(mData.getEventTitle());
         mGui.getButtonDateStart().setText(mData.getEventDateStart());
@@ -73,13 +71,17 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
         mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
-        mReminderSpinner.setEventID(mData.getDb().eventDao().getEventIdByTitleDateTime(mData.getEventTitle(), mData.getEventDateStart(), mData.getEventTimeStart()));
-        //mReminderSpinner.setSpinner123Position(mData.getEventTimeReminder());
+        mReminderSpinner.setEventID(mData.getDb().eventDao().getEventIdByTitleDateTime(
+                mData.getEventTitle(),
+                mData.getEventDateStart(),
+                mData.getEventTimeStart())
+        );
         mReminderSpinner.restoreSpinnerPosition(mData.getEventTimeReminder());
         mReminderSpinner.buildReminderSpinner1();
         mReminderSpinner.buildReminderSpinner2();
         mReminderSpinner.buildReminderSpinner3();
     }
+
 
     //todo Validierung Enddatum muss nach Startdatum liegen
     //todo in if auch  ButtonDateEnd Befüllung anfragen
@@ -95,6 +97,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getButtonDateStart().setText(String.format("%02d.%02d.%04d", day, month, year));
         mGui.getButtonDateEnd().setText(String.format("%02d.%02d.%04d", day, month, year));
     }
+
 
     //todo in if auch  ButtonTimeEnd Befüllung anfragen
     private void initCurrentTime() {
@@ -130,22 +133,26 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mTimepickerStart.bulidTimeStartpicker();
     }
 
+
     private void initTimepickerEnd() {
         mTimepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
         mTimepickerEnd.buildTimeEndpicker();
     }
+
 
     private void initUserInputValidation() {
         mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
 
-
     public void onFabSaveClicked() {
         if (mUserInputValidation.confirmInput()) return;
 
-        mReminderSpinner.startAlarm(mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff1()), mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff2()), mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff3()));
-        //mReminderSpinner.startAlarm(mReminderSpinner.getCalendar1(), mReminderSpinner.getCalendar2(), mReminderSpinner. getCalendar3());
+        mReminderSpinner.startAlarm(
+                mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff1()),
+                mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff2()),
+                mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff3())
+        );
         mReminderSpinner.cancelAlarm();
         mReminderSpinner.saveSpinner123Position();
         boolean eventExists = false;
@@ -165,7 +172,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
             mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
             mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
-            //todo Position von adapterview überprüfen
             mData.setEventTimeReminder(mReminderSpinner.getSpinner123Position());
         }
 
@@ -177,7 +183,9 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         } else {
             if (eventExists) {
                 Log.d("LOGTAG", "event exists!!!");
-                Toast.makeText(mData.getActivity().getApplicationContext(), "Es gibt bereits ein Event_Lena mit diesem Titel, diesem Startdatum und dieser Startzeit!", Toast.LENGTH_LONG).show();
+                Toast.makeText(mData.getActivity().getApplicationContext(),
+                        "Es gibt bereits ein Event_Lena mit diesem Titel, diesem Startdatum und dieser Startzeit!",
+                        Toast.LENGTH_LONG).show();
 
                 return;
             }
@@ -186,12 +194,12 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         finishActivityResultOk();
     }
 
-    public void onMenuItemSelected(MenuItem item)
-    {
+
+    public void onMenuItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.menuHome)
-        {
+        if(id == R.id.menuHome) {
+
             startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
             mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
@@ -237,6 +245,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         }
     }
 
+
     public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
     {
         Intent intent = new Intent();
@@ -265,5 +274,4 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
-
 }

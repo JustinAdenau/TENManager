@@ -28,7 +28,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
 
    // private Intent mIntent;
 
-    //todo ApplicationLogic inizialisieren
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +46,8 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
         mGui = new GuiEventsDetailView_Sebastian(this);
         initToolbar();
     }
+
+
     public void initData(Bundle savedInstanceState)
     {
         mData = new EventData_Lena(savedInstanceState, this);
@@ -55,6 +57,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
     private void initApplicationLogic(){
         mApplicationLogic = new ApplicationLogicEventsDetailView_Sebastian(this, mData, mGui);
     }
+
 
     public void initToolbar()
     {
@@ -68,7 +71,6 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

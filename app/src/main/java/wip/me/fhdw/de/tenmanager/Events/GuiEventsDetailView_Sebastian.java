@@ -46,7 +46,6 @@ public class GuiEventsDetailView_Sebastian {
         stub = (ViewStub) activity.findViewById(R.id.viewStub);
         stub.setLayoutResource(R.layout.eventsdetailview_sebastian);
         inflated = stub.inflate();
-
         mEditTextTitle = activity.findViewById(R.id.eventTitleEditText);
         mEditTextDescription = activity.findViewById(R.id.eventDescriptionEditText);
         mEditTextLocation = activity.findViewById(R.id.eventLocationEditText);

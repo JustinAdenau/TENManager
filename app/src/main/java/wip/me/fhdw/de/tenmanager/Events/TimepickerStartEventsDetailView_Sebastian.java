@@ -34,8 +34,6 @@ public class TimepickerStartEventsDetailView_Sebastian {
                 mHourStart = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(0, 2));
                 mMinuteStart = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(3, 5));
 
-                Log.d("LOGTAG", "Zeit: "+mHourStart+":"+mMinuteStart);
-
                 TimePickerDialog dialog = new TimePickerDialog(
 
                        view.getContext(), AlertDialog.THEME_HOLO_DARK, new TimePickerDialog.OnTimeSetListener() {
