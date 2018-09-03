@@ -46,9 +46,6 @@ public class TimepickerStartEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-                mReminderSpinner.buildReminderSpinner1();
-                mReminderSpinner.buildReminderSpinner2();
-                mReminderSpinner.buildReminderSpinner3();
             }
         });
     }

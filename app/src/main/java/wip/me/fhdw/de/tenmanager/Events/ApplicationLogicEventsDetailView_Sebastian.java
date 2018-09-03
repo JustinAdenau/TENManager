@@ -146,8 +146,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
 
 
     public void onFabSaveClicked() {
-        if (mUserInputValidation.confirmInput()) return;
-
+        if (!mUserInputValidation.confirmInput()) return;
         mReminderSpinner.startAlarm(
                 mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff1()),
                 mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff2()),
@@ -175,8 +174,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventTimeReminder(mReminderSpinner.getSpinner123Position());
         }
 
-        Log.d("LOGTAG", "withData: " + mData.getWithData());
-
         if (mData.getWithData()) {
             Log.d("LOGTAG", "updating event!!!");
             mData.updateEvent(titleOld, dateStartOld, timeStartOld);
@@ -184,7 +181,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             if (eventExists) {
                 Log.d("LOGTAG", "event exists!!!");
                 Toast.makeText(mData.getActivity().getApplicationContext(),
-                        "Es gibt bereits ein Event_Lena mit diesem Titel, diesem Startdatum und dieser Startzeit!",
+                        "Es gibt bereits ein Event mit diesem Titel, diesem Startdatum und dieser Startzeit!",
                         Toast.LENGTH_LONG).show();
 
                 return;

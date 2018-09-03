@@ -45,6 +45,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 mMonthStart = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(3, 5))-1;
                 mYearStart = Integer.parseInt(mGui.getButtonDateStart().getText().toString().substring(6,10));
 
+                //get event end date
                 int dayEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(0,2));
                 int monthEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(3, 5))-1;
                 int yearEnd = Integer.parseInt(mGui.getButtonDateEnd().getText().toString().substring(6,10));
@@ -60,6 +61,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 mEndDate.set(Calendar.MONTH, monthEnd);
                 mEndDate.set(Calendar.YEAR, yearEnd);
 
+                //calculate to difference between start and end date
                 long diffMillis = mEndDate.getTimeInMillis() - mStartDate.getTimeInMillis();
                 mDiffDays = diffMillis /(24*60*60*1000);
 
@@ -77,7 +79,7 @@ public class DatepickerStartEventsDetailView_Sebastian {
         });
     }
 
-    //set chosen date to button
+    //set chosen date to button; keep difference between start and end date
     public void setDateStartToButton() {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -93,9 +95,11 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 mNewStartDate.set(Calendar.MONTH, month-1);
                 mNewStartDate.set(Calendar.YEAR, year);
 
+                //add time difference to the start date
                 mNewStartDate.add(Calendar.DATE, diff);
+
+                //get new end date
                 Calendar newEndDate = mNewStartDate;
-                Log.d("LOGTAG", "newEndDate:" +sdf.format(newEndDate.getTime()));
                 mGui.getButtonDateEnd().setText(sdf.format(newEndDate.getTime()));
             }
         };
