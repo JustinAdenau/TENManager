@@ -65,26 +65,17 @@ public class ApplicationLogicNoteDetailView_Alina {
         });
     }
 
-
-//todo
-
     public void dataToGui()
     {
         mGui.getEditTextTitle().setText(mData.getNoteTitle());
         mGui.getEditTextContent().setText(mData.getNoteContent());
 
-        Log.d("LOGTAG", "mData getPictureString: " + mData.getPictureString());
-
-        pictureToGui();
-    }
-
-    public void pictureToGui(){
         List<String> StringUriList = new ArrayList<>();
+
 
         if(mData.getPictureString() != null){
             StringUriList = getStringUriList(mData.getPictureString());
             if(StringUriList.size() != 0) {
-                Log.d("LOGTAG", "Bild Uri: " + Uri.parse(StringUriList.get(0)));
                 if (StringUriList.size() > 0 && StringUriList.get(0) != null) {
                     mGui.getImageView1().setImageURI(Uri.parse(StringUriList.get(0)));
                 }
@@ -102,17 +93,10 @@ public class ApplicationLogicNoteDetailView_Alina {
                 }
             }
         }
+
+
     }
 
-
-
-
-    /////////////////////////////////////////////
-    // AppLogic
-    ////////////////////////////////////////////7
-
-
-    //todo Methoden einfügen
     //Einbindung der UserInputValidation Java-Class, Instanziierung??
     private void initUserInputValidation(){
         mUserInputValidation = new UserInputValidationNoteDetailView_Alina(mGui);
@@ -129,8 +113,6 @@ public class ApplicationLogicNoteDetailView_Alina {
         String title = mGui.getEditTextTitle().getText().toString();
         String content = mGui.getEditTextContent().getText().toString();
         String pictureString = createPictureString();
-        Log.d("LOGTAG", "PictureString:  " + pictureString + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
 
         if(mData.getDb().noteDao().noteExists(title)!=0) noteExists = true;
         if(!noteExists || mData.getWithData()) {
@@ -138,10 +120,9 @@ public class ApplicationLogicNoteDetailView_Alina {
             mData.setNoteContent(content);
             mData.setNotePictureString(pictureString);
         }
-        Log.d("LOGTAG", "withData: "+mData.getWithData());
         if(mData.getWithData())
         {
-            mData.updateNote(titleOld);
+            mData.updateNote(titleOld, contentOld);
         }
         else
         {
@@ -187,7 +168,6 @@ public class ApplicationLogicNoteDetailView_Alina {
     }
 
     public void onBackPressed() {
-        Log.d("LOGTAG", "onBackPress called");
         finishActivityResultCancelled();
 
     }
@@ -205,8 +185,6 @@ public class ApplicationLogicNoteDetailView_Alina {
 
     //finish Activities
     public void onActivityReturned(int requestCode, int resultCode, Intent intent) {
-        Log.d("LOGTAG", "onActivityReturned ...");
-        Log.d("LOGTAG", "  resultCode: " + resultCode);
         int value;
         if ( resultCode == Activity.RESULT_OK ) {
             switch (requestCode) {
@@ -250,7 +228,6 @@ public class ApplicationLogicNoteDetailView_Alina {
         Intent intent = new Intent();
         intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
         mData.getActivity().setResult(Activity.RESULT_OK, intent);
-        Log.d("LOGTAG", "finishActivityResultOk");
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
@@ -261,7 +238,6 @@ public class ApplicationLogicNoteDetailView_Alina {
         Intent intent = new Intent();
         intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
-        Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
@@ -270,10 +246,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         mGui.getEditTextTitle().setText(outState.getString("NoteTitel"));
         mData.setNoteContent(outState.getString("NoteContent"));
-        mData.setNotePictureString(outState.getString("NotePicture"));
-        mData.setWithData(outState.getBoolean("NoteWithData"));
-
-        pictureToGui();
+        mData.setWithData(outState.getBoolean("WithData"));
     }
     private List<String> getStringUriList(String uriString){
 
@@ -291,7 +264,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     }
 
 
-    public String createPictureString(){
+    private String createPictureString(){
 
         String pictureString = "";
 
