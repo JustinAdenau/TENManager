@@ -23,6 +23,7 @@ public class NavigationItemSelectListener_Lena implements NavigationView.OnNavig
     ApplicationLogicHomepage_Justin mApplicationLogicHomepage;
 
 
+    //different constructors for different application logics
     public NavigationItemSelectListener_Lena(ApplicationLogicEventsOverview_Lena applicationLogic)
     {
         mApplicationLogicEventsOverview = applicationLogic;

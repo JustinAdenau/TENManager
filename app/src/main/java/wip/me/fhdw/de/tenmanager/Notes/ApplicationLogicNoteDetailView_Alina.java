@@ -122,7 +122,7 @@ public class ApplicationLogicNoteDetailView_Alina {
         }
         if(mData.getWithData())
         {
-            mData.updateNote(titleOld, contentOld);
+            mData.updateNote(titleOld);
         }
         else
         {
@@ -247,6 +247,7 @@ public class ApplicationLogicNoteDetailView_Alina {
         mGui.getEditTextTitle().setText(outState.getString("NoteTitel"));
         mData.setNoteContent(outState.getString("NoteContent"));
         mData.setWithData(outState.getBoolean("WithData"));
+        mData.setNotePictureString(outState.getString("NotePicture"));
     }
     private List<String> getStringUriList(String uriString){
 
@@ -264,7 +265,7 @@ public class ApplicationLogicNoteDetailView_Alina {
     }
 
 
-    private String createPictureString(){
+    public String createPictureString(){
 
         String pictureString = "";
 

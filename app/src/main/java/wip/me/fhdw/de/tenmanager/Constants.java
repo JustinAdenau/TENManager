@@ -1,8 +1,6 @@
 package wip.me.fhdw.de.tenmanager;
 
-import wip.me.fhdw.de.tenmanager.Events.InitEventsDetailView_Sebastian;
-import wip.me.fhdw.de.tenmanager.Events.InitEventsOverview_Lena;
-import wip.me.fhdw.de.tenmanager.Notes.InitNoteOverview_Julius;
+
 
 public class Constants {
 

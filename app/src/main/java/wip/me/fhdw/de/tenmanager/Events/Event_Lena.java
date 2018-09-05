@@ -39,6 +39,7 @@ public class Event_Lena {
         mEventTimeReminder = eventTimeReminder;
     }
 
+    //getter and setter
     public int getId() {
         return mId;
     }

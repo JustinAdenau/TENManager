@@ -46,6 +46,7 @@ public class EventData_Lena {
         }
     }
 
+    //save data from bundle in instance variables
     public void restoreDataFromBundle(Bundle b) {
 
         mEventTitle = b.getString(Constants.KEYEVENTTITLE);
@@ -72,6 +73,7 @@ public class EventData_Lena {
         saveDataInBundle(bundle);
         return bundle;
     }
+
 
     public void saveDataInBundle(Bundle b) {
         b.putString(Constants.KEYEVENTTITLE, mEventTitle);
