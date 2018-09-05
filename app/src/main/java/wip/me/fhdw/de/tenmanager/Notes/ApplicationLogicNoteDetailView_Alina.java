@@ -141,7 +141,7 @@ public class ApplicationLogicNoteDetailView_Alina {
         Log.d("LOGTAG", "withData: "+mData.getWithData());
         if(mData.getWithData())
         {
-            mData.updateNote(titleOld, contentOld);
+            mData.updateNote(titleOld);
         }
         else
         {

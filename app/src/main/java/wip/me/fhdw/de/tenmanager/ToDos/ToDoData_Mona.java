@@ -84,14 +84,14 @@ public class ToDoData_Mona {
     public void createAndSaveNewTodo()
     {
         Log.d("LOGTAG", "neues Todo: "+mToDoTitle+" "+mToDoContent+" "+mToDoDuedate+" "+mStatus+"!!!!!!!!!!!!!!!!!!!!");
-        ToDoOverview_Mona todo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus, mCheckboxActivated);
+        ToDo_Mona todo = new ToDo_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus, mCheckboxActivated);
         mDb.todoDao().insertAll(todo);
     }
 
     public void updateTodo(String titleOld)
     {
         mDb.todoDao().deleteToDoByTitle(titleOld);
-        ToDoOverview_Mona newTodo = new ToDoOverview_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus, mCheckboxActivated);
+        ToDo_Mona newTodo = new ToDo_Mona(mToDoTitle, mToDoContent, mToDoDuedate, mStatus, mCheckboxActivated);
         mDb.todoDao().insertAll(newTodo);
     }
 

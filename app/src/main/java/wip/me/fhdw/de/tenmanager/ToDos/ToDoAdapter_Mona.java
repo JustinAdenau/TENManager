@@ -17,12 +17,12 @@ import wip.me.fhdw.de.tenmanager.R;
 public class ToDoAdapter_Mona extends BaseAdapter{
 
     private Context mContext;
-    private List<ToDoOverview_Mona> mToDoList;
+    private List<ToDo_Mona> mToDoList;
     private ApplicationLogicToDoOverview_Mona mApplicationLogic;
     private String mCheckboxActivated;
 
 
-    public ToDoAdapter_Mona(Context context, List<ToDoOverview_Mona> todoList)
+    public ToDoAdapter_Mona(Context context, List<ToDo_Mona> todoList)
     {
         mContext = context;
         mToDoList = todoList;
@@ -34,7 +34,7 @@ public class ToDoAdapter_Mona extends BaseAdapter{
         this.mContext=context;
     }
 
-    public void setToDoList(List<ToDoOverview_Mona> todoList){mToDoList=todoList;}
+    public void setToDoList(List<ToDo_Mona> todoList){mToDoList=todoList;}
 
     public void setCheckboxActivated(String checkboxActivated){mCheckboxActivated = checkboxActivated;
         Log.d("LOGTAG", "checkBoxActivated wurde in OverviewAdapter gesetzt: "+mCheckboxActivated+"!!!!!!!!!!!!!!!!!!!!!");}

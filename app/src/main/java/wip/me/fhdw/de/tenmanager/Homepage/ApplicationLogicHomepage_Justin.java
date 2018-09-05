@@ -20,14 +20,14 @@ import wip.me.fhdw.de.tenmanager.Events.EventData_Lena;
 import wip.me.fhdw.de.tenmanager.NavigationItemSelectListener_Lena;
 import wip.me.fhdw.de.tenmanager.R;
 import wip.me.fhdw.de.tenmanager.ToDos.ToDoData_Mona;
-import wip.me.fhdw.de.tenmanager.ToDos.ToDoOverview_Mona;
+import wip.me.fhdw.de.tenmanager.ToDos.ToDo_Mona;
 
 public class ApplicationLogicHomepage_Justin {
     private GuiHomepage_Justin mGui;
     private AppDatabase mDb;
 
     private List<Event_Lena> mEventList;
-    private List<ToDoOverview_Mona> mTodoList;
+    private List<ToDo_Mona> mTodoList;
 
     private EventAdapter_Justin mEventAdapter;
     private ToDoAdapter_Justin mTodoAdapter;
@@ -170,7 +170,7 @@ public class ApplicationLogicHomepage_Justin {
         View v = (View)view.getParent().getParent().getParent();
         TextView title = v.findViewById(R.id.homepage_todo_title);
         Log.d("LOGTAG", "Titel des zu löschenden ToDos: "+title.getText().toString()+"!!!!!!!!!!!!!!!!!!!!");
-        //ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString());
+        //ToDo_Mona todoToBeDeleted = mDb.todoDao().getToDoByToDoElements(title.getText().toString());
         //mDb.todoDao().deleteToDos(todoToBeDeleted);
         mDb.todoDao().deleteToDoByTitle(title.getText().toString());
         mActivity.recreate();

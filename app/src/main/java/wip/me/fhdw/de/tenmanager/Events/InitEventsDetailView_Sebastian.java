@@ -61,7 +61,7 @@ public class InitEventsDetailView_Sebastian extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().hide();
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
-        toolbarTextview.setText("Event_Lena");
+        toolbarTextview.setText("Event");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);

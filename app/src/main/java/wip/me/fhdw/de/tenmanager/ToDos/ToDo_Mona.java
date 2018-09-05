@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class ToDoOverview_Mona {
+public class ToDo_Mona {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "todo_id")
@@ -26,7 +26,7 @@ public class ToDoOverview_Mona {
 
 
 
-    public ToDoOverview_Mona(String title, String content, String duedate, int status , String checkboxActivated){
+    public ToDo_Mona(String title, String content, String duedate, int status , String checkboxActivated){
         mTitle = title;
         mContent = content;
         mDuedate = duedate;

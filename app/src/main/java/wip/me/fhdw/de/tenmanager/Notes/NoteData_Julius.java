@@ -83,7 +83,7 @@ public class NoteData_Julius {
         mDb.noteDao().insertAll(note);
     }
 
-    public void updateNote(String title, String content)
+    public void updateNote(String title)
     {
         Note_Julius noteOld = mDb.noteDao().getNoteByTitleContent(title);
         if(noteOld != null) {
