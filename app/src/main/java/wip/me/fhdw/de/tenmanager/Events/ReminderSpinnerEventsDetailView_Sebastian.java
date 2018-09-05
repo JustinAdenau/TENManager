@@ -5,7 +5,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,15 +15,14 @@ import java.util.Calendar;
 import wip.me.fhdw.de.tenmanager.Constants;
 import wip.me.fhdw.de.tenmanager.R;
 
-import static android.content.ContentValues.TAG;
 
 public class ReminderSpinnerEventsDetailView_Sebastian {
 
     private GuiEventsDetailView_Sebastian mGui;
     private Activity mActivity;
-    private Calendar mCalendar1;
-    private Calendar mCalendar2;
-    private Calendar mCalendar3;
+    //private Calendar mCalendar1;
+    //private Calendar mCalendar2;
+    //private Calendar mCalendar3;
     private boolean mNotification1Active = false;
     private boolean mNotification2Active = false;
     private boolean mNotification3Active = false;
@@ -57,7 +55,13 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
    //initialization and selecation function of spinner 1
    public void buildReminderSpinner1(){
-        String[] ReminderList = new String[]{"Keine Erinnerung","Erinnere mich zur Startzeit","Erinnere mich 5 Minuten vorher","Erinnere mich 15 Minuten vorher", "Erinnere mich 30 Minuten vorher","Erinnere mich 1 Stunde vorher","Erinnere mich 2 Stunden vorher"};
+        String[] ReminderList = new String[]{"Keine Erinnerung",
+                "Erinnere mich zur Startzeit",
+                "Erinnere mich 5 Minuten vorher",
+                "Erinnere mich 15 Minuten vorher",
+                "Erinnere mich 30 Minuten vorher",
+                "Erinnere mich 1 Stunde vorher",
+                "Erinnere mich 2 Stunden vorher"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mActivity.getApplicationContext(), R.layout.spinner_item, ReminderList);
 
@@ -76,36 +80,30 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                 mSpinner1Position = Integer.toString(pos);
                 Object item = parent.getItemAtPosition(pos);
                 if(item.toString()=="Erinnere mich zur Startzeit") {
-                    //mCalendar1 = createCalendar(0);
                     mMinDiff1 = 0;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 5 Minuten vorher"){
-                    //mCalendar1 = createCalendar(5);
                     mMinDiff1 = 5;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
-                    //mCalendar1 = createCalendar(15);
                     mMinDiff1 = 15;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 30 Minuten vorher") {
-                    mCalendar1 = createCalendar(30);
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
-                    //mCalendar1 = createCalendar(60);
                     mMinDiff1 = 60;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
-                    //mCalendar1 = createCalendar(120);
                     mMinDiff1 = 120;
                     mNotification1Active = true;
                     mSpinner2.setVisibility(View.VISIBLE);
@@ -124,7 +122,14 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     //initialization and selecation function of spinner 2
     public void buildReminderSpinner2(){
-        String[] ReminderList = new String[]{"Keine 2. Erinnerung","Erinnere mich zur Startzeit","Erinnere mich 5 Minuten vorher","Erinnere mich 15 Minuten vorher", "Erinnere mich 30 Minuten vorher","Erinnere mich 1 Stunde vorher","Erinnere mich 2 Stunden vorher"};
+        String[] ReminderList = new String[]{
+                "Keine 2. Erinnerung",
+                "Erinnere mich zur Startzeit",
+                "Erinnere mich 5 Minuten vorher",
+                "Erinnere mich 15 Minuten vorher",
+                "Erinnere mich 30 Minuten vorher",
+                "Erinnere mich 1 Stunde vorher",
+                "Erinnere mich 2 Stunden vorher"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mActivity.getApplicationContext(), R.layout.spinner_item, ReminderList);
 
@@ -147,37 +152,31 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                 mSpinner2Position = Integer.toString(pos);
                 Object item = parent.getItemAtPosition(pos);
                 if(item.toString()=="Erinnere mich zur Startzeit") {
-                    //mCalendar2 = createCalendar(0);
                     mMinDiff2 = 0;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 5 Minuten vorher"){
-                    //mCalendar2 = createCalendar(5);
                     mMinDiff2 = 5;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
-                    //mCalendar2 = createCalendar(15);
                     mMinDiff2 = 15;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 30 Minuten vorher") {
-                    //mCalendar2 = createCalendar(30);
                     mMinDiff2 = 30;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
-                    //mCalendar2 = createCalendar(60);
                     mMinDiff2 = 60;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
-                    //mCalendar2 = createCalendar(120);
                     mMinDiff2 = 120;
                     mNotification2Active = true;
                     mSpinner3.setVisibility(View.VISIBLE);
@@ -195,7 +194,14 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     //initialization and selecation function of spinner 3
     public void buildReminderSpinner3(){
-        String[] ReminderList = new String[]{"Keine 3. Erinnerung","Erinnere mich zur Startzeit","Erinnere mich 5 Minuten vorher","Erinnere mich 15 Minuten vorher", "Erinnere mich 30 Minuten vorher","Erinnere mich 1 Stunde vorher","Erinnere mich 2 Stunden vorher"};
+        String[] ReminderList = new String[]{
+                "Keine 3. Erinnerung",
+                "Erinnere mich zur Startzeit",
+                "Erinnere mich 5 Minuten vorher",
+                "Erinnere mich 15 Minuten vorher",
+                "Erinnere mich 30 Minuten vorher",
+                "Erinnere mich 1 Stunde vorher",
+                "Erinnere mich 2 Stunden vorher"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mActivity.getApplicationContext(), R.layout.spinner_item, ReminderList);
 
@@ -216,32 +222,26 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
                 mSpinner3Position = Integer.toString(pos);
                 Object item = parent.getItemAtPosition(pos);
                 if(item.toString()=="Erinnere mich zur Startzeit") {
-                    //mCalendar3 = createCalendar(0);
                     mMinDiff3 = 0;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 5 Minuten vorher"){
-                    //mCalendar3 = createCalendar(5);
                     mMinDiff3 = 5;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 15 Minuten vorher") {
-                    //mCalendar3 = createCalendar(15);
                     mMinDiff3 = 15;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 30 Minuten vorher") {
-                    //mCalendar3 = createCalendar(30);
                     mMinDiff3 = 30;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 1 Stunde vorher") {
-                    //mCalendar3 = createCalendar(60);
                     mMinDiff3 = 60;
                     mNotification3Active = true;
 
                 } if(item.toString()=="Erinnere mich 2 Stunden vorher") {
-                    //mCalendar3 = createCalendar(120);
                     mMinDiff3 = 120;
                     mNotification3Active = true;
 
@@ -366,7 +366,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
 
     //getter
-    public Calendar getCalendar1() {
+    /*public Calendar getCalendar1() {
         return mCalendar1;
     }
 
@@ -376,7 +376,7 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     public Calendar getCalendar3() {
         return mCalendar3;
-    }
+    }*/
 
     public String getSpinner123Position() {
         return mSpinner123Position;
@@ -399,5 +399,4 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         this.mEventID = EventID;
     }
 
-    //Quelle http://blog.blundellapps.co.uk/notification-for-a-user-chosen-time/
 }

@@ -27,7 +27,6 @@ public class DatepickerEndEventsDetailView_Sebastian {
         mGui = gui;
     }
 
-
     public void buildDateEndpicker() {
         mGui.getButtonDateEnd().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +46,6 @@ public class DatepickerEndEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-
             }
         });
 
@@ -64,7 +62,7 @@ public class DatepickerEndEventsDetailView_Sebastian {
                 mEnddate.set(Calendar.DAY_OF_MONTH, mMonthEnd);
                 mEnddate.set(Calendar.MONTH, mMonthEnd);
                 mEnddate.set(Calendar.YEAR, mYearEnd);
-                Log.d(TAG, "Gespeichert in mEnddate ist jetzt: " + mEnddate.getTime().getTime());
+               // Log.d(TAG, "Gespeichert in mEnddate ist jetzt: " + mEnddate.getTime().getTime());
 
             }
         };

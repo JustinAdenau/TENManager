@@ -12,17 +12,11 @@ import java.util.Date;
 
 public class UserInputValidationEventsDetailView_Sebastian {
 
-    private static final String TAG = "UserInputVali_Sebastian";
-
-
     private GuiEventsDetailView_Sebastian mGui;
     private TextInputLayout mTitleValidation;
     private TextInputLayout mLocationValidation;
     private TextInputLayout mDescriptionValidation;
     private TextView mDateTimeValidation;
-
-
-
 
     public UserInputValidationEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
         mGui = gui;
@@ -49,10 +43,10 @@ public class UserInputValidationEventsDetailView_Sebastian {
 
     //validation location is not empty
     private boolean validateLocation(){
-        String lacationInput;
+        String locationInput;
 
-        lacationInput = mLocationValidation.getEditText().getText().toString().trim();
-        if (lacationInput.isEmpty()){
+        locationInput = mLocationValidation.getEditText().getText().toString().trim();
+        if (locationInput.isEmpty()){
             mLocationValidation.setError("Bitte einen Standort eingeben");
             return false;
         } else {
@@ -120,17 +114,9 @@ public class UserInputValidationEventsDetailView_Sebastian {
     //proof all validations are true
     public boolean confirmInput(){
         if(!validateTitle() | !validateLocation() | !validateDescription() | !validateDateTime()){
-           return true;
+           return false;
         } else {
-            return false;
+            return true;
         }
-
-
-        //todo weitermachen hier! https://www.youtube.com/watch?v=veOZTvAdzJ8&t=116s
-
     }
-
-
-
-
 }

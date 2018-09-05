@@ -43,7 +43,6 @@ public class TimepickerEndEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-                Log.d(TAG, "Hour End: " + mHourEnd +" Minute End " + mMinuteEnd);
             }
         });
     }
