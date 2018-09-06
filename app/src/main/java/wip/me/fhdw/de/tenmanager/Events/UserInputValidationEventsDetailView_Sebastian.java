@@ -1,14 +1,9 @@
 package wip.me.fhdw.de.tenmanager.Events;
 
 import android.support.design.widget.TextInputLayout;
-import android.util.Log;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 
 public class UserInputValidationEventsDetailView_Sebastian {
 

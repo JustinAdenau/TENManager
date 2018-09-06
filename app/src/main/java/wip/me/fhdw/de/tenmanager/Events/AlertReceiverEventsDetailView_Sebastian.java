@@ -4,13 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
 
-import static android.content.ContentValues.TAG;
 
 public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
 
@@ -40,15 +38,12 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         if (notificationNumber == 1){
             eventID = eventID + 10000;
             notificationHelper.getManager().notify(eventID, nb.build());
-            Log.d(TAG, "onReceive: noti1");
         } if (notificationNumber == 2){
             eventID = eventID + 20000;
             notificationHelper.getManager().notify(eventID, nb.build());
-            Log.d(TAG, "onReceive: noti2");
         } if (notificationNumber == 3){
             eventID = eventID + 30000;
             notificationHelper.getManager().notify(eventID, nb.build());
-            Log.d(TAG, "onReceive: noti3");
         }
     }
 

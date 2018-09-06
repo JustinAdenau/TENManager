@@ -3,7 +3,6 @@ package wip.me.fhdw.de.tenmanager.Events;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
@@ -11,7 +10,6 @@ import java.util.Calendar;
 
 
 public class DatepickerEndEventsDetailView_Sebastian {
-    private static final String TAG = "Datepicker_Sebastian";
 
     private int mDayEnd;
     private int mMonthEnd;
@@ -27,6 +25,7 @@ public class DatepickerEndEventsDetailView_Sebastian {
         mGui = gui;
     }
 
+    //date picker to set event end date
     public void buildDateEndpicker() {
         mGui.getButtonDateEnd().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +50,7 @@ public class DatepickerEndEventsDetailView_Sebastian {
 
     }
 
+    //set chosen date to button
     public void setDateEndToButton() {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -62,8 +62,6 @@ public class DatepickerEndEventsDetailView_Sebastian {
                 mEnddate.set(Calendar.DAY_OF_MONTH, mMonthEnd);
                 mEnddate.set(Calendar.MONTH, mMonthEnd);
                 mEnddate.set(Calendar.YEAR, mYearEnd);
-               // Log.d(TAG, "Gespeichert in mEnddate ist jetzt: " + mEnddate.getTime().getTime());
-
             }
         };
     }

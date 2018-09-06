@@ -3,7 +3,6 @@ package wip.me.fhdw.de.tenmanager.Events;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
@@ -13,9 +12,6 @@ import java.util.Calendar;
 
 
 public class DatepickerStartEventsDetailView_Sebastian {
-
-
-    private static final String TAG = "Datepicker_Sebastian";
 
     private int mDayStart;
     private int mMonthStart;
@@ -64,8 +60,6 @@ public class DatepickerStartEventsDetailView_Sebastian {
                 //calculate to difference between start and end date
                 long diffMillis = mEndDate.getTimeInMillis() - mStartDate.getTimeInMillis();
                 mDiffDays = diffMillis /(24*60*60*1000);
-
-                Log.d(TAG, "Datediff:" +mDiffDays);
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         view.getContext(),

@@ -13,11 +13,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main"
-    android:padding="@dimen/listview_padding"
-    >
-
-<!--todo dimen einfügen schriftart und größe-->
-
+    android:padding="@dimen/listview_padding">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/eventTitle"
@@ -59,7 +55,6 @@
             android:drawableStart="@android:drawable/ic_menu_today"
             android:background="@color/colorApricotDark"
             android:hint="Startdatum"/>
-
 
         <Button
             android:id="@+id/eventTimeStart"
@@ -155,8 +150,7 @@
             android:id="@+id/eventLocationEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ort"
-            />
+            android:hint="Ort" />
 
     </android.support.design.widget.TextInputLayout>
 

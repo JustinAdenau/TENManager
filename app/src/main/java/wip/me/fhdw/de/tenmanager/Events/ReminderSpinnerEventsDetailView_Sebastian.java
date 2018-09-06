@@ -20,9 +20,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
     private GuiEventsDetailView_Sebastian mGui;
     private Activity mActivity;
-    //private Calendar mCalendar1;
-    //private Calendar mCalendar2;
-    //private Calendar mCalendar3;
     private boolean mNotification1Active = false;
     private boolean mNotification2Active = false;
     private boolean mNotification3Active = false;
@@ -135,8 +132,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
         mSpinner2 = mGui.getSpinnerReminder2();
         mSpinner2.setAdapter(adapter);
-
-        //Log.d(TAG, "buildReminderSpinner2: Spinner 2 Position" + (Integer.parseInt(mSpinner2Position)));
 
         if (mSpinner2 != null && mSpinner2Position != null) {
             mSpinner2.setSelection(Integer.parseInt(mSpinner2Position));
@@ -307,7 +302,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
         Intent intent = new Intent(mActivity.getApplicationContext(), AlertReceiverEventsDetailView_Sebastian.class);
 
         for (int i = 3; i > mNotificationNumber; i--){
-            //todo Reihenfolge der Notification ID herumdrehen, damit zuerst die 3. gelöscht wird.
             int notificationid;
             intent.putExtra(Constants.KEYNOTIFICATIONNUMBER, Integer.toString(i));
             notificationid = mEventID + i * 10000;
@@ -366,18 +360,6 @@ public class ReminderSpinnerEventsDetailView_Sebastian {
 
 
     //getter
-    /*public Calendar getCalendar1() {
-        return mCalendar1;
-    }
-
-    public Calendar getCalendar2() {
-        return mCalendar2;
-    }
-
-    public Calendar getCalendar3() {
-        return mCalendar3;
-    }*/
-
     public String getSpinner123Position() {
         return mSpinner123Position;
     }

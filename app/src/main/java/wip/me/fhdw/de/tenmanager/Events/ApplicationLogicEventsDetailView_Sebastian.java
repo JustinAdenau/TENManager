@@ -7,7 +7,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -18,8 +17,6 @@ import wip.me.fhdw.de.tenmanager.R;
 
 
 public class ApplicationLogicEventsDetailView_Sebastian {
-
-    private static final String TAG = "AppLogic_Sebastian";
 
     private GuiEventsDetailView_Sebastian mGui;
     private EventData_Lena mData;
@@ -83,8 +80,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     }
 
 
-    //todo Validierung Enddatum muss nach Startdatum liegen
-    //todo in if auch  ButtonDateEnd Befüllung anfragen
     private void initCurrentDate() {
         if (mGui.getButtonDateStart().getText().toString().matches("\\d{2}.\\d{2}.\\d{4}")) return;
         Calendar cal = Calendar.getInstance();
@@ -99,7 +94,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     }
 
 
-    //todo in if auch  ButtonTimeEnd Befüllung anfragen
     private void initCurrentTime() {
         if (mGui.getButtonTimeStart().getText().toString().matches("\\d{2}:\\d{2}")) return;
         Calendar cal = Calendar.getInstance();
@@ -129,7 +123,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
 
 
     private void initTimepickerStart() {
-        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui, mReminderSpinner);
+        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
         mTimepickerStart.bulidTimeStartpicker();
     }
 
@@ -150,8 +144,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mReminderSpinner.startAlarm(
                 mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff1()),
                 mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff2()),
-                mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff3())
-        );
+                mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff3()));
         mReminderSpinner.cancelAlarm();
         mReminderSpinner.saveSpinner123Position();
         boolean eventExists = false;
@@ -175,11 +168,9 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         }
 
         if (mData.getWithData()) {
-            Log.d("LOGTAG", "updating event!!!");
             mData.updateEvent(titleOld, dateStartOld, timeStartOld);
         } else {
             if (eventExists) {
-                Log.d("LOGTAG", "event exists!!!");
                 Toast.makeText(mData.getActivity().getApplicationContext(),
                         "Es gibt bereits ein Event mit diesem Titel, diesem Startdatum und dieser Startzeit!",
                         Toast.LENGTH_LONG).show();
@@ -243,7 +234,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     }
 
 
-    public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
+    public void startActivity(Class<?> activityClass, boolean withData)
     {
         Intent intent = new Intent();
         intent.setClass(mData.getActivity(), activityClass);
