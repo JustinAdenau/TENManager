@@ -21,7 +21,7 @@ public class ApplicationLogicToDoOverview_Mona {
     private GuiToDoOverview_Mona mGui;
     private ToDoData_Mona mToDoData;
     private AppDatabase mDb;
-    private List<ToDoOverview_Mona> mToDoList;
+    private List<ToDo_Mona> mToDoList;
     private ToDoAdapter_Mona mToDoAdapter;
     private Activity mActivity;
 
@@ -54,7 +54,7 @@ public class ApplicationLogicToDoOverview_Mona {
     private void dataToGui() {
 
         //mDb.todoDao().deleteAllToDos();
-        //ToDoOverview_Mona todoNew = new ToDoOverview_Mona("Fertig werden!!!", "eventDetailview, todos, fotos,", "23.08.2018", 50, "010");
+        //ToDo_Mona todoNew = new ToDo_Mona("Fertig werden!!!", "eventDetailview, todos, fotos,", "23.08.2018", 50, "010");
         //mDb.todoDao().insertAll(todoNew);
         mToDoList = mDb.todoDao().getAllToDos();
 
@@ -160,7 +160,7 @@ public class ApplicationLogicToDoOverview_Mona {
         TextView title = v.findViewById(R.id.listviewitem_textview_title_todo);
         if(title == null) Log.d("LOGTAG", "Title ist null!!!!!!!!!!!!!!!!!!");
         else Log.d("LOGTAG", "Title ist nicht null!!!!!!!!!!!!!!!!!!");
-        ToDoOverview_Mona todoToBeDeleted = mDb.todoDao().getTodoByTitle(title.getText().toString());
+        ToDo_Mona todoToBeDeleted = mDb.todoDao().getTodoByTitle(title.getText().toString());
         mDb.todoDao().deleteToDos(todoToBeDeleted);
 
         mActivity.recreate();

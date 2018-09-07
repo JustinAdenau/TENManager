@@ -4,28 +4,23 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.TimePicker;
 
 
 public class TimepickerStartEventsDetailView_Sebastian {
 
-    private static final String TAG = "Timepicker_Sebastian";
-
     private GuiEventsDetailView_Sebastian mGui;
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener;
     private ReminderSpinnerEventsDetailView_Sebastian mReminderSpinner;
 
     private int mHourStart;
     private int mMinuteStart;
 
-    public TimepickerStartEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui, ReminderSpinnerEventsDetailView_Sebastian reminderSpinner){
+    public TimepickerStartEventsDetailView_Sebastian(GuiEventsDetailView_Sebastian gui){
         mGui = gui;
-        mReminderSpinner = reminderSpinner;
     }
 
-    //time picker to set event start time
+    ///time picker to get event start time; set chosen time to button
     public void bulidTimeStartpicker(){
         mGui.getButtonTimeStart().setOnClickListener(new View.OnClickListener(){
             @Override
@@ -33,8 +28,6 @@ public class TimepickerStartEventsDetailView_Sebastian {
 
                 mHourStart = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(0, 2));
                 mMinuteStart = Integer.parseInt(mGui.getButtonTimeStart().getText().toString().substring(3, 5));
-
-                Log.d("LOGTAG", "Zeit: "+mHourStart+":"+mMinuteStart);
 
                 TimePickerDialog dialog = new TimePickerDialog(
 
@@ -48,9 +41,6 @@ public class TimepickerStartEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-                mReminderSpinner.buildReminderSpinner1();
-                mReminderSpinner.buildReminderSpinner2();
-                mReminderSpinner.buildReminderSpinner3();
             }
         });
     }

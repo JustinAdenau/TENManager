@@ -7,7 +7,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -18,8 +17,6 @@ import wip.me.fhdw.de.tenmanager.R;
 
 
 public class ApplicationLogicEventsDetailView_Sebastian {
-
-    private static final String TAG = "AppLogic_Sebastian";
 
     private GuiEventsDetailView_Sebastian mGui;
     private EventData_Lena mData;
@@ -62,8 +59,6 @@ public class ApplicationLogicEventsDetailView_Sebastian {
     }
 
 
-//todo
-
     public void dataToGui() {
         mGui.getEditTextTitle().setText(mData.getEventTitle());
         mGui.getButtonDateStart().setText(mData.getEventDateStart());
@@ -73,16 +68,18 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getEditTextDescription().setText(mData.getEventDescription());
         mGui.getEditTextLocation().setText(mData.getEventLocation());
         mReminderSpinner= new ReminderSpinnerEventsDetailView_Sebastian(mGui, mActivity);
-        mReminderSpinner.setEventID(mData.getDb().eventDao().getEventIdByTitleDateTime(mData.getEventTitle(), mData.getEventDateStart(), mData.getEventTimeStart()));
-        //mReminderSpinner.setSpinner123Position(mData.getEventTimeReminder());
+        mReminderSpinner.setEventID(mData.getDb().eventDao().getEventIdByTitleDateTime(
+                mData.getEventTitle(),
+                mData.getEventDateStart(),
+                mData.getEventTimeStart())
+        );
         mReminderSpinner.restoreSpinnerPosition(mData.getEventTimeReminder());
         mReminderSpinner.buildReminderSpinner1();
         mReminderSpinner.buildReminderSpinner2();
         mReminderSpinner.buildReminderSpinner3();
     }
 
-    //todo Validierung Enddatum muss nach Startdatum liegen
-    //todo in if auch  ButtonDateEnd Befüllung anfragen
+
     private void initCurrentDate() {
         if (mGui.getButtonDateStart().getText().toString().matches("\\d{2}.\\d{2}.\\d{4}")) return;
         Calendar cal = Calendar.getInstance();
@@ -96,7 +93,7 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mGui.getButtonDateEnd().setText(String.format("%02d.%02d.%04d", day, month, year));
     }
 
-    //todo in if auch  ButtonTimeEnd Befüllung anfragen
+
     private void initCurrentTime() {
         if (mGui.getButtonTimeStart().getText().toString().matches("\\d{2}:\\d{2}")) return;
         Calendar cal = Calendar.getInstance();
@@ -126,26 +123,28 @@ public class ApplicationLogicEventsDetailView_Sebastian {
 
 
     private void initTimepickerStart() {
-        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui, mReminderSpinner);
+        mTimepickerStart = new TimepickerStartEventsDetailView_Sebastian(mGui);
         mTimepickerStart.bulidTimeStartpicker();
     }
+
 
     private void initTimepickerEnd() {
         mTimepickerEnd = new TimepickerEndEventsDetailView_Sebastian(mGui);
         mTimepickerEnd.buildTimeEndpicker();
     }
 
+
     private void initUserInputValidation() {
         mUserInputValidation = new UserInputValidationEventsDetailView_Sebastian(mGui);
     }
 
 
-
     public void onFabSaveClicked() {
-        if (mUserInputValidation.confirmInput()) return;
-
-        mReminderSpinner.startAlarm(mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff1()), mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff2()), mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff3()));
-        //mReminderSpinner.startAlarm(mReminderSpinner.getCalendar1(), mReminderSpinner.getCalendar2(), mReminderSpinner. getCalendar3());
+        if (!mUserInputValidation.confirmInput()) return;
+        mReminderSpinner.startAlarm(
+                mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff1()),
+                mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff2()),
+                mReminderSpinner.createCalendar(mReminderSpinner.getMinDiff3()));
         mReminderSpinner.cancelAlarm();
         mReminderSpinner.saveSpinner123Position();
         boolean eventExists = false;
@@ -165,19 +164,16 @@ public class ApplicationLogicEventsDetailView_Sebastian {
             mData.setEventTimeEnd(mGui.getButtonTimeEnd().getText().toString());
             mData.setEventDescription(mGui.getEditTextDescription().getText().toString());
             mData.setEventLocation(mGui.getEditTextLocation().getText().toString());
-            //todo Position von adapterview überprüfen
             mData.setEventTimeReminder(mReminderSpinner.getSpinner123Position());
         }
 
-        Log.d("LOGTAG", "withData: " + mData.getWithData());
-
         if (mData.getWithData()) {
-            Log.d("LOGTAG", "updating event!!!");
             mData.updateEvent(titleOld, dateStartOld, timeStartOld);
         } else {
             if (eventExists) {
-                Log.d("LOGTAG", "event exists!!!");
-                Toast.makeText(mData.getActivity().getApplicationContext(), "Es gibt bereits ein Event_Lena mit diesem Titel, diesem Startdatum und dieser Startzeit!", Toast.LENGTH_LONG).show();
+                Toast.makeText(mData.getActivity().getApplicationContext(),
+                        "Es gibt bereits ein Event mit diesem Titel, diesem Startdatum und dieser Startzeit!",
+                        Toast.LENGTH_LONG).show();
 
                 return;
             }
@@ -186,12 +182,12 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         finishActivityResultOk();
     }
 
-    public void onMenuItemSelected(MenuItem item)
-    {
+
+    public void onMenuItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.menuHome)
-        {
+        if(id == R.id.menuHome) {
+
             startActivity(Constants.ACTIVITYHOMEPAGECLASS, false);
             mData.getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
@@ -237,7 +233,8 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         }
     }
 
-    public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
+
+    public void startActivity(Class<?> activityClass, boolean withData)
     {
         Intent intent = new Intent();
         intent.setClass(mData.getActivity(), activityClass);
@@ -265,5 +262,4 @@ public class ApplicationLogicEventsDetailView_Sebastian {
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
-
 }

@@ -70,7 +70,7 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
+        if(drawer == null);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -80,13 +80,13 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {
+        mData.setNotePictureString(mApplicationLogic.createPictureString());
         mData.saveDataInBundle(outState);
         super.onSaveInstanceState(outState);
         outState.putString("NoteTitel", mGui.getEditTextTitle().getText().toString());
         outState.putString("NoteContent", mGui.getEditTextContent().getText().toString());
         outState.putString("NotePicture", mApplicationLogic.createPictureString());
         outState.putBoolean("NoteWithData", mData.getWithData());
-
     }
 
     @Override

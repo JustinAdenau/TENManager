@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 8,
-    "identityHash": "daae246d48fc7c8ab48eeb7062f71858",
+    "identityHash": "a2f108a58f78e74e628c73f95178c96f",
     "entities": [
       {
         "tableName": "Event_Lena",
@@ -111,7 +111,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "ToDoOverview_Mona",
+        "tableName": "ToDo_Mona",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`todo_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `todo_title` TEXT, `todo_content` TEXT, `todo_duedate` TEXT, `todo_status` INTEGER NOT NULL, `todo_checkboxactivated` TEXT)",
         "fields": [
           {
@@ -163,7 +163,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"daae246d48fc7c8ab48eeb7062f71858\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a2f108a58f78e74e628c73f95178c96f\")"
     ]
   }
 }

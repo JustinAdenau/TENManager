@@ -46,7 +46,6 @@ public class GuiEventsDetailView_Sebastian {
         stub = (ViewStub) activity.findViewById(R.id.viewStub);
         stub.setLayoutResource(R.layout.eventsdetailview_sebastian);
         inflated = stub.inflate();
-
         mEditTextTitle = activity.findViewById(R.id.eventTitleEditText);
         mEditTextDescription = activity.findViewById(R.id.eventDescriptionEditText);
         mEditTextLocation = activity.findViewById(R.id.eventLocationEditText);
@@ -68,6 +67,7 @@ public class GuiEventsDetailView_Sebastian {
     }
 
 
+    //getter
     public EditText getEditTextTitle(){return mEditTextTitle; }
 
     public EditText getEditTextDescription(){return mEditTextDescription; }
@@ -124,6 +124,7 @@ public class GuiEventsDetailView_Sebastian {
 
     public NavigationView getNavigationView(){return mNavigationView;}
 
+    //setter
     public void setButtonTimeStart(String ButtonTimeStart) {
         this.mButtonTimeStart.setText(ButtonTimeStart);
     }
@@ -138,9 +139,5 @@ public class GuiEventsDetailView_Sebastian {
 
     public void setButtonDateEnd(String ButtonDateEnd) {
         this.mButtonDateEnd.setText(ButtonDateEnd);
-    }
-
-    public void setSpinnerReminder(String SpinnerReminder){
-        this.mSpinnerReminder1.setSelection(Integer.parseInt(SpinnerReminder));
     }
 }

@@ -4,16 +4,12 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.TimePicker;
 
 public class TimepickerEndEventsDetailView_Sebastian {
 
-    private static final String TAG = "Timepicker_Sebastian";
-
     private GuiEventsDetailView_Sebastian mGui;
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener;
 
     private int mHourEnd;
     private int mMinuteEnd;
@@ -23,6 +19,7 @@ public class TimepickerEndEventsDetailView_Sebastian {
     }
 
 
+    //time picker to get event end time; set chosen time to button
     public void buildTimeEndpicker(){
         mGui.getButtonTimeEnd().setOnClickListener(new View.OnClickListener(){
             @Override
@@ -43,7 +40,6 @@ public class TimepickerEndEventsDetailView_Sebastian {
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-                Log.d(TAG, "Hour End: " + mHourEnd +" Minute End " + mMinuteEnd);
             }
         });
     }

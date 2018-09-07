@@ -10,11 +10,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import wip.me.fhdw.de.tenmanager.R;
-import wip.me.fhdw.de.tenmanager.ToDos.ToDoOverview_Mona;
+import wip.me.fhdw.de.tenmanager.ToDos.ToDo_Mona;
 
 public class ToDoAdapter_Justin extends BaseAdapter{
     private Context mContext;
-    private List<ToDoOverview_Mona> mTodoList;
+    private List<ToDo_Mona> mTodoList;
     private ApplicationLogicHomepage_Justin mApplicationLogic;
 
 
@@ -23,7 +23,7 @@ public class ToDoAdapter_Justin extends BaseAdapter{
         this.mContext=context;
     }
 
-    public void setToDoList(List<ToDoOverview_Mona> todoList){mTodoList=todoList;}
+    public void setToDoList(List<ToDo_Mona> todoList){mTodoList=todoList;}
 
     public void setApplicationLogic(ApplicationLogicHomepage_Justin applicationLogic){mApplicationLogic=applicationLogic;}
 
@@ -42,7 +42,7 @@ public class ToDoAdapter_Justin extends BaseAdapter{
         return position;
     }
 
-    public List<ToDoOverview_Mona> getTodoList(){return mTodoList;}
+    public List<ToDo_Mona> getTodoList(){return mTodoList;}
 
     @Override
     public View getView(int position, View v, ViewGroup viewGroup) {

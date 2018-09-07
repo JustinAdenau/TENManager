@@ -60,11 +60,6 @@ public class GuiEventsOverview_Lena {
     public ImageButton getButtonDeleteEvent(){return mButtonDeleteEvent;}
     public NavigationView getNavigationView(){return mNavigationView;}
 
-    public TextView getTextViewTitle(){return mTextViewTitle;}
-    public TextView getTextViewDateStart(){return mTextViewDateStart;}
-    public TextView getTextViewTimeStart(){return mTextViewTimeStart;}
-    public TextView getTextViewDateEnd(){return mTextViewDateEnd;}
-    public TextView getTextViewTimeEnd(){return mTextViewTimeEnd;}
 
 
     //methods to change View attributes

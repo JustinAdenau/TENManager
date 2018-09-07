@@ -4,13 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import java.util.Calendar;
 
 import wip.me.fhdw.de.tenmanager.Constants;
 
-import static android.content.ContentValues.TAG;
 
 public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
 
@@ -19,6 +17,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
     private int mMinute1;
     private String mTitle;
     private String mMessage1;
+
 
     //push up to 3 notification
     @Override
@@ -39,17 +38,15 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         if (notificationNumber == 1){
             eventID = eventID + 10000;
             notificationHelper.getManager().notify(eventID, nb.build());
-            Log.d(TAG, "onReceive: noti1");
         } if (notificationNumber == 2){
             eventID = eventID + 20000;
             notificationHelper.getManager().notify(eventID, nb.build());
-            Log.d(TAG, "onReceive: noti2");
         } if (notificationNumber == 3){
             eventID = eventID + 30000;
             notificationHelper.getManager().notify(eventID, nb.build());
-            Log.d(TAG, "onReceive: noti3");
         }
     }
+
 
     //calculate minutes until start time of event
     public int minutesToEvent(){
@@ -65,6 +62,7 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
 
         return minDiff;
     }
+
 
     //set message text to notification
     public void setNotificicationMessage(int timeDiff){
@@ -87,6 +85,5 @@ public class AlertReceiverEventsDetailView_Sebastian extends BroadcastReceiver {
         } if(timeDiff == 0) {
             mMessage1 = "Dein Termin beginnt jetzt";
         }
-
     }
 }

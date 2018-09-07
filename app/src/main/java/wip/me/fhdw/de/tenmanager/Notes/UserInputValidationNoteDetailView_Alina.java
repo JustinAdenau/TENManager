@@ -51,10 +51,6 @@ public class UserInputValidationNoteDetailView_Alina {
         } else {
             return false;
         }
-
-
-        //todo weitermachen hier! https://www.youtube.com/watch?v=veOZTvAdzJ8&t=116s
-
     }
 
 }

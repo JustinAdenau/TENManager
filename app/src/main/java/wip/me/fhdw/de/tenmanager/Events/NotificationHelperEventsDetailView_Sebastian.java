@@ -30,7 +30,7 @@ public class NotificationHelperEventsDetailView_Sebastian extends ContextWrapper
                     "Channel1",
                     NotificationManager.IMPORTANCE_HIGH
             );
-            channel1.setDescription("This is a Testchannel ändern in AppLogic");
+            channel1.setDescription("Notification channel1");
 
             getManager().createNotificationChannel(channel1);
         }

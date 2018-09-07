@@ -65,26 +65,17 @@ public class ApplicationLogicNoteDetailView_Alina {
         });
     }
 
-
-//todo
-
     public void dataToGui()
     {
         mGui.getEditTextTitle().setText(mData.getNoteTitle());
         mGui.getEditTextContent().setText(mData.getNoteContent());
 
-        Log.d("LOGTAG", "mData getPictureString: " + mData.getPictureString());
-
-        pictureToGui();
-    }
-
-    public void pictureToGui(){
         List<String> StringUriList = new ArrayList<>();
+
 
         if(mData.getPictureString() != null){
             StringUriList = getStringUriList(mData.getPictureString());
             if(StringUriList.size() != 0) {
-                Log.d("LOGTAG", "Bild Uri: " + Uri.parse(StringUriList.get(0)));
                 if (StringUriList.size() > 0 && StringUriList.get(0) != null) {
                     mGui.getImageView1().setImageURI(Uri.parse(StringUriList.get(0)));
                 }
@@ -102,17 +93,10 @@ public class ApplicationLogicNoteDetailView_Alina {
                 }
             }
         }
+
+
     }
 
-
-
-
-    /////////////////////////////////////////////
-    // AppLogic
-    ////////////////////////////////////////////7
-
-
-    //todo Methoden einfügen
     //Einbindung der UserInputValidation Java-Class, Instanziierung??
     private void initUserInputValidation(){
         mUserInputValidation = new UserInputValidationNoteDetailView_Alina(mGui);
@@ -124,13 +108,10 @@ public class ApplicationLogicNoteDetailView_Alina {
         if(mUserInputValidation.confirmInput()) return;
 
         String titleOld = mData.getNoteTitle();
-        String contentOld = mData.getNoteContent();
 
         String title = mGui.getEditTextTitle().getText().toString();
         String content = mGui.getEditTextContent().getText().toString();
         String pictureString = createPictureString();
-        Log.d("LOGTAG", "PictureString:  " + pictureString + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
 
         if(mData.getDb().noteDao().noteExists(title)!=0) noteExists = true;
         if(!noteExists || mData.getWithData()) {
@@ -138,10 +119,9 @@ public class ApplicationLogicNoteDetailView_Alina {
             mData.setNoteContent(content);
             mData.setNotePictureString(pictureString);
         }
-        Log.d("LOGTAG", "withData: "+mData.getWithData());
         if(mData.getWithData())
         {
-            mData.updateNote(titleOld, contentOld);
+            mData.updateNote(titleOld);
         }
         else
         {
@@ -187,7 +167,6 @@ public class ApplicationLogicNoteDetailView_Alina {
     }
 
     public void onBackPressed() {
-        Log.d("LOGTAG", "onBackPress called");
         finishActivityResultCancelled();
 
     }
@@ -205,8 +184,6 @@ public class ApplicationLogicNoteDetailView_Alina {
 
     //finish Activities
     public void onActivityReturned(int requestCode, int resultCode, Intent intent) {
-        Log.d("LOGTAG", "onActivityReturned ...");
-        Log.d("LOGTAG", "  resultCode: " + resultCode);
         int value;
         if ( resultCode == Activity.RESULT_OK ) {
             switch (requestCode) {
@@ -216,31 +193,34 @@ public class ApplicationLogicNoteDetailView_Alina {
                     break;
             }
         }
-        Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
-        boolean allreadySet = false;
-        if(mGui.getImageView1().getDrawable() == null) {
+
+        if(intent != null) {
+            Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
+            boolean allreadySet = false;
+            if (mGui.getImageView1().getDrawable() == null) {
 
                 mGui.getImageView1().setImageBitmap(bitmap);
                 allreadySet = true;
-        }
-        if(allreadySet == false && mGui.getImageView2().getDrawable() == null) {
+            }
+            if (allreadySet == false && mGui.getImageView2().getDrawable() == null) {
 
-            mGui.getImageView2().setImageBitmap(bitmap);
-            allreadySet = true;
-        }
-        if(allreadySet == false && mGui.getImageView3().getDrawable() == null ) {
+                mGui.getImageView2().setImageBitmap(bitmap);
+                allreadySet = true;
+            }
+            if (allreadySet == false && mGui.getImageView3().getDrawable() == null) {
 
-            mGui.getImageView3().setImageBitmap(bitmap);
-            allreadySet = true;
-        }
-        if(allreadySet == false && mGui.getImageView4().getDrawable() == null) {
+                mGui.getImageView3().setImageBitmap(bitmap);
+                allreadySet = true;
+            }
+            if (allreadySet == false && mGui.getImageView4().getDrawable() == null) {
 
-            mGui.getImageView4().setImageBitmap(bitmap);
-            allreadySet = true;
-        }
-        if(allreadySet == false && mGui.getImageView5().getDrawable() == null) {
+                mGui.getImageView4().setImageBitmap(bitmap);
+                allreadySet = true;
+            }
+            if (allreadySet == false && mGui.getImageView5().getDrawable() == null) {
 
-            mGui.getImageView5().setImageBitmap(bitmap);
+                mGui.getImageView5().setImageBitmap(bitmap);
+            }
         }
     }
 
@@ -250,7 +230,6 @@ public class ApplicationLogicNoteDetailView_Alina {
         Intent intent = new Intent();
         intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
         mData.getActivity().setResult(Activity.RESULT_OK, intent);
-        Log.d("LOGTAG", "finishActivityResultOk");
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
@@ -261,7 +240,6 @@ public class ApplicationLogicNoteDetailView_Alina {
         Intent intent = new Intent();
         intent.putExtra(Constants.KEYDATABUNDLE, mData.getDataBundle());
         mData.getActivity().setResult(Activity.RESULT_CANCELED, intent);
-        Log.d("LOGTAG", "finishActivityResultCancel");
         mData.getActivity().finish();
         mData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
@@ -270,11 +248,10 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         mGui.getEditTextTitle().setText(outState.getString("NoteTitel"));
         mData.setNoteContent(outState.getString("NoteContent"));
-        mData.setNotePictureString(outState.getString("NotePicture"));
         mData.setWithData(outState.getBoolean("NoteWithData"));
-
-        pictureToGui();
+        mData.setNotePictureString(outState.getString("NotePicture"));
     }
+
     private List<String> getStringUriList(String uriString){
 
         List<String> uriList = new ArrayList<String>();
@@ -286,7 +263,6 @@ public class ApplicationLogicNoteDetailView_Alina {
                     counter = i + 1;
                 }
             }
-
         return uriList;
     }
 
