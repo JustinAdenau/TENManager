@@ -53,17 +53,11 @@ public class ApplicationLogicNoteOverview_Julius {
     }
 
     public void dataToGui(){
-        //mDb.noteDao().deleteAllNotes();
-
-        //Note_Julius neu = new Note_Julius("Test", "-Eier \n-Wasser \n-Mehl", "c://");
-        //mDb.noteDao().insert(neu);
-
         mNoteList = mDb.noteDao().getAllNotes();
 
         mNoteListOverView = mDb.noteDao().getAllNotes();
             for (int i = 0 ; i < mNoteListOverView.size(); i++)
             {
-                Log.d("LOGTAG", "Content:" +mNoteListOverView.get(i).getContent());
                 mNoteListOverView.get(i).setContent(mNoteList.get(i).getFirstTwoContentRows());
             }
 
@@ -118,8 +112,6 @@ public class ApplicationLogicNoteOverview_Julius {
     {
         View v = (View)view.getParent().getParent();
         TextView title = v.findViewById(R.id.listviewitem_textview_note_title);
-        TextView content = v.findViewById(R.id.listviewitem_textview_content);
-        Log.d("LOGTAG", "Title: " + title.getText().toString());
         Note_Julius noteToBeDeleted = mDb.noteDao().getNoteByTitleContent(title.getText().toString());
         mDb.noteDao().deleteNote(noteToBeDeleted);
 
@@ -156,14 +148,6 @@ public class ApplicationLogicNoteOverview_Julius {
         mNoteData.getActivity().startActivityForResult(intent, Constants.REQUESTCODEONE);
     }
 
-    private void finishActivityResultOK() {
-        Intent intent = new Intent();
-        intent.putExtra(Constants.KEYDATABUNDLE, mNoteData.getDataBundle());
-        mNoteData.getActivity().setResult(Activity.RESULT_OK, intent);
-        Log.d("LOGTAG", "finishAktivityResultOK");
-        mNoteData.getActivity().finish();
-        mNoteData.getActivity().overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-    }
 
     private void finishActivityResultCanceled() {
         Intent intent = new Intent();
