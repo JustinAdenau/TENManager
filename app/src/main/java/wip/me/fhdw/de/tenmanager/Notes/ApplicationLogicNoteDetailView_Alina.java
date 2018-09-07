@@ -108,7 +108,6 @@ public class ApplicationLogicNoteDetailView_Alina {
         if(mUserInputValidation.confirmInput()) return;
 
         String titleOld = mData.getNoteTitle();
-        String contentOld = mData.getNoteContent();
 
         String title = mGui.getEditTextTitle().getText().toString();
         String content = mGui.getEditTextContent().getText().toString();
@@ -194,31 +193,34 @@ public class ApplicationLogicNoteDetailView_Alina {
                     break;
             }
         }
-        Bitmap bitmap = (Bitmap)intent.getExtras().get("data");
-        boolean allreadySet = false;
-        if(mGui.getImageView1().getDrawable() == null) {
+
+        if(intent != null) {
+            Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
+            boolean allreadySet = false;
+            if (mGui.getImageView1().getDrawable() == null) {
 
                 mGui.getImageView1().setImageBitmap(bitmap);
                 allreadySet = true;
-        }
-        if(allreadySet == false && mGui.getImageView2().getDrawable() == null) {
+            }
+            if (allreadySet == false && mGui.getImageView2().getDrawable() == null) {
 
-            mGui.getImageView2().setImageBitmap(bitmap);
-            allreadySet = true;
-        }
-        if(allreadySet == false && mGui.getImageView3().getDrawable() == null ) {
+                mGui.getImageView2().setImageBitmap(bitmap);
+                allreadySet = true;
+            }
+            if (allreadySet == false && mGui.getImageView3().getDrawable() == null) {
 
-            mGui.getImageView3().setImageBitmap(bitmap);
-            allreadySet = true;
-        }
-        if(allreadySet == false && mGui.getImageView4().getDrawable() == null) {
+                mGui.getImageView3().setImageBitmap(bitmap);
+                allreadySet = true;
+            }
+            if (allreadySet == false && mGui.getImageView4().getDrawable() == null) {
 
-            mGui.getImageView4().setImageBitmap(bitmap);
-            allreadySet = true;
-        }
-        if(allreadySet == false && mGui.getImageView5().getDrawable() == null) {
+                mGui.getImageView4().setImageBitmap(bitmap);
+                allreadySet = true;
+            }
+            if (allreadySet == false && mGui.getImageView5().getDrawable() == null) {
 
-            mGui.getImageView5().setImageBitmap(bitmap);
+                mGui.getImageView5().setImageBitmap(bitmap);
+            }
         }
     }
 
@@ -246,9 +248,10 @@ public class ApplicationLogicNoteDetailView_Alina {
     {
         mGui.getEditTextTitle().setText(outState.getString("NoteTitel"));
         mData.setNoteContent(outState.getString("NoteContent"));
-        mData.setWithData(outState.getBoolean("WithData"));
+        mData.setWithData(outState.getBoolean("NoteWithData"));
         mData.setNotePictureString(outState.getString("NotePicture"));
     }
+
     private List<String> getStringUriList(String uriString){
 
         List<String> uriList = new ArrayList<String>();
@@ -260,7 +263,6 @@ public class ApplicationLogicNoteDetailView_Alina {
                     counter = i + 1;
                 }
             }
-
         return uriList;
     }
 

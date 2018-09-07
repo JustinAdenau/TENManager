@@ -53,10 +53,6 @@ public class ApplicationLogicNoteOverview_Julius {
     }
 
     public void dataToGui(){
-        //mDb.noteDao().deleteAllNotes();
-
-        //Note_Julius neu = new Note_Julius("Test", "-Eier \n-Wasser \n-Mehl", "c://");
-        //mDb.noteDao().insert(neu);
 
         mNoteList = mDb.noteDao().getAllNotes();
 
