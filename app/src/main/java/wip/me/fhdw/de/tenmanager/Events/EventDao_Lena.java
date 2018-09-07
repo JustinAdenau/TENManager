@@ -11,7 +11,7 @@ import java.util.List;
 public interface EventDao_Lena {
 
     //gets List of all Events from database ordered by startDate
-    @Query("SELECT * from Event_Lena order by SUBSTR(event_date_start, 7, 4), SUBSTR(event_date_start, 4, 2), SUBSTR(event_date_start, 1, 2)")
+    @Query("SELECT * from Event_Lena order by SUBSTR(event_date_start, 7, 4), SUBSTR(event_date_start, 4, 2), SUBSTR(event_date_start, 1, 2), event_time_start")
     List<Event_Lena> getAllEvents();
 
 
