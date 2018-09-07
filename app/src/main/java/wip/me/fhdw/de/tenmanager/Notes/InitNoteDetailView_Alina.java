@@ -29,9 +29,7 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
     private GuiNoteDetailView_Alina mGui;
     private ApplicationLogicNoteDetailView_Alina mApplicationLogic;
     private NoteData_Julius mData;
-    private AppDatabase mDb;
     private Intent mIntent;
-    private ImageView imageView;
 
 
     //todo ApplicationLogic inizialisieren
@@ -43,7 +41,6 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
         initData(savedInstanceState);
         initGui();
         initApplicationLogic(mIntent);
-        //initDb();
     }
 
     private void initGui(){
@@ -96,14 +93,12 @@ public class InitNoteDetailView_Alina extends AppCompatActivity{
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // super.onActivityResult(requestCode, resultCode, data);
         mApplicationLogic.onActivityReturned(requestCode, resultCode, data);
 
     }
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         mApplicationLogic.onBackPressed();
     }
 }

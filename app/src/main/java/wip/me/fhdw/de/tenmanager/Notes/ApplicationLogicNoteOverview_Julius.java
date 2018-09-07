@@ -138,7 +138,7 @@ public class ApplicationLogicNoteOverview_Julius {
         }
     }
 
-    public void startActivity(Class<?> activityClass, boolean withData) //?: Elementtyp der Klasse ist offen
+    public void startActivity(Class<?> activityClass, boolean withData)
     {
         Intent intent = new Intent();
         intent.setClass(mNoteData.getActivity(), activityClass);

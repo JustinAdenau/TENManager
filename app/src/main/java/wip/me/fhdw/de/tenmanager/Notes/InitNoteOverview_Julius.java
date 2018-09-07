@@ -44,8 +44,6 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
     public void initDb()
     {
         mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "events")
-          /*.addMigrations(MIGRATION_3_4)
-                .addMigrations(MIGRATION_4_5)*/
           .allowMainThreadQueries()
           .build();
     }
@@ -61,11 +59,8 @@ public class InitNoteOverview_Julius extends AppCompatActivity {
         TextView toolbarTextview = toolbar.findViewById(R.id.toolbar_textview);
         toolbarTextview.setText("Notes");
         ActionBar actionBar = getSupportActionBar();
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-        //actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        if(drawer == null) Log.d("LOGTAG", "drawer ist null!!!!!!!!!!!!!!!!!!");
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

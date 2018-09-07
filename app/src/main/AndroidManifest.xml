@@ -32,8 +32,6 @@
 
         <receiver android:name=".Events.AlertReceiverEventsDetailView_Sebastian"/>
 
-        <!--<activity android:name=".GuiEventsOverview_Lena"/>-->
-
     </application>
 
 </manifest>

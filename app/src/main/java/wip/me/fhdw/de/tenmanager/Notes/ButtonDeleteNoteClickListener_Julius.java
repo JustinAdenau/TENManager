@@ -15,7 +15,6 @@ public class ButtonDeleteNoteClickListener_Julius implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        Log.d("LOGTAG", "onClick: ButtonDeleteNote wurde angeklickt!!!!!!!!!!!!!!!!");
         mApplicationLogic.onButtonDeleteNoteClicked(view);
     }
 }

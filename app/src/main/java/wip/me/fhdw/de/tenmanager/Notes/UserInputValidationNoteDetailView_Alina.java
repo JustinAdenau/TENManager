@@ -43,8 +43,6 @@ public class UserInputValidationNoteDetailView_Alina {
     }
 
 
-
-
     public boolean confirmInput(){
         if (!validateTitle() | !validateContent()){
             return true;
