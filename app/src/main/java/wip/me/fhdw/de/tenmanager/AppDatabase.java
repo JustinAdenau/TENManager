@@ -18,5 +18,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract NoteDao_Julius noteDao();
     public abstract ToDoDao_Mona todoDao();
 
+
 }
 
